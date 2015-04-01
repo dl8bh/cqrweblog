@@ -42,6 +42,7 @@ If frequency is set, it keeps its value as long as you dont change.
 -Frequency
 	-input frequency in MHz
 	-if band is selected, frequency is selected as lower bound of band
+	-you can just set 7 for 40m 21 for 15m, 14 for 20m if you dont want/need precice frequencies
 -Callsign
 	-just enter a callsign
 -Mode
@@ -52,14 +53,47 @@ If frequency is set, it keeps its value as long as you dont change.
 	-default RST can be configured in config.php
 -Name (optional)
 	-Name of OP
+	-is saved uppercase
 -Remarks (optional)
 	-some remarks to QSO
+	-is saved uppercase
 -Submit
 	-Log QSO, alternatively just hit ENTER
 -CheckDXCC
-	-Check the DXCC worked/confirmed statistics of the entered callsigns dxcc
+	-Check the DXCC worked/confirmed slot-statistics of the entered callsigns dxcc in a new window
+	-uses the dxcc stats explained later
+
 
 ===SEARCH===
-Fields are combinde with logical AND. % can be used as wildcard in Callsign/Name/Remarks fields.
+General:
+Fields are combined with logical AND, all fields are optional.
+-Callsign 
+	-use % as wildcard, example: DL% would find DL8BH and DL4UNY (and many more DL)
+-DXCC 
+	-DXCC Prefix as known from cqrlog, use % as wildcard
+-Mode:
+	-filter for cw/ssb/…
+-Remarks
+	-use % as wildcard
+-Locator
+	-use % as locator
+	-hint for vhf/uhf ops: JO% JO50% etc might be interesting…
+An advanced example:
+Band=20m DXCC=DL Mode=CW Name=Pet% Remarks=%WAE15%
+Would search for all german stations you worked on 20m cw in WAE 2015 (if you use have such comments) with names starting with Pet (Peter, Pete, Petr…)
+
 
 ===Statistics===
+-shows dxcc statistics
+-can show one or more of cw/ssb/allmode at the same time
+-uses input to define kind of confirmation as set in cqrlog (paper/lotw/eqsl)
+-sums up the dxcc at the bottom of the table
+-DXCC
+	-allows to search for a specific DXCC
+	-uses % as wildcard
+		-D% shows D2 (Antigua), D4 (Cap Verde), D6 (Comoros), DL (Federal Republic of Germany), DU (Philippines)
+		-D2 just shows Antigua…
+
+===Publoc===
+-does not allow any input
+-just shows the last $qso_count=N QSOs
