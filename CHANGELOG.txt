@@ -1,5 +1,6 @@
 2015-04-01
 	-add some documentation
+	-introduce configuration switch in config, to turn publog on/off
 2015-03-31
 	-reset defaultrapports after each qso
 	-overall better handling of defaultrapports

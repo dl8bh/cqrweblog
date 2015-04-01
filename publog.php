@@ -1,8 +1,6 @@
 <?php
 include("inc/header.php");
-//include("inc/parseinput.php");
 ?>
-
 <html>
 <head>
 <title>Logbook</title>
@@ -17,16 +15,18 @@ include("inc/header.php");
 </head>
 <body>
 
-
 <?php
-echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
+if ($publog_enabled) {
+		echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />' . "\n";
+		echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
+		echo '<hr>' . "\n";
+		echo '<br><br>' . "\n";
+		include("inc/qsotable.php");
+}
+else
+{
+		echo '<h1 align="center">Publog not enabled</h1><br /><br />' . "\n";
+}
 ?>
-
-<?php 
-echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
-?>
-<hr>
-<br><br>
-<?php include("inc/qsotable.php");?>
 </body>
 </html>
