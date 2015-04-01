@@ -1,0 +1,20 @@
+<?php
+// Hostname des mysql-server
+$hostname="localhost";
+// mysql-username
+$dbuser="cqrlog";
+// mysql-passwort
+$dbpass="password123";
+// Standard-db von cqrlog, für gewöhnlich NICHT ändern
+$db="cqrlog_common";
+// Standard-Mode/Rapporte
+$defaultmode="CW";
+$default_cw_rapport="599";
+$default_ssb_rapport="59";
+// Wahl des default logs (override: log_id=N)
+$defaultlog="1";
+// Anzahl der default anzuzeigenden QSOs
+$defaultcount="50";
+// Debug-Ausgaben
+$debugmode=false;
+?>

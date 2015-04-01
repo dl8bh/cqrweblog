@@ -1,0 +1,45 @@
+2015-03-31
+	-reset defaultrapports after each qso
+	-overall better handling of defaultrapports
+		-Resulting Changes in config.php:
+			-introduced $default_{cw,ssb}_rapport
+			-deprecated $defaultrapport
+2015-03-30
+	-big speedup in dxcc resolution, thanks to dl5mlo for the idea
+		-new cqrlog_web.sql is needed for this!
+2015-03-29
+	-purged some bands, that are not allowed in germany (only in the cqrlog_common database)
+	-added DXCC count to statistics page
+	-if you enter a callsign into log page and click "CheckDXCC" you get a slot statistic of the dxcc
+	-fixed litte bug in htmltable structure of dxcc stats
+	-add README.txt and example/nginx.vhost
+	-validate frequency input ( , -> . as decimal delimiter)
+2015-03-28
+	-activated function to distinct between type of confirmation in stats
+	-dxcc count first step, missing distinct betweent mode and allbandmode count
+2015-03-27
+	-added debugmode
+	-deriving first files from search to make stats.php 
+	-first working version of stats.php
+	-allow to distinct between modes in stats
+	-colored DXCC stats
+	-improved DXCC stats readability
+	-added DXCC filter with like syntax to DXCC stats
+2015-03-26
+	-fixed bug: if no dxcc could be found, qso could not be added
+		-added informal message, if no dxcc could be found
+	-some security considerations about escaping sql statements
+	-checked log_id input, if not existing log_id, return $defaultlog
+2015-03-21
+	-improved tabindex order
+	-sped up dxccsearch if special call is true
+2015-03-20
+	-added dxccsearch for special calls like dp1pol
+	-added id_call for qso_before
+	-change name search to like syntax
+2015-03-19
+	-added dxccsearch
+	-added countryfileparser
+2015-03-18
+	-added locatorsearch
+

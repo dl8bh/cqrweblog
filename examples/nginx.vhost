@@ -1,0 +1,35 @@
+server {
+    listen *:80;
+    listen [::]:80;
+    listen *:443 ssl;
+    listen [::]:443 ssl;
+    server_name subdomain.domain.tld; 
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    root /path/to/cqrweblog;
+    index index.php;
+       
+			 location ~ \.php$ {
+            root           /path/to/cqrweblog;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param SCRIPT_FILENAME /path/to/cqrweblog/$fastcgi_script_name;
+            fastcgi_read_timeout 150;
+            include        fastcgi_params;
+        }
+
+
+        location / {
+        satisfy  any;
+        allow some:example:ipv6:addresses/48; //use for trustworthy fixed-ip hosts like clubstation
+        allow 127.0.0.1/28; //use for trustworthy fixed-ip hosts like clubstation
+        auth_basic "Restricted";
+        deny all;
+        auth_basic_user_file /path/to/htpasswd ;
+        }
+
+
+        location /publog.php {
+        satisfy any;
+				allow all;
+				}
+}

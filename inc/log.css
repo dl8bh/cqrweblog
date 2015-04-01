@@ -1,0 +1,21 @@
+#hl	{
+	font-size: 120pt;
+	font-style: italic;
+	color:blue;
+	}
+
+#main_wrap { 
+    display: table;
+}
+
+#sidebar {
+    background:white;
+    min-width: 150px;
+    display: table-cell;
+}
+
+#content {
+    background:white;
+    display: table-cell;
+    width: 100%;
+}
