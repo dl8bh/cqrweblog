@@ -140,6 +140,7 @@ function band_to_freq ( $inputband )
 function validate_freq ( $freq )
 {
 		switch ($freq) {
+			//check for lazy WARC band frequency input
 			case '10' :
 				return band_to_freq( '30M' );
 				break;
@@ -149,9 +150,20 @@ function validate_freq ( $freq )
 			case '24' :
 				return band_to_freq( '12M' );
 			default:
+			//Check if frequency input was in kHz, if true, convert to MHz
+			if (!freq_to_band($freq))
+				{
+						//kHz/1000 = MHz
+						$newfreq=$freq/1000;
+						if (freq_to_band( $newfreq ))
+						{
+								return $newfreq;
+						}
+				}
+				
 				return $freq;
 				break;
-}
+		}
 }
 
 function dxcc_to_adif ( $dxcc )
