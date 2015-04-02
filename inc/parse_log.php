@@ -4,6 +4,7 @@
 if (isset($_POST['frequency'])){
 $freq = htmlentities($_POST["frequency"]);
 $freq = str_replace(',', '.', $freq);
+$freq = validate_freq($freq);
 }
 
 if (isset($_POST['band'])){

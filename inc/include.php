@@ -137,6 +137,22 @@ function band_to_freq ( $inputband )
 			return NULL;
 }
 
+function validate_freq ( $freq )
+{
+		switch ($freq) {
+			case '10' :
+				return band_to_freq( '30M' );
+				break;
+			case '18' :
+				return band_to_freq( '17M' );
+				break;
+			case '24' :
+				return band_to_freq( '12M' );
+			default:
+				return $freq;
+				break;
+}
+}
 
 function dxcc_to_adif ( $dxcc )
 {
