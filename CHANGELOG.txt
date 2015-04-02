@@ -1,4 +1,6 @@
 2015-04-01
+	-Validate frequencys better, check for lazy WARC band frequency-input, 18 -> 17m, 24 -> 12m, 10 -> 30m	
+2015-04-01
 	-add some documentation
 	-introduce configuration switch in config, to turn publog on/off
 2015-03-31
