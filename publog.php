@@ -26,7 +26,7 @@ $publog=true;
 		echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
 		echo '<hr>' . "\n";
 		echo '<br><br>' . "\n";
-		include("inc/qsotable.php");
+		include("inc/pubqsotable.php");
 }
 else
 {

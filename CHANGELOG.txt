@@ -2,6 +2,7 @@
 	-added direct call search to log mask
 	-added shortcuts accesskey + C/S for checkdxx/search on log input
 	-added public logsearch (enable/disable in config.php)
+	-purged remarks from public tables
 2015-04-02
 	-frequency validation:
 		-check for lazy WARC band frequency-input, 18 -> 17m, 24 -> 12m, 10 -> 30m	

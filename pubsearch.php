@@ -30,7 +30,7 @@ echo '<hr>' . "\n" . '<br><br>' . "\n" ;
 
 if (!empty($call))
 {
-include("inc/qsotable.php");
+include("inc/pubqsotable.php");
 }
 }
 else

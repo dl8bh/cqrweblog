@@ -1,0 +1,13 @@
+If you want to have a search on qrz.com
+
+<div><iframe align="middle" frameborder="0" height="500"
+marginheight="0" marginwidth="0" scrolling="yes"
+src="http://CQRWEBLOGDOMAIN/pubsearch.php?log_id=LOGID"
+width="800"></iframe></div>
+
+Additional to search the last 20 (change qso_count to have more/less) qsos:
+
+<div><iframe align="middle" frameborder="0" height="500"
+marginheight="0" marginwidth="0" scrolling="yes"
+src="http://CQRWEBLOGDOMAIN/publog.php?log_id=LOGID&qso_count=20"
+width="800"></iframe></div>
