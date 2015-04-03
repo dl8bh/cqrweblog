@@ -53,6 +53,5 @@ while($row = mysqli_fetch_object($query))
 
 
 }
-
-
 ?>
+</table>

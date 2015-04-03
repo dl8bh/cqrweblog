@@ -24,7 +24,7 @@ include("inc/search_proc.php");
 
 if (!empty($call))
 {
-echo '<p align="right">' . count_qsos( $log_id ) . ' QSO with you in the log</p>' . "\n";
+echo '<p><h3 align="center"><font color="red">' . count_qsos( $log_id ) . ' QSO with you in the log</font></h3></p>' . "\n";
 }
 echo '<hr>' . "\n" . '<br><br>' . "\n" ;
 
@@ -38,6 +38,8 @@ else
 		echo '<h1 align="center">Pubsearch or Publog not enabled!</h1><br /><br />' . "\n";
 }
 ?>
+
+<p align="center"><a href="http://www.dl8bh.de/cqrweblog/">cqrweblog</a>, a simple webinterface for <a href="http://cqrlog.com">CQRLOG</a></p>
 
 </body>
 </html>
