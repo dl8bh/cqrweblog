@@ -94,6 +94,13 @@ Would search for all german stations you worked on 20m cw in WAE 2015 (if you us
 		-D% shows D2 (Antigua), D4 (Cap Verde), D6 (Comoros), DL (Federal Republic of Germany), DU (Philippines)
 		-D2 just shows Antigua…
 
-===Publoc===
+===Publog===
+-can be enabled/disabled in config.php
 -just shows the last $qso_count=N QSOs
--allows to search for call, here no wildcards are allowed
+-allows to search for call, no wildcards are allowed
+	-opens "Am I in log" page
+	-if public search is disabled, search field is not shown
+
+===Am I in log===
+-can be enabled/disabled in config.php
+-lets the visitor check, if he is in log
