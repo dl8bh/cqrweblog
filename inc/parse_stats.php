@@ -18,8 +18,10 @@ $mode = array("ALL");
 
 if (isset($_POST["callsign"])){
 $call = strtoupper(htmlentities($_POST["callsign"]));
-$dxcc = adif_to_dxcc(call_to_dxcc($call)[0]);
-$mode = array("ALL","CW","SSB");
+if (!empty($call)) {
+		$dxcc = adif_to_dxcc(call_to_dxcc($call)[0]);
+		$mode = array("ALL","CW","SSB");
+}
 }
 
 if (isset($_POST["name"])){

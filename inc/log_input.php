@@ -25,7 +25,7 @@ $urlparameter = '?log_id=' . $log_id;
 if (isset($qso_count)) {
 		$urlparameter .= '&qso_count=' . $qso_count;
 echo '<form name="search" action="logsearch.php' . $urlparameter . '" target="_blank"  method="post">';
-echo '<td><input type="submit" value="Search Call"></td>' . "\n";
+echo '<td><input type="submit" value="Search Call" accesskey="S" title="shortcut browser accesskey + S" ></td>' . "\n";
 echo '<input type="hidden" name="call" value="">' . "\n";
 echo '</form>';
 }
@@ -91,7 +91,7 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 <?php
 	echo '<td></td>';
 	echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
-	echo '<td><input type="submit" value="Check DXCC"></td>';
+	echo '<td><input type="submit" value="Check DXCC" accesskey="C" title="shortcut browser accesskey + C"></td>';
 ?>
 <input type="hidden" name="callsign" value="">
 </form>
