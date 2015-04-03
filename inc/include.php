@@ -149,6 +149,8 @@ function validate_freq ( $freq )
 				break;
 			case '24' :
 				return band_to_freq( '12M' );
+			case '' :
+				return NULL;
 			default:
 			//Check if frequency input was in kHz, if true, convert to MHz
 			if (!freq_to_band($freq))

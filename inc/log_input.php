@@ -16,12 +16,18 @@
 	<td width="150">Name</td>
 	<td width="10"></td>
 	<td width="150">Remarks</td>
+	<td width="10"></td>
+	<td width="10"></td>
+	<td width="10"></td>
 <?php
-
 $urlparameter = '?log_id=' . $log_id;
 
 if (isset($qso_count)) {
 		$urlparameter .= '&qso_count=' . $qso_count;
+echo '<form name="search" action="logsearch.php' . $urlparameter . '" target="_blank"  method="post">';
+echo '<td><input type="submit" value="Search Call"></td>' . "\n";
+echo '<input type="hidden" name="call" value="">' . "\n";
+echo '</form>';
 }
 
 echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
@@ -78,14 +84,14 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	echo '<td></td>';
 	echo '<td><input type="text" name="remarks" maxlength="55" tabindex="6"></td>';
 	echo '<td></td>';
-	echo '<td><input type="submit" value="Submit"></td>';
+	echo '<td><input type="submit" value="Log QSO"></td>';
 	?>
 </form>
 
 <?php
 	echo '<td></td>';
 	echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
-	echo '<td><input type="submit" value="CheckDXCC"></td>';
+	echo '<td><input type="submit" value="Check DXCC"></td>';
 ?>
 <input type="hidden" name="callsign" value="">
 </form>

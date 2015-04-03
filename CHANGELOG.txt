@@ -1,4 +1,6 @@
-2015-04-01
+2015-04-03
+	-added direct call search to log mask
+2015-04-02
 	-frequency validation:
 		-check for lazy WARC band frequency-input, 18 -> 17m, 24 -> 12m, 10 -> 30m	
 		-if frequency did not match any band, check, if input was in kHz
