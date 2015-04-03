@@ -95,5 +95,5 @@ Would search for all german stations you worked on 20m cw in WAE 2015 (if you us
 		-D2 just shows Antigua…
 
 ===Publoc===
--does not allow any input
 -just shows the last $qso_count=N QSOs
+-allows to search for call, here no wildcards are allowed

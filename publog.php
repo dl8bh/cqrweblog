@@ -17,7 +17,12 @@ include("inc/header.php");
 
 <?php
 if ($publog_enabled) {
+$publog=true;
 		echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />' . "\n";
+		if ($pubsearch_enabled)
+				{
+				include ("inc/pubsearch_input.php");
+				}
 		echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
 		echo '<hr>' . "\n";
 		echo '<br><br>' . "\n";

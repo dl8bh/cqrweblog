@@ -6,6 +6,8 @@ $time_on=date("H:i",time());
 
 $where=" WHERE id_cqrlog_main>0";
 
+if (empty($pubsearch))
+{
 if (!empty($call))
 {
 	$where .= " AND callsign like '" . $call . "'";
@@ -41,5 +43,13 @@ if (!empty($locator))
 {
 	$where .= " AND loc like '" . $locator . "'";
 }
-//echo $where;
+}
+else
+{
+		
+if (!empty($call))
+{
+	$where .= " AND callsign ='" . $call . "'";
+}
+}
 ?>

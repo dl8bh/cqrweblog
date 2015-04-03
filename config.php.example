@@ -17,6 +17,8 @@ $defaultlog="1";
 $defaultcount="50";
 // enable public log, true or false
 $publog_enabled=true;
+// if publog is enabled, enable/disable logsearch for visitors
+$pubsearch_enabled=true;
 // debug-mode
 $debugmode=false;
 ?>
