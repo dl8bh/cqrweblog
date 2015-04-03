@@ -4,7 +4,8 @@
 <?php
 if (!empty($publog))
 {
-echo '<form action="pubsearch.php?log_id=' . $log_id . '" target="_blank" method="post">';
+//echo '<form action="pubsearch.php?log_id=' . $log_id . '" target="_blank" method="post">';
+echo '<form action="pubsearch.php?log_id=' . $log_id . '" method="post">';
 }
 else
 {
