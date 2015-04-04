@@ -340,4 +340,73 @@ function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl )
 	$result=$ergebnis->fetch_row();
 		return $result[0];
 }
+
+//function qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $adif, $itu, $cqz, $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
+function qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
+{
+
+$qso = '<EOR>' . "\n";
+
+if (!empty($qsodate))
+{
+$qsodate = str_replace("-","",$qsodate);
+$qso .= '<QSO_DATE:8>' . $qsodate . "\n";
+}
+
+if (!empty($timeon))
+{
+$timeon = str_replace(":","",$timeon);
+$qso .= '<TIME_ON:4>' . $timeon . "\n";
+}
+
+if (!empty($timeoff))
+{
+$timeoff = str_replace(":","",$timeoff);
+$qso .= '<TIME_OFF:4>' . $timeoff . "\n";
+}
+
+if (!empty($call))
+{
+$qso .= '<CALL:' . strlen($call). '>' . $call . "\n";
+}
+
+if (!empty($mode))
+{
+$qso .= '<MODE:' . strlen($mode). '>' . $mode . "\n";
+}
+
+if (!empty($freq))
+{
+$qso .= '<FREQ:' . strlen($freq). '>' . $freq . "\n";
+}
+
+if (!empty($band))
+{
+$qso .= '<BAND:' . strlen($band). '>' . $band . "\n";
+}
+
+if (!empty($rst_sent))
+{
+$qso .= '<RST_SENT:' . strlen($rst_sent). '>' . $rst_sent . "\n";
+}
+
+if (!empty($rst_rcvd))
+{
+$qso .= '<RST_RCVD:' . strlen($rst_rcvd). '>' . $rst_rcvd . "\n";
+}
+
+if (!empty($name))
+{
+$qso .= '<NAME:' . strlen($name). '>' . $name . "\n";
+}
+
+if (!empty($comment))
+{
+$qso .= '<COMMENT:' . strlen($comment). '>' . $comment . "\n";
+}
+
+return $qso;
+
+}
+
 ?> 
