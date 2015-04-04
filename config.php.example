@@ -21,4 +21,7 @@ $publog_enabled=true;
 $pubsearch_enabled=true;
 // debug-mode
 $debugmode=false;
+//where to export the adi files? has to be readable/writable by the webserver
+$exportdir="tmp/";
+
 ?>

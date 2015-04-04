@@ -36,7 +36,14 @@ echo '<p align="right">' . count_qsos( $log_id ) . ' QSO matched your search</p>
 <div id="content">
 <?php include("inc/qsotable.php");?>
 
+
 </div>
 </div>
+<?php
+if ($adif_export)
+{	echo "JABITTE";
+		include("inc/exportfile.php");
+}
+?>
 </body>
 </html>

@@ -514,7 +514,7 @@ $eqslrdate = str_replace("-","",$eqslrdate);
 $qso .= '<EQSL_QSLRDATE:8>' . $eqslrdate . "\n";
 }
 
-$qso .= '<EOR>' . "\n\n";
+$qso .= "\n" . '<EOR>';
 //$lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
 
 return $qso . "\n";

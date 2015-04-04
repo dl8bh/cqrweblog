@@ -1,3 +1,5 @@
+2015-04-04
+	-added first version of adif export
 2015-04-03
 	-added direct call search to log mask
 	-added shortcuts accesskey + C/S for checkdxx/search on log input

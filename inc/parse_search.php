@@ -40,6 +40,12 @@ if (isset($_POST["locator"])){
 $locator = strtoupper(htmlentities($_POST["locator"]));
 $locator = mysqli_real_escape_string($dbconnect ,$locator);
 }
+
+$adif_export = false;
+
+if (isset($_POST["adif_export"])){
+$adif_export = true;
+}
 ?>
 
 
