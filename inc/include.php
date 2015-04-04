@@ -53,6 +53,18 @@ function call_to_dxcc ( $callsign ) {
 	}
 		}
 		if (empty($dxcc_adif)){
+		$ergebnis = mysqli_query($dbconnect, 'SELECT * FROM countrydat WHERE "' . $callsign . '" RLIKE dxcc_ref');	
+		while($row = mysqli_fetch_object($ergebnis)) {
+			$dxcc_name = $row->dxcc_name;
+			$dxcc_itu = $row->dxcc_itu;
+			$dxcc_waz = $row->dxcc_waz;
+			$dxcc_adif = $row->dxcc_altadi;
+			if (empty($dxcc_adif)) {
+					$dxcc_adif= $row->dxcc_adif;	
+					}
+	}
+		}
+		if (empty($dxcc_adif)){
 				$dxcc_adif= NULL;
 				$dxcc_name = "No matching DXCC found in database";
 				$dxcc_itu= NULL;
