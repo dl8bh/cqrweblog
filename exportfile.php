@@ -1,8 +1,19 @@
 <?php
-$dbconnect -> select_db( logid_to_tableid( $log_id ) );
-//$dbconnect -> select_db("cqrlog001");
+include("inc/header.php");
+include("inc/parse_log.php");
 
-$qso_count = mysqli_real_escape_string($dbconnect ,$qso_count);
+header('Content-type: text/csv');
+header('Content-Disposition: attachment; filename="downloaded.csv"');
+
+echo '<ADIF_VER:5>2.2.1' . "\n";
+echo 'ADIF export from cqrweblog' . "\n\n";
+echo 'Internet: http://www.dl8bh.de/cqrweblog/' . "\n\n";
+echo '<PROGRAMID:9>CQRWEBLOG' . "\n";
+echo '<PROGRAMVERSION:3>0.9' . "\n";
+echo '<EOH>' . "\n";
+
+$dbconnect -> select_db( logid_to_tableid( $log_id ) );
+
 
 $query = mysqli_query($dbconnect, "SELECT * FROM view_cqrlog_main_by_qsodate t1 join cqrlog_main t2 on t1.id_cqrlog_main = t2.id_cqrlog_main " . $where . " LIMIT " . $qso_count);
 while($row = mysqli_fetch_object($query))
@@ -35,8 +46,6 @@ while($row = mysqli_fetch_object($query))
 		$eqslrdate = $row->eqsl_qslrdate;
 		$qslrdate = $row->qslr_date;
 		$qslsdate = $row->qsls_date;
-header('Content-type: text/csv');
-header('Content-Disposition: attachment; filename="downloaded.csv"');
 
 echo qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  );
 
