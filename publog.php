@@ -33,5 +33,8 @@ else
 		echo '<h1 align="center">Publog not enabled</h1><br /><br />' . "\n";
 }
 ?>
+
+<p align="center"><a href="http://www.dl8bh.de/cqrweblog/">cqrweblog</a>, a simple webinterface for <a href="http://cqrlog.com">CQRLOG</a></p>
+
 </body>
 </html>
