@@ -135,6 +135,17 @@ function freq_to_band ( $inputfreq )
 }
 
 
+function get_manager ( $call ) {
+		global $dbconnect;		
+		$dbconnect -> select_db("cqrlog_common" );
+		$call = mysqli_real_escape_string($dbconnect ,$call);
+		$ergebnis = mysqli_query($dbconnect, 'SELECT qsl_via FROM qslmgr WHERE callsign ="' . $call . '"');
+		while($row = mysqli_fetch_object($ergebnis))
+		{
+				return $row->qsl_via;
+		}
+				return NULL;
+}
 
 function band_to_freq ( $inputband )
 {

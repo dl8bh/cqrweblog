@@ -1,5 +1,6 @@
 2015-04-05
 	-changed adif export to one qso per line
+	-added automatic qsl_via insetion (based on cqrlog manager tables)
 2015-04-04
 	-added first version of adif export
 2015-04-03

@@ -10,7 +10,10 @@ if (!empty($time))
 //echo $time_on;
 if (!empty($call))
 {
-echo call_to_dxcc($call)[1];
+echo $dxcc_name;
+if (!empty($manager)) {
+echo ', QSL via ' . $manager;
+}
 }
 if (empty($call))
 {
@@ -22,9 +25,9 @@ elseif (empty($band))
 }
 else
 {
-$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz) " . 
+$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz,qsl_via) " . 
 "values('" . $datum . "','" . $time_on . "','" . $time_on . "','" . $call . "'," . $freq . ",'" . $mode . "','" . $rst_sent . "','" . $rst_rcvd . "','" . $name . 
-"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "')";
+"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "','" . $manager . "')";
 if ($debugmode) {
 echo $insert;
 }

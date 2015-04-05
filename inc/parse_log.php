@@ -40,6 +40,7 @@ if (isset($_POST["call"])) {
 	$dxcc_name = call_to_dxcc($call)[1];
 	$itu = call_to_dxcc($call)[2];
 	$waz = call_to_dxcc($call)[3];
+	$manager = get_manager($call);
 }
 
 if (isset($_POST["time"])) {
