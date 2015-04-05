@@ -36,10 +36,11 @@ if (isset($_POST["call"])) {
 	{
 	$id_call = $call;
 	}
-	$adif = call_to_dxcc($call)[0];
-	$dxcc_name = call_to_dxcc($call)[1];
-	$itu = call_to_dxcc($call)[2];
-	$waz = call_to_dxcc($call)[3];
+	$fetchqso = call_to_dxcc($call);
+	$adif = $fetchqso[0];
+	$dxcc_name = $fetchqso[1];
+	$itu = $fetchqso[2];
+	$waz = $fetchqso[3];
 	$manager = get_manager($call);
 }
 
