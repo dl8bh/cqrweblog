@@ -42,6 +42,9 @@ if (isset($_POST["call"])) {
 	$itu = $fetchqso[2];
 	$waz = $fetchqso[3];
 	$manager = get_manager($call);
+	$fetchiota = get_iota($call, adif_to_dxcc($adif));
+	$iota_nr = $fetchiota[0];
+	$iota_name = $fetchiota[1];
 }
 
 if (isset($_POST["time"])) {

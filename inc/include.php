@@ -16,7 +16,6 @@ function call_to_dxcc ( $callsign ) {
 		$dbconnect -> select_db("cqrlog_web");
 		$callsign = mysqli_real_escape_string($dbconnect ,$callsign);
 		$firstletter = substr($callsign, 0,1);
-//		echo $firstletter;
 		$ergebnis = mysqli_query($dbconnect, 'SELECT * FROM singledat WHERE firstletter="' . $firstletter . '" AND  "' . $callsign . '" RLIKE dxcc_ref');	
 		while($row = mysqli_fetch_object($ergebnis)) {
 			$dxcc_name = $row->dxcc_name;
@@ -71,6 +70,20 @@ function call_to_dxcc ( $callsign ) {
 				$dxcc_waz=NULL;
 				}
 		return array ( $dxcc_adif, $dxcc_name, $dxcc_itu, $dxcc_waz );
+}
+
+function get_iota ( $call, $pref )
+{
+		global $dbconnect;
+		$dbconnect -> select_db("cqrlog_common");
+		$call = mysqli_real_escape_string($dbconnect ,$call);
+		$ergebnis = mysqli_query($dbconnect, 'SELECT * FROM iota_list WHERE dxcc_ref="' . $pref . '" AND "' . $call . '" RLIKE CONCAT("^",pref) AND pref !=""'  );	
+		while($row = mysqli_fetch_object($ergebnis)) {
+			$iota_nr = $row->iota_nr;
+			$iota_name = $row->island_name;
+			return array ( $iota_nr, $iota_name );
+	}
+			return array ( NULL , NULL);
 }
 
 function count_qsos ( $log_id ) {

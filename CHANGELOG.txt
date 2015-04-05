@@ -1,6 +1,7 @@
 2015-04-05
 	-changed adif export to one qso per line
 	-added automatic qsl_via insetion (based on cqrlog manager tables)
+	-added iota-ref support (based on cqrlog iota_list table, works for iota where dxcc_ref and pref are set)
 2015-04-04
 	-added first version of adif export
 2015-04-03
