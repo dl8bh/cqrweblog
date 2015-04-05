@@ -1,3 +1,5 @@
+2015-04-05
+	-changed adif export to one qso per line
 2015-04-04
 	-added first version of adif export
 2015-04-03

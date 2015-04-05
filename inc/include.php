@@ -350,59 +350,59 @@ $qso ='';
 if (!empty($qsodate))
 {
 $qsodate = str_replace("-","",$qsodate);
-$qso .= '<QSO_DATE:8>' . $qsodate . "\n";
+$qso .= '<QSO_DATE:8>' . $qsodate ;
 }
 
 if (!empty($timeon))
 {
 $timeon = str_replace(":","",$timeon);
-$qso .= '<TIME_ON:4>' . $timeon . "\n";
+$qso .= '<TIME_ON:4>' . $timeon ;
 }
 
 if (!empty($timeoff))
 {
 $timeoff = str_replace(":","",$timeoff);
-$qso .= '<TIME_OFF:4>' . $timeoff . "\n";
+$qso .= '<TIME_OFF:4>' . $timeoff ;
 }
 
 if (!empty($call))
 {
-$qso .= '<CALL:' . strlen($call). '>' . $call . "\n";
+$qso .= '<CALL:' . strlen($call). '>' . $call ;
 }
 
 if (!empty($mode))
 {
-$qso .= '<MODE:' . strlen($mode). '>' . $mode . "\n";
+$qso .= '<MODE:' . strlen($mode). '>' . $mode ;
 }
 
 if (!empty($freq))
 {
-$qso .= '<FREQ:' . strlen($freq). '>' . $freq . "\n";
+$qso .= '<FREQ:' . strlen($freq). '>' . $freq ;
 }
 
 if (!empty($band))
 {
-$qso .= '<BAND:' . strlen($band). '>' . $band . "\n";
+$qso .= '<BAND:' . strlen($band). '>' . $band ;
 }
 
 if (!empty($rst_sent))
 {
-$qso .= '<RST_SENT:' . strlen($rst_sent). '>' . $rst_sent . "\n";
+$qso .= '<RST_SENT:' . strlen($rst_sent). '>' . $rst_sent ;
 }
 
 if (!empty($rst_rcvd))
 {
-$qso .= '<RST_RCVD:' . strlen($rst_rcvd). '>' . $rst_rcvd . "\n";
+$qso .= '<RST_RCVD:' . strlen($rst_rcvd). '>' . $rst_rcvd ;
 }
 
 if (!empty($name))
 {
-$qso .= '<NAME:' . strlen($name). '>' . $name . "\n";
+$qso .= '<NAME:' . strlen($name). '>' . $name ;
 }
 
 if (!empty($comment))
 {
-$qso .= '<COMMENT:' . strlen($comment). '>' . $comment . "\n";
+$qso .= '<COMMENT:' . strlen($comment). '>' . $comment ;
 }
 
 if (!empty($qsl_sent))
@@ -415,109 +415,109 @@ if (!empty($qsl_sent))
 	{
 			$qsl_sent ="N";
 	}
-$qso .= '<QSL_SENT:1>' . $qsl_sent . "\n";
+$qso .= '<QSL_SENT:1>' . $qsl_sent ;
 }
 else
 {
-$qso .= '<QSL_SENT:1>N' . "\n";
+$qso .= '<QSL_SENT:1>N' ;
 }
 
 if (!empty($qsl_rcvd))
 {
 $qsl_rcvd ="Y";
-$qso .= '<QSL_RCVD:1>' . $qsl_rcvd . "\n";
+$qso .= '<QSL_RCVD:1>' . $qsl_rcvd ;
 }
 else
 {
-		$qso .= '<QSL_RCVD:1>N' . "\n";
+		$qso .= '<QSL_RCVD:1>N' ;
 }
 
 if (!empty($qsl_via))
 {
-$qso .= '<QSL_VIA:' . strlen($qsl_via). '>' . $qsl_via . "\n";
+$qso .= '<QSL_VIA:' . strlen($qsl_via). '>' . $qsl_via ;
 }
 
 if (!empty($iota))
 {
-$qso .= '<IOTA:' . strlen($iota) . '>' . $iota . "\n";
+$qso .= '<IOTA:' . strlen($iota) . '>' . $iota ;
 }
 
 if (!empty($adif))
 {
-$qso .= '<DXCC:' . strlen($adif) . '>' . $adif . "\n";
+$qso .= '<DXCC:' . strlen($adif) . '>' . $adif ;
 }
 
 if (!empty($itu))
 {
-$qso .= '<ITUZ:' . strlen($itu) . '>' . $itu . "\n";
+$qso .= '<ITUZ:' . strlen($itu) . '>' . $itu ;
 }
 
 if (!empty($cqz))
 {
-$qso .= '<CQZ:' . strlen($cqz) . '>' . $cqz . "\n";
+$qso .= '<CQZ:' . strlen($cqz) . '>' . $cqz ;
 }
 
 if (!empty($qslsdate))
 {
 $qslsdate = str_replace("-","",$qslsdate);
-$qso .= '<QSLSDATE:8>' . $qslsdate . "\n";
+$qso .= '<QSLSDATE:8>' . $qslsdate  ;
 }
 
 if (!empty($qslrdate))
 {
 $qslrdate = str_replace("-","",$qslrdate);
-$qso .= '<QSLRDATE:8>' . $qslrdate . "\n";
+$qso .= '<QSLRDATE:8>' . $qslrdate ;
 }
 
 if (!empty($lotws))
 {
-$qso .= '<LOTW_QSL_SENT:1>Y' . "\n";
+$qso .= '<LOTW_QSL_SENT:1>Y' ;
 }
 
 if (!empty($lotwsdate))
 {
 $lotwsdate = str_replace("-","",$lotwsdate);
-$qso .= '<LOTW_QSLSDATE:8>' . $lotwsdate . "\n";
+$qso .= '<LOTW_QSLSDATE:8>' . $lotwsdate ;
 }
 
 if (!empty($lotwr))
 {
-$qso .= '<LOTW_QSL_RCVD:1>Y' . "\n";
+$qso .= '<LOTW_QSL_RCVD:1>Y' ;
 }
 
 if (!empty($lotwrdate))
 {
 $lotwrdate = str_replace("-","",$lotwrdate);
-$qso .= '<LOTW_QSLRDATE:8>' . $lotwrdate . "\n";
+$qso .= '<LOTW_QSLRDATE:8>' . $lotwrdate ;
 }
 
 
 if (!empty($eqsls))
 {
-$qso .= '<EQSL_QSL_SENT:1>Y' . "\n";
+$qso .= '<EQSL_QSL_SENT:1>Y' ;
 }
 
 if (!empty($eqslsdate))
 {
 $eqslsdate = str_replace("-","",$eqslsdate);
-$qso .= '<EQSL_QSLSDATE:8>' . $eqslsdate . "\n";
+$qso .= '<EQSL_QSLSDATE:8>' . $eqslsdate ;
 }
 
 if (!empty($eqslr))
 {
-$qso .= '<EQSL_QSL_RECEIVED:1>Y' . "\n";
+$qso .= '<EQSL_QSL_RECEIVED:1>Y' ;
 }
 
 if (!empty($eqslrdate))
 {
 $eqslrdate = str_replace("-","",$eqslrdate);
-$qso .= '<EQSL_QSLRDATE:8>' . $eqslrdate . "\n";
+$qso .= '<EQSL_QSLRDATE:8>' . $eqslrdate ;
 }
 
-$qso .= "\n" . '<EOR>';
+$qso .=  '<EOR>';
 //$lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
 
-return $qso . "\n";
+return $qso ;
 
 }
 
