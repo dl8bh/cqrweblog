@@ -2,6 +2,7 @@
 	-fix bug in dxcc statistics (use qsl_r instead of qslrdate to check qsl paper status)
 	-make dxcc statistics a bit more efficient (fetch worked bands only once)
 	-limit qsos to show on public pages by $max_public_count (config.php value)
+	-fixed bug: exceeding memory limit during export of really large logs (tested with > 35k QSOs)
 2015-04-05
 	-changed adif export to one qso per line
 	-added automatic qsl_via insetion (based on cqrlog manager tables)
