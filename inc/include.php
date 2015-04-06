@@ -236,6 +236,41 @@ function adif_to_dxcc ( $adif )
 
 }
 
+function qslstring ( $paper, $lotw, $eqsl)
+{
+	$qslstring ="";	
+	if (($paper) && ($lotw) && ($eqsl))
+	{
+			$qslstring=' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+	}
+	elseif (($paper) && ($lotw))
+	{
+			$qslstring=' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
+	}
+	elseif (($paper) && ($eqsl))
+	{
+			$qslstring=' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
+	}
+	elseif (($lotw) && ($eqsl))
+	{
+			$qslstring=' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+	}
+	elseif ($lotw)
+	{
+			$qslstring=' and lotw_qslrdate IS NOT NULL ';
+	}
+	elseif ($eqsl)
+	{
+			$qslstring=' and eqsl_qslrdate IS NOT NULL ';
+	}
+	elseif ($paper)
+	{
+			$qslstring=' and qsl_r !="" ';
+	}
+	return $qslstring;
+
+}
+
 function check_adif ( $adif, $log_id, $band, $mode, $paper, $lotw, $eqsl )
 {
 	global $dbconnect;
@@ -247,35 +282,8 @@ function check_adif ( $adif, $log_id, $band, $mode, $paper, $lotw, $eqsl )
 	$paper = mysqli_real_escape_string($dbconnect ,$paper);
 	$lotw = mysqli_real_escape_string($dbconnect ,$lotw);
 	$eqsl = mysqli_real_escape_string($dbconnect ,$eqsl);
-	
-	if (($paper) && ($lotw) && ($eqsl))
-	{
-			$qslstring=' and ( (qslr_date IS NOT NULL) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-	}
-	elseif (($paper) && ($lotw))
-	{
-			$qslstring=' and ( (qslr_date IS NOT NULL) OR (lotw_qslrdate IS NOT NULL) )';
-	}
-	elseif (($paper) && ($eqsl))
-	{
-			$qslstring=' and ( (qslr_date IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-	}
-	elseif (($lotw) && ($eqsl))
-	{
-			$qslstring=' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-	}
-	elseif ($paper)
-	{
-			$qslstring=' and qslr_date IS NOT NULL ';
-	}
-	elseif ($lotw)
-	{
-			$qslstring=' and lotw_qslrdate IS NOT NULL ';
-	}
-	elseif ($eqsl)
-	{
-			$qslstring=' and eqsl_qslrdate IS NOT NULL ';
-	}
+
+	$qslstring = qslstring( $paper, $lotw, $eqsl);
 
 	$dbconnect -> select_db( logid_to_tableid( $log_id ) );
 	if ($mode=="ALL"){
@@ -315,38 +323,7 @@ function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl )
 	$lotw = mysqli_real_escape_string($dbconnect ,$lotw);
 	$eqsl = mysqli_real_escape_string($dbconnect ,$eqsl);
 	
-	if (!($paper) && !($lotw) && !($eqsl))
-	{
-			$qslstring=' ';
-	}
-	if (($paper) && ($lotw) && ($eqsl))
-	{
-			$qslstring=' and ( (qslr_date IS NOT NULL) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-	}
-	elseif (($paper) && ($lotw))
-	{
-			$qslstring=' and ( (qslr_date IS NOT NULL) OR (lotw_qslrdate IS NOT NULL) )';
-	}
-	elseif (($paper) && ($eqsl))
-	{
-			$qslstring=' and ( (qslr_date IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-	}
-	elseif (($lotw) && ($eqsl))
-	{
-			$qslstring=' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-	}
-	elseif ($paper)
-	{
-			$qslstring=' and qslr_date IS NOT NULL ';
-	}
-	elseif ($lotw)
-	{
-			$qslstring=' and lotw_qslrdate IS NOT NULL ';
-	}
-	elseif ($eqsl)
-	{
-			$qslstring=' and eqsl_qslrdate IS NOT NULL ';
-	}
+	$qslstring = qslstring($paper, $lotw, $eqsl);
 	
 	$querystring = 'select count(distinct adif) from cqrlog_main where adif<>0 ' ;
 	if ($band != "ALL")
