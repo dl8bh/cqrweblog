@@ -1,4 +1,6 @@
-2015-05-05
+2015-04-07
+	-added an additional style for dxcc stats
+2015-04-06
 	-fix bug in dxcc statistics (use qsl_r instead of qslrdate to check qsl paper status)
 	-make dxcc statistics a bit more efficient (fetch worked bands only once)
 	-limit qsos to show on public pages by $max_public_count (config.php value)
