@@ -90,7 +90,14 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 
 <?php
 	echo '<td></td>';
-	echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
+	if ($altstats[$log_id])
+	{
+			echo '<form name="stats" action="stats2.php' . $urlparameter . '" target="_blank"  method="post">';
+	}
+	else
+	{
+			echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
+	}
 	echo '<td><input type="submit" value="Check DXCC" accesskey="C" title="shortcut browser accesskey + C"></td>';
 ?>
 <input type="hidden" name="callsign" value="">
