@@ -1,8 +1,6 @@
 <?php
 include("inc/db.php");
 include("inc/include.php");
-
-include("inc/include_test.php");
 if (isset($_GET['log_id'])){
 $log_id = filter_input(INPUT_GET, 'log_id', FILTER_VALIDATE_INT);
 if (!is_int($log_id))
