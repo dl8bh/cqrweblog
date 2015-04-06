@@ -8,13 +8,12 @@
 <?php
 
 
-echo '<form action="stats.php?log_id=' . $log_id . '" method="post">'
+echo '<form action="stats2.php?log_id=' . $log_id . '" method="post">'
 ?>
 <tr>
 	<td><input type="text" maxlength="5" size="5" name="dxcc"></td>
 	<td></td>
   <td>
-		<input type="checkbox" name="mode[]" value="ALL" checked> ALLMODE<br>
 		<input type="checkbox" name="mode[]" value="CW" > CW<br>
     <input type="checkbox" name="mode[]" value="SSB" > SSB
 	</td>
