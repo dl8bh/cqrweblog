@@ -18,6 +18,10 @@ include("inc/header.php");
 <?php
 if ($publog_enabled) {
 $publog=true;
+		if ($qso_count > $max_public_count)
+		{
+				$qso_count = $max_public_count;
+		}
 		echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />' . "\n";
 		if ($pubsearch_enabled)
 				{
