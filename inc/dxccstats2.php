@@ -82,6 +82,7 @@ if (empty($call)){
 	echo '<td align="center" bgcolor="#E6E6E6">Allband Count</td>' . "\n";
 	echo '</tr>' . "\n";	
 
+array_unshift($mode, 'ALL');
 foreach($mode as $mode_proc){
 
 	echo '<tr>' . "\n";
