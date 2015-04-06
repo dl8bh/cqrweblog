@@ -15,7 +15,7 @@ $fileheader .= '<EOH>' . "\n";
 fwrite($file, $fileheader);
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 
-$query = mysqli_query($dbconnect, "SELECT * FROM view_cqrlog_main_by_qsodate t1 join cqrlog_main t2 on t1.id_cqrlog_main = t2.id_cqrlog_main " . $where_export );
+$query = mysqli_query($dbconnect, "SELECT * FROM view_cqrlog_main_by_qsodate t1 join cqrlog_main t2 on t1.id_cqrlog_main = t2.id_cqrlog_main " . $where_export , MYSQLI_USE_RESULT );
 //$query = mysqli_query($dbconnect, "SELECT * FROM view_cqrlog_main_by_qsodate t1 join cqrlog_main t2 on t1.id_cqrlog_main = t2.id_cqrlog_main " . $where_export . " LIMIT " . $qso_count);
 while($row = mysqli_fetch_object($query))
 		{
