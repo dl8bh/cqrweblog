@@ -50,7 +50,10 @@ while($row = mysqli_fetch_object($query))
 
 $fileinput = qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  ) . "\n";
 fwrite ($file, $fileinput);
+fflush ($file);
+
 }
+mysqli_free_result($query);
 
 fclose($file);
 /*header("Content-Type: application/octet-stream"); 
