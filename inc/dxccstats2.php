@@ -36,7 +36,7 @@ while($row = mysqli_fetch_object($query)){
 
 	foreach($bands as $band_in)
 	{
-	$checkadif = check_adif2 ( $adif, $log_id, $band_in, 'ALL',$paperqsl,$lotwqsl,$eqslqsl);
+	$checkadif = check_adif ( $adif, $log_id, $band_in, 'ALL',$paperqsl,$lotwqsl,$eqslqsl);
 echo '<td bgcolor="#E6E6E6"></td><td bgcolor="Black" width="0.3px"></td><td bgcolor="#E6E6E6"></td>' . "\n";
 	//echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	if ($checkadif[0]=="N")
@@ -59,7 +59,7 @@ foreach($mode as $mode_proc){
 	
 	foreach($bands as $band_in)
 	{
-	$checkadif = check_adif2 ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
+	$checkadif = check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
 	echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
 	}

@@ -294,7 +294,8 @@ function check_adif ( $adif, $log_id, $band, $mode, $paper, $lotw, $eqsl )
 		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . ' and band="' . $band . '" and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
 	}
 	while($row = mysqli_fetch_object($ergebnis)){
-			return '<td align="center" bgcolor="#40FF00"><font color=black >C</font></td>';
+			return array ("C", '<td align="center" bgcolor="#40FF00">',  '</td>');
+//			return '<td align="center" bgcolor="#40FF00"><font color=black >C</font></td>';
 	}
 
 	
@@ -306,9 +307,11 @@ function check_adif ( $adif, $log_id, $band, $mode, $paper, $lotw, $eqsl )
 	$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . ' and band="' . $band . '" and mode="' . $mode . '" limit 1');
 	}
 	while($row = mysqli_fetch_object($ergebnis2)){
-			return '<td align="center" bgcolor="Red"><font color=black >W</font></td>';
+			return array ('W', '<td align="center" bgcolor="Red">','</td>');
+//			return '<td align="center" bgcolor="Red"><font color=black >W</font></td>';
 	}
-			return "<td></td>";
+//			return "<td></td>";
+		return array ( 'N', '<td>', '</td>' );
 }
 
 function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl )

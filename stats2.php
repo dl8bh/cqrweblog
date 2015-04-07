@@ -1,7 +1,7 @@
 <?php
 include("inc/header.php");
 include("inc/parse_stats2.php");
-include("inc/include_test.php");
+//include("inc/include_test.php");
 ?>
 
 <html>
