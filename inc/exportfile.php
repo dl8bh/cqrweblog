@@ -37,6 +37,7 @@ while($row = mysqli_fetch_object($query))
 		$adif = $row->adif;
 		$itu = $row->itu;
 		$cqz = $row->waz;
+		$state = $row->state;
 		$lotws = $row->lotw_qsls;
 		$lotwr = $row->lotw_qslr;
 		$lotwsdate = $row->lotw_qslsdate;
@@ -48,7 +49,7 @@ while($row = mysqli_fetch_object($query))
 		$qslrdate = $row->qslr_date;
 		$qslsdate = $row->qsls_date;
 
-$fileinput = qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  ) . "\n";
+$fileinput = qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $state, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  ) . "\n";
 fwrite ($file, $fileinput);
 fflush ($file);
 

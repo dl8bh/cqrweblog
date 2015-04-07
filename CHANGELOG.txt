@@ -1,5 +1,8 @@
+2015-04-08
+	-added state to adif export
 2015-04-07
 	-added an additional style for dxcc stats
+	-use new check_adif
 2015-04-06
 	-fix bug in dxcc statistics (use qsl_r instead of qslrdate to check qsl paper status)
 	-make dxcc statistics a bit more efficient (fetch worked bands only once)

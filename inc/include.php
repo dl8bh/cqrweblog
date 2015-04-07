@@ -346,7 +346,7 @@ function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl )
 }
 
 //function qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $adif, $itu, $cqz, $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
-function qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
+function qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $state, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  )
 {
 
 $qso ='';
@@ -461,6 +461,11 @@ if (!empty($cqz))
 $qso .= '<CQZ:' . strlen($cqz) . '>' . $cqz ;
 }
 
+if (!empty($state))
+{
+$qso .= '<STATE:' . strlen($state) . '>' . $state ;
+}
+
 if (!empty($qslsdate))
 {
 $qslsdate = str_replace("-","",$qslsdate);
@@ -494,7 +499,6 @@ if (!empty($lotwrdate))
 $lotwrdate = str_replace("-","",$lotwrdate);
 $qso .= '<LOTW_QSLRDATE:8>' . $lotwrdate ;
 }
-
 
 if (!empty($eqsls))
 {
