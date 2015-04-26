@@ -526,7 +526,7 @@ ZS(M)|Prince Edward & Marion Islands|AF|-3|46.9125S|37.7436E|57|38|201||
 =4U/YU4OO =YU4OO/4U|Jordan|AS|-2|32.02N|35.98E|39|20||R|=342
 =4U0G|Switzerland|EU|-1|47.0N|8.0E|28|14||R|1999/01/01-2000/12/31=287
 =4U0R =4U2U|UN Austria, Vienna IARC|EU|-1|48.13N|16.22E|28|15||R|=206
-=4U0WFP =4U4F|Italy, Rome, World Food Programme Headquarters|EU|-1|41.9N|12.5E|28|15||R|=248
+=4U0WFP =4U4F =4U5F|Italy, Rome, World Food Programme Headquarters|EU|-1|41.9N|12.5E|28|15||R|=248
 =4U1AIDS|Switzerland, UNAIDS HQ Geneva|EU|-1|47.0N|8.0E|28|14||R|2009/12/01-2009/12/07=287
 =4U1ET|Timor Leste|OC|-8|8.5812S|125.5728E|54|28||R|2000/03/01-=511
 =4U1GSC|Italy, Brindisi, United Nations Global Service Center (UNGSC)|EU|-1|40.635N|17.940E|28|15||R|=248
@@ -2531,7 +2531,6 @@ ZS(M)|Prince Edward & Marion Islands|AF|-3|46.9125S|37.7436E|57|38|201||
 =N2A =N4M|Virgin Islands|NA|4|18.3445N|64.93184W|11|08||R|=285
 =N2G =KG6JDX =KF5ULC =KE6ATM =KK7AV|Guam|OC|-10|13.47N|144.74E|64|27||R|=103
 =N2LTL =N3WHX =N4HSW =N4HSX|Hawaii|OC|10|21.33N|157.84W|61|31||R|=110
-=N2NL|Hawaii|OC|10|21.33N|157.84W|61|31||R|2014/06/01-=110
 =N3KFU =W4C =K4A =KD4TVS =WA2RVA|Puerto Rico|NA|4|18.4195N|66.0353W|11|08||R|=202
 =N3QD =WA6AC =WE1J =NC6W =AH2U =AB9OQ =WH6ZW|Mariana Islands|OC|10|15.179N|145.7546E|64|27||R|=166
 =N4D|ARRL Puerto Rico State Convention|NA|4|18.4195N|66.0353W|11|08||R|2013/01/26-2013/01/27=202
@@ -2568,7 +2567,7 @@ ZS(M)|Prince Edward & Marion Islands|AF|-3|46.9125S|37.7436E|57|38|201||
 =NJ6VT|USS Pampanito Submarine, San Francisco, CA USA|NA|8|35.47N|119.33W|06|03||R|=291
 =NK3ST|USS Torsk Submarine, Baltimore, MD USA|NA|5|39.98N|76.88W|08|05||R|=291
 =NM1JY =W1WQM|USS Albacore Submarine, Portsmouth, NH USA|NA|5|42.38N|71.67W|08|05|||R
-=NN4TO =N2NL =NH7TL =W0REP =WD6DGS =KD6OHU =KG6TEZ|Guam|OC|-10|13.47N|144.74E|64|27||R|=103
+=NN4TO =NH7TL =W0REP =WD6DGS =KD6OHU =KG6TEZ|Guam|OC|-10|13.47N|144.74E|64|27||R|=103
 =NP2N|USA - CO,IA,KS,MN,MO,ND,NE,SD|NA|7|41.08N|96.40W|07|04||R|=291
 =NR4DL|USCGC Ingham, SC USA|NA|5|33.18N|82.23W|08|05||R|=291
 =NT4HI|USS Laffey Destroyer, Mount Pleasant, SC USA|NA|5|33.18N|82.23W|08|05||R|=291
@@ -3901,7 +3900,7 @@ ZS(M)|Prince Edward & Marion Islands|AF|-3|46.9125S|37.7436E|57|38|201||
 =VK0ED|ANARE Richard Casey, Vincennes Bay, Budd Coast, Wilkes Land, Antarctica|AN|-11|66.2833S|110.5197E|70|29||R|1981/01/01-1981/12/31=13
 =VK0EG|ANARE Davis, Vestfold Hills, Ingrid Christensen Coast, Princess Elizabeth Land, Antarctica|AN|-5|68.5772S|77.9725E|69|39||R|1954/01/01-1954/12/31=13
 =VK0EH|ANARE Wilkes Station, Stonehocker Point, Vincennes Bay, Budd Coast, Wilkes Land, Antarctica|AN|-7|66.25S|110.5333E|69|39||R|1961/01/01-1961/12/31=13
-=VK0EK|Heard Island Station|AN|-5|53.1176S|73.5500E|68|39||R|2016/01/01-2017/01/31=111
+=VK0EK|Heard Island Station|AN|-5|53.1176S|73.5500E|68|39||R|=111
 =VK0EM|ANARE Douglas Mawson Station, Holme Bay, Mawson Coast, Mac Robertson Land, Antarctica|AN|-5|67.6047S|62.8708E|69|39||R|1959/01/01-1959/12/31=13
 =VK0ERZ|ANARE Davis, Vestfold Hills, Ingrid Christensen Coast, Princess Elizabeth Land, Antarctica|AN|-5|68.5772S|77.9725E|69|39||R|=13
 =VK0FB|ANARE Davis, Vestfold Hills, Ingrid Christensen Coast, Princess Elizabeth Land, Antarctica|AN|-5|68.5772S|77.9725E|69|39||R|1964/01/01-1964/12/31=13
@@ -4128,7 +4127,7 @@ ZS(M)|Prince Edward & Marion Islands|AF|-3|46.9125S|37.7436E|57|38|201||
 =VK2CCV|HMAS Vampire Destroyer, Sydney, Australia|OC|-10|33.86S|151.2E|59|30||R|=150
 =VK2CCV|LV Carpentaria Lightvessel, Sydney, Australia (no DXCC credit!)|OC|-10|33.86S|151.2E|59|30||R|=0
 =VK2DCO/LH =VK2DCU/LH =VK2EVP/LH =VK2FT/LH|Lord Howe Island|OC|-10|31.53231S|159.03809E|60|30||R|=147
-=VK2IAY/9|Lord Howe Island|OC|-10|31.53231S|159.03809E|60|30||R|16/12/2015-23/12/2015=147
+=VK2IAY/9|Lord Howe Island|OC|-10|31.53231S|159.03809E|60|30||R|27/12/2015-01/01/2016=147
 =VK2ICV/LH =VK2KC/LH =VK2NDK/LH =VK2NYK/LH =VK2PJJ/LH|Lord Howe Island|OC|-10|31.53231S|159.03809E|60|30||R|=147
 =VK2VC/LH =VK2WU/LH =VK3DCS/LH =VK3DCU/LH =VK3ETT/LH|Lord Howe Island|OC|-10|31.53231S|159.03809E|60|30||R|=147
 =VK2WI|Australia, New South Wales, News Broadcast Station|OC|-10|33S|150E|59|30||R|=150
