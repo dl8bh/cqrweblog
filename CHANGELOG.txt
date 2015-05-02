@@ -1,3 +1,5 @@
+2015-05-02
+	-using json api from hamqth for dxcc_resolution instead of parsing the Country.tab to build own tables
 2015-04-08
 	-added state to adif export
 2015-04-07
