@@ -10,8 +10,20 @@ function logid_to_tableid ( $log_id )
 	return 'cqrlog' . $log_id;
 }
 
+function call_to_dxcc ( $callsign) {
+		$jsonurl='http://www.hamqth.com/dxcc_json.php?callsign=' . $callsign;
+		$jsonData = file_get_contents( $jsonurl );
+		$jsonData = str_replace(".", ",", $jsonData);
+		$data = json_decode($jsonData,true); 
+		$dxcc_adif = $data['adif'];
+		$dxcc_name = $data['details'];
+		$dxcc_itu = $data['itu'];
+		$dxcc_waz = $data['waz'];
+		return array ( $dxcc_adif, $dxcc_name, $dxcc_itu, $dxcc_waz );
+}
 
-function call_to_dxcc ( $callsign ) {
+
+function call_to_dxcc2 ( $callsign ) {
 		global $dbconnect;
 		$dbconnect -> select_db("cqrlog_web");
 		$callsign = mysqli_real_escape_string($dbconnect ,$callsign);
