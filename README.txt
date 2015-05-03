@@ -30,7 +30,11 @@ Some general URL-parameters:
 Here you can log new qsos. Your browser should start in Callsign field, press TAB to skip to RST_S/RST_R/Name/Comment
 Press enter to log QSO.
 If frequency is set, it keeps its value as long as you dont change.
-
+-DXCluster:
+	-can be activated on per log basis in config.php
+	-spot-count can be configured in config.php (max 200 spots)
+	-just click on spot to insert call/frequency to log input fields
+	-if a band is selected, spots are filtered on this band
 -Time
 	-format: hh:mm or hhmm
 	-optional, ifempty: actual time in UTC

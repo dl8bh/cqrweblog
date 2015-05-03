@@ -1,5 +1,7 @@
 2015-05-03
 	-added dxcluster using the hamqth cluster csv output
+	-filter spots according to band selection
+	-reorganized code (move old parts away from include)
 2015-05-02
 	-using json api from hamqth for dxcc_resolution instead of parsing the Country.tab to build own tables
 2015-04-08
