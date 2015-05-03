@@ -1,7 +1,13 @@
+<div id="cluster">
 <?php
 include("inc/include.php");
-$spots=get_cluster_spots($cluster_spot_num, "ALL");
 
+if (isset($band)) {
+		$spots=get_cluster_spots($cluster_spot_num, $band);
+}
+else {
+		$spots=get_cluster_spots($cluster_spot_num, "ALL");
+}
 $out  = "";
 echo '<table class="cluster" align="center" >' . "\n";
 foreach($spots as $key => $qso){
@@ -20,3 +26,6 @@ foreach($spots as $key => $qso){
 $out .= "</table>";
 
 echo $out;
+?>
+</div>
+
