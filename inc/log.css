@@ -2,10 +2,31 @@
 	font-size: 120pt;
 	font-style: italic;
 	color:blue;
+	background:red;
 	}
+
+table.cluster {
+  text-align:left;
+	font-size: 8pt;
+  border:2px  
+}
+
+#cluster {
+  text-align:left;
+	margin:auto;
+	width:50%;
+	display: block;
+  padding-left:10px;
+  height:10%;
+  border:2px  
+  inset #cccccc;
+/*  overflow-x:hidden; */
+  overflow:scroll;
+}
 
 #main_wrap { 
     display: table;
+		background:red;
 }
 
 #sidebar {

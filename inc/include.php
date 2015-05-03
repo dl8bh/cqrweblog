@@ -10,10 +10,38 @@ function logid_to_tableid ( $log_id )
 	return 'cqrlog' . $log_id;
 }
 
+function get_cluster_spots ( $number, $band )
+{
+		$clusterurl = 'http://www.hamqth.com/dxc_csv.php?';
+		if ($number != 0) {
+				$clusterurl .= '&limit=' . $number;
+		}
+		else {
+				$clusterurl .= '&limit=10';
+		}
+		if ($band != 'ALL') {
+				$clusterurl .= '&band=' . $band;
+		}
+		$csvData = file_get_contents( $clusterurl );
+		//echo $csvData ."\n";
+		$csvData = htmlentities($csvData);
+		$csvData = str_replace('^', '"^"', $csvData);
+//		$csvData = str_replace(PHP_EOL, '"', $csvData );
+		$csvData = preg_replace('/^/', '"', $csvData);
+		$csvData = str_replace("\n", '"' .  "\n" . '"' , $csvData);
+		//$csvData = str_replace('"' . "\n", '' , $csvData);
+		$csvData = str_replace("^", ",", $csvData);
+		//echo $csvData ."\n";
+		$arrayData = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $csvData)) ;
+		$devnull = array_pop($arrayData);
+		//print_r(array_values($arrayData));
+			return $arrayData;
+}
+
 function call_to_dxcc ( $callsign) {
 		$jsonurl='http://www.hamqth.com/dxcc_json.php?callsign=' . $callsign;
 		$jsonData = file_get_contents( $jsonurl );
-		$jsonData = str_replace(".", ",", $jsonData);
+		$jsonData = str_replace('".', '",', $jsonData);
 		$data = json_decode($jsonData,true); 
 		$dxcc_adif = $data['adif'];
 		$dxcc_name = $data['details'];

@@ -51,11 +51,11 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	<?php
 	if (isset($freq))
 	{
-	echo '<td><input type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
+	echo '<td><input id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
 	}
 	else
 	{
-	echo '<td><input type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" title="only band or frequency is needed" ></td> ';
+	echo '<td><input id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" title="only band or frequency is needed" ></td> ';
 	}
 	?>
 	<td></td>

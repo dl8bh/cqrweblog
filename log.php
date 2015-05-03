@@ -16,6 +16,13 @@ include("inc/copy.php");
 
 <?php
 echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
+
+if ($enable_cluster[$log_id])
+{
+echo '<div id="cluster">' . "\n";
+include ("inc/cluster.php");
+echo '</div>' . "\n";
+}
 include ("inc/log_input.php");
 ?>
 <br /><br />
