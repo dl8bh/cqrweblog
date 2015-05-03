@@ -28,5 +28,5 @@ $exportdir="tmp/";
 // let the user decide, whether to use stats or stats2 dxcc-presentation
 $altstats = array ( "0", false, false, false, true, false);
 // let the user decide, if the cluster is enabled:
-$enable_cluster = ( "0", false, false, false, true, false);
+$enable_cluster = array ( "0", false, false, false, true, false);
 ?>
