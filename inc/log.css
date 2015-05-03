@@ -8,7 +8,9 @@
 table.cluster {
   text-align:left;
 	font-size: 8pt;
-  border:2px  
+  border:2px 
+	height:1%
+  overflow:auto;
 }
 
 #cluster {
@@ -17,11 +19,11 @@ table.cluster {
 	width:50%;
 	display: block;
   padding-left:10px;
-  height:10%;
+  height:20%;
   border:2px  
   inset #cccccc;
 /*  overflow-x:hidden; */
-  overflow:scroll;
+  overflow:auto;
 }
 
 #main_wrap { 

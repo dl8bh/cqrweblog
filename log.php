@@ -15,8 +15,9 @@ include("inc/copy.php");
 <body>
 
 <?php
+echo '<div id="head">' . "\n";
 echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
-
+echo '</div>' . "\n";
 if ($enable_cluster[$log_id])
 {
 echo '<div id="cluster">' . "\n";
