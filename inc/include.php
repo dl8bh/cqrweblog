@@ -10,6 +10,12 @@ function logid_to_tableid ( $log_id )
 	return 'cqrlog' . $log_id;
 }
 
+function parse_remarks( $remarks, $field)
+{
+
+
+}
+
 function get_cluster_spots ( $number, $band )
 {
 		$clusterurl = 'http://www.hamqth.com/dxc_csv.php?';

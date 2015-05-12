@@ -14,9 +14,13 @@ echo $dxcc_name;
 if (!empty($manager)) {
 echo ', QSL via ' . $manager;
 }
-if (!empty($iota_name))
+if (!empty($iota_nr))
 {
 echo ', ' . $iota_name . ' with IOTA reference ' . $iota_nr ;
+}
+if (!empty($locator))
+{
+echo ', at locator ' . $locator ;
 }
 }
 if (empty($call))

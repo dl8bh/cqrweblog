@@ -61,6 +61,11 @@ If frequency is set, it keeps its value as long as you dont change.
 -Remarks (optional)
 	-some remarks to QSO
 	-is saved uppercase
+	-can be used to set/override (any combination of the following fields and normal comment is possible):
+		-manager (M: MANAGER)
+		-iota (I: IOTA)
+		-locator (L: LOCATOR)
+	-example: 3el yagi, L: jo50lq M: dl1abc I: eu-001
 -Submit
 	-Log QSO, alternatively just hit ENTER
 -CheckDXCC

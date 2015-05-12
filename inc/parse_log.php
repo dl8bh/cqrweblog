@@ -96,6 +96,19 @@ elseif (($mode =="SSB")&&($rst_rcvd == $default_cw_rapport)) {
 }
 
 if (isset($_POST["remarks"])) {
-$remarks = strtoupper(htmlentities($_POST["remarks"]));
+		$remarks = strtoupper(htmlentities($_POST["remarks"]));
+		if (preg_match("/(I:\s)(\S+)/",$remarks, $iota_treffer) ){
+				$iota_nr=$iota_treffer[2];
+		}
+
+		if (preg_match("/(M:\s)(\S+)/",$remarks, $manager_treffer) ){
+				$manager=$manager_treffer[2];
+		}
+
+		if (preg_match("/(L:\s)(\S+)/",$remarks, $locator_treffer) ){
+				$locator=$locator_treffer[2];
+		}
+
 }
+
 ?>
