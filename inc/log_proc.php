@@ -33,9 +33,9 @@ elseif (empty($band))
 }
 else
 {
-$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz,qsl_via,iota) " . 
+$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz,qsl_via,iota,loc) " . 
 "values('" . $datum . "','" . $time_on . "','" . $time_on . "','" . $call . "'," . $freq . ",'" . $mode . "','" . $rst_sent . "','" . $rst_rcvd . "','" . $name . 
-"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "','" . $manager . "','" . $iota_nr . "')";
+"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "','" . $manager . "','" . $iota_nr . "','" . $locator . "')";
 if ($debugmode) {
 echo $insert;
 }
