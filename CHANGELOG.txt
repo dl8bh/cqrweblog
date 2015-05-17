@@ -1,3 +1,6 @@
+2015-05-17
+	-enabling no-space-syntax for remarks field (greetings to ben dl5ant)
+		-now e.g. L:LOCATOR M:MANAGER I:IOTA, works too
 2015-05-12
 	-adding the possibility to add manager/iota/locator via remarks field:
 		-any combination of regular comment and L: LOCATOR M: MANAGER I: IOTA works
