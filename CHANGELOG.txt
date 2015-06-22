@@ -1,4 +1,4 @@
-2015-05-22
+2015-06-22
 	-translated "Wähle Log" into "select log", thanks to OH1KH for this suggestion!
 2015-05-17
 	-enabling no-space-syntax for remarks field (greetings to ben dl5ant)
