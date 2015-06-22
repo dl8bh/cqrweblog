@@ -9,7 +9,7 @@ cqrlog Interface
 <meta charset="UTF-8">
 </head>
 <body>
-<h1 align=center>W&auml;hle ein Log</h3>
+<h1 align=center>select log</h3>
 <table align=center border="0" cellpadding="0" cellspacing="0">
 <tr>
 <h3>
