@@ -72,7 +72,6 @@ If frequency is set, it keeps its value as long as you dont change.
 	-Check the DXCC worked/confirmed slot-statistics of the entered callsigns dxcc in a new window
 	-uses the dxcc stats explained later
 
-
 ===SEARCH===
 General:
 Fields are combined with logical AND, all fields are optional.
@@ -91,6 +90,20 @@ An advanced example:
 Band=20m DXCC=DL Mode=CW Name=Pet% Remarks=%WAE15%
 Would search for all german stations you worked on 20m cw in WAE 2015 (if you use have such comments) with names starting with Pet (Peter, Pete, Petr…)
 
+===EDIT===
+General:
+You can get to the edit-view via the normal log-view or the search-view.
+Works as the normal log-input, but with some more variable fields like
+	-date
+	-state
+	-waz
+	-itu
+	-IOTA
+	-qsl-s
+	-qsl-r
+	-qth
+	-locator
+	-manager
 
 ===Statistics===
 -shows dxcc statistics

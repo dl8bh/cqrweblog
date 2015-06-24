@@ -1,5 +1,16 @@
 2015-06-24
 	-added possibility to edit qso in detail afterwards
+	-edit qso now works for:
+			-date
+			-state
+			-waz
+			-itu
+			-IOTA
+			-qsl-s
+			-qsl-r
+			-qth
+			-locator
+			-manager
 2015-06-22
 	-translated "Wähle Log" into "select log", thanks to OH1KH for this suggestion!
 2015-05-17
