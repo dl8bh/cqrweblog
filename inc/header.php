@@ -28,4 +28,10 @@ else
 {
 	$qso_count=$defaultcount;
 }
+
+
+if (isset($_GET['qso_id'])){
+$qso_id = filter_input(INPUT_GET, 'qso_id', FILTER_VALIDATE_INT);
+}
+
 ?>
