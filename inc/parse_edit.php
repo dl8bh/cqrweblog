@@ -197,4 +197,7 @@ $qsls = (htmlentities($_POST["qsls_input"]));
 if (isset($_POST['qslr_input'])){
 $qslr = (htmlentities($_POST["qslr_input"]));
 }
+if (isset($_POST['state_input'])){
+$state = strtoupper(htmlentities($_POST["state_input"]));
+}
 ?>
