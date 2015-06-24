@@ -1,6 +1,6 @@
 <?php
 include("inc/header.php");
-//include("inc/parse_edit.php");
+include("inc/parse_edit.php");
 ?>
 
 <html>
@@ -18,7 +18,7 @@ echo '<div id="head">' . "\n";
 echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 echo '</div>' . "\n";
 include ("inc/edit_input.php");
-include("inc/parse_edit.php");
+//include("inc/parse_edit.php");
 ?>
 <br /><br />
 

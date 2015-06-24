@@ -1,5 +1,5 @@
 <?php
-
+/*
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 $query = mysqli_query($dbconnect, "SELECT * FROM cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'");
 while($row = mysqli_fetch_object($query))
@@ -42,6 +42,7 @@ if (!isset($callsign)) {
 		$qsls="";
 		$qslr="";
 }
+*/
 ?>	
 	<table align="center" border="0">
 	<tr>

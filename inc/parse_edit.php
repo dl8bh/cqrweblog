@@ -1,6 +1,48 @@
 <?php
 // Parse Input
 
+$dbconnect -> select_db( logid_to_tableid( $log_id ) );
+$query = mysqli_query($dbconnect, "SELECT * FROM cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'");
+while($row = mysqli_fetch_object($query))
+		{
+		$date= $row->qsodate;
+		$callsign = $row->callsign;
+		$time = $row->time_on;
+		$band = $row->band;
+		$freq = $row->freq;
+		$mode = $row->mode;
+		$rst_r = $row->rst_r;	
+		$rst_s = $row->rst_s;
+		$remarks = $row->remarks;
+		$name = $row->name;
+		$qth = $row->qth;
+		$iota = $row->iota;
+		$loc = $row->loc;
+		$itu = $row->itu;
+		$waz = $row->waz;
+		$qsls = $row->qsl_s;
+		$qslr = $row->qsl_r;
+		$state = $row->state;
+		}
+if (!isset($callsign)) {
+		$date="";
+		$callsign="";
+		$time="";
+		$band="";
+		$freq="";
+		$mode="";
+		$rst_r="";
+		$rst_s="";
+		$remarks="";
+		$name="";
+		$qth="";
+		$iota="";
+		$loc="";
+		$itu="";
+		$waz="";
+		$qsls="";
+		$qslr="";
+}
 if (isset($_POST['frequency_input'])){
 $freq = htmlentities($_POST["frequency_input"]);
 $freq = str_replace(',', '.', $freq);
@@ -33,8 +75,9 @@ if (isset($_POST["call_input"])) {
 $call = strtoupper(htmlentities($_POST["call_input"]));
 if (isset($callsign)&&($callsign != $call)) 
 {
-echo "editiert";
+//echo "editiert";
 $calledit=true;
+$callsign=$call;
 {
 	if (preg_match("/(?P<teil1>\w+)\/(?P<teil2>\w+)\/{0,1}(?P<teil3>\w*)/",$call, $treffer)){
 		$id_call = $treffer[1];
@@ -143,6 +186,9 @@ if (isset($_POST["qth_input"])) {
 
 if (isset($_POST["loc_input"])) {
 		$loc = strtoupper(htmlentities($_POST["loc_input"]));
+}
+if (isset($_POST["iota_input"])) {
+		$iota = strtoupper(htmlentities($_POST["iota_input"]));
 }
 
 if (isset($_POST['qsls_input'])){
