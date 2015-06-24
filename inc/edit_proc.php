@@ -33,12 +33,6 @@ elseif (empty($band))
 }
 else
 {
-	/*	$date= $row->qsodate;
-		$iota = $row->iota;
-		$loc = $row->loc;
-		$waz = $row->waz;
-		$qsls = $row->qsl_s;
-		$qslr = $row->qsl_r; */
 $update="UPDATE cqrlog_main SET" .
 " qsodate = '" . $qsodate . 
 "', time_on = '" .$time_on .
@@ -60,14 +54,11 @@ $update="UPDATE cqrlog_main SET" .
 "', itu = '" . $itu . "'
 
 WHERE id_cqrlog_main = '" . $qso_id . "'";
-//$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz,qsl_via,iota,loc) " . 
-//"values('" . $datum . "','" . $time_on . "','" . $time_on . "','" . $call . "'," . $freq . ",'" . $mode . "','" . $rst_sent . "','" . $rst_rcvd . "','" . $name . 
-//"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "','" . $manager . "','" . $iota_nr . "','" . $locator . "')";
 if ($debugmode) {
 echo $update;
 }
 else{
-echo $update;
+		echo '<p><h3> <font color=red>changes saved!</font></h3></p>' . "\n";
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 mysqli_query($dbconnect, $update);
 }
