@@ -17,12 +17,14 @@
 <th bgcolor="grey" width="200px">Name</th>
 <td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="450px">Remarks</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
+<th bgcolor="grey" width="40px">Edit</th>
 </tr>
 <?php
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 //$dbconnect -> select_db("cqrlog001");
 $qso_count = mysqli_real_escape_string($dbconnect ,$qso_count);
-$query = mysqli_query($dbconnect, "SELECT qsodate, time_on, callsign, band, mode, rst_r, rst_s, remarks, name FROM view_cqrlog_main_by_qsodate " . $where . " LIMIT " . $qso_count);
+$query = mysqli_query($dbconnect, "SELECT id_cqrlog_main, qsodate, time_on, callsign, band, mode, rst_r, rst_s, remarks, name FROM view_cqrlog_main_by_qsodate " . $where . " LIMIT " . $qso_count);
 while($row = mysqli_fetch_object($query))
 		{
 		$date= $row->qsodate;
@@ -34,7 +36,7 @@ while($row = mysqli_fetch_object($query))
 		$rst_s = $row->rst_s;
 		$remarks = $row->remarks;
 		$name = $row->name;
-
+		$qso_id_table = $row->id_cqrlog_main;
 		echo '<tr>' . "\n";
 		echo '<td>' . $date . '</td>' . "\n";
 	  echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
@@ -53,8 +55,9 @@ while($row = mysqli_fetch_object($query))
 		echo '<td>' . $name . '</td>' . "\n";
 		echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 		echo '<td>' . $remarks . '</td>' . "\n";
+		echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
+		echo '<td><a href=edit.php?log_id=' . $log_id . '&qso_id=' . $qso_id_table .' target="_blank">Edit</a></td>' . "\n"; 
 		echo '</tr>' . "\n";
-
 
 
 }

@@ -1,14 +1,4 @@
 <?php
-//include("/db.php");
-/*
-echo '<a href=/>Index</a>' . "\n";
-echo '<br>' . "\n";
-echo '<a href=log.php?log_id=' . $log_id . '>Log</a>' . "\n";
-echo '<br>' . "\n";
-echo '<a href=logsearch.php?log_id=' . $log_id . '>Search</a>' . "\n";
-echo '<br>' . "\n";
-echo '<a href=publog.php?log_id=' . $log_id . '>Public</a>' . "\n";
-*/
 ?>
 
 <table align=center border="0" cellpadding="0" cellspacing="0">

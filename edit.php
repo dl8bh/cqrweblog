@@ -7,7 +7,6 @@ include("inc/header.php");
 <head>
 <?php 
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logbook</title>';
-//include("inc/copy.php");
 ?>
 <link rel="stylesheet" type="text/css" href="inc/log.css">
 <meta charset="UTF-8">
@@ -31,17 +30,8 @@ echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
 <br><br>
 
 <div id="main_wrap">
-<div id="sidebar">
-<?php include("inc/sidebar.php");?>
-</div>
 <div id="content">
 
-<?php
-//include("inc/log_proc.php");
-?>
-<?php 
-//include("inc/qsotable.php");
-?>
 
 </div>
 </div>
