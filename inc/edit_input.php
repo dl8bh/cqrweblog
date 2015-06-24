@@ -1,48 +1,4 @@
 <?php
-/*
-$dbconnect -> select_db( logid_to_tableid( $log_id ) );
-$query = mysqli_query($dbconnect, "SELECT * FROM cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'");
-while($row = mysqli_fetch_object($query))
-		{
-		$date= $row->qsodate;
-		$callsign = $row->callsign;
-		$time = $row->time_on;
-		$band = $row->band;
-		$freq = $row->freq;
-		$mode = $row->mode;
-		$rst_r = $row->rst_r;	
-		$rst_s = $row->rst_s;
-		$remarks = $row->remarks;
-		$name = $row->name;
-		$qth = $row->qth;
-		$iota = $row->iota;
-		$loc = $row->loc;
-		$itu = $row->itu;
-		$waz = $row->waz;
-		$qsls = $row->qsl_s;
-		$qslr = $row->qsl_r;
-		$state = $row->state;
-		}
-if (!isset($callsign)) {
-		$date="";
-		$callsign="";
-		$time="";
-		$band="";
-		$freq="";
-		$mode="";
-		$rst_r="";
-		$rst_s="";
-		$remarks="";
-		$name="";
-		$qth="";
-		$iota="";
-		$loc="";
-		$itu="";
-		$waz="";
-		$qsls="";
-		$qslr="";
-}
-*/
 ?>	
 	<table align="center" border="0">
 	<tr>
