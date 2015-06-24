@@ -51,6 +51,7 @@ $update="UPDATE cqrlog_main SET" .
 "', qsl_s = '" . $qsls .
 "', qsl_r = '" . $qslr .
 "', state = '" . $state .
+"', qsl_via = '" . $manager .
 "', itu = '" . $itu . "'
 
 WHERE id_cqrlog_main = '" . $qso_id . "'";

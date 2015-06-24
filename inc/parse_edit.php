@@ -23,6 +23,7 @@ while($row = mysqli_fetch_object($query))
 		$qsls = $row->qsl_s;
 		$qslr = $row->qsl_r;
 		$state = $row->state;
+		$manager= $row->qsl_via;
 		}
 if (!isset($callsign)) {
 		$date="";
@@ -63,6 +64,10 @@ $band = freq_to_band($freq);
 
 if (isset($_POST["iota_input"])) {
 		$iota_nr = strtoupper(htmlentities($_POST["iota_input"]));
+}
+
+if (isset($_POST["manager_input"])) {
+		$manager = strtoupper(htmlentities($_POST["manager_input"]));
 }
 
 if (isset($_POST["itu_input"])) {

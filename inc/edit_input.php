@@ -92,6 +92,7 @@ echo '<form name="input" action="edit.php' . $urlparameter . '" method="post">';
 	<td width="10"></td>
 	<td width="150">Locator</td>
 	<td width="10"></td>
+	<td width="150">Manager</td>
 	<td width="10"></td>
 	<td width="10"></td>
 	</tr>
@@ -137,6 +138,8 @@ if (isset($qso_id)) {
 	echo '<td><input type="text" name="qth_input" value="' . $qth . '" maxlength="55" tabindex="6"></td>';
 	echo '<td></td>';
 	echo '<td><input type="text" name="loc_input" value="' . $loc . '" maxlength="55" tabindex="7"></td>';
+	echo '<td></td>';
+	echo '<td><input type="text" name="manager_input" value="' . $manager . '" maxlength="55" tabindex="7"></td>';
 	echo '<td></td>';
 
 	echo '<td></td>';
