@@ -111,7 +111,7 @@ if (isset($qso_id)) {
 	echo '<td></td>' . "\n";
 	echo '<td><input id="call" type="text" maxlength="2" size="1" name="waz_input" value="' . $waz . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="iota_input" size="8" value="' . $iota . '" maxlength="8"></td>';
+	echo '<td><input type="text" name="iota_input" size="8" value="' . $iota_nr . '" maxlength="8"></td>';
 	echo '<td></td>';
 	echo '<td><select name=qsls_input>' ."\n";
 	echo '<option>' . $qsls . '</option>' . "\n";

@@ -16,7 +16,7 @@ while($row = mysqli_fetch_object($query))
 		$remarks = $row->remarks;
 		$name = $row->name;
 		$qth = $row->qth;
-		$iota = $row->iota;
+		$iota_nr = $row->iota;
 		$loc = $row->loc;
 		$itu = $row->itu;
 		$waz = $row->waz;
@@ -36,7 +36,7 @@ if (!isset($callsign)) {
 		$remarks="";
 		$name="";
 		$qth="";
-		$iota="";
+		$iota_nr="";
 		$loc="";
 		$itu="";
 		$waz="";
@@ -61,6 +61,9 @@ $band = freq_to_band($freq);
 
 }}
 
+if (isset($_POST["iota_input"])) {
+		$iota_nr = strtoupper(htmlentities($_POST["iota_input"]));
+}
 
 if (isset($_POST["itu_input"])) {
 	$itu=htmlentities($_POST["itu_input"]);
@@ -101,8 +104,10 @@ $callsign=$call;
 	$waz = $fetchqso[3];
 	$manager = get_manager($call);
 	$fetchiota = get_iota($call, adif_to_dxcc($adif));
-	$iota_nr = $fetchiota[0];
-	$iota_name = $fetchiota[1];
+	if (!empty($fetchiota[0])) {
+				$iota_nr = $fetchiota[0];
+	}
+		$iota_name = $fetchiota[1];
 }
 }
 }
@@ -186,9 +191,6 @@ if (isset($_POST["qth_input"])) {
 
 if (isset($_POST["loc_input"])) {
 		$loc = strtoupper(htmlentities($_POST["loc_input"]));
-}
-if (isset($_POST["iota_input"])) {
-		$iota = strtoupper(htmlentities($_POST["iota_input"]));
 }
 
 if (isset($_POST['qsls_input'])){
