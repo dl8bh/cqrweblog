@@ -74,7 +74,7 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	{
 			$rapport=$default_ssb_rapport;
 	}
-	echo '<td><input type="text" name="mode" size="5" value="' . $mode . '" tabindex="3" maxlength="5"></td>';
+	echo '<td><input type="text" name="mode" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
 	echo '<td></td>';
 	echo '<td><input type="text" name="rst_sent" size="8" value="' . $rapport  . '" maxlength="10" tabindex="4"></td>';
 	echo '<td></td>';

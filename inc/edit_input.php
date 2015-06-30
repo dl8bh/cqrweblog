@@ -51,7 +51,7 @@ echo '<form name="input" action="edit.php' . $urlparameter . '" method="post">';
 	echo '<td></td>' . "\n";
 	echo '<td><input id="call" type="text" maxlength="55" size="15" name="call_input" value="' . $callsign . '" tabindex="2" onchange="data_copy()" autofocus ></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="mode_input" size="5" value="' . $mode . '" tabindex="3" maxlength="5"></td>';
+	echo '<td><input type="text" name="mode_input" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
 	echo '<td></td>';
 	echo '<td><input type="text" name="rst_sent_input" size="8" value="' . $rst_s  . '" maxlength="10" tabindex="4"></td>';
 	echo '<td></td>';

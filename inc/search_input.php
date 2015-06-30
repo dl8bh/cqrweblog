@@ -39,7 +39,7 @@ echo '<form action="logsearch.php?log_id=' . $log_id . '&qso_count=' . $qso_coun
 	<td><input type="text" maxlength="55" size="15" name="dxcc"></td>
 	<td></td>
 	
-	<td><input type="text" name="mode" size="5" value="" maxlength="5"></td>
+	<td><input type="text" name="mode" size="5" value="" maxlength="7"></td>
 	<td></td>
 	<td><input type="text" name="name" maxlength="55" title="use % as wildcard" ></td>
 	<td></td>
