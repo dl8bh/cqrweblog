@@ -7,10 +7,12 @@ include("inc/parse_log.php");
 <head>
 <?php 
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logbook</title>';
-include("inc/copy.php");
+//include("inc/copy.php");
 ?>
 <link rel="stylesheet" type="text/css" href="inc/log.css">
 <meta charset="UTF-8">
+<script src="inc/shortcut.js" type="text/javascript" name="shortcut/shortcut"></script>
+<script src="inc/copy.js" type="text/javascript" name="copycall/copycall"></script>
 </head>
 <body style="overflow:auto;">
 <div id="root">

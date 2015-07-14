@@ -1,3 +1,6 @@
+2015-07-14
+	-added shortcut.js
+		-implementing alt+w wipe functionality with shortcut.js
 2015-06-24
 	-added possibility to edit qso in detail afterwards
 	-edit qso now works for:
