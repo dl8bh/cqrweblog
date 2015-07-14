@@ -16,6 +16,8 @@ document.input.freq.value=freq/1000;
 function wipe_data()
 {
 		document.input.call.value="";
+		document.input.name.value="";
+		document.input.remarks.value="";
 }
 
 shortcut.add("Alt+w",function() {
