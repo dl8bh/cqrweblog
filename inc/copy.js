@@ -31,3 +31,7 @@ function wipe_data()
 shortcut.add("Alt+w",function() {
 			wipe_data();
 });
+
+shortcut.add("Alt+q",function() {
+			window.open("http://qrz.com/db/".concat(document.input.call.value.toUpperCase()));
+});

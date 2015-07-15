@@ -1,5 +1,6 @@
 2015-07-15
-	-ALT+W now also resets rst_sent/rst_rcvd (if SSB -> 59, else -> 599)
+	-ALT+w now also resets rst_sent/rst_rcvd (if SSB -> 59, else -> 599)
+	-ALT+q now opens the qrz.com page of the given callsign
 2015-07-14
 	-added shortcut.js
 		-implementing alt+w wipe functionality with shortcut.js
