@@ -104,3 +104,9 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 </form>
 </tr>
 </table>
+<?php
+if ($enable_help[$log_id]) {
+		echo '</br>' ."\n" ;
+		echo 'Shortcuts: Alt+w/F11: Wipe Alt+q: qrz.com </br>' . "\n";
+		echo 'Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER' . "\n";
+}
