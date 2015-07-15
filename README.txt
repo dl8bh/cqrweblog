@@ -97,8 +97,8 @@ Would search for all german stations you worked on 20m cw in WAE 2015 (if you us
 
 ===EDIT===
 General:
-You can get to the edit-view via the normal log-view or the search-view.
-Works as the normal log-input, but with some more variable fields like
+You can get to the edit-view via the normal log-view or the search-view, just click on the edit-link beneath a qso.
+Works like the normal log-input, but with some more variable fields like
 	-date
 	-state
 	-waz
