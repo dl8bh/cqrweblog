@@ -18,6 +18,14 @@ function wipe_data()
 		document.input.call.value="";
 		document.input.name.value="";
 		document.input.remarks.value="";
+		if (document.input.mode.value.toUpperCase()==="SSB") {
+				document.input.rst_sent.value="59";
+				document.input.rst_rcvd.value="59";
+		}
+		else {
+				document.input.rst_rcvd.value="599";
+				document.input.rst_sent.value="599";
+		}
 }
 
 shortcut.add("Alt+w",function() {
