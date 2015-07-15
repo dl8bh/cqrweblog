@@ -7,7 +7,8 @@
 ===MYSQL-SERVER===
 -setup your mysql-server public available
 -add mysql-user to handle your logs
--import ctyfiles/cqrlog_web.sql to your mysql-server (DXCC-Resolution Tables)
+Optional, if hamqth-dxcc-resolution does not work with you setup:
+	-import ctyfiles/cqrlog_web.sql to your mysql-server (DXCC-Resolution Tables)
 
 ====WEB-SERVER====
 -setup your webserver
@@ -71,7 +72,11 @@ If frequency is set, it keeps its value as long as you dont change.
 -CheckDXCC
 	-Check the DXCC worked/confirmed slot-statistics of the entered callsigns dxcc in a new window
 	-uses the dxcc stats explained later
-
+-Search Call
+	-searches your log for call, see SEARCH section
+-Shortcuts:
+	-alt+w : wipe like in wintest/n1mm (reset all fields except for mode/freq/band to their default values)
+	-alt+q : opens qrz.com page of given callsign
 ===SEARCH===
 General:
 Fields are combined with logical AND, all fields are optional.
