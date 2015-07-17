@@ -18,6 +18,7 @@ function wipe_data()
 		document.input.call.value="";
 		document.input.name.value="";
 		document.input.remarks.value="";
+		document.input.mode.value=document.input.mode.value.toUpperCase();
 		if (document.input.mode.value.toUpperCase()==="SSB") {
 				document.input.rst_sent.value="59";
 				document.input.rst_rcvd.value="59";
