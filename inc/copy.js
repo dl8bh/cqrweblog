@@ -26,6 +26,7 @@ function wipe_data()
 				document.input.rst_rcvd.value="599";
 				document.input.rst_sent.value="599";
 		}
+		document.input.call.focus();
 }
 
 shortcut.add("Alt+w",function() {

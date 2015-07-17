@@ -1,3 +1,5 @@
+2015-07-17
+	-focus call on wipe
 2015-07-15
 	-ALT+w now also resets rst_sent/rst_rcvd (if SSB -> 59, else -> 599)
 	-ALT+q now opens the qrz.com page of the given callsign
