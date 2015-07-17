@@ -3,6 +3,10 @@
 	-add link to readme.txt
 	-hamqth is currently under heavy load/down
 		-introduced the old call_to_dxcc as fallback on own tables based on config
+	-improved UI (thanks Saku OH1KH)
+		-reorganized buttons
+		-added wipe button (alt+w not possible on tablet-pcs)
+		-added qrz button (alt+q also not possible on tablet-pcs)
 2015-07-15
 	-ALT+w now also resets rst_sent/rst_rcvd (if SSB -> 59, else -> 599)
 	-ALT+q now opens the qrz.com page of the given callsign

@@ -13,6 +13,11 @@ document.search.call.value=callsign;
 document.input.freq.value=freq/1000;
 }
 
+function qrz_call() {
+		window.open("http://qrz.com/db/".concat(document.input.call.value.toUpperCase()));
+}
+
+
 function wipe_data()
 {
 		document.input.call.value="";
@@ -41,5 +46,5 @@ shortcut.add("F11",function() {
 
 
 shortcut.add("Alt+q",function() {
-			window.open("http://qrz.com/db/".concat(document.input.call.value.toUpperCase()));
+		qrz_call();
 });

@@ -25,11 +25,11 @@ echo ', at locator ' . $locator ;
 }
 if (empty($call))
 {
-		echo '<p><h3> <font color=red>Please insert Callsign</font></h3></p>' . "\n";
+//		echo '<p><h3> <font color=red>Please insert Callsign</font></h3></p>' . "\n";
 }
 elseif (empty($band))
 {
-		echo '<p><h3> <font color=red>Please insert Frequency</font></h3></p>' . "\n";
+//		echo '<p><h3> <font color=red>Please insert Frequency</font></h3></p>' . "\n";
 }
 else
 {
@@ -43,6 +43,6 @@ else{
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 mysqli_query($dbconnect, $insert);
 }
-echo " <p class='hl'>last QSOs</p>";
+//echo " <p class='hl'>last QSOs</p>";
 }
 ?>

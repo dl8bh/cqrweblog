@@ -20,7 +20,7 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logbook</title>';
 echo '<div id="head">' . "\n";
 echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 echo '</div>' . "\n";
-if ($enable_cluster[$log_id])
+if ($enable_cluster[$log_id]&&$hamqth_api)
 {
 include ("inc/cluster.php");
 }
