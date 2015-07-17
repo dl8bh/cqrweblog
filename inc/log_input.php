@@ -109,5 +109,5 @@ if ($enable_help[$log_id]) {
 		echo '</br>' ."\n" ;
 		echo 'Shortcuts: Alt+w/F11: Wipe Alt+q: qrz.com </br>' . "\n";
 		echo 'Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER </br>' . "\n";
-		echo '<a href="./README.txt">Complete Manual</a> ' . "\n";
+		echo '<a href="./README.txt" target="_blank" >Complete Manual</a> ' . "\n";
 }
