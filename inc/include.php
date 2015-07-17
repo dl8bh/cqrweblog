@@ -45,8 +45,13 @@ function get_cluster_spots ( $number, $band )
 }
 
 function call_to_dxcc ( $callsign) {
+		global $hamqth_api;
 		if (empty($callsign)) {
 				return array ( NULL, NULL, NULL, NULL );
+		}
+		if (!$hamqth_api) {
+		include("oldinclude.php");
+				return call_to_dxcc2( $callsign);
 		}
 		$jsonurl='http://www.hamqth.com/dxcc_json.php?callsign=' . $callsign;
 		$jsonData = file_get_contents( $jsonurl );

@@ -24,10 +24,6 @@ $urlparameter = '?log_id=' . $log_id;
 
 if (isset($qso_count)) {
 		$urlparameter .= '&qso_count=' . $qso_count;
-echo '<form name="search" action="logsearch.php' . $urlparameter . '" target="_blank"  method="post">';
-echo '<td><input type="submit" value="Search Call" accesskey="S" title="shortcut browser accesskey + S" ></td>' . "\n";
-echo '<input type="hidden" name="call" value="">' . "\n";
-echo '</form>';
 }
 
 echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
@@ -85,11 +81,16 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	echo '<td><input type="text" name="remarks" maxlength="55" tabindex="7"></td>';
 	echo '<td></td>';
 	echo '<td><input type="submit" value="Log QSO"></td>';
-	?>
-</form>
-
-<?php
+	echo '</form>' . "\n";
 	echo '<td></td>';
+	?>
+
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<?php
 	if ($altstats[$log_id])
 	{
 			echo '<form name="stats" action="stats2.php' . $urlparameter . '" target="_blank"  method="post">';
@@ -99,9 +100,30 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 			echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
 	}
 	echo '<td><input type="submit" value="Check DXCC" accesskey="C" title="shortcut browser accesskey + C"></td>';
+
+echo '<input type="hidden" name="callsign" value="">' . "\n";
+echo '</form>' . "\n" ;
+echo '<td></td>' . "\n";
+
+
+echo '<form name="search" action="logsearch.php' . $urlparameter . '" target="_blank"  method="post">';
+echo '<td><input type="submit" value="Search Call" accesskey="S" title="shortcut browser accesskey + S" ></td>' . "\n";
+echo '<input type="hidden" name="call" value="">' . "\n";
+echo '</form>';
 ?>
-<input type="hidden" name="callsign" value="">
-</form>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><input type="submit" value="Wipe" onclick="wipe_data()" title="shortcut: Alt+w/F11"></td>
+<tr>
 </tr>
 </table>
 <?php
