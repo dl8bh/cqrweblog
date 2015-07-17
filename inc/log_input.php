@@ -124,7 +124,7 @@ echo '<input type="hidden" name="call" value="">' . "\n";
 echo '</form>';
 ?>
 <td></td>
-<td><input type="submit" value="QRZ" onclick="qrz_call()" title="shortcut: Alt+w/F11"></td>
+<td><input type="submit" value="QRZ" onclick="qrz_call()" title="shortcut: Alt+q"></td>
 <td></td>
 <td></td>
 <td></td>
