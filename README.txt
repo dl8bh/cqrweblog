@@ -7,7 +7,7 @@
 ===MYSQL-SERVER===
 -setup your mysql-server public available
 -add mysql-user to handle your logs
-Optional, if hamqth-dxcc-resolution does not work with you setup:
+Optional, if hamqth-dxcc-resolution does not work with your setup:
 	-import ctyfiles/cqrlog_web.sql to your mysql-server (DXCC-Resolution Tables)
 
 ====WEB-SERVER====

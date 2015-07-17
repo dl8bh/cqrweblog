@@ -29,7 +29,8 @@ $exportdir="tmp/";
 $altstats = array ( "0", false, false, false, true, false);
 // let the user decide, if the cluster is enabled:
 $enable_cluster = array ( "0", false, false, false, true, false);
-// enable/disable hamqth-api (switches to local dxcc resolution)
+// enable/disable hamqth-api (switches to local dxcc resolution and disables cluster, if false)
+// if your cqrweblog instance is very slow, consider turning $hamqt_api to false, hamqth.com might have problems!
 $hamqth_api = true;
 // show help for users:
 $enable_help = array ( "0", false, false, false, true, false);
