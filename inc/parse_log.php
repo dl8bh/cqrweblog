@@ -108,6 +108,10 @@ if (isset($_POST["remarks"])) {
 		if (preg_match("/(L:\s*)(\S+)/",$remarks, $locator_treffer) ){
 				$locator=$locator_treffer[2];
 		}
+		
+		if (preg_match("/(S:\s*)(\S+)/",$remarks, $state_treffer) ){
+				$state=$state_treffer[2];
+		}
 
 }
 

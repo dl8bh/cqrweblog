@@ -66,6 +66,7 @@ If frequency is set, it keeps its value as long as you dont change.
 		-manager (M: MANAGER)
 		-iota (I: IOTA)
 		-locator (L: LOCATOR)
+		-us state (S: STATE)
 	-example: 3el yagi, L: jo50lq M: dl1abc I: eu-001
 -Submit
 	-Log QSO, alternatively just hit ENTER

@@ -22,6 +22,10 @@ if (!empty($locator))
 {
 echo ', at locator ' . $locator ;
 }
+if (!empty($state))
+{
+echo ', in US-State ' . $state ;
+}
 }
 if (empty($call))
 {
@@ -33,9 +37,9 @@ elseif (empty($band))
 }
 else
 {
-$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz,qsl_via,iota,loc) " . 
+$insert="insert into cqrlog_main (qsodate,time_on,time_off,callsign,freq,mode,rst_s,rst_r,name,remarks,idcall,band,adif,itu,waz,qsl_via,iota,loc,state) " . 
 "values('" . $datum . "','" . $time_on . "','" . $time_on . "','" . $call . "'," . $freq . ",'" . $mode . "','" . $rst_sent . "','" . $rst_rcvd . "','" . $name . 
-"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "','" . $manager . "','" . $iota_nr . "','" . $locator . "')";
+"','" . $remarks . "','" . $id_call . "','" . $band . "','" . $adif . "','" . $itu . "','" . $waz . "','" . $manager . "','" . $iota_nr . "','" . $locator . "','" . $state . "')";
 if ($debugmode) {
 echo $insert;
 }
