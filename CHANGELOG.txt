@@ -1,5 +1,6 @@
 2015-07-18
 	-add US-State in remarks syntax (S:STATE)
+	-focus call after cluster-fill
 2015-07-17
 	-focus call on wipe
 	-add link to readme.txt

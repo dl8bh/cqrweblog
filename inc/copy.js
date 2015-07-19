@@ -11,6 +11,7 @@ document.stats.callsign.value=callsign;
 document.search.call.value=callsign;
 
 document.input.freq.value=freq/1000;
+document.input.call.focus();
 }
 
 function qrz_call() {
