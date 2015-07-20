@@ -46,6 +46,10 @@ $adif_export = false;
 if (isset($_POST["adif_export"])){
 $adif_export = true;
 }
+$inlog = false;
+if (isset($_POST["inlog"])){
+$inlog = true;
+}
 ?>
 
 

@@ -20,7 +20,7 @@ echo '</div>' . "\n";
 include ("inc/edit_input.php");
 //include("inc/parse_edit.php");
 ?>
-<br /><br />
+<br />
 
 <?php 
 include("inc/edit_proc.php");

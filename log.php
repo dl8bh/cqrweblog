@@ -30,7 +30,20 @@ include ("inc/log_input.php");
 
 <?php 
 include("inc/log_proc.php");
-echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
+
+echo '<p align="right">';
+$qso_amount=count_qsos( $log_id );
+switch ($qso_amount) {
+    case 0:
+	echo '<font color="red"><b>Nothing found!</b>' . "\n";
+	break;
+    case 1:
+	echo '<font color="green">' . $qso_amount . ' QSO found' . "\n";
+	break;
+    default:
+	echo '<font color="green">' . $qso_amount . ' QSOs found' . "\n";
+}
+echo '</font></p>';
 ?>
 <hr>
 <br><br>
