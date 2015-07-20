@@ -45,7 +45,7 @@ echo '<form name="input" action="edit.php' . $urlparameter . '" method="post">';
 	}
 	echo '</select></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="time_input" size="5" maxlength="5" tabindex="1" value ="' . $time . '" </td>' . "\n";
+	echo '<td><input type="text" name="time_input" size="5" maxlength="5" tabindex="1" value ="' . $time . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
 	echo '<td><input id="freq" type="text" maxlength="55" size="15" name="frequency_input" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
 	echo '<td></td>' . "\n";
@@ -61,7 +61,7 @@ echo '<form name="input" action="edit.php' . $urlparameter . '" method="post">';
 	echo '<td></td>';
 	echo '<td><input type="text" name="remarks_input" value="' . $remarks . '" maxlength="55" tabindex="7"></td>';
 	echo '<td></td>';
-	echo '<td><input type="submit" value="save QSO"></td>';
+	echo '<td><input type="submit" value="SAVE"></td>';
 	?>
 
 <?php
@@ -94,7 +94,7 @@ echo '<form name="input" action="edit.php' . $urlparameter . '" method="post">';
 	<td width="10"></td>
 	<td width="150">Manager</td>
 	<td width="10"></td>
-	<td width="10"></td>
+	<td width="30"><font color="red"><b>DELETE</b></font></td>
 	</tr>
 <?php
 $urlparameter = '?log_id=' . $log_id;
@@ -104,15 +104,15 @@ if (isset($qso_id)) {
 }
 
   echo '<tr>' . "\n";
-	echo '<td><input type="date" name="date_input" size="10" maxlength="10" value ="' . $date . '" </td>' . "\n";
+	echo '<td><input type="date" name="date_input" size="10" maxlength="10" value="' . $date . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="state_input" size="4" maxlength="4" tabindex="1" value ="' . $state . '" </td>' . "\n";
+	echo '<td><input type="text" name="state_input" size="4" maxlength="4" tabindex="1" value ="' . $state . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" maxlength="2" size="1" name="itu_input" value="' . $itu . '"  ></td> ';
+	echo '<td><input type="text" maxlength="2" size="1" name="itu_input" value="' . $itu . '"  ></td> ' . "\n";
 	echo '<td></td>' . "\n";
 	echo '<td><input id="call" type="text" maxlength="2" size="1" name="waz_input" value="' . $waz . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="iota_input" size="8" value="' . $iota_nr . '" maxlength="8"></td>';
+	echo '<td><input type="text" name="iota_input" size="8" value="' . $iota_nr . '" maxlength="8"></td>' . "\n";
 	echo '<td></td>';
 	echo '<td><select name=qsls_input>' ."\n";
 	echo '<option>' . $qsls . '</option>' . "\n";
@@ -122,7 +122,7 @@ if (isset($qso_id)) {
 	echo '<option>SB</option>' . "\n";
 	echo '<option>D</option>' . "\n";
 	echo '<option>SD</option>' . "\n";
-	echo '<option>M<o/ption>' . "\n";
+	echo '<option>M</option>' . "\n";
 	echo '<option>SM</option>' . "\n";
 	echo '<option>OQRS</option>' . "\n";
 	echo '</select></td>' . "\n";
@@ -135,30 +135,16 @@ if (isset($qso_id)) {
 	echo '</select></td>' . "\n";
 //	echo '<td><input type="text" name="rst_rcvd_input" size="8" value="' . $rst_r . '" maxlength="10" tabindex="5"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="qth_input" value="' . $qth . '" maxlength="55" tabindex="6"></td>';
+	echo '<td><input type="text" name="qth_input" value="' . $qth . '" maxlength="55" tabindex="6"></td>' . "\n";
 	echo '<td></td>';
-	echo '<td><input type="text" name="loc_input" value="' . $loc . '" maxlength="55" tabindex="7"></td>';
+	echo '<td><input type="text" name="loc_input" value="' . $loc . '" maxlength="55" tabindex="7"></td>' . "\n";
 	echo '<td></td>';
-	echo '<td><input type="text" name="manager_input" value="' . $manager . '" maxlength="55" tabindex="7"></td>';
+	echo '<td><input type="text" name="manager_input" value="' . $manager . '" maxlength="55" tabindex="7"></td>' . "\n";
 	echo '<td></td>';
-
+	echo '<td><input type="checkbox" name="Delete" value="1" id="CheckDel"></td>';
 	echo '<td></td>';
 ?>
 </tr>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </form>

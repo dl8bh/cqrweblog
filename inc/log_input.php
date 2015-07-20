@@ -8,14 +8,14 @@
 			echo '<p id=frequency><td width="40">Frequency</td></p>' ."\n";
 	}
 	else {
-			echo '<p id=frequency><td width="40"><h3><font color=red>Frequency</font></h3></td></p>' ."\n";
+			echo '<p id=frequency><td width="40"><b><font color=red>Frequency</font></b></td></p>' ."\n";
 	}
 	echo '<td width="10"></td>' . "\n";
 	if (!empty($call)) {
 			echo '<p id=callsign><td width="150">Callsign</td></p>' . "\n";
 	}
 	else {
-			echo '<p id=callsign><td width="150"><h3><font color=red>Callsign</font></h3></td></p>' . "\n";
+			echo '<p id=callsign><td width="150"><b><font color=red>Callsign</font></b></td></p>' . "\n";
 	}
 	?>
 	<td width="10"></td>
@@ -91,17 +91,12 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	echo '<td><input type="text" name="name" maxlength="55" tabindex="6"></td>';
 	echo '<td></td>';
 	echo '<td><input type="text" name="remarks" maxlength="55" tabindex="7"></td>';
-	echo '<td></td>';
-	echo '<td><input type="submit" value="Log QSO"></td>';
+	echo '</tr><tr><td>&nbsp</td></tr><tr><td></td><td></td>';
+	echo '<td><input type="submit" value="Log"></td>';
 	echo '</form>' . "\n";
 	echo '<td></td>';
-	?>
+?>
 
-</tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
 <?php
 	if ($altstats[$log_id])
 	{
@@ -119,22 +114,13 @@ echo '<td></td>' . "\n";
 
 
 echo '<form name="search" action="logsearch.php' . $urlparameter . '" target="_blank"  method="post">';
-echo '<td><input type="submit" value="Search Call in Log" accesskey="S" title="shortcut browser accesskey + S" ></td>' . "\n";
+echo '<td><input type="submit" value="In log?" accesskey="S" title="shortcut browser accesskey + S" >' . "\n";
 echo '<input type="hidden" name="call" value="">' . "\n";
 echo '</form>';
 ?>
+<input type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q"></td>
 <td></td>
-<td><input type="submit" value="QRZ" onclick="qrz_call()" title="shortcut: Alt+q"></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><input type="submit" value="Wipe" onclick="wipe_data()" title="shortcut: Alt+w/F11"></td>
+<td><input type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11"></td>
 <tr>
 </tr>
 </table>
