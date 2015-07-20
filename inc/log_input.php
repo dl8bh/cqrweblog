@@ -54,20 +54,20 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	?>
 	</select></td>
 	<td></td>
-	<td><input type="text" name="time" size="5" value="" maxlength="5" tabindex="1" title="optional, if empty: time in UTC, input format: hh:mm or hhmm"></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="time" size="5" value="" maxlength="5" tabindex="1" title="optional, if empty: time in UTC, input format: hh:mm or hhmm"></td>
 	<td></td>
 	<?php
 	if (isset($freq))
 	{
-	echo '<td><input id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
 	}
 	else
 	{
-	echo '<td><input id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" title="only band or frequency is needed" ></td> ';
+	echo '<td><input  onClick="this.setSelectionRange(0,this.value.length)" id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" title="only band or frequency is needed" ></td> ';
 	}
 	?>
 	<td></td>
-	<td><input id="call" type="text" maxlength="55" size="15" name="call" tabindex="2" onchange="data_copy()" autofocus ></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" id="call" type="text" maxlength="55" size="15" name="call" tabindex="2" onchange="data_copy()" autofocus ></td>
 	<td></td>
 	<?php
 	if (empty($mode))
@@ -82,15 +82,15 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	{
 			$rapport=$default_ssb_rapport;
 	}
-	echo '<td><input type="text" name="mode" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="mode" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="rst_sent" size="8" value="' . $rapport  . '" maxlength="10" tabindex="4"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="rst_sent" size="8" value="' . $rapport  . '" maxlength="10" tabindex="4"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="rst_rcvd" size="8" value="' . $rapport . '" maxlength="10" tabindex="5"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="rst_rcvd" size="8" value="' . $rapport . '" maxlength="10" tabindex="5"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="name" maxlength="55" tabindex="6"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="name" maxlength="55" tabindex="6"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="remarks" maxlength="55" tabindex="7"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="remarks" maxlength="55" tabindex="7"></td>';
 	echo '</tr><tr><td>&nbsp</td></tr><tr><td></td><td></td>';
 	echo '<td><input type="submit" value="Log"></td>';
 	echo '</form>' . "\n";
