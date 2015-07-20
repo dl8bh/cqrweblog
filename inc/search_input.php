@@ -12,8 +12,7 @@
 	<td width="150">Remarks</td>
 	<td width="10"></td>
 	<td width="150">Locator</td>
-	<td width="10"></td>
-	<td width="140">Export ADIF</td>
+
 <?php
 
 
@@ -46,11 +45,26 @@ echo '<form action="logsearch.php?log_id=' . $log_id . '&qso_count=' . $qso_coun
 	<td><input type="text" name="remarks" maxlength="55" title="use % as wildcard" ></td>
 	<td></td>
 	<td><input type="text" name="locator" maxlength="55" title="use % as wildcard" ></td>
+	</tr><tr>
+	<td>&nbsp</td>
+	</tr><tr>
+	<td></td>
+	<td></td>
+	<td></td>
 	<td></td>
 
-
-	<td><input type="checkbox" name="adif_export" value="export"></td>
-	<td><input type="submit" value="Submit"></td>
+	<td width="150"><input type="checkbox" name="adif_export" value="export">Export ADIF</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td><input type="submit" value="Search"></td>
+<?php
+if ($inlog){
+	echo '<input type="hidden" name="inlog" value="1">';
+}
+?>
 	
 
 

@@ -116,6 +116,7 @@ echo '<td></td>' . "\n";
 echo '<form name="search" action="logsearch.php' . $urlparameter . '" target="_blank"  method="post">';
 echo '<td><input type="submit" value="In log?" accesskey="S" title="shortcut browser accesskey + S" >' . "\n";
 echo '<input type="hidden" name="call" value="">' . "\n";
+echo '<input type="hidden" name="inlog" value="1">' . "\n";
 echo '</form>';
 ?>
 <input type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q"></td>
