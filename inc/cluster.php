@@ -1,6 +1,6 @@
 <div id="cluster">
 <?php
-include("inc/include.php");
+//include("inc/include.php");
 
 if (isset($band)) {
 		$spots=get_cluster_spots($cluster_spot_num, $band);
