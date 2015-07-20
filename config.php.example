@@ -1,12 +1,12 @@
 <?php
-//webserver root for cqrweblog
-$cqrweblog_root="http://yourserver:yourport/cqrweblog/";
+//webserver root for cqrweblog, relative to your webroot, for http://server:port/path its just /path
+$cqrweblog_root="/path/";
 // hostname of mysql-server
 $hostname="localhost";
 // mysql-username
 $dbuser="cqrlog";
 // mysql-passwort
-$dbpass="oh1kh";
+$dbpass="password123";
 // default database of cqrlog, dont change unless you know what you are doing!
 $db="cqrlog_common";
 // default-mode/rst
