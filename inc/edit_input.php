@@ -45,21 +45,21 @@ echo '<form name="input" action="edit.php' . $urlparameter . '" method="post">';
 	}
 	echo '</select></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="time_input" size="5" maxlength="5" tabindex="1" value ="' . $time . '"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="time_input" size="5" maxlength="5" tabindex="1" value ="' . $time . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input id="freq" type="text" maxlength="55" size="15" name="frequency_input" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" id="freq" type="text" maxlength="55" size="15" name="frequency_input" value="' . $freq . '" tabindex=1" title="only band or frequency is needed" ></td> ';
 	echo '<td></td>' . "\n";
-	echo '<td><input id="call" type="text" maxlength="55" size="15" name="call_input" value="' . $callsign . '" tabindex="2" onchange="data_copy()" autofocus ></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" id="call" type="text" maxlength="55" size="15" name="call_input" value="' . $callsign . '" tabindex="2" onchange="data_copy()" autofocus ></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="mode_input" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="mode_input" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="rst_sent_input" size="8" value="' . $rst_s  . '" maxlength="10" tabindex="4"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="rst_sent_input" size="8" value="' . $rst_s  . '" maxlength="10" tabindex="4"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="rst_rcvd_input" size="8" value="' . $rst_r . '" maxlength="10" tabindex="5"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="rst_rcvd_input" size="8" value="' . $rst_r . '" maxlength="10" tabindex="5"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="name_input" value="' . $name . '" maxlength="55" tabindex="6"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="name_input" value="' . $name . '" maxlength="55" tabindex="6"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="remarks_input" value="' . $remarks . '" maxlength="55" tabindex="7"></td>';
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="remarks_input" value="' . $remarks . '" maxlength="55" tabindex="7"></td>';
 	echo '<td></td>';
 	echo '<td><input type="submit" value="SAVE"></td>';
 	?>
@@ -104,15 +104,15 @@ if (isset($qso_id)) {
 }
 
   echo '<tr>' . "\n";
-	echo '<td><input type="date" name="date_input" size="10" maxlength="10" value="' . $date . '"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="date" name="date_input" size="10" maxlength="10" value="' . $date . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="state_input" size="4" maxlength="4" tabindex="1" value ="' . $state . '"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="state_input" size="4" maxlength="4" tabindex="1" value ="' . $state . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" maxlength="2" size="1" name="itu_input" value="' . $itu . '"  ></td> ' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" maxlength="2" size="1" name="itu_input" value="' . $itu . '"  ></td> ' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input id="call" type="text" maxlength="2" size="1" name="waz_input" value="' . $waz . '"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" id="call" type="text" maxlength="2" size="1" name="waz_input" value="' . $waz . '"></td>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td><input type="text" name="iota_input" size="8" value="' . $iota_nr . '" maxlength="8"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="iota_input" size="8" value="' . $iota_nr . '" maxlength="8"></td>' . "\n";
 	echo '<td></td>';
 	echo '<td><select name=qsls_input>' ."\n";
 	echo '<option>' . $qsls . '</option>' . "\n";
@@ -135,11 +135,11 @@ if (isset($qso_id)) {
 	echo '</select></td>' . "\n";
 //	echo '<td><input type="text" name="rst_rcvd_input" size="8" value="' . $rst_r . '" maxlength="10" tabindex="5"></td>';
 	echo '<td></td>';
-	echo '<td><input type="text" name="qth_input" value="' . $qth . '" maxlength="55" tabindex="6"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="qth_input" value="' . $qth . '" maxlength="55" tabindex="6"></td>' . "\n";
 	echo '<td></td>';
-	echo '<td><input type="text" name="loc_input" value="' . $loc . '" maxlength="55" tabindex="7"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="loc_input" value="' . $loc . '" maxlength="55" tabindex="7"></td>' . "\n";
 	echo '<td></td>';
-	echo '<td><input type="text" name="manager_input" value="' . $manager . '" maxlength="55" tabindex="7"></td>' . "\n";
+	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="manager_input" value="' . $manager . '" maxlength="55" tabindex="7"></td>' . "\n";
 	echo '<td></td>';
 	echo '<td><input type="checkbox" name="Delete" value="1" id="CheckDel"></td>';
 	echo '<td></td>';

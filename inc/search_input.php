@@ -33,18 +33,18 @@ echo '<form action="logsearch.php?log_id=' . $log_id . '&qso_count=' . $qso_coun
 	</select></td>
 
 	<td></td>
-	<td><input type="text" maxlength="55" size="15" name="call" title="use % as wildcard"></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" maxlength="55" size="15" name="call" title="use % as wildcard"></td>
 	<td></td>
-	<td><input type="text" maxlength="55" size="15" name="dxcc"></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" maxlength="55" size="15" name="dxcc"></td>
 	<td></td>
 	
-	<td><input type="text" name="mode" size="5" value="" maxlength="7"></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="mode" size="5" value="" maxlength="7"></td>
 	<td></td>
-	<td><input type="text" name="name" maxlength="55" title="use % as wildcard" ></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="name" maxlength="55" title="use % as wildcard" ></td>
 	<td></td>
-	<td><input type="text" name="remarks" maxlength="55" title="use % as wildcard" ></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="remarks" maxlength="55" title="use % as wildcard" ></td>
 	<td></td>
-	<td><input type="text" name="locator" maxlength="55" title="use % as wildcard" ></td>
+	<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="locator" maxlength="55" title="use % as wildcard" ></td>
 	</tr><tr>
 	<td>&nbsp</td>
 	</tr><tr>
