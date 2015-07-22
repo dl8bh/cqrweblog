@@ -67,7 +67,7 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	}
 	?>
 	<td></td>
-	<td><input onClick="this.setSelectionRange(0,this.value.length)" id="call" type="text" maxlength="55" size="15" name="call" tabindex="2" onchange="data_copy()" autofocus ></td>
+	<td><input id="call" type="text" maxlength="55" size="15" name="call" tabindex="2" onchange="data_copy()" autofocus ></td>
 	<td></td>
 	<?php
 	if (empty($mode))
@@ -109,6 +109,7 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	echo '<td><input type="submit" value="Check DXCC" accesskey="C" title="shortcut browser accesskey + C"></td>';
 
 echo '<input type="hidden" name="callsign" value="">' . "\n";
+echo '<input type="hidden" name="inlog" value="1">' . "\n";
 echo '</form>' . "\n" ;
 echo '<td></td>' . "\n";
 
