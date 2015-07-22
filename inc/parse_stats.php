@@ -55,6 +55,10 @@ if (!($paperqsl) && !($lotwqsl) && !$eqslqsl)
 if (isset($_POST["locator"])){
 $locator = strtoupper(htmlentities($_POST["locator"]));
 }
+$inlog = false;
+if (isset($_POST["inlog"])){
+$inlog = true;
+}
 ?>
 
 
