@@ -3,6 +3,7 @@
 	-rework check_adif for $band=all (preparing cluster-color "worked, but on another band")
 	-adding freq_to_mode
 	-cluster now fills mode field
+	-freq_to_band_mode instead of freq_to_band and freq_to_mode (less mysql querys)
 2015-07-20
 	-merged OK1KH's changes from github
 2015-07-18

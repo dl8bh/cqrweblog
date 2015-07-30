@@ -104,40 +104,39 @@ function logid_to_call ( $log_id ) {
 				return NULL;
 }
 
-function freq_to_band ( $inputfreq )
+function freq_to_band_mode ( $inputfreq )
 {
 		global $dbconnect;
 		$dbconnect -> select_db("cqrlog_common");
 		$inputfreq = mysqli_real_escape_string($dbconnect ,$inputfreq);
-		$ergebnis = mysqli_query($dbconnect, "select band from bands where b_begin <= " . $inputfreq . " and b_end >=" . $inputfreq  );
+		$ergebnis = mysqli_query($dbconnect, "select cw,rtty,ssb,band from bands where b_begin <= " . $inputfreq . " and b_end >=" . $inputfreq  );
 		while($row = mysqli_fetch_object($ergebnis))
 			{
-					return $row->band;
+					$returnband=$row->band;
+					if ($inputfreq < $row->cw) {
+							$returnmode = "CW";
+					}
+					else if (($inputfreq >= $row->rtty)&&($inputfreq < $row->ssb)) {
+							$returnmode = "RTTY";
+					}
+					else if ($inputfreq > $row->ssb) {
+							$returnmode = "SSB";
+					}
+					return array ($returnband, $returnmode);
 			}
 		return NULL ;
+}
+function freq_to_band ( $inputfreq )
+{
+		$bandmode = freq_to_band_mode($inputfreq);
+		return $bandmode[0];
 }
 
 
 function freq_to_mode ( $inputfreq )
 {
-		global $dbconnect;
-		$dbconnect -> select_db("cqrlog_common");
-		$inputfreq = mysqli_real_escape_string($dbconnect ,$inputfreq);
-		$band = freq_to_band ( $inputfreq) ;
-		$ergebnis = mysqli_query($dbconnect, 'select cw, rtty, ssb from bands where band="' . $band . '"'   );
-		while($row = mysqli_fetch_object($ergebnis))
-			{
-					if ($inputfreq < $row->cw) {
-							return "CW";
-					}
-					if (($inputfreq >= $row->rtty)&&($inputfreq < $row->ssb)) {
-							return "RTTY";
-					}
-					if ($inputfreq > $row->ssb) {
-							return "SSB";
-					}
-			}
-		return NULL ;
+		$bandmode = freq_to_band_mode($inputfreq);
+		return $bandmode[1];
 }
 
 function get_manager ( $call ) {
