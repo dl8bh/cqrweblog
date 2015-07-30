@@ -118,6 +118,28 @@ function freq_to_band ( $inputfreq )
 }
 
 
+function freq_to_mode ( $inputfreq )
+{
+		global $dbconnect;
+		$dbconnect -> select_db("cqrlog_common");
+		$inputfreq = mysqli_real_escape_string($dbconnect ,$inputfreq);
+		$band = freq_to_band ( $inputfreq) ;
+		$ergebnis = mysqli_query($dbconnect, 'select cw, rtty, ssb from bands where band="' . $band . '"'   );
+		while($row = mysqli_fetch_object($ergebnis))
+			{
+					if ($inputfreq < $row->cw) {
+							return "CW";
+					}
+					if (($inputfreq >= $row->rtty)&&($inputfreq < $row->ssb)) {
+							return "RTTY";
+					}
+					if ($inputfreq > $row->ssb) {
+							return "SSB";
+					}
+			}
+		return NULL ;
+}
+
 function get_manager ( $call ) {
 		global $dbconnect;		
 		$dbconnect -> select_db("cqrlog_common" );
