@@ -1,5 +1,6 @@
 2015-07-30
 	-added first cluster colorization (worked/confirmed/new one)
+	-rework check_adif for $band=all (preparing cluster-color "worked, but on another band")
 2015-07-20
 	-merged OK1KH's changes from github
 2015-07-18

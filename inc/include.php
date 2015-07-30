@@ -242,7 +242,7 @@ function qslstring ( $paper, $lotw, $eqsl)
 }
 
 
-function check_adif ( $adif, $log_id, $band, $mode = 'ALL' , $paper = true , $lotw = true, $eqsl = true )
+function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = true , $lotw = true, $eqsl = true )
 {
 	global $dbconnect;
 	$dbconnect -> select_db (logid_to_tableid( $log_id ));
@@ -255,14 +255,19 @@ function check_adif ( $adif, $log_id, $band, $mode = 'ALL' , $paper = true , $lo
 	$eqsl = mysqli_real_escape_string($dbconnect ,$eqsl);
 
 	$qslstring = qslstring( $paper, $lotw, $eqsl);
-
+	if ($band == "ALL") {
+			$bandstring='';
+	}
+	else {
+			$bandstring = ' and band="' . $band . '"';
+	}
 	$dbconnect -> select_db( logid_to_tableid( $log_id ) );
 	if ($mode=="ALL"){
-		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . ' and band="' . $band . '"' . $qslstring  . ' limit 1');
+		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . $qslstring  . ' limit 1');
 	}
 	else
 	{
-		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . ' and band="' . $band . '" and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
+		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
 	}
 	while($row = mysqli_fetch_object($ergebnis)){
 			return array ("C", '<td align="center" bgcolor="#40FF00">',  '</td>');
@@ -271,11 +276,11 @@ function check_adif ( $adif, $log_id, $band, $mode = 'ALL' , $paper = true , $lo
 
 	
 	if ($mode=="ALL"){
-	$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . ' and band="' . $band . '" limit 1');
+	$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' limit 1');
 	}
 	else
 	{
-	$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . ' and band="' . $band . '" and mode="' . $mode . '" limit 1');
+	$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '" limit 1');
 	}
 	while($row = mysqli_fetch_object($ergebnis2)){
 			return array ('W', '<td align="center" bgcolor="Red">','</td>');
