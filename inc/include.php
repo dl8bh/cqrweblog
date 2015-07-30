@@ -17,7 +17,9 @@ function parse_remarks( $remarks, $field)
 }
 
 function get_cluster_spots ( $number, $band )
-{
+{		
+		$ctx = stream_context_create(array('http'=>array('timeout' => 4,  )));
+
 		$clusterurl = 'http://www.hamqth.com/dxc_csv.php?';
 		if ($number != 0) {
 				$clusterurl .= '&limit=' . $number;
@@ -28,7 +30,7 @@ function get_cluster_spots ( $number, $band )
 		if ($band != 'ALL') {
 				$clusterurl .= '&band=' . $band;
 		}
-		$csvData = file_get_contents( $clusterurl );
+		$csvData = file_get_contents( $clusterurl ,false, $ctx);
 		//echo $csvData ."\n";
 		$csvData = htmlentities($csvData);
 		$csvData = str_replace('^', '"^"', $csvData);
@@ -53,14 +55,20 @@ function call_to_dxcc ( $callsign) {
 		include("oldinclude.php");
 				return call_to_dxcc2( $callsign);
 		}
+		$ctx = stream_context_create(array('http'=>array('timeout' => 2,  )));
 		$jsonurl='http://www.hamqth.com/dxcc_json.php?callsign=' . $callsign;
-		$jsonData = file_get_contents( $jsonurl );
+		$jsonData = file_get_contents( $jsonurl, false, $ctx );
 		$jsonData = str_replace('".', '",', $jsonData);
 		$data = json_decode($jsonData,true); 
 		$dxcc_adif = $data['adif'];
 		$dxcc_name = $data['details'];
 		$dxcc_itu = $data['itu'];
 		$dxcc_waz = $data['waz'];
+		if (empty($dxcc_waz)) {
+		include("oldinclude.php");
+				return call_to_dxcc2( $callsign);
+		}
+
 		return array ( $dxcc_adif, $dxcc_name, $dxcc_itu, $dxcc_waz );
 }
 
