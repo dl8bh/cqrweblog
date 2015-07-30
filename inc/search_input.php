@@ -22,7 +22,7 @@ echo '<form action="logsearch.php?log_id=' . $log_id . '&qso_count=' . $qso_coun
 	<td><select name="band">
 	<?php
 	echo '<option>select</option>';
-	$dbconnect -> select_db("cqrlog_main");
+	$dbconnect -> select_db("cqrlog_common");
 	$ergebnis = mysqli_query($dbconnect, "SELECT band FROM bands order by b_begin asc");
 	while($row = mysqli_fetch_object($ergebnis))
 	{
