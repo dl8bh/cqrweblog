@@ -1,39 +1,47 @@
 <?php
-//webserver root for cqrweblog, relative to your webroot, for http://server:port/path its just /path
-$cqrweblog_root="/path/";
-// hostname of mysql-server
-$hostname="localhost";
-// mysql-username
-$dbuser="cqrlog";
-// mysql-passwort
-$dbpass="password123";
-// default database of cqrlog, dont change unless you know what you are doing!
-$db="cqrlog_common";
-// default-mode/rst
+/*******************
+GENERAL SERVERCONFIG
+*******************/
+$cqrweblog_root="/path/";  // webserver root for cqrweblog, relative to your webroot, for http://server:port/path its just /path
+$hostname="localhost";     // hostname of mysql-server
+$dbuser="cqrlog";          // mysql-username
+$dbpass="password123";     // mysql-passwort
+$db="cqrlog_common";       // default database of cqrlog, dont change unless you know what you are doing!
+
+/*******************
+GENERAL LOG SETTINGS
+*******************/
+$defaultlog="1";           // this is the default log (override: log_id=N)
+$defaultcount="50";        // count of qsos to show per default in the tables
+$max_public_count="50";    // max count of qsos to show on the public pages
+$publog_enabled=true;      // enable public log, true or false
+$pubsearch_enabled=true;   // if publog is enabled, enable/disable logsearch for visitors
+$debugmode=false;          // debug-mode
+$exportdir="tmp/";         // where to export the adi files? has to be readable/writable by the webserver
+$hamqth_api = true;        // enable/disable hamqth-api (switches to local dxcc resolution and disables cluster, if false)
+                           // if your cqrweblog instance is very slow, consider turning $hamqt_api to false, hamqth.com might have problems!
+/**************
+DEFAULT REPORTS
+**************/
 $defaultmode="CW";
 $default_cw_rapport="599";
 $default_ssb_rapport="59";
-// this is the default log (override: log_id=N)
-$defaultlog="1";
-// count of qsos to show per default in the tables
-$defaultcount="50";
-// max count of qsos to show on the public pages
-$max_public_count="50";
-// enable public log, true or false
-$publog_enabled=true;
-// if publog is enabled, enable/disable logsearch for visitors
-$pubsearch_enabled=true;
-// debug-mode
-$debugmode=false;
-//where to export the adi files? has to be readable/writable by the webserver
-$exportdir="tmp/";
-// let the user decide, whether to use stats or stats2 dxcc-presentation
-$altstats = array ( "0", false, false, false, true, false);
-// let the user decide, if the cluster is enabled:
-$enable_cluster = array ( "0", false, false, false, true, false);
-// enable/disable hamqth-api (switches to local dxcc resolution and disables cluster, if false)
-// if your cqrweblog instance is very slow, consider turning $hamqt_api to false, hamqth.com might have problems!
-$hamqth_api = true;
-// show help for users:
-$enable_help = array ( "0", false, false, false, true, false);
+
+/***************************************************
+INDIVIDUAL LOG SETTINGS, ARRAY INDEX REFLECTS LOG ID
+array(offset, log1setting, log2setting, log3setting)
+***************************************************/
+
+$altstats = array ( "offset", false, false, false, true, false);        // let the user decide, whether to use stats or stats2 dxcc-presentation
+$enable_cluster = array ( "offset", false, false, false, true, false);  // let the user decide, if the cluster is enabled:
+$enable_help = array ( "offset", false, false, false, true, false);     // show help for users:
+
+/*************
+CLUSTER COLORS
+*************/
+$atnocolor = "red";
+$newbandcolor ="deeppink";
+$newmodecolor = "green";
+$confirmedcolor ="black";
+$workedcolor="blue";
 ?>
