@@ -36,6 +36,11 @@ If frequency is set, it keeps its value as long as you dont change.
 	-spot-count can be configured in config.php (max 200 spots)
 	-just click on spot to insert call/frequency to log input fields
 	-if a band is selected, spots are filtered on this band
+	-colors are as followed:
+		-red: all time new one
+		-green: new on this band
+		-blue: worked but not confirmed
+		-black: confirmed
 -Time
 	-format: hh:mm or hhmm
 	-optional, ifempty: actual time in UTC

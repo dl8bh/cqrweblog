@@ -17,16 +17,22 @@ foreach($spots as $key => $qso){
 		$checkadif = check_adif($qso[10], $log_id, freq_to_band($qso[1]/1000));
     switch ($checkadif[0]) {
 				case "N":
-					$fontcolor='red';
+					$checkadif = check_adif($qso[10], $log_id);
+					if ($checkadif[0]=="N") {
+							$fontcolor='red';
+					}
+					else {
+							$fontcolor='green';
+					}
 					break;
 				case "C":
 					$fontcolor='black';
 					break;
 				case "W":
-					$fontcolor='green';
+					$fontcolor='blue';
 					break;
 				default:
-					$fontcolor='green';
+//					$fontcolor='green';
 		}
 		$out .= "<tr>";
 		
