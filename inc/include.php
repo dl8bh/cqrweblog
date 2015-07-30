@@ -241,7 +241,8 @@ function qslstring ( $paper, $lotw, $eqsl)
 
 }
 
-function check_adif ( $adif, $log_id, $band, $mode, $paper, $lotw, $eqsl )
+
+function check_adif ( $adif, $log_id, $band, $mode = 'ALL' , $paper = true , $lotw = true, $eqsl = true )
 {
 	global $dbconnect;
 	$dbconnect -> select_db (logid_to_tableid( $log_id ));
