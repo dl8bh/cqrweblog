@@ -30,7 +30,7 @@ function get_cluster_spots ( $number, $band )
 		if ($band != 'ALL') {
 				$clusterurl .= '&band=' . $band;
 		}
-		$csvData = file_get_contents( $clusterurl ,false, $ctx);
+		$csvData = @file_get_contents( $clusterurl ,false, $ctx);
 		$csvData = htmlentities($csvData);
 		$csvData = str_replace('^', '"^"', $csvData);
 		$csvData = preg_replace('/^/', '"', $csvData);
@@ -38,22 +38,32 @@ function get_cluster_spots ( $number, $band )
 		$csvData = str_replace("^", ",", $csvData);
 		$arrayData = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $csvData)) ;
 		$devnull = array_pop($arrayData);
-			return $arrayData;
+		
+		if (!empty($arrayData)) {
+				return $arrayData;
+		}
+		else {
+				echo "Cluster timed out";
+				$hamqthtimeout = true;
+				return $arrayData;
+		}
 }
 
 function call_to_dxcc ( $callsign) {
+		
 		global $hamqth_api;
+		global $hamqthtimeout;
 		if (empty($callsign)) {
 				return array ( NULL, NULL, NULL, NULL );
 		}
 		// fallback to old call_to_dxcc withouth hamqth
-		if (!$hamqth_api) {
+		if (!$hamqth_api||$hamqthtimeout) {
 		include("oldinclude.php");
 				return call_to_dxcc2( $callsign);
 		}
 		$ctx = stream_context_create(array('http'=>array('timeout' => 2,  )));
 		$jsonurl='http://www.hamqth.com/dxcc_json.php?callsign=' . $callsign;
-		$jsonData = file_get_contents( $jsonurl, false, $ctx );
+		$jsonData = @file_get_contents( $jsonurl, false, $ctx );
 		$jsonData = str_replace('".', '",', $jsonData);
 		$data = json_decode($jsonData,true); 
 		$dxcc_adif = $data['adif'];
@@ -62,7 +72,9 @@ function call_to_dxcc ( $callsign) {
 		$dxcc_waz = $data['waz'];
 		// if timeout => fallback to old call_to_dxcc
 		if (empty($dxcc_waz)) {
-		include("oldinclude.php");
+				
+				$hamqthtimeout=true;
+				include("oldinclude.php");
 				return call_to_dxcc2( $callsign);
 		}
 

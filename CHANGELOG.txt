@@ -1,3 +1,5 @@
+2015-07-31
+	-detect hamqth timeouts and react to them
 2015-07-30
 	-added first cluster colorization (worked/confirmed/new one)
 	-rework check_adif for $band=all (preparing cluster-color "worked, but on another band")
