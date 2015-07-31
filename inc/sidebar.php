@@ -1,6 +1,3 @@
-<?php
-?>
-
 <table align=center border="0" cellpadding="0" cellspacing="0">
 <tr>
 <h3>
@@ -8,7 +5,7 @@
 </h3>
 </tr>
 <?php
-echo '<tr><td><a href='.$cqrweblog_root.'>Index</a></td></tr>' . "\n";
+echo '<tr><td><a href='.$cqrweblog_root.'/>Index</a></td></tr>' . "\n";
 echo '<tr><td><a href='.$cqrweblog_root.'log.php?log_id=' . $log_id . '>Log</a></td></tr>' . "\n";
 echo '<tr><td><a href='.$cqrweblog_root.'logsearch.php?log_id=' . $log_id . '>Search</a></td></tr>' . "\n";
 if ($altstats[$log_id])
