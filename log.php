@@ -62,5 +62,6 @@ echo '</font></p>';
 </div>
 </div>
 </div>
+<script src="inc/addshortcuts.js" type="text/javascript" name="addshortcuts/addshortcuts"></script>
 </body>
 </html>

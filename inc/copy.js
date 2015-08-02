@@ -39,17 +39,3 @@ function wipe_data()
 		}
 		document.input.call.focus();
 }
-
-shortcut.add("Alt+w",function() {
-			wipe_data();
-});
-
-
-shortcut.add("F11",function() {
-			wipe_data();
-});
-
-
-shortcut.add("Alt+q",function() {
-		qrz_call();
-});

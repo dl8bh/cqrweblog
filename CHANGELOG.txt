@@ -1,3 +1,6 @@
+2015-08-02
+	-enabling jump to name with spacebar
+	-tab in remarks field jumps back to frequency
 2015-07-31
 	-detect hamqth timeouts and react to them
 2015-07-30
