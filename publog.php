@@ -27,7 +27,9 @@ $publog=true;
 				{
 				include ("inc/pubsearch_input.php");
 				}
-		echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
+		echo '<p><center>There has been ' . "\n";
+		include("inc/readsearches.php");
+		echo ' searches from ' . count_qsos( $log_id ) . ' QSOs in Log </center></p>' . "\n";
 		echo '<hr>' . "\n";
 		echo '<br><br>' . "\n";
 		include("inc/pubqsotable.php");

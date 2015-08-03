@@ -24,7 +24,23 @@ include("inc/search_proc.php");
 
 if (!empty($call))
 {
-echo '<p><h3 align="center"><font color="red">' . count_qsos( $log_id ) . ' QSO with you in the log</font></h3></p>' . "\n";
+include("inc/writesearches.php");
+echo '<p><center>There has been ' . "\n";
+include("inc/readsearches.php");
+echo ' searches from Log</center></p>' . "\n";
+echo '<p><h3 align="center"><font color="red">'. "\n";
+$aqsos = count_qsos( $log_id );
+switch ($aqsos) {
+    case 0: 
+	echo' Your call was not found from Log';
+	break;
+    case 1: 
+	echo $aqsos . ' QSO with you in the log';
+        break;
+    default:
+	echo$aqsos . ' QSOs with you in the log';
+}    
+echo '</font></h3></p>' . "\n";
 }
 echo '<hr>' . "\n" . '<br><br>' . "\n" ;
 
