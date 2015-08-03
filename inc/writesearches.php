@@ -1,8 +1,8 @@
 <?php
 $count_searches = ("searches.txt");
 $searches = file($count_searches);
-$searches[0] ++;
-$fp = fopen($count_searches , "w");
-fputs($fp , "$searches[0]");
-fclose($fp);
+$newcount=$searches[$log_id-1]+1;
+array_splice($searches, ($log_id - 1), 1, $newcount . "\n");
+$string = implode("",$searches);
+file_put_contents("searches.txt", $string);
 ?>
