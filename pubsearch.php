@@ -24,10 +24,7 @@ include("inc/search_proc.php");
 
 if (!empty($call))
 {
-include("inc/writesearches.php");
-echo '<p><center>There have been ' . "\n";
-include("inc/readsearches.php");
-echo ' searches from Log</center></p>' . "\n";
+echo '<p><center>There have been ' . increment_search_count ($log_id) . ' searches from Log</center></p>' . "\n";
 echo '<p><h3 align="center"><font color="red">'. "\n";
 $aqsos = count_qsos( $log_id );
 switch ($aqsos) {
