@@ -2,3 +2,4 @@ config.php
 tmp/
 tmp/*
 robots.txt
+searches.txt
