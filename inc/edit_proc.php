@@ -5,8 +5,6 @@ $time_on=date("H:i",time());
 if (!empty($time)){
 	$time_on=$time;
 }
-//echo foo;
-//echo $time_on;
 if (!empty($call)&&$calledit){
     echo $dxcc_name;
     if (!empty($manager)) {
