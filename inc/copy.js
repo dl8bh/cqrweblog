@@ -11,6 +11,8 @@ function fillClusterData(callsign, freq, mode) {
 		newfreq=freq/1000;
 		document.input.freq.value=Math.round(newfreq*100000)/100000;
 		document.input.mode.value=mode;
+		document.input.remarks.value="";
+		document.input.time.value="";
 		
 		if (mode==="SSB") {
 				document.input.rst_rcvd.value="59";
