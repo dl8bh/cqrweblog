@@ -82,6 +82,9 @@ echo '<form name="input" action="log.php' . $urlparameter . '" method="post">';
 	{
 			$rapport=$default_ssb_rapport;
 	}
+	else {
+			$rapport=$default_cw_rapport;
+	}
 	echo '<td><input onClick="enable_space(); this.setSelectionRange(0,this.value.length); enable_space();" type="text" name="mode" size="5" value="' . $mode . '" tabindex="3" maxlength="7"></td>';
 	echo '<td></td>';
 	echo '<td><input onClick="this.setSelectionRange(0,this.value.length)" type="text" name="rst_sent" size="8" value="' . $rapport  . '" maxlength="10" tabindex="4"></td>';
