@@ -24,12 +24,14 @@ include("inc/search_proc.php");
 
 if (!empty($call))
 {
-echo '<p><center>There have been ' . increment_search_count ($log_id) . ' searches from Log</center></p>' . "\n";
+if ($enable_searchcount[$log_id]) {
+		echo '<p><center>There have been ' . increment_search_count ($log_id) . ' searches from Log</center></p>' . "\n";
+}
 echo '<p><h3 align="center"><font color="red">'. "\n";
 $aqsos = count_qsos( $log_id );
 switch ($aqsos) {
     case 0: 
-	echo' Your call was not found from Log';
+	echo' Your call was not found in the Log';
 	break;
     case 1: 
 	echo $aqsos . ' QSO with you in the log';
