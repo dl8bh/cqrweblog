@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../config.php");
 $dbconnect = mysqli_connect($hostname, $dbuser, $dbpass, $db);
 if(!$dbconnect)
 {
