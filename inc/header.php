@@ -1,5 +1,6 @@
 <?php
-include("inc/db.php");
+//include("config.php");
+//include("inc/db.php");
 include("inc/include.php");
 $hamqthtimeout=false;
 if (isset($_GET['log_id'])){
