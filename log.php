@@ -1,4 +1,5 @@
 <?php
+include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
 include("inc/parse_log.php");

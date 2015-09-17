@@ -1,3 +1,5 @@
+2015-09-17
+	-added config_defaults.php to have a possibility to feed cqrweblog with sane defaults
 2015-09-10
 	-changed includes a bit
 2015-08-14
