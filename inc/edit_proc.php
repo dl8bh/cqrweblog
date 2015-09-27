@@ -28,29 +28,60 @@ if (empty($call)){
     $update="DELETE from cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'";
     }
     else {
-    $update="UPDATE cqrlog_main SET" .
-    " qsodate = '" . $qsodate . 
-    "', time_on = '" .$time_on .
-    "', band = '" . $band .
-    "', freq = '" . $freq .
-    "', callsign = '" . $call . 
-    "', rst_r = '". $rst_rcvd .
-    "', rst_s = '" . $rst_sent .
-    "', remarks = '" . $remarks .
-    "', mode = '" . $mode .
-    "', name = '" . $name .
-    "', qth = '" . $qth .
-    "', iota = '" . $iota_nr .
-    "', loc = '" . $loc .
-    "', waz = '" . $waz .
-    "', qsl_s = '" . $qsls .
-    "', qsl_r = '" . $qslr .
-    "', state = '" . $state .
-    "', qsl_via = '" . $manager .
-    "', itu = '" . $itu . "'
 
-    WHERE id_cqrlog_main = '" . $qso_id . "'";
-    }
+				if (!isset($adif)) {
+
+						$update="UPDATE cqrlog_main SET" .
+						" qsodate = '" . $qsodate . 
+						"', time_on = '" .$time_on .
+						"', band = '" . $band .
+						"', freq = '" . $freq .
+						"', callsign = '" . $call . 
+						"', rst_r = '". $rst_rcvd .
+						"', rst_s = '" . $rst_sent .
+						"', remarks = '" . $remarks .
+						"', mode = '" . $mode .
+						"', name = '" . $name .
+						"', qth = '" . $qth .
+						"', iota = '" . $iota_nr .
+						"', loc = '" . $loc .
+						"', waz = '" . $waz .
+						"', qsl_s = '" . $qsls .
+						"', qsl_r = '" . $qslr .
+						"', state = '" . $state .
+						"', qsl_via = '" . $manager .
+						"', itu = '" . $itu . "'
+
+						WHERE id_cqrlog_main = '" . $qso_id . "'";
+				}
+				else {
+
+						$update="UPDATE cqrlog_main SET" .
+						" qsodate = '" . $qsodate . 
+						"', time_on = '" .$time_on .
+						"', adif = '" .$adif .
+						"', band = '" . $band .
+						"', freq = '" . $freq .
+						"', callsign = '" . $call . 
+						"', rst_r = '". $rst_rcvd .
+						"', rst_s = '" . $rst_sent .
+						"', remarks = '" . $remarks .
+						"', mode = '" . $mode .
+						"', name = '" . $name .
+						"', qth = '" . $qth .
+						"', iota = '" . $iota_nr .
+						"', loc = '" . $loc .
+						"', waz = '" . $waz .
+						"', qsl_s = '" . $qsls .
+						"', qsl_r = '" . $qslr .
+						"', state = '" . $state .
+						"', qsl_via = '" . $manager .
+						"', itu = '" . $itu . "'
+
+						WHERE id_cqrlog_main = '" . $qso_id . "'";
+		}
+
+		}
     if ($debugmode) {
 	echo $update;
     }
