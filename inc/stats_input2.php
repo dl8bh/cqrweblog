@@ -15,7 +15,8 @@ echo '<form action="stats2.php?log_id=' . $log_id . '" method="post">'
 	<td></td>
   <td>
 		<input type="checkbox" name="mode[]" value="CW" > CW<br>
-    <input type="checkbox" name="mode[]" value="SSB" > SSB
+    <input type="checkbox" name="mode[]" value="SSB" > SSB<br>
+    <input type="checkbox" name="mode[]" value="DATA" > DATA
 	</td>
 	<td></td>
   <td>

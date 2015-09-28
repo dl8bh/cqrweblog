@@ -330,29 +330,31 @@ function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = tr
 		}
 
 		$dbconnect -> select_db( logid_to_tableid( $log_id ) );
-
-		if ($mode=="ALL") {
-				$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . $qslstring  . ' limit 1');
-		}
-		
-		else {
-
-				$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
-
+		switch ($mode) {
+				case 'ALL' :
+						$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . $qslstring  . ' limit 1');
+				break;
+				case 'DATA' :
+						$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode!="SSB" and mode !="CW" and mode !="FM"'  . $qslstring  . ' limit 1');
+				break;
+				default :
+						$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
 		}
 		
 		while($row = mysqli_fetch_object($ergebnis)) {
 				return array ("C", '<td align="center" bgcolor="#40FF00">',  '</td>');
 	}
 	
-	if ($mode=="ALL") {
-			$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' limit 1');
-	}
-	
-	else {
+	switch ($mode) {
+			case 'ALL' :
+					$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' limit 1');
+					break;	
+			case 'DATA' :
+					$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and  mode!="SSB" and mode !="CW" and mode !="FM" limit 1');
+					break;
+	default:
 			$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '" limit 1');
 	}
-	
 	while($row = mysqli_fetch_object($ergebnis2)) {
 			return array ('W', '<td align="center" bgcolor="Red">','</td>');
 	}
@@ -378,8 +380,11 @@ function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl ) {
 		if ($band != "ALL") {
 				$querystring .= 'and band="' . $band .'" ';
 		}
-		
-		if ($mode != "ALL") {
+	 	
+		if ($mode == "DATA") {
+				$querystring .= 'and mode!="SSB" and mode!="CW" and mode!="FM" ';
+		}
+		else if ($mode != "ALL") {
 				$querystring .= 'and mode="' . $mode .'" ';
 		}
 		

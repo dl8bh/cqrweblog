@@ -1,3 +1,6 @@
+2015-09-28
+	-thanks to cqww rtty, stats pages have been enhanced with "DATA" modes
+		-assuming, that all qsos with mode != SSB/CW/FM are DATA
 2015-09-27
 	-bugfix: if callsign changed during edit, update dxcc
 2015-09-17
