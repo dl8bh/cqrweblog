@@ -320,7 +320,9 @@ function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = tr
 		$eqsl = mysqli_real_escape_string($dbconnect ,$eqsl);
 
 		$qslstring = qslstring( $paper, $lotw, $eqsl);
-
+		if ($mode == "RTTY") {
+				$mode = "DATA";
+		}
 		if ($band == "ALL") {
 				$bandstring='';
 		}
