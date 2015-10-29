@@ -2,7 +2,6 @@
 	font-size: 120pt;
 	font-style: italic;
 	color:blue;
-	background:red;
 	}
 
 table.cluster {
@@ -37,7 +36,6 @@ table.cluster {
 
 #main_wrap { 
     display: table;
-		background:red;
 }
 
 #sidebar {
