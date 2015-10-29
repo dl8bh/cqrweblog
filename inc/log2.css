@@ -39,9 +39,9 @@ table.cluster {
 				border-left: solid 1px black;
 	}
 
-#main_wrap { 
-    display: table;
-}
+//#main_wrap { 
+//    display: table;
+//}
 
 #sidebar {
     background:white;

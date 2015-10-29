@@ -14,10 +14,9 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 ?>
 <link rel="stylesheet" type="text/css" href="inc/logold.css">
 <meta charset="UTF-8">
+<?php include("inc/metaheader.php"); ?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -25,37 +24,32 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 include("inc/search_input.php");
 ?>
-<br /><br />
+<!--<br /><br />-->
 
 <?php
 include("inc/search_proc.php");
 ?>
 
-<table align="center" border="0" cellpadding="0" cellspacing="0">
-<tr><td width="300" align="center" >
 <?php 
 $match_amount =count_qsos( $log_id );
 switch ($match_amount) {
     case 0:
-	echo '<font color="red"><b>Nothing found!</b>' . "\n";
+  echo '<div class="alert alert-danger ">' . "\n" .
+    '<strong>NO </strong> QSO found' . "\n" .
+  	'</div>';
 	break;
     case 1:
-	echo '<font color="green">' . $match_amount . ' QSO found' . "\n";
+  echo '<div class="alert alert-info">' . "\n" .
+    '<strong>' . $match_amount . '</strong> QSO found' . "\n" .
+  	'</div>';
+
 	break;
-    default :
-	echo '<font color="green">' . $match_amount . ' QSOs found' . "\n";
-}
-echo '</font>';
-if ($inlog){
-    echo '</td><td width="300" align="center">';
-    echo '<a href="javascript:window.close();">Close window</a>';
+    default:
+  echo '<div class="alert alert-info">' . "\n" .
+    '<strong>' . $match_amount . '</strong> QSOs found' . "\n" .
+  	'</div>';
 }
 ?>
-</td></tr>
-</table>
-<hr>
-<br><br>
-
 <?php include("inc/qsotable.php");
 ?>
 
@@ -66,5 +60,6 @@ if ($adif_export)
 		include("inc/exportfile.php");
 }
 ?>
+<?php include("inc/metaheader.php"); ?>
 </body>
 </html>

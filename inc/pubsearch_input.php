@@ -15,7 +15,7 @@ else
 <tr>
 	<td><input type="text" maxlength="15" size="15" name="call"></td>
 	<td></td>
-	<td><input type="submit" value="Am I in log?"></td>
+	<td><input class="btn btn-primary" type="submit" value="Am I in log?"></td>
 </tr>
 </form>
 </table>

@@ -1,4 +1,4 @@
-<div class="table-responsive" id=qso>
+<div class="table-responsive" id="qso">
 <table id=qsotable class="table" align="center"  cellpadding="0" cellspacing="0">
 <tr>
 <th bgcolor="grey" width="100px">Date</th>

@@ -28,29 +28,41 @@ include ("inc/cluster.php");
 echo '<br /><br />';
 include ("inc/log_input.php");
 ?>
-<br /><br />
+<!--<br /><br />-->
 
 <?php 
 include("inc/log_proc.php");
 
-echo '<p align="right">';
+
+//echo '<p align="right">';
+//echo '<div class="col-sm-1">' . "\n";
 $qso_amount=count_qsos( $log_id );
 switch ($qso_amount) {
     case 0:
-	echo '<font color="red"><b>Nothing found!</b>' . "\n";
+  echo '<div class=" col-sm-2 alert alert-danger">' . "\n" .
+    '<strong>NO </strong> QSO found' . "\n" .
+  	'</div>';
 	break;
     case 1:
-	echo '<font color="green">' . $qso_amount . ' QSO found' . "\n";
+  echo '<div class="col-sm-2 alert alert-info">' . "\n" .
+    '<strong>' . $qso_amount . '</strong> QSO found' . "\n" .
+  	'</div>';
+
 	break;
     default:
-	echo '<font color="green">' . $qso_amount . ' QSOs found' . "\n";
+  echo '<div class="col-sm-2 alert alert-info">' . "\n" .
+    '<strong>' . $qso_amount . '</strong> QSOs found' . "\n" .
+  	'</div>';
+	//echo '<font color="green">' . $qso_amount . ' QSOs found' . "\n";
 }
-echo '</font></p>';
-?>
-<hr>
-<br><br>
 
-<div id="main_wrap">
+//echo '</font></p>';
+?>
+</div>
+<!--<hr>
+<br><br> -->
+
+<!--<div id="main_wrap">-->
 <!--<div id="sidebar">
 <?php //include("inc/sidebar.php");?>
 </div>

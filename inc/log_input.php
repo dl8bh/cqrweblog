@@ -1,5 +1,3 @@
-<table>
-</table>
 <?php
 $urlparameter = '?log_id=' . $log_id;
 
@@ -9,7 +7,7 @@ if (isset($qso_count)) {
 
 echo '<form class="form" role="form" name="input" action="log.php' . $urlparameter . '" method="post">';
 ?> 
-	<div class="row no-gutter">
+	<div class="row ">
 	<div class="form-group col-sm-1 " >
 	<label for="band" class="control-label">Band</label>
 	<select class="form-control" id="band" name="band" tabindex=1>
@@ -72,7 +70,7 @@ echo '<form class="form" role="form" name="input" action="log.php' . $urlparamet
 	echo '<div class="form-group col-sm-1 "><label for="rst_rcvd">RST_R</label>';
 	echo '<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="rst_rcvd" name="rst_rcvd" size="8" value="' . $rapport . '" maxlength="10" tabindex="5"></div>';
 	?>
-	<div class="form-group col-xs-2 "><label for="name">Name</label>
+	<div class="form-group col-sm-1 "><label for="name">Name</label>
 	<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="name" name="name" maxlength="55" tabindex="6"></div>
 	<div class="form-group col-sm-2 "><label for="remarks">Remarks</label>
 	<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="remarks" name="remarks" maxlength="55" tabindex="7"></div>

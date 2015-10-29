@@ -30,21 +30,29 @@ if (!empty($call))
 if ($enable_searchcount[$log_id]) {
 		echo '<p><center>There have been ' . increment_search_count ($log_id) . ' searches from Log</center></p>' . "\n";
 }
-echo '<p><h3 align="center"><font color="red">'. "\n";
-$aqsos = count_qsos( $log_id );
-switch ($aqsos) {
-    case 0: 
-	echo' Your call was not found in the Log';
+
+$match_amount =count_qsos( $log_id );
+switch ($match_amount) {
+    case 0:
+  echo '<div class="alert alert-warning">' . "\n" .
+    '<strong>NO </strong> QSO with you in the found in the log' . "\n" .
+  	'</div>';
 	break;
-    case 1: 
-	echo $aqsos . ' QSO with you in the log';
-        break;
+    case 1:
+  echo '<div class="alert alert-info">' . "\n" .
+    '<strong>' . $match_amount . '</strong> QSO with you in the log found' . "\n" .
+  	'</div>';
+
+	break;
     default:
-	echo$aqsos . ' QSOs with you in the log';
-}    
-echo '</font></h3></p>' . "\n";
+  echo '<div class="alert alert-success">' . "\n" .
+    '<strong>' . $match_amount . '</strong> QSOs with you in the log' . "\n" .
+  	'</div>';
 }
-echo '<hr>' . "\n" . '<br><br>' . "\n" ;
+
+
+
+}
 
 if (!empty($call))
 {
@@ -53,7 +61,9 @@ include("inc/pubqsotable.php");
 }
 else
 {
-		echo '<h1 align="center">Pubsearch or Publog not enabled!</h1><br /><br />' . "\n";
+  echo '<div class="alert alert-danger">' . "\n" .
+    '<strong>ERROR </strong> Pubsearch or Publog not enabled!' . "\n" .
+  	'</div>';
 }
 ?>
 

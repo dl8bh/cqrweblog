@@ -8,6 +8,7 @@ if (!empty($time))
 }
 //echo foo;
 //echo $time_on;
+echo '<div class="row"><div class="col-sm-9">' . "\n";
 if (!empty($call))
 {
 $infostring = $dxcc_name;
@@ -26,17 +27,16 @@ if (!empty($state))
 {
 $infostring .= ', in US-State ' . $state ;
 }
-echo '<div class="alert alert-success">' . "\n" .
+echo '<div class="alert alert-success ">' . "\n" .
   '<strong>Info: </strong>' . $infostring . "\n" .
 '</div>';
 }
+echo '</div>' . "\n";
 if (empty($call))
 {
-//		echo '<p><h3> <font color=red>Please insert Callsign</font></h3></p>' . "\n";
 }
 elseif (empty($band))
 {
-//		echo '<p><h3> <font color=red>Please insert Frequency</font></h3></p>' . "\n";
 }
 else
 {
@@ -50,6 +50,5 @@ else{
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 mysqli_query($dbconnect, $insert);
 }
-//echo " <p class='hl'>last QSOs</p>";
 }
 ?>
