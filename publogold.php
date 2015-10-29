@@ -14,7 +14,6 @@ include("inc/header.php");
 	}
 </style>
 <meta charset="UTF-8">
-<?php include("inc/metaheader.php"); ?>
 </head>
 <body>
 
@@ -28,7 +27,7 @@ $publog=true;
 		echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />' . "\n";
 		if ($pubsearch_enabled)
 				{
-				include ("inc/pubsearch_input.php");
+				include ("inc/pubsearch_inputold.php");
 				}
 
 		if ($enable_searchcount[$log_id]) {
@@ -42,7 +41,7 @@ $publog=true;
 				echo '<hr>' . "\n";
 				echo '<br><br>' . "\n";
 		}
-		include("inc/pubqsotable.php");
+		include("inc/pubqsotableold.php");
 }
 else
 {

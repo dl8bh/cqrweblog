@@ -12,7 +12,6 @@ echo '<title>Am I in ' . strtoupper(logid_to_call($log_id)) . ' \'s Log</title>'
 ?>
 <!--<link rel="stylesheet" type="text/css" href="inc/log.css">-->
 <meta charset="UTF-8">
-<?php include("inc/metaheader.php"); ?>
 </head>
 <body>
 
@@ -20,7 +19,7 @@ echo '<title>Am I in ' . strtoupper(logid_to_call($log_id)) . ' \'s Log</title>'
 if ($pubsearch_enabled) {
 $pubsearch=true;
 echo '<h1 align="center">Am I in ' . strtoupper(logid_to_call($log_id)) . '\'s Log?</h1><br /><br />';
-include("inc/pubsearch_input.php");
+include("inc/pubsearch_inputold.php");
 echo '<br /><br />' . "\n";
 
 include("inc/search_proc.php");
@@ -48,7 +47,7 @@ echo '<hr>' . "\n" . '<br><br>' . "\n" ;
 
 if (!empty($call))
 {
-include("inc/pubqsotable.php");
+include("inc/pubqsotableold.php");
 }
 }
 else

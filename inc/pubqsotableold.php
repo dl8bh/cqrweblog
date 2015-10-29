@@ -1,13 +1,19 @@
-<div class=table-responsive" id=qso>
-<table align="center" class="table" cellpadding="0" cellspacing="0">
+<table align="center" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <th bgcolor="grey" width="100px">Date</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="50px">Time</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15px"></td>
 <th bgcolor="grey" width="40px">Band</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="150px">Call sign</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="100px">Mode</th>
+<td width="5"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="100px">RST Sent</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="100px">RST Rcvd</th>
+<td width="15"></td><td bgcolor="Black" width="1px"></td><td width="15"></td>
 <th bgcolor="grey" width="200px">Name</th>
 </tr>
 <?php
@@ -28,12 +34,19 @@ while($row = mysqli_fetch_object($query))
 
 		echo '<tr>' . "\n";
 		echo '<td>' . $date . '</td>' . "\n";
+	  echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
    	echo '<td>' . $time . '</td>' . "\n";
+	  echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 		echo '<td align="center">' . $band . '</td>' . "\n";
+		echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 		echo '<td align="center"><font color="red"><b>' . $callsign . '</b></font></td>' . "\n";
+		echo ' <td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
    	echo '<td align="center"><i>' . $mode . '</i></td>' . "\n";
+		echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 		echo '<td>' . $rst_s . '</td>' . "\n";
+		echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 		echo '<td>' . $rst_r . '</td>' . "\n";
+		echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 		echo '<td>' . $name . '</td>' . "\n";
 		echo '</tr>' . "\n";
 
