@@ -22,7 +22,7 @@
 				><a href="
 				<?php
 				if ($altstats[$log_id]) {
-						echo $cqrweblog_root.'stats2.php?log_id=' . $log_id ;
+						echo $cqrweblog_root.'stats2new.php?log_id=' . $log_id ;
 				}
 				else {
 						echo $cqrweblog_root.'statsnew.php?log_id=' . $log_id ;

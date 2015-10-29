@@ -61,4 +61,5 @@ $out .= "</table>";
 echo $out;
 ?>
 </div>
+</tr>
 

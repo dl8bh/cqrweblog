@@ -18,7 +18,7 @@ include("inc/metaheader.php");
 $statsactive=true;
 include("inc/navbar.php");
 echo '<h1 align="center">DXCC statistics of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
-include("inc/stats_input_new.php");
+include("inc/stats_inputnew.php");
 ?>
 <br /><br />
 

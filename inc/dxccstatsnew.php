@@ -1,5 +1,5 @@
-<div class="table-responsive">
-<table class="table" align="center" cellpadding="0" cellspacing="0">
+<div class="table-responsive table-condensed">
+<table class="table table-condensed" align="center" cellpadding="0" cellspacing="0">
 <tr>
 <th bgcolor="grey" width="100px">DXCC</th>
 <th bgcolor="grey" width="350px">Name / Mode</th>

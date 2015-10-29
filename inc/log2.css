@@ -15,13 +15,12 @@ table.cluster {
 #cluster {
   text-align:left;
 	margin:auto;
-	width:80%;
+	width:100%;
 	display: block;
   padding-left:10px;
-  height:20%;
+  height:40%;
   border:2px  
   inset #cccccc;
-/*  overflow-x:hidden; */
   overflow:auto;
 }
 #qsotable {

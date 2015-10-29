@@ -23,8 +23,9 @@ echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</
 echo '</div>' . "\n";
 if ($enable_cluster[$log_id]&&$hamqth_api&&!($hamqthtimeout))
 {
-include ("inc/cluster.php");
+include ("inc/cluster2.php");
 }
+echo '<br /><br />';
 include ("inc/log_input2.php");
 ?>
 <br /><br />
