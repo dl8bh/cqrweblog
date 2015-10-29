@@ -1,9 +1,38 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="
-			<?php echo $cqrweblog_root . '/'  ?>
-			">Index</a>
+    <div class="dropdown navbar-brand">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Log
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+		<?php
+		$ergebnis = mysqli_query($dbconnect, "SELECT log_nr, log_name FROM log_list");
+		while($row = mysqli_fetch_object($ergebnis))
+		{
+				$log_nr = $row->log_nr;
+				$log_name = $row->log_name;
+				if (isset($logactive)) {
+					echo '<li><td><a href=log2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+				}
+				else if (isset($searchactive)) {
+					echo '<li><td><a href=logsearch2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+				}
+				else if (isset($statsactive)) {
+				if ($altstats[$log_nr]) {
+					echo '<li><td><a href=stats2new.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+				}
+				else {
+					echo '<li><td><a href=statsnew.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+				}
+
+				}
+		}
+		?>
+    </ul>
+  </div> 
+ <!--			<a class="navbar-brand" href="
+		<?php echo $cqrweblog_root . '/'  ?>
+			">Index</a>-->
     </div>
     <div>
       <ul class="nav navbar-nav">

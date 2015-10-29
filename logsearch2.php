@@ -23,7 +23,7 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 
 <?php
 echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
-include("inc/search_input.php");
+include("inc/search_input2.php");
 ?>
 <br /><br />
 

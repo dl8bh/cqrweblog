@@ -52,6 +52,7 @@ if ($inlog){
 <br><br>
 
 <?php include("inc/dxccstatsnew.php");?>
+<?php include("inc/metafooter.php");?>
 
 </body>
 </html>

@@ -306,6 +306,25 @@ function qslstring ( $paper, $lotw, $eqsl ) {
 }
 
 
+function check_dupe ( $log_id, $callsign, $band = 'ALL', $mode = 'ALL' ) {
+		global $dbconnect;
+		$dbconnect -> select_db (logid_to_tableid( $log_id ));
+
+		$log_id = mysqli_real_escape_string($dbconnect ,$log_id);
+		$band = mysqli_real_escape_string($dbconnect ,$band);
+		$mode = mysqli_real_escape_string($dbconnect ,$mode);
+		$callsign = mysqli_real_escape_string($dbconnect ,$callsign);
+		
+
+		
+		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where callsign="' . $callsign . '" and mode="' . $mode . '" and band="' . $band    . '" limit 1');
+		
+		while($row = mysqli_fetch_object($ergebnis)) {
+		return true;
+		}
+		return false;
+}
+
 function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = true , $lotw = true, $eqsl = true ) {
 		
 		global $dbconnect;

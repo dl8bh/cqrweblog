@@ -1,5 +1,6 @@
 2015-10-29
 	-put first efforts into redesign with bootstrap js/css engine
+	-add dupe as new clustercolor
 2015-09-28
 	-thanks to cqww rtty, stats pages have been enhanced with "DATA" modes
 		-assuming, that all qsos with mode != SSB/CW/FM are DATA

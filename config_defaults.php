@@ -49,4 +49,5 @@ $newbandcolor ="deeppink";
 $newmodecolor = "green";
 $confirmedcolor ="black";
 $workedcolor="blue";
+$dupecolor="grey";
 ?>

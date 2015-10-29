@@ -31,7 +31,7 @@ include ("inc/log_input2.php");
 <br /><br />
 
 <?php 
-include("inc/log_proc.php");
+include("inc/log_proc2.php");
 
 echo '<p align="right">';
 $qso_amount=count_qsos( $log_id );
@@ -65,5 +65,6 @@ echo '</font></p>';
 </div>
 </div>
 <script src="inc/addshortcuts.js" type="text/javascript" name="addshortcuts/addshortcuts"></script>
+<?php include("inc/metafooter.php");?>
 </body>
 </html>
