@@ -16,7 +16,7 @@
 <?php
 
 
-echo '<form action="logsearch2.php?log_id=' . $log_id . '&qso_count=' . $qso_count . '" method="post">'
+echo '<form action="logsearchold.php?log_id=' . $log_id . '&qso_count=' . $qso_count . '" method="post">'
 ?>
 <tr>
 	<td><select name="band">

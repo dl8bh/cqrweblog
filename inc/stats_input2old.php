@@ -1,4 +1,3 @@
-
 <table align="center" border="0">
 	<td width="15">DXCC</td>
 	<td width="10"></td>
@@ -9,17 +8,15 @@
 <?php
 
 
-echo '<form action="statsnew.php?log_id=' . $log_id . '" method="post">'
+echo '<form action="stats2old.php?log_id=' . $log_id . '" method="post">'
 ?>
-
 <tr>
 	<td><input type="text" maxlength="7" size="5" name="dxcc"></td>
 	<td></td>
   <td>
-		<input type="checkbox" name="mode[]" value="ALL" checked> ALLMODE<br>
 		<input type="checkbox" name="mode[]" value="CW" > CW<br>
     <input type="checkbox" name="mode[]" value="SSB" > SSB<br>
-    <input type="checkbox" name="mode[]" value="DATA" > DATA 
+    <input type="checkbox" name="mode[]" value="DATA" > DATA
 	</td>
 	<td></td>
   <td>

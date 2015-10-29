@@ -7,7 +7,7 @@ if (isset($qso_count)) {
 		$urlparameter .= '&qso_count=' . $qso_count;
 }
 
-echo '<form class="form-inline" role="form" name="input" action="log2.php' . $urlparameter . '" method="post">';
+echo '<form class="form-inline" role="form" name="input" action="log.php' . $urlparameter . '" method="post">';
 ?>
 	<div class="form-group " >
 	<label for="band" class="control-label">Band</label>

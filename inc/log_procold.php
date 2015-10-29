@@ -10,25 +10,22 @@ if (!empty($time))
 //echo $time_on;
 if (!empty($call))
 {
-$infostring = $dxcc_name;
+echo $dxcc_name;
 if (!empty($manager)) {
-$infostring .= ', QSL via ' . $manager;
+echo ', QSL via ' . $manager;
 }
 if (!empty($iota_nr))
 {
-$infostring .= ', ' . $iota_name . ' with IOTA reference ' . $iota_nr ;
+echo ', ' . $iota_name . ' with IOTA reference ' . $iota_nr ;
 }
 if (!empty($locator))
 {
-$infostring .= ', at locator ' . $locator ;
+echo ', at locator ' . $locator ;
 }
 if (!empty($state))
 {
-$infostring .= ', in US-State ' . $state ;
+echo ', in US-State ' . $state ;
 }
-echo '<div class="alert alert-success">' . "\n" .
-  '<strong>Info: </strong>' . $infostring . "\n" .
-'</div>';
 }
 if (empty($call))
 {

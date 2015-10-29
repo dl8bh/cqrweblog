@@ -14,7 +14,13 @@ foreach($spots as $key => $qso){
 		$dxmessage='';
 		$clusterbandmode = freq_to_band_mode($qso[1]/1000);
 		$checkadif = check_adif($qso[10], $log_id, $clusterbandmode[0], $clusterbandmode[1]);
-    switch ($checkadif[0]) {
+//function check_dupe ( $log_id, $callsign, $band = 'ALL', $mode = 'ALL' ) {
+    if (check_dupe($log_id, $qso[2], $clusterbandmode[0], $clusterbandmode[1])) {
+			$fontcolor=$dupecolor;		
+			$dxmessage='<b><font color="' . $fontcolor . '">DUPE</font></b>';
+			}
+		else {
+		switch ($checkadif[0]) {
 				case "N":
 				  // ATNO
 					$checkadif = check_adif($qso[10], $log_id);
@@ -44,6 +50,7 @@ foreach($spots as $key => $qso){
 					break;
 				default:
 		}
+		}
 		$out .= "<tr>";
 		$out .= '<td>' . $dxmessage . '</td>	' ."\n";
 		$out .= '<td>DX de ' . $qso[0] . ':</td>' . "\n";
@@ -61,5 +68,4 @@ $out .= "</table>";
 echo $out;
 ?>
 </div>
-</tr>
 

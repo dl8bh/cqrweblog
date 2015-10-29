@@ -12,17 +12,17 @@
 				$log_nr = $row->log_nr;
 				$log_name = $row->log_name;
 				if (isset($logactive)) {
-					echo '<li><td><a href=log2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><td><a href=log.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($searchactive)) {
-					echo '<li><td><a href=logsearch2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><td><a href=logsearch.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($statsactive)) {
 				if ($altstats[$log_nr]) {
-					echo '<li><td><a href=stats2new.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><td><a href=stats2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 				else {
-					echo '<li><td><a href=statsnew.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><td><a href=stats.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 
 				}
@@ -39,22 +39,22 @@
         <li 
 					<?php if (isset($logactive)) { echo 'class="active"';}?>
 				><a href="
-					<?php echo $cqrweblog_root.'log2.php?log_id=' . $log_id ?>
+					<?php echo $cqrweblog_root.'log.php?log_id=' . $log_id ?>
 				">Log</a></li>
         <li
 					<?php if (isset($searchactive)) { echo 'class="active"';}?>
 				><a href="
-				<?php echo $cqrweblog_root.'logsearch2.php?log_id=' . $log_id ?>
+				<?php echo $cqrweblog_root.'logsearch.php?log_id=' . $log_id ?>
 				">Search</a></li>
         <li
 					<?php if (isset($statsactive)) { echo 'class="active"';}?>
 				><a href="
 				<?php
 				if ($altstats[$log_id]) {
-						echo $cqrweblog_root.'stats2new.php?log_id=' . $log_id ;
+						echo $cqrweblog_root.'stats2.php?log_id=' . $log_id ;
 				}
 				else {
-						echo $cqrweblog_root.'statsnew.php?log_id=' . $log_id ;
+						echo $cqrweblog_root.'stats.php?log_id=' . $log_id ;
 				}
 
 				?>

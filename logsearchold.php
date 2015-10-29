@@ -2,28 +2,27 @@
 include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
-include("inc/parse_stats.php");
+include("inc/parse_search.php");
 ?>
 
 <html>
 <head>
 <?php 
-echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s DXCC statistics</title>';
-include("inc/metaheader.php");
+echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 ?>
+<link rel="stylesheet" type="text/css" href="inc/log.css">
+<meta charset="UTF-8">
 </head>
-<body style="overflow:auto;">
+<body>
 
 <?php
-$statsactive=true;
-include("inc/navbar.php");
-echo '<h1 align="center">DXCC statistics of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
-include("inc/stats_inputnew.php");
+echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
+include("inc/search_inputold.php");
 ?>
 <br /><br />
 
 <?php
-include("inc/stats_proc.php");
+include("inc/search_proc.php");
 ?>
 
 <table align="center" border="0" cellpadding="0" cellspacing="0">
@@ -51,8 +50,22 @@ if ($inlog){
 <hr>
 <br><br>
 
-<?php include("inc/dxccstatsnew.php");?>
-<?php include("inc/metafooter.php");?>
+<div id="main_wrap">
+<div id="sidebar">
+<?php include("inc/sidebar.php");?>
+</div>
+<div id="content">
+<?php include("inc/qsotableold.php");
+?>
 
+
+</div>
+</div>
+<?php
+if ($adif_export)
+{	
+		include("inc/exportfile.php");
+}
+?>
 </body>
 </html>

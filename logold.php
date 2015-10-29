@@ -8,30 +8,30 @@ include("inc/parse_log.php");
 <html>
 <head>
 <?php 
-$logactive=true;
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logbook</title>';
 //include("inc/copy.php");
-include("inc/metaheader.php");
 ?>
+<link rel="stylesheet" type="text/css" href="inc/logold.css">
+<meta charset="UTF-8">
+<script src="inc/shortcut.js" type="text/javascript" name="shortcut/shortcut"></script>
+<script src="inc/copy.js" type="text/javascript" name="copycall/copycall"></script>
 </head>
 <body style="overflow:auto;">
 <div id="root">
 <?php
-include("inc/navbar.php");
 echo '<div id="head">' . "\n";
 echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 echo '</div>' . "\n";
 if ($enable_cluster[$log_id]&&$hamqth_api&&!($hamqthtimeout))
 {
-include ("inc/cluster.php");
+include ("inc/clusterold.php");
 }
-echo '<br /><br />';
-include ("inc/log_input.php");
+include ("inc/log_inputold.php");
 ?>
 <br /><br />
 
 <?php 
-include("inc/log_proc.php");
+include("inc/log_procold.php");
 
 echo '<p align="right">';
 $qso_amount=count_qsos( $log_id );
@@ -51,20 +51,19 @@ echo '</font></p>';
 <br><br>
 
 <div id="main_wrap">
-<!--<div id="sidebar">
-<?php //include("inc/sidebar.php");?>
+<div id="sidebar">
+<?php include("inc/sidebar.php");?>
 </div>
-<div id="content">-->
+<div id="content">
 
 <?php
 //include("inc/log_proc.php");
 ?>
-<?php include("inc/qsotable.php");?>
+<?php include("inc/qsotableold.php");?>
 
 </div>
 </div>
 </div>
 <script src="inc/addshortcuts.js" type="text/javascript" name="addshortcuts/addshortcuts"></script>
-<?php include("inc/metafooter.php");?>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <table align="center" border="0">
 	<td width="15">DXCC</td>
 	<td width="10"></td>
@@ -10,6 +11,7 @@
 
 echo '<form action="stats.php?log_id=' . $log_id . '" method="post">'
 ?>
+
 <tr>
 	<td><input type="text" maxlength="7" size="5" name="dxcc"></td>
 	<td></td>

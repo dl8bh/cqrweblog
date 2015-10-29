@@ -2,33 +2,26 @@
 include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
-include("inc/parse_search.php");
+include("inc/parse_stats2.php");
 ?>
 
 <html>
 <head>
 <?php 
-$searchactive=true;
-include("inc/navbar.php");
-echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
+echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s DXCC statistics</title>'
 ?>
 <link rel="stylesheet" type="text/css" href="inc/logold.css">
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <?php
-echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
-include("inc/search_input.php");
+echo '<h1 align="center">DXCC statistics of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
+include("inc/stats_input2old.php");
 ?>
 <br /><br />
 
 <?php
-include("inc/search_proc.php");
+include("inc/stats_proc2.php");
 ?>
 
 <table align="center" border="0" cellpadding="0" cellspacing="0">
@@ -56,15 +49,15 @@ if ($inlog){
 <hr>
 <br><br>
 
-<?php include("inc/qsotable.php");
-?>
+<div id="main_wrap">
+<div id="sidebar">
+<?php include("inc/sidebar.php");?>
+</div>
+<div id="content">
+<?php include("inc/dxccstats2old.php");?>
 
-
-<?php
-if ($adif_export)
-{	
-		include("inc/exportfile.php");
-}
-?>
+<?php include("inc/metafooter.php");?>
+</div>
+</div>
 </body>
 </html>
