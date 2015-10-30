@@ -32,15 +32,26 @@ $publog=true;
 				}
 
 		if ($enable_searchcount[$log_id]) {
-		echo '<p><center>There have been ' . get_search_count ($log_id) . "\n";
-		echo ' searches from ' . count_qsos( $log_id ) . ' QSOs in Log </center></p>' . "\n";
-		echo '<hr>' . "\n";
-		echo '<br><br>' . "\n";
+		?>
+		</br>
+		<div class="row">
+		<div class="col-sm-4"></div>	
+		<div class="alert alert-info col-sm-4">
+				There have been <?php echo get_search_count	($log_id) ; ?> searches from <?php echo count_qsos($log_id) ; ?> QSOs in Log.
+		</div>	
+		</div>
+		<?php
 		}
 		else {
-				echo '<p align="right">' . count_qsos( $log_id ) . ' QSO in Log</p>' . "\n";
-				echo '<hr>' . "\n";
-				echo '<br><br>' . "\n";
+				?>
+		</br>
+		<div class="row">
+		<div class="col-sm-4"></div>	
+		<div class="alert alert-info col-sm-4">
+			<?php echo	count_qsos( $log_id ) ;?> QSO in Log 
+		</div>	
+		</div>
+		<?php
 		}
 		include("inc/pubqsotable.php");
 }

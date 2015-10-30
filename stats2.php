@@ -26,30 +26,6 @@ include("inc/stats_input2.php");
 include("inc/stats_proc2.php");
 ?>
 
-<table align="center" border="0" cellpadding="0" cellspacing="0">
-<tr><td width="300" align="center" >
-<?php 
-$match_amount =count_qsos( $log_id );
-switch ($match_amount) {
-    case 0:
-	echo '<font color="red"><b>Nothing found!</b>' . "\n";
-	break;
-    case 1:
-	echo '<font color="green">' . $match_amount . ' QSO found' . "\n";
-	break;
-    default :
-	echo '<font color="green">' . $match_amount . ' QSOs found' . "\n";
-}
-echo '</font>';
-if ($inlog){
-    echo '</td><td width="300" align="center">';
-    echo '<a href="javascript:window.close();">Close window</a>';
-}
-?>
-</td></tr>
-</table>
-<hr>
-<br><br>
 
 <?php include("inc/dxccstats2.php");?>
 <?php include("inc/metafooter.php");?>
