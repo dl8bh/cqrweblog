@@ -1,37 +1,53 @@
-
-<table align="center" border="0">
-	<td width="15">DXCC</td>
-	<td width="10"></td>
-	<td width="200">Mode</td>
-	<td width="10"></td>
-	<td width="200">Confirmation</td>
-	<td width="10"></td>
 <?php
+echo '<form class="form" role="form" action="stats.php?log_id=' . $log_id . '" method="post">'
+?>	
 
+<div class="row">
+<div class="col-sm-4"></div>
+		<div class="form-group col-sm-1">
+				<label for="dxcc" class="control-label">DXCC</label>
+				<input type="text" maxlength="7" size="5" id="dxcc" data-toggle="tooltip" class="form-control" name="dxcc" title="use % as wildcard">
+		</div>
+		
+		<div class="form-group col-sm-1">
+				
+				<label for="mode" class="control-label">Mode</label>
+				<div id="mode">
+						<div class="checkbox">
+								<label><input type="checkbox" name="mode[]" value="ALL" checked>ALLMODE</label>
+						</div>
+						
+						<div class="checkbox">
+								<label><input type="checkbox" name="mode[]" value="CW" >CW</label>
+						</div>
 
-echo '<form action="stats.php?log_id=' . $log_id . '" method="post">'
-?>
+						<div class="checkbox">
+								<label><input type="checkbox" name="mode[]" value="SSB" >SSB</label>
+						</div>
+						
+						<div class="checkbox">
+								<label><input type="checkbox" name="mode[]" value="DATA" >DATA</label> 
+						</div>
+				</div>	
+		</div> 
 
-<tr>
-	<td><input type="text" maxlength="7" size="5" name="dxcc"></td>
-	<td></td>
-  <td>
-		<input type="checkbox" name="mode[]" value="ALL" checked> ALLMODE<br>
-		<input type="checkbox" name="mode[]" value="CW" > CW<br>
-    <input type="checkbox" name="mode[]" value="SSB" > SSB<br>
-    <input type="checkbox" name="mode[]" value="DATA" > DATA 
-	</td>
-	<td></td>
-  <td>
-	  <input type="checkbox" name="confirmation_paper" value="paper" checked> Paper<br>
-    <input type="checkbox" name="confirmation_lotw" value="lotw" checked> LotW<br>
-    <input type="checkbox" name="confirmation_eqsl" value="eqsl" checked> Eqsl
-	</td>
-	<td></td>
-	<td><input type="submit" value="Submit"></td>
-	
-
-
-</tr>
+		<div class="form-group col-sm-1">
+				<label for="qsl" class="control-label">QSL</label>
+				<div id="qsl">
+						<div class="checkbox">
+							<label><input type="checkbox" name="confirmation_paper" value="paper" checked>Paper</label>
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" name="confirmation_lotw" value="lotw" checked>LotW</label>
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" name="confirmation_eqsl" value="eqsl" checked>Eqsl</label>
+						</div>
+   			</div>
+		</div> 
+</div>	
+<div class="row">
+<div class="col-sm-5"></div>
+<input class="btn btn-primary col-sm-1" type="submit" value="Submit">
+</div>
 </form>
-</table>
