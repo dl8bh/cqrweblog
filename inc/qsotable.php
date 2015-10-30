@@ -3,9 +3,9 @@
 <tr>
 <th bgcolor="grey" width="100px">Date</th>
 <th bgcolor="grey" width="50px">Time</th>
-<th bgcolor="grey" width="40px">Band</th>
-<th bgcolor="grey" width="150px">Call sign</th>
-<th bgcolor="grey" width="100px">Mode</th>
+<th bgcolor="grey" style="text-align:center" width="40px">Band</th>
+<th bgcolor="grey" style="text-align:center" width="150px">Call sign</th>
+<th bgcolor="grey" style="text-align:center" width="100px">Mode</th>
 <th bgcolor="grey" width="100px">RST Sent</th>
 <th bgcolor="grey" width="100px">RST Rcvd</th>
 <th bgcolor="grey" width="200px">Name</th>
