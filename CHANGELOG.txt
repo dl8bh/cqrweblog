@@ -4,6 +4,7 @@
 	-added bootstrap tooltips to search 
 	-stats input with bootstrap
 	-css table improvements in stats
+	-css table improvements in dxcluster 
 2015-10-29
 	-put first efforts into redesign with bootstrap js/css engine
 	-add dupe as new clustercolor

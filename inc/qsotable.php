@@ -1,5 +1,5 @@
 <div class="table-responsive" id="qso">
-<table id=qsotable class="table" align="center"  cellpadding="0" cellspacing="0">
+<table id=qsotable class="table table-condensed table-hover" align="center"  cellpadding="0" cellspacing="0">
 <tr>
 <th bgcolor="grey" width="100px">Date</th>
 <th bgcolor="grey" width="50px">Time</th>

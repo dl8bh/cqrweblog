@@ -8,7 +8,7 @@ else {
 		$spots=get_cluster_spots($cluster_spot_num, "ALL");
 }
 $out  = "";
-echo '<table class="cluster" align="center" >' . "\n";
+echo '<table class="table borderless table-condensed" align="center" >' . "\n";
 
 foreach($spots as $key => $qso){
 		$dxmessage='';
@@ -22,7 +22,6 @@ foreach($spots as $key => $qso){
 		else {
 		switch ($checkadif[0]) {
 				case "N":
-				  // ATNO
 					$checkadif = check_adif($qso[10], $log_id);
 					if ($checkadif[0]=="N") {
 							$fontcolor=$atnocolor;
@@ -51,7 +50,7 @@ foreach($spots as $key => $qso){
 				default:
 		}
 		}
-		$out .= "<tr>";
+		$out .= '<tr class="small">';
 		$out .= '<td>' . $dxmessage . '</td>	' ."\n";
 		$out .= '<td>DX de ' . $qso[0] . ':</td>' . "\n";
 		$out .= '<td>' . $qso[1] . '</td>' . "\n";
