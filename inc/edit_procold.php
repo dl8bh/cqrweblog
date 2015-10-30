@@ -96,7 +96,7 @@ if (empty($call)){
 	}
     }
 //    echo " <p class='hl'>last QSOs</p>";
-    echo '<center><a href='.$cqrweblog_root.'logold.php?log_id=' . $log_id . '>Back to Log</a></center>' . "\n";
+    echo '<center><a href='.$cqrweblog_root.'index.php?log_id=' . $log_id . '>Back to Log</a></center>' . "\n";
 
 }
 
