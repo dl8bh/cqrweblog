@@ -18,11 +18,26 @@ if (!empty($call)&&$calledit){
     }
 }
 if (empty($call)){
-	echo '<p><b><center><font color="red">Edit qso details or check DELETE to delete qso. Click SAVE when ready.</font></center></b></p>' . "\n";
+	//echo '<p><b><center><font color="red">Edit qso details or check DELETE to delete qso. Click SAVE when ready.</font></center></b></p>' . "\n";
+?>
+
+		
+<div class="alert alert-info">
+  <strong>Edit</strong> QSO details or check DELETE to delete qso. Click SAVE when ready.
+</div>
+<?php
  }
- elseif (empty($band)){
-	echo '<p><b><center><font color="red">Please insert Frequency</font></center></b></p>' . "\n";
- }
+ elseif (empty($freq)){
+//	echo '<p><b><center><font color="red">Please insert Frequency</font></center></b></p>' . "\n";
+?>
+
+
+<div class="alert alert-danger">
+  <strong>Please</strong> insert frequency or choose band!
+</div>
+<?php 
+	
+}
  else{
     if (isset($_POST['Delete'])){
     $update="DELETE from cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'";
@@ -89,14 +104,23 @@ if (empty($call)){
 	$dbconnect -> select_db( logid_to_tableid( $log_id ) );
 	mysqli_query($dbconnect, $update);
 	if (isset($_POST['Delete'])){
-	    echo '<p><font color="red"><b><center>QSO DELETED!</center></b></font></p>' . "\n";
+			?>
+						<div class="alert alert-warning">
+							<strong>SUCCESS </strong> QSO has been deleted, you may close this window now!
+						</div>
+			<?php
 	}
 	else {
-	    echo '<p><font color="red"><b><center>Changes saved!</center></b></font></p>' . "\n";
-	}
+ //echo '<p><font color="red"><b><center>Changes saved!</center></b></font></p>' . "\n";
+?>
+<div class="alert alert-success">
+  <strong>Success!</strong> Changes saved! You may close this window now or re-edit!
+</div>	   
+
+<?php	
+}
     }
-//    echo " <p class='hl'>last QSOs</p>";
-    echo '<center><a href='.$cqrweblog_root.'index.php?log_id=' . $log_id . '>Back to Log</a></center>' . "\n";
+    //echo '<center><a href='.$cqrweblog_root.'index.php?log_id=' . $log_id . '>Back to Log</a></center>' . "\n";
 
 }
 
