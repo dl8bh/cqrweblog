@@ -363,7 +363,7 @@ function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = tr
 		}
 		
 		while($row = mysqli_fetch_object($ergebnis)) {
-				return array ("C", '<td align="center" bgcolor="#40FF00">',  '</td>');
+				return array ("C", '<td align="center" class="success">',  '</td>');
 	}
 	
 	switch ($mode) {
@@ -377,7 +377,7 @@ function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = tr
 			$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '" limit 1');
 	}
 	while($row = mysqli_fetch_object($ergebnis2)) {
-			return array ('W', '<td align="center" bgcolor="Red">','</td>');
+			return array ('W', '<td class="danger" align="center" >','</td>');
 	}
 
 	return array ( 'N', '<td>', '</td>' );

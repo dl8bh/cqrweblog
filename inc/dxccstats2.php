@@ -81,9 +81,9 @@ foreach($mode as $mode_proc){
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' confirmed</font></td>' . "\n";
 	foreach($bands as $band_in)
 	{
-	echo '<td align="center" bgcolor="#40FF00">' . count_dxcc ( $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
+	echo '<td align="center" class="success">' . count_dxcc ( $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
 	}
-	echo '<td align="center" bgcolor="#40FF00">' . count_dxcc ( $log_id, "ALL", $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
+	echo '<td align="center" class="success">' . count_dxcc ( $log_id, "ALL", $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
 	echo '</tr>' . "\n";
 
 
@@ -92,9 +92,9 @@ foreach($mode as $mode_proc){
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' worked</font></td>' . "\n";
 	foreach($bands as $band_in)
 	{
-	echo  '<td align="center" bgcolor="Red">' . count_dxcc (  $log_id, $band_in, $mode_proc,false,false,false) . '</td>' . "\n";
+	echo  '<td align="center" class="danger">' . count_dxcc (  $log_id, $band_in, $mode_proc,false,false,false) . '</td>' . "\n";
 	}
-	echo  '<td align="center" bgcolor="Red">' . count_dxcc (  $log_id, "ALL", $mode_proc,false,false,false) . '</td>' . "\n";
+	echo  '<td align="center" class="danger">' . count_dxcc (  $log_id, "ALL", $mode_proc,false,false,false) . '</td>' . "\n";
 	echo '</tr>' . "\n";	
 }
 }

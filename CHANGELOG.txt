@@ -3,6 +3,7 @@
 	-search input with bootstrap
 	-added bootstrap tooltips to search 
 	-stats input with bootstrap
+	-css table improvements in stats
 2015-10-29
 	-put first efforts into redesign with bootstrap js/css engine
 	-add dupe as new clustercolor
