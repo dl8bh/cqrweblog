@@ -45,7 +45,7 @@
 					<?php if (isset($searchactive)) { echo 'class="active"';}?>
 				><a href="
 				<?php echo $cqrweblog_root.'logsearch.php?log_id=' . $log_id ?>
-				">Search</a></li>
+				">Search / Export</a></li>
         <li
 					<?php if (isset($statsactive)) { echo 'class="active"';}?>
 				><a href="

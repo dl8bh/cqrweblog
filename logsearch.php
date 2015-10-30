@@ -69,6 +69,6 @@ if ($adif_export)
 		include("inc/exportfile.php");
 }
 ?>
-<?php include("inc/metaheader.php"); ?>
+<?php include("inc/metafooter.php"); ?>
 </body>
 </html>
