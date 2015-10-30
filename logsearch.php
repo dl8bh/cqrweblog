@@ -49,6 +49,15 @@ switch ($match_amount) {
     '<strong>' . $match_amount . '</strong> QSOs found' . "\n" .
   	'</div>';
 }
+
+if ($adif_export) {
+
+  echo '<div class="alert alert-info">' . "\n" .
+    '<strong>EXPORT</strong> complete, link at bottom of page' . "\n" .
+  	'</div>';
+
+}
+
 ?>
 <?php include("inc/qsotable.php");
 ?>
