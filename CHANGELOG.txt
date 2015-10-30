@@ -5,6 +5,8 @@
 	-stats input with bootstrap
 	-css table improvements in stats
 	-css table improvements in dxcluster 
+	-index.php is now the main logging site, symlink to log.php for old bookmarks
+	-switch for modern/classic view
 2015-10-29
 	-put first efforts into redesign with bootstrap js/css engine
 	-add dupe as new clustercolor

@@ -5,7 +5,7 @@ if (isset($qso_count)) {
 		$urlparameter .= '&qso_count=' . $qso_count;
 }
 
-echo '<form class="form" role="form" name="input" action="log.php' . $urlparameter . '" method="post">';
+echo '<form class="form" role="form" name="input" action="index.php' . $urlparameter . '" method="post">';
 ?> 
 	<div class="row ">
 	<div class="form-group col-sm-1 " >

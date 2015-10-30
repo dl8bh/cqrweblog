@@ -1,4 +1,4 @@
-<div id="cluster" >
+<div id="cluster" class="table-responsive" >
 <?php
 
 if (isset($band)) {
@@ -8,7 +8,7 @@ else {
 		$spots=get_cluster_spots($cluster_spot_num, "ALL");
 }
 $out  = "";
-echo '<table class="table borderless table-condensed" align="center" >' . "\n";
+echo '<table class="table table-hover borderless table-condensed" align="center" >' . "\n";
 
 foreach($spots as $key => $qso){
 		$dxmessage='';
