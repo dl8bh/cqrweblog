@@ -2,5 +2,9 @@
 <script src="inc/copy.js" type="text/javascript" name="copycall/copycall"></script>
 <script src="inc/js/jquery.min.js"></script>
 <script src="inc/js/bootstrap.min.js"></script>
-
+<script>
+$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 

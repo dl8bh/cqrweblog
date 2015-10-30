@@ -1,3 +1,5 @@
+2015-10-30
+	-improve design of log-input with tooltips and better layout
 2015-10-29
 	-put first efforts into redesign with bootstrap js/css engine
 	-add dupe as new clustercolor
