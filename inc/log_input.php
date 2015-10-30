@@ -103,10 +103,6 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 
 <?php
 if ($enable_help[$log_id]) {
-/*		echo '</br>' ."\n" ;
-		echo 'Shortcuts: Alt+w/F11: Wipe Alt+q: qrz.com </br>' . "\n";
-		echo 'Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER S:STATE</br>' . "\n";
-		echo '<a href="./README.txt" target="_blank" >Complete Manual</a> ' . "\n"; */
 	?>
 	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#help">Show help</button>
   <div id="help" class="collapse">
@@ -134,24 +130,17 @@ if ($enable_help[$log_id]) {
 	<input type="hidden" name="callsign" value="">
 	<input type="hidden" name="inlog" value="1"> 
 		</form></div>
-
+		<div class="col-sm-1"></div>
 				<div class="col-sm-1">
 					<form name="search" action="logsearch.php<?php echo $urlparameter ;?> " target="_blank"  method="post">
-						<input class="btn btn-info col-sm-12" type="submit" value="In log?" accesskey="S" data-toggle="tooltip" title="shortcut browser accesskey + S" >
+						<input class="btn btn-info " type="submit" value="In log?" accesskey="S" data-toggle="tooltip" title="shortcut browser accesskey + S" >
 						<input type="hidden" name="call" value=""> 
 						<input type="hidden" name="inlog" value="1">
 					</form>
 				</div>
 
+				<div class="col-sm-1"></div>
 				<input class="btn btn-info col-sm-1" data-toggle="tooltip" type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q">
-				<div class="col-sm-4"></div>
+				<div class="col-sm-2"></div>
 				<input class="btn btn-warning col-sm-1" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11">
 </div>
-<?php
-if ($enable_help[$log_id]) {
-/*		echo '</br>' ."\n" ;
-		echo 'Shortcuts: Alt+w/F11: Wipe Alt+q: qrz.com </br>' . "\n";
-		echo 'Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER S:STATE</br>' . "\n";
-		echo '<a href="./README.txt" target="_blank" >Complete Manual</a> ' . "\n"; */
-}
-?>
