@@ -12,11 +12,9 @@ $searchactive=true;
 include("inc/navbar.php");
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 ?>
-<link rel="stylesheet" type="text/css" href="inc/logold.css">
+<link rel="stylesheet" type="text/css" href="inc/css/logold.css">
 <meta charset="UTF-8">
 <?php include("inc/metaheader.php"); ?>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
 

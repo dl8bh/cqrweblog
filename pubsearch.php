@@ -10,7 +10,6 @@ include("inc/parse_search.php");
 <?php 
 echo '<title>Am I in ' . strtoupper(logid_to_call($log_id)) . ' \'s Log</title>'
 ?>
-<!--<link rel="stylesheet" type="text/css" href="inc/log.css">-->
 <meta charset="UTF-8">
 <?php include("inc/metaheader.php"); ?>
 </head>

@@ -1,3 +1,5 @@
+2015-11-01
+	-improve file organization (every css -> inc/css/, every js inc/js/), better for nginx vhost rules
 2015-10-30
 	-improve design of log-input with tooltips and better layout
 	-search input with bootstrap

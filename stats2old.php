@@ -10,7 +10,7 @@ include("inc/parse_stats2.php");
 <?php 
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s DXCC statistics</title>'
 ?>
-<link rel="stylesheet" type="text/css" href="inc/logold.css">
+<link rel="stylesheet" type="text/css" href="inc/css/logold.css">
 </head>
 <body>
 

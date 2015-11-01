@@ -76,7 +76,7 @@ switch ($qso_amount) {
 </div>
 </div>
 </div>
-<script src="inc/addshortcuts.js" type="text/javascript" name="addshortcuts/addshortcuts"></script>
+<script src="inc/js/addshortcuts.js" type="text/javascript" name="addshortcuts/addshortcuts"></script>
 <?php include("inc/metafooter.php");?>
 </body>
 </html>
