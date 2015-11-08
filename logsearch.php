@@ -5,11 +5,11 @@ include("inc/header.php");
 include("inc/parse_search.php");
 ?>
 
+<!DOCTYPE html> 
 <html>
 <head>
 <?php 
 $searchactive=true;
-include("inc/navbar.php");
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 ?>
 <link rel="stylesheet" type="text/css" href="inc/css/logold.css">
@@ -19,10 +19,10 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 <body>
 
 <?php
+include("inc/navbar.php");
 echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 include("inc/search_input.php");
 ?>
-<!--<br /><br />-->
 
 <?php
 include("inc/search_proc.php");
@@ -56,17 +56,15 @@ if ($adif_export) {
 
 }
 
-?>
-<?php include("inc/qsotable.php");
-?>
+include("inc/qsotable.php");
 
 
-<?php
 if ($adif_export)
 {	
 		include("inc/exportfile.php");
 }
+include("inc/metafooter.php"); 
+
 ?>
-<?php include("inc/metafooter.php"); ?>
 </body>
 </html>

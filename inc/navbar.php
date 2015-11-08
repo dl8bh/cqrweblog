@@ -22,7 +22,7 @@
 					echo '<li><a href="stats2.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
 				else {
-					echo '<li><a href=stats.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href="stats.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
 
 				}
@@ -30,9 +30,6 @@
 		?>
     </ul>
   </div> 
- <!--			<a class="navbar-brand" href="
-		<?php echo $cqrweblog_root . '/'  ?>
-			">Index</a>-->
     </div>
     <div>
       <ul class="nav navbar-nav">
