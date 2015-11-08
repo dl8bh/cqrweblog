@@ -13,7 +13,7 @@
 	{
 	$bands[] = $band->band;
 	}
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
 	echo '<td width="15" bgcolor="grey"></td><td bgcolor="Black" width="1px"></td><td width="15" bgcolor="grey"></td>' . "\n";
 	echo '<th bgcolor="grey" width="30px">' . $band_in . '</th>' . "\n";
@@ -34,7 +34,7 @@ while($row = mysqli_fetch_object($query)){
 	echo '<td bgcolor="#E6E6E6"></td><td bgcolor="Black" width="0.3px"></td><td bgcolor="#E6E6E6"></td>' . "\n";
 	echo '<td bgcolor="#E6E6E6"><font size=+1>' . $name . '</font></td>' . "\n";
 
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
 	$checkadif = check_adif ( $adif, $log_id, $band_in, 'ALL',$paperqsl,$lotwqsl,$eqslqsl);
 echo '<td bgcolor="#E6E6E6"></td><td bgcolor="Black" width="0.3px"></td><td bgcolor="#E6E6E6"></td>' . "\n";
@@ -57,7 +57,7 @@ foreach($mode as $mode_proc){
 	echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . '</font></td>' . "\n";
 	
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
 	$checkadif = check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
 	echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
@@ -73,7 +73,7 @@ if (empty($call)){
 	echo '<td bgcolor="#E6E6E6"></td><td bgcolor="Black" width="0.3px"></td><td bgcolor="#E6E6E6"></td>' . "\n";
 	echo '<td bgcolor="#E6E6E6"><font size=+1></font></td>' . "\n";
 
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
   echo '<td bgcolor="#E6E6E6"></td><td bgcolor="Black" width="0.3px"></td><td bgcolor="#E6E6E6"></td>' . "\n";
 	echo '<td align="center" bgcolor="#E6E6E6">' . $band_in . '</td>' . "\n";
@@ -89,7 +89,7 @@ foreach($mode as $mode_proc){
 	echo '<td></td>' . "\n";
 	echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' confirmed</font></td>' . "\n";
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
   echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	echo '<td align="center" bgcolor="#40FF00">' . count_dxcc ( $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
@@ -103,7 +103,7 @@ foreach($mode as $mode_proc){
 	echo '<td></td>' . "\n";
 	echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' worked</font></td>' . "\n";
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
   echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
 	echo  '<td align="center" bgcolor="Red">' . count_dxcc (  $log_id, $band_in, $mode_proc,false,false,false) . '</td>' . "\n";
