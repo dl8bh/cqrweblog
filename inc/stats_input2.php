@@ -4,12 +4,12 @@ echo '<form class="form" role="form" action="stats2.php?log_id=' . $log_id . '" 
 
 <div class="row">
 <div class="col-sm-4"></div>
-		<div class="form-group col-sm-1">
+		<div class="form-group col-sm-1 col-xs-4">
 				<label for="dxcc" class="control-label">DXCC</label>
 				<input type="text" maxlength="7" size="5" id="dxcc" data-toggle="tooltip" class="form-control" name="dxcc" title="use % as wildcard">
 		</div>
 		
-		<div class="form-group col-sm-1">
+		<div class="form-group col-sm-1 col-xs-4">
 				
 				<label for="mode" class="control-label">Mode</label>
 				<div id="mode">
@@ -28,7 +28,7 @@ echo '<form class="form" role="form" action="stats2.php?log_id=' . $log_id . '" 
 				</div>	
 		</div> 
 
-		<div class="form-group col-sm-1">
+		<div class="form-group col-sm-1 col-xs-4">
 				<label for="qsl" class="control-label">QSL</label>
 				<div id="qsl">
 						<div class="checkbox">
@@ -45,6 +45,6 @@ echo '<form class="form" role="form" action="stats2.php?log_id=' . $log_id . '" 
 </div>	
 <div class="row">
 <div class="col-sm-5"></div>
-<input class="btn btn-primary col-sm-1" type="submit" value="Submit">
+<input class="btn btn-primary col-sm-1 col-xs-12" type="submit" value="Submit">
 </div>
 </form>
