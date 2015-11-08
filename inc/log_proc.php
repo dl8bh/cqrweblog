@@ -27,7 +27,7 @@ if (!empty($state))
 {
 $infostring .= ', in US-State ' . $state ;
 }
-echo '<div class="alert alert-success ">' . "\n" .
+echo '<div class=" clearfix alert alert-success ">' . "\n" .
   '<strong>Info: </strong>' . $infostring . "\n" .
 '</div>';
 }
