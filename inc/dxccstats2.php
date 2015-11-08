@@ -2,7 +2,6 @@
 <table class="table table-hover table-condensed" align="center" border="0" cellpadding="0" cellspacing="0">
 <tr>
 <th bgcolor="grey" width="30px">DXCC</th>
-<!--<th bgcolor="grey" >DXCC</th>-->
 <th bgcolor="grey" width="200px">Name / Mode</th>
 
 <?php
@@ -62,9 +61,7 @@ echo '</table></div>' . "\n";
 if (empty($call)){
 		echo '<div class="table-responsive">' . "\n";
 		echo '<table class="table" align="center" cellpadding="0" cellspacing="0">' . "\n" ;
-//	echo '<tr>' . "\n";
 	echo '<td bgcolor="grey" ><font size=+1>DXCC Count</font></td>' . "\n";
-//	echo '<td ><font size=+1></font></td>' . "\n";
 
 	foreach((array) $bands as $band_in)
 	{
@@ -77,7 +74,6 @@ array_unshift($mode, 'ALL');
 foreach($mode as $mode_proc){
 
 	echo '<tr>' . "\n";
-//	echo '<td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' confirmed</font></td>' . "\n";
 	foreach((array) $bands as $band_in)
 	{
@@ -88,7 +84,6 @@ foreach($mode as $mode_proc){
 
 
 	echo '<tr>' . "\n";
-	//echo '<td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' worked</font></td>' . "\n";
 	foreach((array) $bands as $band_in)
 	{

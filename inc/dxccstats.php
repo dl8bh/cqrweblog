@@ -50,7 +50,6 @@ foreach($mode as $mode_proc){
 			$checkadif[0] ="";
 	}
 	echo  $checkadif[1] . $checkadif[0] . $checkadif[2] . "\n";
-//	echo  check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . "\n";
 	}
 	echo '</tr>' . "\n";	
 	}	
