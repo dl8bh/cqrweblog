@@ -6,8 +6,6 @@ if (!empty($time))
 {
 	$time_on=$time;
 }
-//echo foo;
-//echo $time_on;
 echo '<div class="row"><div class="col-sm-9">' . "\n";
 if (!empty($call))
 {

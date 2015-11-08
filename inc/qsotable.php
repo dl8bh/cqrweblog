@@ -38,7 +38,7 @@ while($row = mysqli_fetch_object($query))
 		echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $remarks . '</td>' . "\n";
-		echo '<td><a href=edit.php?log_id=' . $log_id . '&qso_id=' . $qso_id_table .' target="_blank">Edit</a></td>' . "\n"; 
+		echo '<td><a href="edit.php?log_id=' . $log_id . '&qso_id=' . $qso_id_table .'" target="_blank">Edit</a></td>' . "\n"; 
 		echo '</tr>' . "\n";
 
 

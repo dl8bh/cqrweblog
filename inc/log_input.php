@@ -99,7 +99,6 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 
 
 </div>
-</div>
 <div class="row">
 	<div class="col-md-2 hidden-sm">
 

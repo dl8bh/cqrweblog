@@ -11,7 +11,6 @@ include("inc/parse_log.php");
 <?php 
 $logactive=true;
 echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logbook</title>';
-//include("inc/copy.php");
 include("inc/metaheader.php");
 ?>
 </head>
@@ -29,15 +28,12 @@ include ("inc/cluster.php");
 echo '<br /><br />';
 include ("inc/log_input.php");
 ?>
-<!--<br /><br />-->
 <div class="col-xs-*">
 <br /></div>
 <?php 
 include("inc/log_proc.php");
 
 
-//echo '<p align="right">';
-//echo '<div class="col-sm-1">' . "\n";
 $qso_amount=count_qsos( $log_id );
 switch ($qso_amount) {
     case 0:
@@ -55,29 +51,16 @@ switch ($qso_amount) {
   echo '<div class="col-sm-2 col-md-3 hidden-xs alert alert-info">' . "\n" .
     '<strong>' . $qso_amount . '</strong> QSOs found' . "\n" .
   	'</div>';
-	//echo '<font color="green">' . $qso_amount . ' QSOs found' . "\n";
 }
 
-//echo '</font></p>';
 ?>
-</div>
-<!--<hr>
-<br><br> -->
 
-<!--<div id="main_wrap">-->
-<!--<div id="sidebar">
-<?php //include("inc/sidebar.php");?>
 </div>
-<div id="content">-->
 
 <?php
-//include("inc/log_proc.php");
 ?>
 <?php include("inc/qsotable.php");?>
 
-</div>
-</div>
-</div>
 <script src="inc/js/addshortcuts.js" type="text/javascript" name="addshortcuts/addshortcuts"></script>
 <?php include("inc/metafooter.php");?>
 </body>
