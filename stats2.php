@@ -5,6 +5,7 @@ include("inc/header.php");
 include("inc/parse_stats2.php");
 ?>
 
+<!DOCTYPE html> 
 <html>
 <head>
 <?php 
@@ -24,11 +25,8 @@ include("inc/stats_input2.php");
 
 <?php
 include("inc/stats_proc2.php");
-?>
-
-
-<?php include("inc/dxccstats2.php");?>
-<?php include("inc/metafooter.php");?>
+include("inc/dxccstats2.php");
+include("inc/metafooter.php");?>
 
 </body>
 </html>
