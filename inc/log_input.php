@@ -8,7 +8,7 @@ if (isset($qso_count)) {
 echo '<form class="form" role="form" name="input" action="index.php' . $urlparameter . '" method="post">';
 ?> 
 	<div class="row ">
-	<div class="form-group col-sm-1 " >
+	<div class="form-group col-sm-1 col-xs-4 " >
 	<label for="band" class="control-label">Band</label>
 	<select class="form-control" id="band" name="band" tabindex=1>
 	<?php
@@ -23,11 +23,11 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	?>
 	</select>
 	</div>
-	<div class="form-group col-sm-1 ">
+	<div class="form-group col-sm-1 col-xs-4 ">
     <label for="time" class="control-label" >Time</label>
 	<input id="time" class="form-control" placeholder="HHMM" onClick="this.setSelectionRange(0,this.value.length)" type="text" name="time" size="5" value="" maxlength="5" tabindex="1" data-toggle="tooltip" title="optional, if empty: time in UTC, input format: hh:mm or hhmm">
 </div>
-  <div class="form-group col-sm-1 <?php if (!isset($freq)) { echo "has-error has-feedback" ; }  ?>">	
+  <div class="form-group col-sm-1 col-xs-4 <?php if (!isset($freq)) { echo "has-error has-feedback" ; }  ?>">	
     <label for="freq" class="control-label">Frequency</label>
 	<?php
 	if (isset($freq))
@@ -46,7 +46,7 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	<input id="call" class="form-control	" type="text" maxlength="55" size="15" name="call" tabindex="2" onchange="data_copy()" autofocus >
 	<?php if (empty($call)) { echo' <span class="glyphicon glyphicon-remove form-control-feedback"></span>';} ?>
 	</div>
-  <div class="form-group col-sm-1 ">
+  <div class="form-group col-sm-1 col-xs-4 ">
     <label for="mode">Mode</label>
 	<?php
 	if (empty($mode))
@@ -69,29 +69,29 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	</div>
 
 	
-	<div class="form-group col-sm-1">
+	<div class="form-group col-sm-1 col-xs-4">
 			<label for="rst_sent" class="control-label">RST_S</label>
 			<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="rst_sent" name="rst_sent" size="8" value="<?php echo $rapport ;?>  " maxlength="10" tabindex="4">
 	</div>
 
 	
-	<div class="form-group col-sm-1 ">
+	<div class="form-group col-sm-1 col-xs-4 ">
 			<label for="rst_rcvd" class="control-label">RST_R</label>
 			<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="rst_rcvd" name="rst_rcvd" size="8" value="<?php echo $rapport; ?>" maxlength="10" tabindex="5">
 	</div>
 	
-	<div class="form-group col-sm-1 ">
+	<div class="form-group col-sm-1 col-xs-6 ">
 			<label for="name">Name</label>
 			<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="name" name="name" maxlength="55" tabindex="6">
 	</div>
 	
-	<div class="form-group col-sm-2 ">
+	<div class="form-group col-sm-2 col-xs-6">
 			<label for="remarks">Remarks</label>
 			<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="remarks" name="remarks" maxlength="55" data-toggle="tooltip" title="I:IOTA L:LOCATOR M:MANAGER S:STATE" tabindex="7"></div>
 	</div>
 	<div class="row">
-			<div class="col-sm-10"></div>
-			<input class="btn btn-primary col-sm-1 " type="submit" value="Log">
+			<div class="col-sm-10 col-xs-12 "></div>
+			<input class="btn btn-primary col-sm-1 col-xs-12 " type="submit" value="Log">
 	</div>
 	</form>
 
@@ -104,8 +104,8 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 <?php
 if ($enable_help[$log_id]) {
 	?>
-	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#help">Show help</button>
-  <div id="help" class="collapse">
+	<button type="button" class="hidden-xs btn btn-info" data-toggle="collapse" data-target="#help">Show help</button>
+  <div id="help" class="collapse hidden-xs">
 	Wipe: <kbd>Alt+w</kbd> <kbd>F11</kbd></br>
 	QRZ: <kbd>Alt+q</kbd> </br>
 	Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER S:STATE</br>
@@ -115,7 +115,7 @@ if ($enable_help[$log_id]) {
 }
 ?>
 		</div>
-		<div class="col-sm-1">
+		<div class="col-sm-1 col-xs-4">
 <?php
 	if ($altstats[$log_id])
 	{
@@ -126,21 +126,21 @@ if ($enable_help[$log_id]) {
 			echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
 	}
 	?>
-	<input class="btn btn-info" type="submit" value="Check DXCC" accesskey="C" data-toggle="tooltip" title="shortcut browser accesskey + C">
+	<input class="btn btn-info col-xs-12 " type="submit" value="Check DXCC" accesskey="C" data-toggle="tooltip" title="shortcut browser accesskey + C">
 	<input type="hidden" name="callsign" value="">
 	<input type="hidden" name="inlog" value="1"> 
 		</form></div>
-		<div class="col-sm-1"></div>
-				<div class="col-sm-1">
+		<div class="col-sm-1 " ></div>
+				<div class="col-sm-1 col-xs-4">
 					<form name="search" action="logsearch.php<?php echo $urlparameter ;?> " target="_blank"  method="post">
-						<input class="btn btn-info " type="submit" value="In log?" accesskey="S" data-toggle="tooltip" title="shortcut browser accesskey + S" >
+						<input class="btn btn-info col-xs-12" type="submit" value="In log?" accesskey="S" data-toggle="tooltip" title="shortcut browser accesskey + S" >
 						<input type="hidden" name="call" value=""> 
 						<input type="hidden" name="inlog" value="1">
 					</form>
 				</div>
 
-				<div class="col-sm-1"></div>
-				<input class="btn btn-info col-sm-1" data-toggle="tooltip" type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q">
+				<div class="col-sm-1 "></div>
+				<input class="btn btn-info col-sm-1 col-xs-4" data-toggle="tooltip" type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q">
 				<div class="col-sm-2"></div>
-				<input class="btn btn-warning col-sm-1" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11">
+				<input class="btn btn-warning col-sm-1 col-xs-12" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11">
 </div>

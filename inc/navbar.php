@@ -12,17 +12,17 @@
 				$log_nr = $row->log_nr;
 				$log_name = $row->log_name;
 				if (isset($logactive)) {
-					echo '<li><td><a href=index.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href=index.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($searchactive)) {
-					echo '<li><td><a href=logsearch.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href=logsearch.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($statsactive)) {
 				if ($altstats[$log_nr]) {
-					echo '<li><td><a href=stats2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href=stats2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 				else {
-					echo '<li><td><a href=stats.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href=stats.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
 				}
 
 				}
@@ -59,10 +59,10 @@
 
 				?>
 				">Statistics</a></li>
-        <li><a href="
+        <li class="hidden-xs"><a href="
 				<?php echo $cqrweblog_root.'publog.php?log_id=' . $log_id ; ?>
 				">Public</a></li>
-				<li><a href="
+				<li class="hidden-xs"><a href="
 				<?php echo $cqrweblog_root.'logold.php?log_id=' . $log_id ; ?>
 				">Classic View</a></li>
 			</ul>
