@@ -10,6 +10,7 @@
 		-publog
 	-html5 compliance improvements
 	-code cleaning (removing comments...)
+	-new countryfiles for cqrlog_web (fallback for hamqth downtimes)
 2015-11-01
 	-improve file organization (every css -> inc/css/, every js inc/js/), better for nginx vhost rules
 2015-10-30
