@@ -1,21 +1,25 @@
-<table align="center" border="0">
-	<td width="15">Your Callsign</td>
-	<td width="10"></td>
 <?php
 if (!empty($publog))
 {
 //echo '<form action="pubsearch.php?log_id=' . $log_id . '" target="_blank" method="post">';
-echo '<form action="pubsearch.php?log_id=' . $log_id . '" method="post">';
+echo '<form class="form" role="form" action="pubsearch.php?log_id=' . $log_id . '" method="post">';
 }
 else
 {
-		echo '<form action="pubsearch.php?log_id=' . $log_id . '" method="post">';
+		echo '<form class="form" role="form" action="pubsearch.php?log_id=' . $log_id . '" method="post">';
 }
 ?>
-<tr>
-	<td><input type="text" maxlength="15" size="15" name="call"></td>
-	<td></td>
-	<td><input class="btn btn-primary" type="submit" value="Am I in log?"></td>
-</tr>
-</form>
-</table>
+	<div class="row">
+	<div class="col-xs-5"></div>
+	<div class="col-xs-2">
+	<div class="form-group">
+		<label for="call" class="control-label">Your Callsign</label>
+	<input class="form-control" type="text" maxlength="15" size="15" name="call" id="call">
+	</div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-xs-5"></div>
+	<input class="col-xs-2 btn btn-primary" type="submit" value="Am I in log?">
+	</div>
+	</form>
