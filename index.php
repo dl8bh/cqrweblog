@@ -39,18 +39,18 @@ include("inc/log_proc.php");
 $qso_amount=count_qsos( $log_id );
 switch ($qso_amount) {
     case 0:
-  echo '<div class=" col-sm-2 alert alert-danger">' . "\n" .
+  echo '<div class=" hidden-xs col-sm-2 alert alert-danger">' . "\n" .
     '<strong>NO </strong> QSO found' . "\n" .
   	'</div>';
 	break;
     case 1:
-  echo '<div class="col-sm-2 alert alert-info">' . "\n" .
+  echo '<div class="hidden-xs col-sm-2 alert alert-info">' . "\n" .
     '<strong>' . $qso_amount . '</strong> QSO found' . "\n" .
   	'</div>';
 
 	break;
     default:
-  echo '<div class="col-sm-2 alert alert-info">' . "\n" .
+  echo '<div class="col-sm-2 hidden-xs alert alert-info">' . "\n" .
     '<strong>' . $qso_amount . '</strong> QSOs found' . "\n" .
   	'</div>';
 	//echo '<font color="green">' . $qso_amount . ' QSOs found' . "\n";
