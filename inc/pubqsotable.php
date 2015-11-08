@@ -6,9 +6,9 @@
 <th bgcolor="grey" style="text-align:center" width="40px">Band</th>
 <th bgcolor="grey" style="text-align:center" width="150px">Call sign</th>
 <th bgcolor="grey" style="text-align:center" width="100px">Mode</th>
-<th bgcolor="grey" width="100px">RST Sent</th>
-<th bgcolor="grey" width="100px">RST Rcvd</th>
-<th bgcolor="grey" width="200px">Name</th>
+<th class="hidden-xs" bgcolor="grey" width="100px">RST Sent</th>
+<th class="hidden-xs" bgcolor="grey" width="100px">RST Rcvd</th>
+<th class="hidden-xs" bgcolor="grey" width="200px">Name</th>
 </tr>
 <?php
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
@@ -32,9 +32,9 @@ while($row = mysqli_fetch_object($query))
 		echo '<td align="center">' . $band . '</td>' . "\n";
 		echo '<td align="center"><font color="red"><b>' . $callsign . '</b></font></td>' . "\n";
    	echo '<td align="center"><i>' . $mode . '</i></td>' . "\n";
-		echo '<td>' . $rst_s . '</td>' . "\n";
-		echo '<td>' . $rst_r . '</td>' . "\n";
-		echo '<td>' . $name . '</td>' . "\n";
+		echo '<td class="hidden-xs">' . $rst_s . '</td>' . "\n";
+		echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
+		echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
 		echo '</tr>' . "\n";
 
 
