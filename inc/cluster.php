@@ -54,7 +54,7 @@ foreach($spots as $key => $qso){
 		$out .= '<td class="hidden-xs">' . $dxmessage . '</td>	' ."\n";
 		$out .= '<td class="hidden-xs">DX de ' . $qso[0] . ':</td>' . "\n";
 		$out .= '<td>' . $qso[1] . '</td>' . "\n";
-		$out .=	'<td><a href=javascript:fillClusterData("' . $qso[2] . '","' . $qso[1] . '","' . $clusterbandmode[1] . '"); style="color:' . $fontcolor . '; font-weight: bold;">' . $qso[2] . '</a></td>' . "\n";
+		$out .=	'<td><a href="javascript:fillClusterData(\'' . $qso[2] . '\',\'' . $qso[1] . '\',\'' . $clusterbandmode[1] . '\');" style="color:' . $fontcolor . '; font-weight: bold;">' . $qso[2] . '</a></td>' . "\n";
 		$out .= '<td>' . $qso[3] . '</td>' . "\n";
 		$out .= '<td>' . $qso[4] . '</td>' . "\n";
 		foreach($qso as $subkey => $detail){
