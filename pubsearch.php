@@ -5,6 +5,7 @@ include("inc/header.php");
 include("inc/parse_search.php");
 ?>
 
+<!DOCTYPE html> 
 <html>
 <head>
 <?php 

@@ -47,7 +47,7 @@ table.cluster {
 	width:100%;
 	display: block;
   padding-left:10px;
-  height:30%;
+  height:30vh;
   border:2px  
   inset #cccccc;
   overflow:auto;

@@ -12,14 +12,14 @@
 				$log_nr = $row->log_nr;
 				$log_name = $row->log_name;
 				if (isset($logactive)) {
-					echo '<li><a href=index.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href="index.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($searchactive)) {
-					echo '<li><a href=logsearch.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href="logsearch.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($statsactive)) {
 				if ($altstats[$log_nr]) {
-					echo '<li><a href=stats2.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";
+					echo '<li><a href="stats2.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
 				else {
 					echo '<li><a href=stats.php?log_id=' . $log_nr . '>' . $log_name . '</a></li>' . "\n";

@@ -7,7 +7,7 @@
 <th bgcolor="grey" style="text-align:center" width="150px">Call sign</th>
 <th bgcolor="grey" style="text-align:center" width="100px">Mode</th>
 <th class="hidden-xs" bgcolor="grey" width="100px">RST Sent</th>
-<th class="hidden-xs "bgcolor="grey" width="100px">RST Rcvd</th>
+<th class="hidden-xs" bgcolor="grey" width="100px">RST Rcvd</th>
 <th class="hidden-xs" bgcolor="grey" width="200px">Name</th>
 <th class="hidden-xs" bgcolor="grey" width="450px">Remarks</th>
 <th bgcolor="grey" width="40px">Edit</th>
