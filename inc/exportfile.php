@@ -1,6 +1,4 @@
 <?php
-//header('Content-type: text/csv');
-//header('Content-Disposition: attachment; filename="'.logid_to_call($log_id).'.adi"');
 
 $filename = strtoupper(logid_to_call($log_id)) . '.adi';
 $filename = str_replace("/","-",$filename);
@@ -16,7 +14,6 @@ fwrite($file, $fileheader);
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 
 $query = mysqli_query($dbconnect, "SELECT * FROM view_cqrlog_main_by_qsodate t1 join cqrlog_main t2 on t1.id_cqrlog_main = t2.id_cqrlog_main " . $where_export , MYSQLI_USE_RESULT );
-//$query = mysqli_query($dbconnect, "SELECT * FROM view_cqrlog_main_by_qsodate t1 join cqrlog_main t2 on t1.id_cqrlog_main = t2.id_cqrlog_main " . $where_export . " LIMIT " . $qso_count);
 while($row = mysqli_fetch_object($query))
 		{
 		$qsodate= $row->qsodate;
@@ -57,10 +54,5 @@ fflush ($file);
 mysqli_free_result($query);
 
 fclose($file);
-/*header("Content-Type: application/octet-stream"); 
-header('Content-Disposition: attachment; filename="' . $filename . '"');
-header("Pragma: no-cache");
-header("Expires: 0");
-readfile($filepath); */
 echo '<h3><a href="' . $filepath . '">Download ADI</a></h3>';
 ?>

@@ -1,7 +1,6 @@
 <?php
 if (!empty($publog))
 {
-//echo '<form action="pubsearch.php?log_id=' . $log_id . '" target="_blank" method="post">';
 echo '<form class="form" role="form" action="pubsearch.php?log_id=' . $log_id . '" method="post">';
 }
 else

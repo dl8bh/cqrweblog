@@ -18,7 +18,6 @@ if (!empty($call)&&$calledit){
     }
 }
 if (empty($call)){
-	//echo '<p><b><center><font color="red">Edit qso details or check DELETE to delete qso. Click SAVE when ready.</font></center></b></p>' . "\n";
 ?>
 
 		
@@ -28,7 +27,6 @@ if (empty($call)){
 <?php
  }
  elseif (empty($freq)){
-//	echo '<p><b><center><font color="red">Please insert Frequency</font></center></b></p>' . "\n";
 ?>
 
 
@@ -111,7 +109,6 @@ if (empty($call)){
 			<?php
 	}
 	else {
- //echo '<p><font color="red"><b><center>Changes saved!</center></b></font></p>' . "\n";
 ?>
 <div class="alert alert-success">
   <strong>Success!</strong> Changes saved! You may close this window now or re-edit!
@@ -120,8 +117,7 @@ if (empty($call)){
 <?php	
 }
     }
-    //echo '<center><a href='.$cqrweblog_root.'index.php?log_id=' . $log_id . '>Back to Log</a></center>' . "\n";
-
+//back
 }
 
 ?>

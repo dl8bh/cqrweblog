@@ -14,7 +14,6 @@ foreach($spots as $key => $qso){
 		$dxmessage='';
 		$clusterbandmode = freq_to_band_mode($qso[1]/1000);
 		$checkadif = check_adif($qso[10], $log_id, $clusterbandmode[0], $clusterbandmode[1]);
-//function check_dupe ( $log_id, $callsign, $band = 'ALL', $mode = 'ALL' ) {
     if (check_dupe($log_id, $qso[2], $clusterbandmode[0], $clusterbandmode[1])) {
 			$fontcolor=$dupecolor;		
 			$dxmessage='<b><font color="' . $fontcolor . '">DUPE</font></b>';
