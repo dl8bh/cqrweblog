@@ -12,7 +12,8 @@
 	{
 	$bands[] = $band->band;
 	}
-	foreach($bands as $band_in)
+		
+	foreach((array) $bands as $band_in)
 	{
 	echo '<th bgcolor="grey" width="30px">' . $band_in . '</th>' . "\n";
 	}
@@ -30,7 +31,7 @@ while($row = mysqli_fetch_object($query)){
 	echo '<td class="active"><font size=+1>' . $dxcc . '</font></td>' . "\n";
 	echo '<td class="active"><font size=+1>' . $name . '</font></td>' . "\n";
 
-	foreach($bands as $band_in)
+	foreach((array)$bands as $band_in)
 	{
 	echo '<td align="center" class="active">' . $band_in . '</td>' . "\n";
 	}
@@ -41,7 +42,7 @@ foreach($mode as $mode_proc){
 	echo '<td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . '</font></td>' . "\n";
 	
-	foreach($bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
 	$checkadif = check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
 	if ($checkadif[0] == 'N')
@@ -64,7 +65,7 @@ if (empty($call)) {
 	echo '<td class="active"><font size=+1>DXCC Count</font></td>' . "\n";
 	echo '<td class="active"><font size=+1></font></td>' . "\n";
 
-	foreach($bands as $band_in)
+	foreach((array)$bands as $band_in)
 	{
 	echo '<td align="center" class="active">' . $band_in . '</td>' . "\n";
 	}
@@ -76,7 +77,7 @@ foreach($mode as $mode_proc){
 	echo '<tr>' . "\n";
 	echo '<td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' confirmed</font></td>' . "\n";
-	foreach($bands as $band_in)
+	foreach((array)$bands as $band_in)
 	{
 	echo '<td align="center" class="success">' . count_dxcc ( $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
 	}
@@ -87,7 +88,7 @@ foreach($mode as $mode_proc){
 	echo '<tr>' . "\n";
 	echo '<td></td>' . "\n";
 	echo '<td align="right"><font size=+1>' . $mode_proc . ' worked</font></td>' . "\n";
-	foreach($bands as $band_in)
+	foreach((array)$bands as $band_in)
 	{
 	echo  '<td align="center" class="danger">' . count_dxcc (  $log_id, $band_in, $mode_proc,false,false,false) . '</td>' . "\n";
 	}
