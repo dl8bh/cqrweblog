@@ -6,9 +6,9 @@ echo '<form class="form" role="form" action="logsearch.php?log_id=' . $log_id . 
 	<div class="row">
 	
 	<div class="col-sm-1"></div>
-	<div class="col-sm-10">
+	<div class="col-sm-10 col-xs-12">
 
-					<div class="form-group col-sm-2 ">
+					<div class="form-group col-sm-2 col-xs-6">
 					<label for="band" class="control-label">Band</label> 
 					<select class="form-control" id="band" name="band">
 					<?php
@@ -24,32 +24,32 @@ echo '<form class="form" role="form" action="logsearch.php?log_id=' . $log_id . 
 					</select>
 					</div>
 						
-					<div class="form-group col-sm-2">
-					<label for="call" class="control-label" >Callsign</label>
+					<div class="form-group col-sm-2 col-xs-6">
+					<label for="callsign" class="control-label" >Callsign</label>
 					<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="callsign" type="text" maxlength="55" size="15" name="call" data-toggle="tooltip" title="use % as wildcard">
 					</div>
 					
-					<div class="form-group col-sm-1">
+					<div class="form-group col-sm-1 col-xs-6">
 					<label for="dxcc" class="control-label" >DXCC</label>
 					<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="dxcc" type="text" maxlength="55" size="15" name="dxcc">
 					</div>
 						
-					<div class="form-group col-sm-1">
+					<div class="form-group col-sm-1 col-xs-6">
 					<label for="mode" class="control-label" >Mode</label>
 					<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="mode" type="text" name="mode" size="5" value="" maxlength="7">
 					</div>
 
-					<div class="form-group col-sm-2">
+					<div class="form-group col-sm-2 col-xs-6">
 					<label for="name" class="control-label" >Name</label>
 					<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="name" type="text" name="name" maxlength="55" data-toggle="tooltip" title="use % as wildcard" >
 					</div>
 
-					<div class="form-group col-sm-2">
+					<div class="form-group col-sm-2 col-xs-6">
 					<label for="remarks" class="control-label" >Remarks</label>
 					<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="remarks" type="text" name="remarks" maxlength="55" data-toggle="tooltip" title="use % as wildcard" >
 					</div>
 
-					<div class="form-group col-sm-2">
+					<div class="form-group col-sm-2 col-xs-6">
 					<label for="locator" class="control-label" >Locator</label>
 					<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="locator" type="text" name="locator" maxlength="55" data-toggle="tooltip" title="use % as wildcard" >
 					</div>

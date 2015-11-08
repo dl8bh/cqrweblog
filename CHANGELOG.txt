@@ -5,6 +5,7 @@
 		-log input
 		-qsotable
 		-stats input
+		-search input
 2015-11-01
 	-improve file organization (every css -> inc/css/, every js inc/js/), better for nginx vhost rules
 2015-10-30
