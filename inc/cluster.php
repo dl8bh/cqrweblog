@@ -51,8 +51,8 @@ foreach($spots as $key => $qso){
 		}
 		}
 		$out .= '<tr class="small">';
-		$out .= '<td>' . $dxmessage . '</td>	' ."\n";
-		$out .= '<td>DX de ' . $qso[0] . ':</td>' . "\n";
+		$out .= '<td class="hidden-xs">' . $dxmessage . '</td>	' ."\n";
+		$out .= '<td class="hidden-xs">DX de ' . $qso[0] . ':</td>' . "\n";
 		$out .= '<td>' . $qso[1] . '</td>' . "\n";
 		$out .=	'<td><a href=javascript:fillClusterData("' . $qso[2] . '","' . $qso[1] . '","' . $clusterbandmode[1] . '"); style="color:' . $fontcolor . '; font-weight: bold;">' . $qso[2] . '</a></td>' . "\n";
 		$out .= '<td>' . $qso[3] . '</td>' . "\n";
