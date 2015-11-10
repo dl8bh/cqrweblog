@@ -1,10 +1,11 @@
-<div class="table-responsive table-condensed">
-<table class="table table-hover table-condensed" align="center" cellpadding="0" cellspacing="0">
+<div class="table-responsive">
+<table class="table table-hover table-condensed" align="center" border="0" cellpadding="0" cellspacing="0">
+<thead>
 <tr>
-<th bgcolor="grey" width="100px">DXCC</th>
-<th bgcolor="grey" width="350px">Name / Mode</th>
-
+<th  width="30px">DXCC</th>
 <?php
+		echo '<th width="160px"><div class="hidden-xs">Name / Mode</div></th>' . "\n";
+
 	$i=0;
 	$dbconnect -> select_db("cqrlog_common");
 	$ergebnis = mysqli_query($dbconnect, 'SELECT DISTINCT t1.band from cqrlog_common.bands t1 join ' . logid_to_tableid( $log_id ) . '.cqrlog_main t2 on t1.band = t2.band order by t1.b_begin asc');
@@ -12,12 +13,12 @@
 	{
 	$bands[] = $band->band;
 	}
-		
-	foreach((array) $bands as $band_in)
+	foreach((array)$bands as $band_in)
 	{
-	echo '<th bgcolor="grey" width="30px">' . $band_in . '</th>' . "\n";
+	echo '<th style="text-align:center" width="30px">' . $band_in . '</th>' . "\n";
 	}
 ?>
+</thead>
 </tr>
 <?php
 
@@ -28,55 +29,56 @@ while($row = mysqli_fetch_object($query)){
 	$name= $row->name;
 	$adif= $row->adif;
 	echo '<tr>' . "\n";
-	echo '<td class="active"><font size=+1>' . $dxcc . '</font></td>' . "\n";
-	echo '<td class="active"><font size=+1>' . $name . '</font></td>' . "\n";
+	echo '<td>' . $dxcc . '</td>' . "\n";
+	
+			echo '<td><div class="hidden-xs">' . $name . '</div></td>' . "\n";
 
-	foreach((array)$bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
-	echo '<td align="center" class="active">' . $band_in . '</td>' . "\n";
+	$checkadif = check_adif ( $adif, $log_id, $band_in, 'ALL',$paperqsl,$lotwqsl,$eqslqsl);
+	if ($checkadif[0]=="N")
+	{
+			echo  '<td style="text-align:center">' . $band_in . $checkadif[2] . "\n";
+	}
+	else
+	{
+			echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
+	}
 	}
 
 
 foreach($mode as $mode_proc){
 	echo '<tr>' . "\n";
 	echo '<td></td>' . "\n";
-	echo '<td align="right"><font size=+1>' . $mode_proc . '</font></td>' . "\n";
+	echo '<td align="right">' . $mode_proc . '</td>' . "\n";
 	
 	foreach((array) $bands as $band_in)
 	{
 	$checkadif = check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
-	if ($checkadif[0] == 'N')
-	{
-			$checkadif[0] ="";
-	}
-	echo  $checkadif[1] . $checkadif[0] . $checkadif[2] . "\n";
+	echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
 	}
 	echo '</tr>' . "\n";	
 	}	
 }
 echo '</table></div>' . "\n";
+if (empty($call)){
+		echo '<div class="table-responsive">' . "\n";
+		echo '<table class="table table-condensed" align="center" cellpadding="0" cellspacing="0">' . "\n" ;
+	echo '<tr><th> DXCC Count</th>' . "\n";
 
-
-if (empty($call)) {
-	echo '<div class="table-responsive">' . "\n";
-  echo '<table class="table" align="center" cellpadding="0" cellspacing="0">' . "\n" ;
-	echo '<tr>' . "\n";
-	echo '<td class="active"><font size=+1>DXCC Count</font></td>' . "\n";
-	echo '<td class="active"><font size=+1></font></td>' . "\n";
-
-	foreach((array)$bands as $band_in)
+	foreach((array) $bands as $band_in)
 	{
-	echo '<td align="center" class="active">' . $band_in . '</td>' . "\n";
+	echo '<th style="text-align:center" >' . $band_in . '</th>' . "\n";
 	}
-	echo '<td align="center" class="active">Allband Count</td>' . "\n";
+	echo '<th style="text-align:center" >Allband Count</th>' . "\n";
 	echo '</tr>' . "\n";	
 
+array_unshift($mode, 'ALL');
 foreach($mode as $mode_proc){
 
 	echo '<tr>' . "\n";
-	echo '<td></td>' . "\n";
-	echo '<td align="right"><font size=+1>' . $mode_proc . ' confirmed</font></td>' . "\n";
-	foreach((array)$bands as $band_in)
+	echo '<td align="right">' . $mode_proc . ' confirmed</td>' . "\n";
+	foreach((array) $bands as $band_in)
 	{
 	echo '<td align="center" class="success">' . count_dxcc ( $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
 	}
@@ -85,9 +87,8 @@ foreach($mode as $mode_proc){
 
 
 	echo '<tr>' . "\n";
-	echo '<td></td>' . "\n";
-	echo '<td align="right"><font size=+1>' . $mode_proc . ' worked</font></td>' . "\n";
-	foreach((array)$bands as $band_in)
+	echo '<td align="right">' . $mode_proc . ' worked</td>' . "\n";
+	foreach((array) $bands as $band_in)
 	{
 	echo  '<td align="center" class="danger">' . count_dxcc (  $log_id, $band_in, $mode_proc,false,false,false) . '</td>' . "\n";
 	}
@@ -95,6 +96,6 @@ foreach($mode as $mode_proc){
 	echo '</tr>' . "\n";	
 }
 }
+echo '</table></div>' . "\n";
 ?>
-</table>
-</div>
+

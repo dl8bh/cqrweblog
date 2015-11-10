@@ -380,7 +380,7 @@ function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = tr
 			return array ('W', '<td class="danger" align="center" >','</td>');
 	}
 
-	return array ( 'N', '<td>', '</td>' );
+	return array ( 'N', '<td align="center">', '</td>' );
 }
 
 function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl ) {

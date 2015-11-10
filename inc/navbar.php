@@ -18,13 +18,7 @@
 					echo '<li><a href="logsearch.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
 				else if (isset($statsactive)) {
-				if ($altstats[$log_nr]) {
-					echo '<li><a href="stats2.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
-				}
-				else {
 					echo '<li><a href="stats.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
-				}
-
 				}
 		}
 		?>
@@ -46,15 +40,7 @@
         <li
 					<?php if (isset($statsactive)) { echo 'class="active"';}?>
 				><a href="
-				<?php
-				if ($altstats[$log_id]) {
-						echo $cqrweblog_root.'stats2.php?log_id=' . $log_id ;
-				}
-				else {
-						echo $cqrweblog_root.'stats.php?log_id=' . $log_id ;
-				}
-
-				?>
+				<?php echo $cqrweblog_root.'stats.php?log_id=' . $log_id ; ?>
 				">Statistics</a></li>
         <li class="hidden-xs"><a href="
 				<?php echo $cqrweblog_root.'publog.php?log_id=' . $log_id ; ?>

@@ -13,14 +13,14 @@ $mode = $_POST["mode"];
 }
 
 if (!isset($mode)){
-$mode = array("ALL");
+$mode =array();
 }
 
 if (isset($_POST["callsign"])){
 $call = strtoupper(htmlentities($_POST["callsign"]));
 if (!empty($call)) {
 		$dxcc = adif_to_dxcc(call_to_dxcc($call)[0]);
-		$mode = array("ALL","CW","SSB","DATA");
+		$mode = array("CW","SSB","DATA");
 }
 }
 

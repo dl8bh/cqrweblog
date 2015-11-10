@@ -13,18 +13,20 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s DXCC statistics</tit
 include("inc/metaheader.php");
 ?>
 </head>
-<body style="overflow:auto;">
+<body>
 
 <?php
 $statsactive=true;
 include("inc/navbar.php");
 echo '<h1 align="center">DXCC statistics of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 include("inc/stats_input.php");
+?>
+<br /><br />
+
+<?php
 include("inc/stats_proc.php");
 include("inc/dxccstats.php");
-include("inc/metafooter.php");
-
-?>
+include("inc/metafooter.php");?>
 
 </body>
 </html>

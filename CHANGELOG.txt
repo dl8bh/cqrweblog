@@ -1,6 +1,7 @@
 2015-11-10
 	-reduce mobile phone view to a usable minimum for dx usage
 		-only default report, no name no remarks
+	-improve stats2.php for mobile phones, make stats2.php to stats.php
 2015-11-08
 	-fix bug where an empty log leads to error messages in stats pages
 	-mobile view improvements:

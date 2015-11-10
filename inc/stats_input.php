@@ -13,9 +13,6 @@ echo '<form class="form" role="form" action="stats.php?log_id=' . $log_id . '" m
 				
 				<label for="mode" class="control-label">Mode</label>
 				<div id="mode">
-						<div class="checkbox">
-								<label><input type="checkbox" name="mode[]" value="ALL" checked>ALLMODE</label>
-						</div>
 						
 						<div class="checkbox">
 								<label><input type="checkbox" name="mode[]" value="CW" >CW</label>
