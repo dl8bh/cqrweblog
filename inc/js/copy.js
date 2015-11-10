@@ -10,7 +10,9 @@ function fillClusterData(callsign, freq, mode) {
 		document.search.call.value=callsign;
 		newfreq=freq/1000;
 		document.input.freq.value=Math.round(newfreq*100000)/100000;
-		document.input.mode.value=mode;
+		if (mode!="") {
+				document.input.mode.value=mode;
+		}
 		document.input.remarks.value="";
 		document.input.time.value="";
 		
