@@ -51,7 +51,7 @@ foreach($mode as $mode_proc){
 	foreach((array) $bands as $band_in)
 	{
   echo '<td></td><td bgcolor="Black" width="0.3px"></td><td></td>' . "\n";
-	$checkadif = check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
+	$checkadif = check_adif2 ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
 	if ($checkadif[0] == 'N')
 	{
 			$checkadif[0] ="";

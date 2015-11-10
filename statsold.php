@@ -2,7 +2,8 @@
 include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
-include("inc/parse_stats.php");
+include("inc/include2.php");
+include("inc/parse_oldstats.php");
 //include("inc/include_test.php");
 ?>
 
@@ -22,7 +23,7 @@ include("inc/stats_inputold.php");
 <br /><br />
 
 <?php
-include("inc/stats_proc.php");
+include("inc/stats_oldproc.php");
 ?>
 
 <table align="center" border="0" cellpadding="0" cellspacing="0">
