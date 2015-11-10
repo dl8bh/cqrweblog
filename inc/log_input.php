@@ -117,16 +117,7 @@ if ($enable_help[$log_id]) {
 ?>
 		</div>
 		<div class="col-md-2 col-sm-3 col-xs-5">
-<?php
-	if ($altstats[$log_id])
-	{
-			echo '<form name="stats" action="stats2.php' . $urlparameter . '" target="_blank"  method="post">';
-	}
-	else
-	{
-			echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">';
-	}
-	?>
+	<?php echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">' . "\n" ?>
 	<input class="btn btn-info col-md-12 col-xs-12 col-sm-12 " type="submit" value="Check DXCC" accesskey="C" data-toggle="tooltip" title="shortcut browser accesskey + C">
 	<input type="hidden" name="callsign" value="">
 	<input type="hidden" name="inlog" value="1"> 
