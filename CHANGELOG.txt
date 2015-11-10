@@ -1,3 +1,5 @@
+2015-11-11
+	-switch to bootstrap table headers
 2015-11-10
 	-reduce mobile phone view to a usable minimum for dx usage
 		-only default report, no name no remarks

@@ -1,14 +1,16 @@
 <div class=table-responsive" id=qso>
 <table align="center" class="table table-condensed table-hover" cellpadding="0" cellspacing="0">
+<thead>
 <tr>
-<th bgcolor="grey" width="100px">Date</th>
-<th bgcolor="grey" width="50px">Time</th>
-<th bgcolor="grey" style="text-align:center" width="40px">Band</th>
-<th bgcolor="grey" style="text-align:center" width="150px">Call sign</th>
-<th bgcolor="grey" style="text-align:center" width="100px">Mode</th>
-<th class="hidden-xs" bgcolor="grey" width="100px">RST Sent</th>
-<th class="hidden-xs" bgcolor="grey" width="100px">RST Rcvd</th>
-<th class="hidden-xs" bgcolor="grey" width="200px">Name</th>
+<th width="100px">Date</th>
+<th width="50px">Time</th>
+<th style="text-align:center" width="40px">Band</th>
+<th style="text-align:center" width="150px">Call sign</th>
+<th style="text-align:center" width="100px">Mode</th>
+<th class="hidden-xs" width="100px">RST Sent</th>
+<th class="hidden-xs" width="100px">RST Rcvd</th>
+<th class="hidden-xs" width="200px">Name</th>
+</thead>
 </tr>
 <?php
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
