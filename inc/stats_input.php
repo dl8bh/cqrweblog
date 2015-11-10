@@ -1,7 +1,8 @@
 <?php
 echo '<form class="form" role="form" action="stats.php?log_id=' . $log_id . '" method="post">'
 ?>	
-
+<?php if (empty($call)) {
+		?>
 <div class="row">
 <div class="col-sm-4"></div>
 		<div class="form-group col-sm-1 col-xs-4">
@@ -48,3 +49,4 @@ echo '<form class="form" role="form" action="stats.php?log_id=' . $log_id . '" m
 <input class="btn btn-primary col-sm-1 col-xs-12" type="submit" value="Submit">
 </div>
 </form>
+<?php } ?>
