@@ -4,6 +4,9 @@
 	-show Changelog in navbar (to be configured in config.php, default: true)
 	-disable tooltip popups on small devices
 	-improve mobile view of logsearch
+	-use btn-primary style for every primary button
+	-improve help
+	-feeding proper defaults in default_config.php to make id easier to setup cqrweblog 
 2015-11-10
 	-reduce mobile phone view to a usable minimum for dx usage
 		-only default report, no name no remarks

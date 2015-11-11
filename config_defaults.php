@@ -22,7 +22,6 @@ $exportdir="tmp/";         // where to export the adi files? has to be readable/
 $hamqth_api = true;        // enable/disable hamqth-api (switches to local dxcc resolution and disables cluster, if false)
 													 // if your cqrweblog instance is very slow, consider turning $hamqt_api to false, hamqth.com might have problems!
 $cluster_spot_num =50;     // number of spots to load from the dx-cluster
-
 $enable_changelog = true;  // show link to changelog in header
 
 /**************
@@ -37,11 +36,13 @@ INDIVIDUAL LOG SETTINGS, ARRAY INDEX REFLECTS LOG ID
 array(offset, log1setting, log2setting, log3setting)
 ***************************************************/
 
-$altstats = array ( "offset", false, false, false, true, false);        // let the user decide, whether to use stats or stats2 dxcc-presentation
-$enable_cluster = array ( "offset", false, false, false, true, false);  // let the user decide, if the cluster is enabled:
-$enable_help = array ( "offset", false, false, false, true, false);     // show help for users:
-$enable_searchcount = array ( "0", false, false, false, true, true);		// let the user decide, if searches are counted. To use this, searches.txt has 
-																																				// to exist and has to be writable by the webserver (in most setups chmod 775 should work)
+$altstats = array ( "offset", false, false, false, true, false);                                          // [deprecated, for classic view only] 
+                                                                                                          // let the user decide, whether to use stats or stats2 dxcc-presentation
+$enable_cluster = array ( "offset", true, true, true, true, true, true, true, true, false, true, true);   // let the user decide, if the cluster is enabled:
+$enable_help = array ( "offset", true, true, true, true, true, true, true, true, true, true, true);       // show help for users:
+$enable_searchcount = array ( "0", false, false, false, false, false, false, false, false, false, true);	// let the user decide, if searches are counted. To use this, searches.txt has 
+																																				                                  // to exist and has to be writable by the webserver 
+																																																					// (in most setups chmod 775 should work, else try chmod 777)
 
 /*************
 CLUSTER COLORS
