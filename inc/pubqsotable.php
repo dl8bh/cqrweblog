@@ -1,4 +1,4 @@
-<div class=table-responsive" id=qso>
+<div class="table-responsive" id=qso>
 <table align="center" class="table table-condensed table-hover" cellpadding="0" cellspacing="0">
 <thead>
 <tr>

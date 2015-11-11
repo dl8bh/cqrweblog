@@ -21,7 +21,6 @@ if ($pubsearch_enabled) {
 $pubsearch=true;
 echo '<h1 align="center">Am I in ' . strtoupper(logid_to_call($log_id)) . '\'s Log?</h1><br /><br />';
 include("inc/pubsearch_input.php");
-echo '<br /><br />' . "\n";
 
 include("inc/search_proc.php");
 
@@ -32,8 +31,8 @@ if ($enable_searchcount[$log_id]) {
 		</br>
 		<div class="row">
 		<div class="col-sm-4"></div>	
-		<div class="alert alert-info col-sm-4">
-				There have been <?php echo get_search_count	($log_id) ; ?> searches from <?php echo count_qsos($log_id) ; ?> QSOs in Log.
+		<div class="hidden-xs alert alert-info col-sm-4">
+				There have been <?php echo get_search_count	($log_id) ; ?> searches in this log.
 		</div>	
 		</div>
 <?php
