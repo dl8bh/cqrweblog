@@ -60,12 +60,12 @@ echo '<form class="form" role="form" action="logsearch.php?log_id=' . $log_id . 
 	
 	<div class="row">
   	
-	<div class="col-md-9 col-sm-8 col-xs-4"></div>
-	<div class="col-md-2 col-sm-3 col-xs-4">
+	<div class="col-md-5 col-sm-5 col-xs-4"></div>
+	<div class="col-md-2 col-sm-2 col-xs-4">
 	<div class"checkbox">
 		<label><input type="checkbox" name="adif_export" value="export">Export ADIF</label>
 	</div>
-	<input class="btn btn-danger col-sm-12 col-xs-12 " type="submit" value="Search">
+	<input class="btn btn-primary col-sm-12 col-xs-12 " type="submit" value="Search">
 	</div>
 	</div>
 <?php

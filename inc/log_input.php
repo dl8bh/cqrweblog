@@ -92,7 +92,7 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	<div class="row">
 			<div class="col-md-10 col-sm-9 hidden-xs col-xs-12 "></div>
 			<div class="col-sm-3 col-md-2">
-			<input class="btn btn-danger col-md-12 col-sm-12 col-xs-12 " type="submit" value="Log">
+			<input class="btn btn-primary col-md-12 col-sm-12 col-xs-12 " type="submit" value="Log">
 			</div>
 	</div>
 	</form>
@@ -110,6 +110,8 @@ if ($enable_help[$log_id]) {
 	Wipe: <kbd>Alt+w</kbd> <kbd>F11</kbd></br>
 	QRZ: <kbd>Alt+q</kbd> </br>
 	Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER S:STATE</br>
+	To jump between input fields: <kbd>TAB</kbd></br>
+	To skip reports and mode (if you have a pileup running...) hit <kbd>SPACE</kbd> to jump directly to name.
 	<a href="./README.txt" target="_blank" >Complete Manual</a>
 	</div>
 	<?php
@@ -135,5 +137,5 @@ if ($enable_help[$log_id]) {
 				<input class="btn btn-info col-md-12 col-sm-12 hidden-xs col-xs-12" data-trigger="hover" data-toggle="tooltip" type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q"></div>
 				<div class="col-md-2 "></div>
 				<div class="col-sm-3 col-md-2 col-xs-4 ">
-				<input class="btn btn-warning col-md-12 col-sm-12 col-xs-12" data-trigger="hover" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11"></div>
+				<input class="btn btn-danger col-md-12 col-sm-12 col-xs-12" data-trigger="hover" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11"></div>
 </div>
