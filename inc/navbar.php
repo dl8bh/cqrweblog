@@ -48,6 +48,11 @@
 				<li class="hidden-xs"><a href="
 				<?php echo $cqrweblog_root.'logold.php?log_id=' . $log_id ; ?>
 				">Classic View</a></li>
+				<?php 
+				if ($enable_changelog) {
+						echo '<li class="hidden-xs"><a href="' . $cqrweblog_root . 'CHANGELOG.txt">Changelog</a></li>' . "\n";
+				}
+				?>
 			</ul>
     </div>
   </div>

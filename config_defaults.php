@@ -21,7 +21,9 @@ $debugmode=false;          // debug-mode
 $exportdir="tmp/";         // where to export the adi files? has to be readable/writable by the webserver
 $hamqth_api = true;        // enable/disable hamqth-api (switches to local dxcc resolution and disables cluster, if false)
 													 // if your cqrweblog instance is very slow, consider turning $hamqt_api to false, hamqth.com might have problems!
-$cluster_spot_num =50;
+$cluster_spot_num =50;     // number of spots to load from the dx-cluster
+
+$enable_changelog = true;  // show link to changelog in header
 
 /**************
 DEFAULT REPORTS
