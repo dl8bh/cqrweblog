@@ -2,6 +2,7 @@
 	-switch to bootstrap table headers
 	-dont show input fields on stats page in case of "Check DXCC" from log
 	-show Changelog in navbar (to be configured in config.php, default: true)
+	-disable tooltip popups on small devices
 2015-11-10
 	-reduce mobile phone view to a usable minimum for dx usage
 		-only default report, no name no remarks

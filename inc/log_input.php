@@ -25,18 +25,18 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	</div>
 	<div class="form-group col-md-1 col-sm-2 hidden-xs col-xs-4 ">
     <label for="time" class="control-label" >Time</label>
-	<input id="time" class="form-control" placeholder="HHMM" onClick="this.setSelectionRange(0,this.value.length)" type="text" name="time" size="5" value="" maxlength="5" tabindex="1" data-toggle="tooltip" title="optional, if empty: time in UTC, input format: hh:mm or hhmm">
+	<input id="time" class="form-control" placeholder="HHMM" onClick="this.setSelectionRange(0,this.value.length)" type="text" name="time" size="5" value="" maxlength="5" tabindex="1" data-trigger="hover" data-toggle="tooltip" title="optional, if empty: time in UTC, input format: hh:mm or hhmm">
 </div>
   <div class="form-group col-md-1 col-sm-3 col-xs-4 <?php if (!isset($freq)) { echo "has-error has-feedback" ; }  ?>">	
     <label for="freq" class="control-label">Frequency</label>
 	<?php
 	if (isset($freq))
 	{
-	echo '<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" data-toggle="tooltip" title="only band or frequency is needed" > ';
+	echo '<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" data-trigger="hover" data-toggle="tooltip" title="only band or frequency is needed" > ';
 	}
 	else
 	{
-	echo '<input  onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" data-toggle="tooltip"  title="only one of band or frequency is needed" >';
+	echo '<input  onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" data-trigger="hover" data-toggle="tooltip"  title="only one of band or frequency is needed" >';
 	echo '<span class="glyphicon glyphicon-remove form-control-feedback"></span>';
 	}
 	?>
@@ -87,7 +87,7 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	
 	<div class="form-group col-md-2 col-sm-4 hidden-xs col-xs-6">
 			<label for="remarks">Remarks</label>
-			<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="remarks" name="remarks" maxlength="55" data-toggle="tooltip" title="I:IOTA L:LOCATOR M:MANAGER S:STATE" tabindex="7"></div>
+			<input onClick="this.setSelectionRange(0,this.value.length)" type="text" class="form-control" id="remarks" name="remarks" maxlength="55" data-trigger="hover" data-toggle="tooltip" title="I:IOTA L:LOCATOR M:MANAGER S:STATE" tabindex="7"></div>
 	</div>
 	<div class="row">
 			<div class="col-md-10 col-sm-9 hidden-xs col-xs-12 "></div>
@@ -118,22 +118,22 @@ if ($enable_help[$log_id]) {
 		</div>
 		<div class="col-md-2 col-sm-3 col-xs-5">
 	<?php echo '<form name="stats" action="stats.php' . $urlparameter . '" target="_blank"  method="post">' . "\n" ?>
-	<input class="btn btn-info col-md-12 col-xs-12 col-sm-12 " type="submit" value="Check DXCC" accesskey="C" data-toggle="tooltip" title="shortcut browser accesskey + C">
+	<input class="btn btn-info col-md-12 col-xs-12 col-sm-12 " type="submit" value="Check DXCC" accesskey="C" data-trigger="hover"  data-toggle="tooltip" title="shortcut browser accesskey + C">
 	<input type="hidden" name="callsign" value="">
 	<input type="hidden" name="inlog" value="1"> 
 		</form></div>
 		<!--<div class="col-md-1 " ></div>-->
 				<div class="col-md-2 col-sm-3 col-xs-3">
 					<form name="search" action="logsearch.php<?php echo $urlparameter ;?> " target="_blank"  method="post">
-						<input class="btn btn-info col-sm-12 col-md-12 col-xs-12" type="submit" value="In log?" accesskey="S" data-toggle="tooltip" title="shortcut browser accesskey + S" >
+						<input class="btn btn-info col-sm-12 col-md-12 col-xs-12" type="submit" value="In log?" accesskey="S" data-trigger="hover" data-toggle="tooltip" title="shortcut browser accesskey + S" >
 						<input type="hidden" name="call" value=""> 
 						<input type="hidden" name="inlog" value="1">
 					</form>
 				</div>
 
 				<div class="col-md-2 col-sm-3 col-xs-3">
-				<input class="btn btn-info col-md-12 col-sm-12 hidden-xs col-xs-12" data-toggle="tooltip" type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q"></div>
+				<input class="btn btn-info col-md-12 col-sm-12 hidden-xs col-xs-12" data-trigger="hover" data-toggle="tooltip" type="submit" value="QRZ?" onclick="qrz_call()" title="shortcut: Alt+q"></div>
 				<div class="col-md-2 "></div>
 				<div class="col-sm-3 col-md-2 col-xs-4 ">
-				<input class="btn btn-warning col-md-12 col-sm-12 col-xs-12" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11"></div>
+				<input class="btn btn-warning col-md-12 col-sm-12 col-xs-12" data-trigger="hover" data-toggle="tooltip" type="submit" value="Cancel" onclick="wipe_data()" title="shortcut: Alt+w/F11"></div>
 </div>

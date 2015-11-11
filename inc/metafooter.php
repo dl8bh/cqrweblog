@@ -3,8 +3,10 @@
 <script src="inc/js/jquery.min.js"></script>
 <script src="inc/js/bootstrap.min.js"></script>
 <script>
+if (window.matchMedia("(min-width: 768px)").matches) {
 $(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();
 });
+}
 </script>
 
