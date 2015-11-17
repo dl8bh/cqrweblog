@@ -23,6 +23,7 @@ $hamqth_api = true;        // enable/disable hamqth-api (switches to local dxcc 
 													 // if your cqrweblog instance is very slow, consider turning $hamqt_api to false, hamqth.com might have problems!
 $cluster_spot_num =50;     // number of spots to load from the dx-cluster
 $enable_changelog = true;  // show link to changelog in header
+$clusterurl = 'https://www.hamqth.com/dxc_csv.php?';  // allow to setup another location for cluster for caching
 
 /**************
 DEFAULT REPORTS

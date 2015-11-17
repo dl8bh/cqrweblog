@@ -18,9 +18,10 @@ function parse_remarks( $remarks, $field)
 
 function get_cluster_spots ( $number, $band )
 {		
+		global $clusterurl;
 		$ctx = stream_context_create(array('http'=>array('timeout' => 2,  )));
 
-		$clusterurl = 'http://www.hamqth.com/dxc_csv.php?';
+//		$clusterurl = 'https://hamqth.dl8bh.de/dxc_csv.php?';
 		if ($number != 0) {
 				$clusterurl .= '&limit=' . $number;
 		}
