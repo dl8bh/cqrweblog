@@ -106,12 +106,13 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 if ($enable_help[$log_id]) {
 	?>
 	<button type="button" class="col-md-12 hidden-xs btn btn-info" data-toggle="collapse" data-target="#help">Show help</button>
-  <div id="help" class="collapse hidden-xs">
+  <div id="help" class="collapse panel panel-default hidden-xs">
 	Wipe: <kbd>Alt+w</kbd> <kbd>F11</kbd></br>
 	QRZ: <kbd>Alt+q</kbd> </br>
 	Remarks-Strings: I:IOTA L:LOCATOR M:MANAGER S:STATE</br>
 	To jump between input fields: <kbd>TAB</kbd></br>
-	To skip reports and mode (if you have a pileup running...) hit <kbd>SPACE</kbd> to jump directly to name.
+	To skip reports and mode (if you have a pileup running...)</br> 
+	hit <kbd>SPACE</kbd> to jump directly to name.</br>
 	<a href="./README.txt" target="_blank" >Complete Manual</a>
 	</div>
 	<?php
