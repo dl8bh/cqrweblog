@@ -18,9 +18,11 @@ function parse_remarks( $remarks, $field)
 
 function get_cluster_spots ( $number, $band )
 {		
-		global $clustertimeout;	
-		global $clusterurl;
-		$ctx = stream_context_create(array('http'=>array('timeout' => $clustertimeout,  )));
+		global $apitimeout;	
+		//global $clusterurl;
+		global $hamqthurl;
+		$clusterurl= $hamqthurl . 'dxc_csv.php?';
+		$ctx = stream_context_create(array('http'=>array('timeout' => $apitimeout,  )));
 
 		if ($number != 0) {
 				$clusterurl .= 'limit=' . $number;
@@ -51,7 +53,7 @@ function get_cluster_spots ( $number, $band )
 }
 
 function call_to_dxcc ( $callsign) {
-		
+		global $hamqthurl;	
 		global $hamqth_api;
 		global $hamqthtimeout;
 		if (empty($callsign)) {
@@ -62,8 +64,8 @@ function call_to_dxcc ( $callsign) {
 		include("oldinclude.php");
 				return call_to_dxcc2( $callsign);
 		}
-		$ctx = stream_context_create(array('http'=>array('timeout' => 2,  )));
-		$jsonurl='http://www.hamqth.com/dxcc_json.php?callsign=' . $callsign;
+		$ctx = stream_context_create(array('http'=>array('timeout' => 12,  )));
+		$jsonurl= $hamqthurl . 'dxcc_json.php?callsign=' . $callsign;
 		$jsonData = @file_get_contents( $jsonurl, false, $ctx );
 		$jsonData = str_replace('".', '",', $jsonData);
 		$data = json_decode($jsonData,true); 
@@ -73,8 +75,7 @@ function call_to_dxcc ( $callsign) {
 		$dxcc_waz = $data['waz'];
 		// if timeout => fallback to old call_to_dxcc
 		if (empty($dxcc_waz)) {
-				
-				$hamqthtimeout=true;
+				//$hamqthtimeout=true;
 				include("oldinclude.php");
 				return call_to_dxcc2( $callsign);
 		}

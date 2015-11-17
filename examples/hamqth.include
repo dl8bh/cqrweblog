@@ -1,0 +1,13 @@
+	proxy_cache STATIC;
+	proxy_set_header Host www.hamqth.com;
+	proxy_ignore_headers    Set-Cookie Cache-Control Expires;
+	proxy_hide_header       Set-Cookie;
+	proxy_hide_header	Cache-Control;
+	proxy_set_header        Cookie "";
+	proxy_pass https://www.hamqth.com ;
+	proxy_buffering on;
+	add_header X-Proxy-Cache $upstream_cache_status;
+	proxy_cache_use_stale updating;
+  	proxy_cache_methods POST GET;
+	proxy_cache_key $host$request_uri;
+	#proxy_cache_key $host$request_uri|$request_body;

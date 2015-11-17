@@ -26,9 +26,10 @@ $enable_changelog = true;  // show link to changelog in header
 //$clusterurl = 'https://www.hamqth.com/dxc_csv.php?';
 													 // original cluster data
 $clusterurl = 'https://hamqth.dl8bh.de/dxc_csv.php?'; 
-													 // cached clusterspots from hamqth upstream, infrastructure by dl8bh
+$hamqthurl = 'http://hamqth.dl8bh.de/';
+// cached clusterspots from hamqth upstream, infrastructure by dl8bh
 													 // allow to setup another location for cluster for caching
-$clustertimeout = 12;			 // time, after which cluster should time out. lower values if depending on hamqth.com, higher values, if you use some cached
+$apitimeout = 12;			 		 // time, after which cluster should time out. lower values if depending on hamqth.com, higher values, if you use some cached
 													 // infrastructure like http://hamqth.dl8bh.de/dxc_csv.php which does caching for you
 /**************
 DEFAULT REPORTS
