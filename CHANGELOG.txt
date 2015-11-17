@@ -1,5 +1,8 @@
 2015-11-17
 	-introduce possibility to cache cluster requests
+	-built some caching infrastructure for the hamqth cluster
+		-you may use hamqth.dl8bh.de/dxc_csv.php which caches every request 15s
+		-example nginx proxy_cache based vhost-file now included
 2015-11-11
 	-switch to bootstrap table headers
 	-dont show input fields on stats page in case of "Check DXCC" from log
