@@ -1,13 +1,35 @@
-	proxy_cache STATIC;
-	proxy_set_header Host www.hamqth.com;
-	proxy_ignore_headers    Set-Cookie Cache-Control Expires;
-	proxy_hide_header       Set-Cookie;
-	proxy_hide_header	Cache-Control;
-	proxy_set_header        Cookie "";
-	proxy_pass https://www.hamqth.com ;
-	proxy_buffering on;
-	add_header X-Proxy-Cache $upstream_cache_status;
-	proxy_cache_use_stale updating;
-  	proxy_cache_methods POST GET;
-	proxy_cache_key $host$request_uri;
-	#proxy_cache_key $host$request_uri|$request_body;
+server {
+    listen *:80;
+    listen [::]:80;
+    listen *:443 ssl;
+    listen [::]:443 ssl;
+    server_name hamqth.dl8bh.de; 
+#    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    access_log /var/log/nginx-hamqth-access.log;
+    error_log /var/log/nginx-hamqth-error.log debug;
+
+	root /usr/local/www/hamqthcache;	
+	
+	index /index.html;		
+	location /dxc_csv.php {
+	include hamqth.include;
+	proxy_cache_valid any      15s;
+	#proxy_read_timeout 1s;
+		
+	}
+	location /dxcc.php {
+
+	proxy_cache_valid any      2d;
+	include hamqth.include;
+	#proxy_read_timeout 1s;
+	}       	
+	
+	location /dxcc_json.php {
+	proxy_cache_valid any	2d;
+	include hamqth.include;
+	#proxy_read_timeout 1s;
+	}
+
+
+
+}
