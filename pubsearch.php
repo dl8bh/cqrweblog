@@ -42,12 +42,12 @@ $match_amount =count_qsos( $log_id );
 switch ($match_amount) {
     case 0:
   echo '<div class="alert alert-warning col-sm-4">' . "\n" .
-    '<strong>Sorry </strong> no QSO with you in the found in the log' . "\n" .
+    '<strong>Sorry </strong> no QSO with you found in the log' . "\n" .
   	'</div>';
 	break;
     case 1:
   echo '<div class="alert alert-info col-sm-4">' . "\n" .
-    '<strong>' . $match_amount . '</strong> QSO with you in the log found' . "\n" .
+    '<strong>' . $match_amount . '</strong> QSO with you in the log' . "\n" .
   	'</div>';
 
 	break;
