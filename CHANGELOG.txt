@@ -1,3 +1,6 @@
+2015-12-04
+	-fixed pubsearch
+	-added favicon (tnx saku oh1kh for suggestion)
 2015-11-17
 	-introduce possibility to cache cluster requests
 	-built some caching infrastructure for the hamqth cluster
