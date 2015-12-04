@@ -32,7 +32,7 @@ if ($enable_searchcount[$log_id]) {
 		<div class="row">
 		<div class="col-sm-4"></div>	
 		<div class="hidden-xs alert alert-info col-sm-4">
-				There have been <?php echo get_search_count	($log_id) ; ?> searches in this log.
+				There have been <?php echo increment_search_count	($log_id) ; ?> searches in this log.
 		</div>	
 		</div>
 <?php
