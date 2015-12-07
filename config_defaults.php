@@ -50,7 +50,8 @@ $enable_help = array ( "offset", true, true, true, true, true, true, true, true,
 $enable_searchcount = array ( "0", false, false, false, false, false, false, false, false, false, true);	// let the user decide, if searches are counted. To use this, searches.txt has 
 																																				                                  // to exist and has to be writable by the webserver 
 																																																					// (in most setups chmod 775 should work, else try chmod 777)
-
+$enable_pubqslr = array ( "offset", true, true, true, true, true, true, true, true, true, true);			// show information about received QSL on public qso list/search
+$enable_pubqsls = array ( "offset", true, true, true, true, true, true, true, true, true, true);			// show information about sent QSL on public qso list/search
 /*************
 CLUSTER COLORS
 *************/

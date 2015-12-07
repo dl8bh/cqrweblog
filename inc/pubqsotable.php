@@ -9,14 +9,20 @@
 <th style="text-align:center" width="100px">Mode</th>
 <th class="hidden-xs" width="100px">RST Sent</th>
 <th class="hidden-xs" width="100px">RST Rcvd</th>
-<th class="hidden-xs" width="200px">Name</th>
+<th class="hidden-xs" width="100px">Name</th>
+<?php if ($enable_pubqslr[$log_id]) {
+echo '<th class="hidden-xs" width="100px">QSL Rcvd</th>' ."\n";
+} 
+if ($enable_pubqsls[$log_id]) {
+echo '<th class="hidden-xs" width="100px">QSL Sent</th>' . "\n";
+} ?>
 </thead>
 </tr>
 <?php
 $dbconnect -> select_db( logid_to_tableid( $log_id ) );
 //$dbconnect -> select_db("cqrlog001");
 $qso_count = mysqli_real_escape_string($dbconnect ,$qso_count);
-$query = mysqli_query($dbconnect, "SELECT qsodate, time_on, callsign, band, mode, rst_r, rst_s, remarks, name FROM view_cqrlog_main_by_qsodate " . $where . " LIMIT " . $qso_count);
+$query = mysqli_query($dbconnect, "SELECT qsodate, time_on, callsign, band, mode, rst_r, rst_s, remarks, name, qsl_r, qsl_s, qslr_date, qsls_date FROM view_cqrlog_main_by_qsodate " . $where . " LIMIT " . $qso_count);
 while($row = mysqli_fetch_object($query))
 		{
 		$date= $row->qsodate;
@@ -26,8 +32,40 @@ while($row = mysqli_fetch_object($query))
 		$mode = $row->mode;
 		$rst_r = $row->rst_r;	
 		$rst_s = $row->rst_s;
+		$qsl_s = $row->qsl_s;
+		$qsl_r = $row->qsl_r;
+		$qslrdate = $row->qslr_date;
+		$qslsdate = $row->qsls_date;
 		$name = $row->name;
+		
+		if ($enable_pubqslr[$log_id]) {
+				switch ($qsl_r) {
+					case 'Q' :
+						$qsl_r= $qslrdate;
+						break;
+					case '' :
+				}	
+		}
+		
+		if ($enable_pubqsls[$log_id]) {
+				switch ($qsl_s) {
+					case 'B' :
+						$qsl_s= $qslsdate . ' via Bureau';
+						break;
+					case 'D' :
+						$qsl_s= $qslsdate . ' via Direct';
+						break;
+					case 'SB' :
+						$qsl_s= '';
+						break;
 
+
+					case '' :
+					default :
+						$qsl_s='';
+						break;
+				}
+		}
 		echo '<tr>' . "\n";
 		echo '<td>' . $date . '</td>' . "\n";
    	echo '<td>' . $time . '</td>' . "\n";
@@ -37,6 +75,9 @@ while($row = mysqli_fetch_object($query))
 		echo '<td class="hidden-xs">' . $rst_s . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
+		if ($qslrstat[$log_id]) {}
+		echo '<td class="hidden-xs">' . $qsl_r . '</td>' . "\n";
+		echo '<td class="hidden-xs">' . $qsl_s . '</td>' . "\n";
 		echo '</tr>' . "\n";
 
 
