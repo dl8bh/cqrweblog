@@ -7,8 +7,8 @@
 <th style="text-align:center" width="40px">Band</th>
 <th style="text-align:center" width="150px">Call sign</th>
 <th style="text-align:center" width="100px">Mode</th>
-<th class="hidden-xs" width="100px">RST Sent</th>
-<th class="hidden-xs" width="100px">RST Rcvd</th>
+<th class="hidden-xs" width="90px">RST Sent</th>
+<th class="hidden-xs" width="90px">RST Rcvd</th>
 <th class="hidden-xs" width="100px">Name</th>
 <?php if ($enable_pubqslr[$log_id]) {
 echo '<th class="hidden-xs" width="100px">QSL Rcvd</th>' ."\n";
@@ -75,9 +75,13 @@ while($row = mysqli_fetch_object($query))
 		echo '<td class="hidden-xs">' . $rst_s . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
-		if ($qslrstat[$log_id]) {}
+		if ($qslrstat[$log_id]) {
 		echo '<td class="hidden-xs">' . $qsl_r . '</td>' . "\n";
+		}
+
+		if ($qslsstat[$log_id]) {
 		echo '<td class="hidden-xs">' . $qsl_s . '</td>' . "\n";
+		}
 		echo '</tr>' . "\n";
 
 

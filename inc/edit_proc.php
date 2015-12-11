@@ -60,7 +60,9 @@ if (empty($call)){
 						"', loc = '" . $loc .
 						"', waz = '" . $waz .
 						"', qsl_s = '" . $qsls .
+						"', qsls_date = '" . $qsls_date .
 						"', qsl_r = '" . $qslr .
+						"', qslr_date = '" . $qslr_date .
 						"', state = '" . $state .
 						"', qsl_via = '" . $manager .
 						"', itu = '" . $itu . "'
@@ -86,7 +88,9 @@ if (empty($call)){
 						"', loc = '" . $loc .
 						"', waz = '" . $waz .
 						"', qsl_s = '" . $qsls .
+						"', qsls_date = '" . $qsls_date .
 						"', qsl_r = '" . $qslr .
+						"', qslr_date = '" . $qslr_date .
 						"', state = '" . $state .
 						"', qsl_via = '" . $manager .
 						"', itu = '" . $itu . "'

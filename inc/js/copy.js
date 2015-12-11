@@ -50,3 +50,18 @@ function wipe_data()
 		}
 		document.input.call.focus();
 }
+
+function qslsdate_update()
+{
+		var d = new Date();
+		var month = d.getUTCMonth() + 1;
+		document.input.qsls_date.value=d.getUTCFullYear() + "-" + month + "-" + d.getUTCDate();
+}
+
+
+function qslrdate_update()
+{
+		var d = new Date();
+		var month = d.getUTCMonth() + 1;
+		document.input.qslr_date.value=d.getUTCFullYear() + "-" + month + "-" + d.getUTCDate();
+}

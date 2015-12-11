@@ -1,3 +1,5 @@
+2015-12-11
+	-added qslr/s date to edit.php
 2015-12-07
 	-added output of qsl status to public qso list/search
 2015-12-04

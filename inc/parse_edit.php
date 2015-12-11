@@ -21,7 +21,9 @@ while($row = mysqli_fetch_object($query))
 		$itu = $row->itu;
 		$waz = $row->waz;
 		$qsls = $row->qsl_s;
+		$qsls_date = $row->qsls_date;
 		$qslr = $row->qsl_r;
+		$qslr_date = $row->qslr_date;
 		$state = $row->state;
 		$manager= $row->qsl_via;
 		}
@@ -201,9 +203,19 @@ if (isset($_POST["loc_input"])) {
 if (isset($_POST['qsls_input'])){
 $qsls = (htmlentities($_POST["qsls_input"]));
 }
+
+if (isset($_POST['qsls_date'])){
+$qsls_date = (htmlentities($_POST["qsls_date"]));
+}
+
 if (isset($_POST['qslr_input'])){
 $qslr = (htmlentities($_POST["qslr_input"]));
 }
+
+if (isset($_POST['qslr_date'])){
+$qslr_date = (htmlentities($_POST["qslr_date"]));
+}
+
 if (isset($_POST['state_input'])){
 $state = strtoupper(htmlentities($_POST["state_input"]));
 }

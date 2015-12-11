@@ -1,6 +1,4 @@
 <?php
-?>	
-<?php
 $urlparameter = '?log_id=' . $log_id;
 
 if (isset($qso_id)) {
@@ -120,7 +118,7 @@ if (isset($qso_id)) {
 
 	<div class="form-group col-sm-1">
 			<label for="qsls_input" class="control-label">QSL_S</label> 
-				<select class="form-control" id="qsls_input" name="qsls_input">
+				<select class="form-control" id="qsls_input" name="qsls_input" onchange="qslsdate_update()" >
 						<option><?php echo $qsls ;?></option>
 						<option></option> 
 						<option>N</option>
@@ -134,17 +132,26 @@ if (isset($qso_id)) {
 				</select>
 	</div>
 
+	<div class="form-group col-sm-1">
+		<label for="qsls_date" class="control-label">QSLS Date</label>
+		<input onClick="this.setSelectionRange(0,this.value.length)" type="text" id="qsls_date" class="form-control" name="qsls_date" size="10" value="<?php echo $qsls_date; ?>" maxlength="10">
+	</div>
 
 	<div class="form-group col-sm-1">
 			<label for="qslr_input" class="control-label">QSL_R</label> 
-				<select class="form-control" id="qslr_input" name="qslr_input">
+				<select class="form-control" id="qslr_input" name="qslr_input" onchange="qslrdate_update()" >
 						<option><?php echo $qslr ?></option>
 						<option>Q</option>
 						<option></option>
 				</select> 
 	</div>
+	
+	<div class="form-group col-sm-1">
+		<label for="qslr_date" class="control-label">QSLR Date</label>
+		<input onClick="this.setSelectionRange(0,this.value.length)" type="text" id="qslr_date" class="form-control" name="qslr_date" size="10" value="<?php echo $qslr_date; ?>" maxlength="10">
+	</div>
 
-	<div class="form-group col-sm-2">
+	<div class="form-group col-sm-1">
 		<label for="qth_input" class="control-label">QTH</label>
 		<input onClick="this.setSelectionRange(0,this.value.length)" type="text" id="qth_input" class="form-control" name="qth_input" value="<?php echo $qth; ?>" maxlength="55" tabindex="6">
 	</div>
@@ -154,7 +161,7 @@ if (isset($qso_id)) {
 		<input onClick="this.setSelectionRange(0,this.value.length)" type="text" id="loc_input" class="form-control" name="loc_input" value="<?php echo $loc; ?>" maxlength="55" tabindex="7">
 	</div>
 	
-	<div class="form-group col-sm-2">
+	<div class="form-group col-sm-1">
 		<label for="manager_input" class="control-label">Manager</label>
 		<input onClick="this.setSelectionRange(0,this.value.length)" type="text" id="manager_input" class="form-control" name="manager_input" value="<?php echo $manager ?>" maxlength="55" tabindex="7">
 	</div>
