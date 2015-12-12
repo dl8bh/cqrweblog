@@ -75,11 +75,11 @@ while($row = mysqli_fetch_object($query))
 		echo '<td class="hidden-xs">' . $rst_s . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
-		if ($qslrstat[$log_id]) {
+		if ($enable_pubqslr[$log_id]) {
 		echo '<td class="hidden-xs">' . $qsl_r . '</td>' . "\n";
 		}
 
-		if ($qslsstat[$log_id]) {
+		if ($enable_pubqsls[$log_id]) {
 		echo '<td class="hidden-xs">' . $qsl_s . '</td>' . "\n";
 		}
 		echo '</tr>' . "\n";
