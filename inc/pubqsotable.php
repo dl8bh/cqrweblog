@@ -52,7 +52,13 @@ while($row = mysqli_fetch_object($query))
 					case 'B' :
 						$qsl_s= $qslsdate . ' via Bureau';
 						break;
+					case 'MB' :
+						$qsl_s= $qslsdate . ' via Bureau';
+						break;
 					case 'D' :
+						$qsl_s= $qslsdate . ' via Direct';
+						break;
+					case 'MD' :
 						$qsl_s= $qslsdate . ' via Direct';
 						break;
 					case 'SB' :
