@@ -20,7 +20,13 @@ $statsactive=true;
 include("inc/navbar.php");
 echo '<h1 align="center">DXCC statistics of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
 include("inc/stats_input.php");
+
+if ($inlog){
+	echo '<div align="right"> <a href="javascript:window.close();">Close window</a></div>';
+}
+
 ?>
+
 <br /><br />
 
 <?php
