@@ -70,7 +70,7 @@ echo '<form class="form" role="form" action="logsearch.php?log_id=' . $log_id . 
 	</div>
 <?php
 if ($inlog){
-	echo '<div align="right"> <a href="javascript:window.close();">Close window</a></div>';
+	echo '<div align="center"> <a href="javascript:window.close();" class="btn btn-warning visible-xs visible-xm ">Close window</a></div>';
 	echo '<input type="hidden" name="inlog" value="1">';
 }
 ?>
