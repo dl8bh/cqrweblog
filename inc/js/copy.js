@@ -51,17 +51,52 @@ function wipe_data()
 		document.input.call.focus();
 }
 
+function normalize_date(date)
+{
+		switch (date) {
+    case 1:
+        return "01";
+        break;
+    case 2:
+        return "02";
+				break;
+    case 3:
+        return "03";
+        break;
+    case 4:
+        return "04";
+        break;
+    case 5:
+        return "05";
+        break;
+    case 6:
+        return "06";
+        break;
+    case 7:
+        return "07";
+        break;
+    case 8:
+        return "08";
+        break;
+    case 9:
+        return "09";
+        break;
+		default:
+				return date;
+} 
+}
+
 function qslsdate_update()
 {
 		var d = new Date();
-		var month = d.getUTCMonth() + 1;
-		document.input.qsls_date.value=d.getUTCFullYear() + "-" + month + "-" + d.getUTCDate();
+		var month = normalize_date(d.getUTCMonth() + 1);
+		document.input.qsls_date.value=d.getUTCFullYear() + "-" + month + "-" + normalize_date(d.getUTCDate());
 }
 
 
 function qslrdate_update()
 {
 		var d = new Date();
-		var month = d.getUTCMonth() + 1;
-		document.input.qslr_date.value=d.getUTCFullYear() + "-" + month + "-" + d.getUTCDate();
+		var month = normalize_date(d.getUTCMonth() + 1);
+		document.input.qslr_date.value=d.getUTCFullYear() + "-" + month + "-" + normalize_date(d.getUTCDate());
 }

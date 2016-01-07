@@ -1,3 +1,5 @@
+2016-01-07
+	-small bugfix for qsl dateformat (leading 0 for 2015-01-01)
 2015-12-16
 	-qsl dates for manager bureau/direct bureau in public qso list/search
 2015-12-12
