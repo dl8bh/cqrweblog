@@ -32,11 +32,11 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	<?php
 	if (isset($freq))
 	{
-	echo '<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" data-trigger="hover" data-toggle="tooltip" title="only band or frequency is needed" > ';
+	echo '<input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" value="' . $freq . '" tabindex=1" data-trigger="hover" data-toggle="tooltip" title="only band or frequency is needed" onchange="clearband()" > ';
 	}
 	else
 	{
-	echo '<input  onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" data-trigger="hover" data-toggle="tooltip"  title="only one of band or frequency is needed" >';
+	echo '<input  onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="freq" type="text" maxlength="55" size="15" name="frequency" tabindex="1" value="" data-trigger="hover" data-toggle="tooltip"  title="only one of band or frequency is needed" onchange="clearband()">';
 	echo '<span class="glyphicon glyphicon-remove form-control-feedback"></span>';
 	}
 	?>

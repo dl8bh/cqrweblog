@@ -85,6 +85,10 @@ function normalize_date(date)
 				return date;
 } 
 }
+function clearband()
+{
+		input.band.value="select";
+}
 
 function bandtofreq()
 {
