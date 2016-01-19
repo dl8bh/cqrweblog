@@ -35,6 +35,7 @@ function get_cluster_spots ( $number, $band )
 		}
 		$csvData = @file_get_contents( $clusterurl ,false, $ctx);
 		$csvData = htmlentities($csvData);
+		$csvData = str_replace('\^', '\ ^', $csvData);
 		$csvData = str_replace('^', '"^"', $csvData);
 		$csvData = preg_replace('/^/', '"', $csvData);
 		$csvData = str_replace("\n", '"' .  "\n" . '"' , $csvData);
