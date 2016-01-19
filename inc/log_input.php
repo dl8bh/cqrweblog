@@ -10,7 +10,7 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	<div class="row ">
 	<div class="form-group col-md-1 col-sm-2 hidden-xs col-xs-4 " >
 	<label for="band" class="control-label">Band</label>
-	<select class="form-control" id="band" name="band" tabindex=1>
+	<select class="form-control" id="band" name="band" tabindex=1 onchange="bandtofreq()">
 	<?php
 	echo '<option>select</option>';
 	$dbconnect -> select_db("cqrlog_common");

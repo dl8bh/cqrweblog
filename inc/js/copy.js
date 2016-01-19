@@ -86,6 +86,87 @@ function normalize_date(date)
 } 
 }
 
+function bandtofreq()
+{
+		var band = input.band.value;
+		
+		switch (band) {
+		
+		case "2190M":
+			freq="1.8000";
+			break;
+		case "630M":
+			freq="0.4720";
+			break;
+		case "160M":
+			freq="1.8000";
+			break;
+		case "80M":
+			freq="3.5000";
+			break;
+		case "40M":
+			freq="7.0000";
+			break;
+		case "30M":
+			freq="10.1000";
+			break;
+		case "20M":
+			freq="14.0000";
+			break;
+		case "17M":
+			freq="18.0680";
+			break;
+		case "15M":
+			freq="21.0000";
+			break;
+		case "12M":
+			freq="24.8900";
+			break;
+		case "10M":
+			freq="28.0000";
+			break;
+		case "6M":
+			freq="50.0000";
+			break;
+		case "4M":
+			freq="70.0000";
+			break;
+		case "2M":
+			freq="144.0000";
+			break;
+		case "70CM":
+			freq="433.0000";
+			break;
+		case "23CM":
+			freq="1240.0000";
+			break;
+		case "13CM":
+			freq="2300.0000";
+			break;
+		case "9CM":
+			freq="3400.0000";
+			break;
+		case "6CM":
+			freq="5650.0000";
+			break;
+		case "3CM":
+			freq="10000.0000";
+			break;
+		case "1.25CM":
+			freq="24000.0000";
+			break;
+		case "6MM":
+			freq="47000.0000";
+			break;
+		case "4MM":
+			freq="77500.0000";
+			break;
+		default:
+		return;
+		}
+	input.freq.value=freq;
+}
+
 function qslsdate_update()
 {
 		var d = new Date();

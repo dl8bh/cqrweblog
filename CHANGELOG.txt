@@ -1,6 +1,7 @@
 2016-01-19
 	-small bugfix for backslashes occuring at the end of dxcluster comment lines
 	-replaced cqrlog favicon with own favicon - de dj1th
+	-ui improvement: changing band changes frequency via js directly - tnx for feedback ben dl5ant
 2016-01-07
 	-small bugfix for qsl dateformat (leading 0 for 2015-01-01)
 2015-12-16
