@@ -23,11 +23,11 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
 	?>
 	</select>
 	</div>
-	<div class="form-group col-md-1 col-sm-2 hidden-xs col-xs-4 ">
+	<div class="form-group col-md-1 col-sm-2 hidden-md hidden-xs col-xs-4 ">
     <label for="time" class="control-label" >Time</label>
 	<input id="time" class="form-control" placeholder="HHMM" onClick="this.setSelectionRange(0,this.value.length)" type="text" name="time" size="5" value="" maxlength="5" tabindex="1" data-trigger="hover" data-toggle="tooltip" title="optional, if empty: time in UTC, input format: hh:mm or hhmm">
 </div>
-  <div class="form-group col-md-1 col-sm-3 col-xs-4 <?php if (!isset($freq)) { echo "has-error has-feedback" ; }  ?>">	
+  <div class="form-group col-md-2 col-lg-1 col-sm-3 col-xs-4 <?php if (!isset($freq)) { echo "has-error has-feedback" ; }  ?>">	
     <label for="freq" class="control-label">Frequency</label>
 	<?php
 	if (isset($freq))

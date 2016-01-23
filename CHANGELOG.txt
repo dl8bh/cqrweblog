@@ -1,3 +1,5 @@
+2016-01-23
+	-show time input only on large displays to have more space for frequency input
 2016-01-19
 	-small bugfix for backslashes occuring at the end of dxcluster comment lines
 	-replaced cqrlog favicon with own favicon - de dj1th
