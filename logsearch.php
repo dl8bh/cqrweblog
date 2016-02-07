@@ -20,7 +20,7 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 
 <?php
 include("inc/navbar.php");
-echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
+echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
 include("inc/search_input.php");
 ?>
 

@@ -19,13 +19,13 @@ include("inc/metaheader.php");
 <?php
 include("inc/navbar.php");
 echo '<div id="head">' . "\n";
-echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />';
+echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
 echo '</div>' . "\n";
 if ($enable_cluster[$log_id]&&$hamqth_api&&!($hamqthtimeout))
 {
 include ("inc/cluster.php");
 }
-echo '<br /><br />';
+echo '<div class="hidden-xs hidden-sm"><br /><br /></div>';
 include ("inc/log_input.php");
 ?>
 <div class="col-xs-*">

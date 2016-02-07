@@ -1,3 +1,5 @@
+2016-02-07
+	-improvement for mobile view
 2016-01-23
 	-show time input only on large displays to have more space for frequency input
 2016-01-19
