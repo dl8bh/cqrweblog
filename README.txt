@@ -124,8 +124,8 @@ Works like the normal log-input, but with some more variable fields like
 -DXCC
 	-allows to search for a specific DXCC
 	-uses % as wildcard
-		-D% shows D2 (Antigua), D4 (Cap Verde), D6 (Comoros), DL (Federal Republic of Germany), DU (Philippines)
-		-D2 just shows Antigua…
+		-D% shows D2 (Angola), D4 (Cap Verde), D6 (Comoros), DL (Federal Republic of Germany), DU (Philippines)
+		-D2 just shows Angola...
 
 ===Publog===
 -can be enabled/disabled in config.php
