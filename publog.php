@@ -31,7 +31,7 @@ $publog=true;
 				include ("inc/pubsearch_input.php");
 				}
 
-		if ($enable_searchcount[$log_id]) {
+		if ($Userconfig->get_searchcount_enabled()) {
 		?>
 		</br>
 		<div class="row">
