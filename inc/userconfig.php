@@ -102,19 +102,7 @@ class Userconfig {
         return($result);
     }
 
-
-}
-
-function enable_pubqslr() {
-    $query = sprintf("UPDATE settings SET enable_pubqslr = '1' WHERE log_nr='%u'", $this->log_nr);
-    $result = $this->dbobj->query($query);
-    return $result;
-}
-
-function disable_pubqslr() {
-    $query = sprintf("UPDATE settings SET enable_pubqslr = '0' WHERE log_nr='%u'", $this->log_nr);
-    $result = $this->dbobj->query
-
+    
     function get_searchcount_enabled() {
         return $this->searchcount_enable;
     }
