@@ -38,7 +38,7 @@ while($row = mysqli_fetch_object($query))
 		$qslsdate = $row->qsls_date;
 		$name = $row->name;
 		
-		if ($enable_pubqslr[$log_id]) {
+		if ($Userconfig->get_pubqslr_enabled()) {
 				switch ($qsl_r) {
 					case 'Q' :
 						$qsl_r= $qslrdate;
@@ -47,7 +47,7 @@ while($row = mysqli_fetch_object($query))
 				}	
 		}
 		
-		if ($enable_pubqsls[$log_id]) {
+		if ($Userconfig->get_pubqsls_enabled()) {
 				switch ($qsl_s) {
 					case 'B' :
 						$qsl_s= $qslsdate . ' via Bureau';
@@ -81,11 +81,10 @@ while($row = mysqli_fetch_object($query))
 		echo '<td class="hidden-xs">' . $rst_s . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
 		echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
-		if ($enable_pubqslr[$log_id]) {
+		if ($Userconfig->get_pubqslr_enabled()) {
 		echo '<td class="hidden-xs">' . $qsl_r . '</td>' . "\n";
 		}
-
-		if ($enable_pubqsls[$log_id]) {
+		if ($Userconfig->get_pubqsls_enabled()) {
 		echo '<td class="hidden-xs">' . $qsl_s . '</td>' . "\n";
 		}
 		echo '</tr>' . "\n";
