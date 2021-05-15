@@ -37,7 +37,7 @@ $publog=true;
 		<div class="row">
 		<div class="col-sm-4"></div>	
 		<div class="alert alert-info col-sm-4">
-				There have been <?php echo $Userconfig->get_searchcount() ; $Userconfig->inc_searchcount();?> QSOs in Log.
+				There have been <?php echo get_search_count	($log_id) ; ?> searches from <?php echo count_qsos($log_id) ; ?> QSOs in Log.
 		</div>	
 		</div>
 		<?php
