@@ -112,27 +112,27 @@ class Cqrlog_common
         switch ($freq) {
                 //check for lazy WARC band frequency input
             case '10':
-                return band_to_freq('30M');
+                return $this->band_to_freq('30M');
                 break;
 
             case '18':
-                return band_to_freq('17M');
+                return $this->band_to_freq('17M');
                 break;
 
             case '24':
-                return band_to_freq('12M');
+                return $this->band_to_freq('12M');
 
             case '':
                 return NULL;
 
                 //Check if frequency input was in kHz, if true, convert to MHz
             default:
-                if (!freq_to_band($freq)) {
+                if (!$this->freq_to_band($freq)) {
 
                     //kHz/1000 = MHz
                     $newfreq = $freq / 1000;
 
-                    if (freq_to_band($newfreq)) {
+                    if ($this->freq_to_band($newfreq)) {
 
                         return $newfreq;
                     }
