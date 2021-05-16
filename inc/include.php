@@ -4,473 +4,463 @@ include("db.php");
 
 <?php
 
-function logid_to_tableid ( $log_id )
+function logid_to_tableid($log_id)
 {
-	$log_id = sprintf("%03d", $log_id);	
-	return 'cqrlog' . $log_id;
+    $log_id = sprintf("%03d", $log_id);
+    return 'cqrlog' . $log_id;
 }
 
-function parse_remarks( $remarks, $field)
+function parse_remarks($remarks, $field)
 {
-
-
 }
 
-function get_cluster_spots ( $number, $band )
-{		
-		global $apitimeout;	
-		//global $clusterurl;
-		global $hamqthurl;
-		$clusterurl= $hamqthurl . 'dxc_csv.php?';
-		$ctx = stream_context_create(array('http'=>array('timeout' => $apitimeout,  )));
+function get_cluster_spots($number, $band)
+{
+    global $apitimeout;
+    //global $clusterurl;
+    global $hamqthurl;
+    $clusterurl = $hamqthurl . 'dxc_csv.php?';
+    $ctx = stream_context_create(array('http' => array('timeout' => $apitimeout,)));
 
-		if ($number != 0) {
-				$clusterurl .= 'limit=' . $number;
-		}
-		else {
-				$clusterurl .= 'limit=10';
-		}
-		if ($band != 'ALL') {
-				$clusterurl .= '&band=' . $band;
-		}
-		$csvData = @file_get_contents( $clusterurl ,false, $ctx);
-		$csvData = htmlentities($csvData);
-		$csvData = str_replace('\^', '\ ^', $csvData);
-		$csvData = str_replace('^', '"^"', $csvData);
-		$csvData = preg_replace('/^/', '"', $csvData);
-		$csvData = str_replace("\n", '"' .  "\n" . '"' , $csvData);
-		$csvData = str_replace("^", ",", $csvData);
-		$arrayData = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $csvData)) ;
-		$devnull = array_pop($arrayData);
-		
-		if (!empty($arrayData)) {
-				return $arrayData;
-		}
-		else {
-				echo "Cluster timed out";
-				$hamqthtimeout = true;
-				return $arrayData;
-		}
+    if ($number != 0) {
+        $clusterurl .= 'limit=' . $number;
+    } else {
+        $clusterurl .= 'limit=10';
+    }
+    if ($band != 'ALL') {
+        $clusterurl .= '&band=' . $band;
+    }
+    $csvData = @file_get_contents($clusterurl, false, $ctx);
+    $csvData = htmlentities($csvData);
+    $csvData = str_replace('\^', '\ ^', $csvData);
+    $csvData = str_replace('^', '"^"', $csvData);
+    $csvData = preg_replace('/^/', '"', $csvData);
+    $csvData = str_replace("\n", '"' .  "\n" . '"', $csvData);
+    $csvData = str_replace("^", ",", $csvData);
+    $arrayData = array_map("str_getcsv", preg_split('/\r*\n+|\r+/', $csvData));
+    $devnull = array_pop($arrayData);
+
+    if (!empty($arrayData)) {
+        return $arrayData;
+    } else {
+        echo "Cluster timed out";
+        $hamqthtimeout = true;
+        return $arrayData;
+    }
 }
 
-function call_to_dxcc ( $callsign) {
-		global $hamqthurl;	
-		global $hamqth_api;
-		global $hamqthtimeout;
-		if (empty($callsign)) {
-				return array ( NULL, NULL, NULL, NULL );
-		}
-		// fallback to old call_to_dxcc withouth hamqth
-		if (!$hamqth_api||$hamqthtimeout) {
-		include("oldinclude.php");
-				return call_to_dxcc2( $callsign);
-		}
-		$ctx = stream_context_create(array('http'=>array('timeout' => 12,  )));
-		$jsonurl= $hamqthurl . 'dxcc_json.php?callsign=' . $callsign;
-		$jsonData = @file_get_contents( $jsonurl, false, $ctx );
-		$jsonData = str_replace('".', '",', $jsonData);
-		$data = json_decode($jsonData,true); 
-		$dxcc_adif = $data['adif'];
-		$dxcc_name = $data['details'];
-		$dxcc_itu = $data['itu'];
-		$dxcc_waz = $data['waz'];
-		// if timeout => fallback to old call_to_dxcc
-		if (empty($dxcc_waz)) {
-				//$hamqthtimeout=true;
-				include("oldinclude.php");
-				return call_to_dxcc2( $callsign);
-		}
+function call_to_dxcc($callsign)
+{
+    global $hamqthurl;
+    global $hamqth_api;
+    global $hamqthtimeout;
+    if (empty($callsign)) {
+        return array(NULL, NULL, NULL, NULL);
+    }
+    // fallback to old call_to_dxcc withouth hamqth
+    if (!$hamqth_api || $hamqthtimeout) {
+        include("oldinclude.php");
+        return call_to_dxcc2($callsign);
+    }
+    $ctx = stream_context_create(array('http' => array('timeout' => 12,)));
+    $jsonurl = $hamqthurl . 'dxcc_json.php?callsign=' . $callsign;
+    $jsonData = @file_get_contents($jsonurl, false, $ctx);
+    $jsonData = str_replace('".', '",', $jsonData);
+    $data = json_decode($jsonData, true);
+    $dxcc_adif = $data['adif'];
+    $dxcc_name = $data['details'];
+    $dxcc_itu = $data['itu'];
+    $dxcc_waz = $data['waz'];
+    // if timeout => fallback to old call_to_dxcc
+    if (empty($dxcc_waz)) {
+        //$hamqthtimeout=true;
+        include("oldinclude.php");
+        return call_to_dxcc2($callsign);
+    }
 
-		return array ( $dxcc_adif, $dxcc_name, $dxcc_itu, $dxcc_waz );
+    return array($dxcc_adif, $dxcc_name, $dxcc_itu, $dxcc_waz);
 }
 
-function get_iota ( $call, $pref ) {
+function get_iota($call, $pref)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->get_iota($call, $pref);
 }
 
-function count_qsos ( $log_id ) {
-		
-		global $where;
-		global $dbconnect;
+function count_qsos($log_id)
+{
 
-		$log_id = mysqli_real_escape_string($dbconnect ,$log_id);
-		if (logid_to_call( $log_id)) {
-				$dbconnect -> select_db( logid_to_tableid( $log_id ) );
-				$ergebnis = mysqli_query($dbconnect, "SELECT COUNT(*) FROM view_cqrlog_main_by_qsodate " . $where );
-				$result=$ergebnis->fetch_row();
-				
-				return $result[0];
-		}
-		
-		else return NULL;
+    global $where;
+    global $dbconnect;
 
+    $log_id = mysqli_real_escape_string($dbconnect, $log_id);
+    if (logid_to_call($log_id)) {
+        $dbconnect->select_db(logid_to_tableid($log_id));
+        $ergebnis = mysqli_query($dbconnect, "SELECT COUNT(*) FROM view_cqrlog_main_by_qsodate " . $where);
+        $result = $ergebnis->fetch_row();
+
+        return $result[0];
+    } else return NULL;
 }
 
-function logid_to_call ( $log_id ) {
+function logid_to_call($log_id)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->logid_to_call($log_id);
 }
 
-function freq_to_band_mode ( $inputfreq ) {
+function freq_to_band_mode($inputfreq)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->freq_to_band_mode($inputfreq);
 }
 
 
-function freq_to_band ( $inputfreq ) {
+function freq_to_band($inputfreq)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->freq_to_band($inputfreq);
 }
 
 
-function freq_to_mode ( $inputfreq ) {
+function freq_to_mode($inputfreq)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->freq_to_mode($inputfreq);
 }
 
-function get_manager ( $call ) {
+function get_manager($call)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->get_manager($call);
 }
 
-function band_to_freq ( $inputband ) {
+function band_to_freq($inputband)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->band_to_freq($inputband);
 }
 
-function validate_freq ( $freq ) {
+function validate_freq($freq)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->validate_freq($freq);
 }
 
-function dxcc_to_adif ( $dxcc ) {
+function dxcc_to_adif($dxcc)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->dxcc_to_adif($dxcc);
 }
 
-function adif_to_dxcc ( $adif ) {
+function adif_to_dxcc($adif)
+{
     global $Cqrlog_common;
     return $Cqrlog_common->adif_to_dxcc($adif);
 }
 
-function qslstring ( $paper, $lotw, $eqsl ) {
-		
-		
-		$qslstring ="";	
-		
-		if (($paper) && ($lotw) && ($eqsl)) {
-				$qslstring=' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-		}
+function qslstring($paper, $lotw, $eqsl)
+{
 
-		elseif (($paper) && ($lotw)) {
-				$qslstring=' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
-		}
 
-		elseif (($paper) && ($eqsl)) {
-				$qslstring=' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
-		}
+    $qslstring = "";
 
-		elseif (($lotw) && ($eqsl)) {
-				$qslstring=' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-		}
-		
-		elseif ($lotw) {
-				$qslstring=' and lotw_qslrdate IS NOT NULL ';
-		}
-		
-		elseif ($eqsl) {
-				$qslstring=' and eqsl_qslrdate IS NOT NULL ';
-		}
-		
-		elseif ($paper) {
-				$qslstring=' and qsl_r !="" ';
-		}
-	
-		return $qslstring;
+    if (($paper) && ($lotw) && ($eqsl)) {
+        $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+    } elseif (($paper) && ($lotw)) {
+        $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
+    } elseif (($paper) && ($eqsl)) {
+        $qslstring = ' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
+    } elseif (($lotw) && ($eqsl)) {
+        $qslstring = ' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+    } elseif ($lotw) {
+        $qslstring = ' and lotw_qslrdate IS NOT NULL ';
+    } elseif ($eqsl) {
+        $qslstring = ' and eqsl_qslrdate IS NOT NULL ';
+    } elseif ($paper) {
+        $qslstring = ' and qsl_r !="" ';
+    }
+
+    return $qslstring;
 }
 
 
-function check_dupe ( $log_id, $callsign, $band = 'ALL', $mode = 'ALL' ) {
-		global $dbconnect;
-		$dbconnect -> select_db (logid_to_tableid( $log_id ));
+function check_dupe($log_id, $callsign, $band = 'ALL', $mode = 'ALL')
+{
+    global $dbconnect;
+    $dbconnect->select_db(logid_to_tableid($log_id));
 
-		$log_id = mysqli_real_escape_string($dbconnect ,$log_id);
-		$band = mysqli_real_escape_string($dbconnect ,$band);
-		$mode = mysqli_real_escape_string($dbconnect ,$mode);
-		$callsign = mysqli_real_escape_string($dbconnect ,$callsign);
-		
+    $log_id = mysqli_real_escape_string($dbconnect, $log_id);
+    $band = mysqli_real_escape_string($dbconnect, $band);
+    $mode = mysqli_real_escape_string($dbconnect, $mode);
+    $callsign = mysqli_real_escape_string($dbconnect, $callsign);
 
-		
-		$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where callsign="' . $callsign . '" and mode="' . $mode . '" and band="' . $band    . '" limit 1');
-		
-		while($row = mysqli_fetch_object($ergebnis)) {
-		return true;
-		}
-		return false;
+
+
+    $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where callsign="' . $callsign . '" and mode="' . $mode . '" and band="' . $band    . '" limit 1');
+
+    while ($row = mysqli_fetch_object($ergebnis)) {
+        return true;
+    }
+    return false;
 }
 
-function check_adif ( $adif, $log_id, $band = 'ALL', $mode = 'ALL' , $paper = true , $lotw = true, $eqsl = true ) {
-		
-		global $dbconnect;
-		$dbconnect -> select_db (logid_to_tableid( $log_id ));
+function check_adif($adif, $log_id, $band = 'ALL', $mode = 'ALL', $paper = true, $lotw = true, $eqsl = true)
+{
 
-		$adif = mysqli_real_escape_string($dbconnect ,$adif);
-		$log_id = mysqli_real_escape_string($dbconnect ,$log_id);
-		$band = mysqli_real_escape_string($dbconnect ,$band);
-		$mode = mysqli_real_escape_string($dbconnect ,$mode);
-		$paper = mysqli_real_escape_string($dbconnect ,$paper);
-		$lotw = mysqli_real_escape_string($dbconnect ,$lotw);
-		$eqsl = mysqli_real_escape_string($dbconnect ,$eqsl);
+    global $dbconnect;
+    $dbconnect->select_db(logid_to_tableid($log_id));
 
-		$qslstring = qslstring( $paper, $lotw, $eqsl);
-		if ($mode == "RTTY") {
-				$mode = "DATA";
-		}
-		if ($band == "ALL") {
-				$bandstring='';
-		}
-		
-		else {
-				$bandstring = ' and band="' . $band . '"';
-		}
+    $adif = mysqli_real_escape_string($dbconnect, $adif);
+    $log_id = mysqli_real_escape_string($dbconnect, $log_id);
+    $band = mysqli_real_escape_string($dbconnect, $band);
+    $mode = mysqli_real_escape_string($dbconnect, $mode);
+    $paper = mysqli_real_escape_string($dbconnect, $paper);
+    $lotw = mysqli_real_escape_string($dbconnect, $lotw);
+    $eqsl = mysqli_real_escape_string($dbconnect, $eqsl);
 
-		$dbconnect -> select_db( logid_to_tableid( $log_id ) );
-		switch ($mode) {
-				case 'ALL' :
-						$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . $qslstring  . ' limit 1');
-				break;
-				case 'DATA' :
-						$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode!="SSB" and mode !="CW" and mode !="FM"'  . $qslstring  . ' limit 1');
-				break;
-				default :
-						$ergebnis = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
-		}
-		
-		while($row = mysqli_fetch_object($ergebnis)) {
-				return array ("C", '<td align="center" class="success">',  '</td>');
-	}
-	
-	switch ($mode) {
-			case 'ALL' :
-					$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' limit 1');
-					break;	
-			case 'DATA' :
-					$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and  mode!="SSB" and mode !="CW" and mode !="FM" limit 1');
-					break;
-	default:
-			$ergebnis2 = mysqli_query($dbconnect,	'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '" limit 1');
-	}
-	while($row = mysqli_fetch_object($ergebnis2)) {
-			return array ('W', '<td class="danger" align="center" >','</td>');
-	}
+    $qslstring = qslstring($paper, $lotw, $eqsl);
+    if ($mode == "RTTY") {
+        $mode = "DATA";
+    }
+    if ($band == "ALL") {
+        $bandstring = '';
+    } else {
+        $bandstring = ' and band="' . $band . '"';
+    }
 
-	return array ( 'N', '<td align="center">', '</td>' );
+    $dbconnect->select_db(logid_to_tableid($log_id));
+    switch ($mode) {
+        case 'ALL':
+            $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . $qslstring  . ' limit 1');
+            break;
+        case 'DATA':
+            $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode!="SSB" and mode !="CW" and mode !="FM"'  . $qslstring  . ' limit 1');
+            break;
+        default:
+            $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
+    }
+
+    while ($row = mysqli_fetch_object($ergebnis)) {
+        return array("C", '<td align="center" class="success">',  '</td>');
+    }
+
+    switch ($mode) {
+        case 'ALL':
+            $ergebnis2 = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' limit 1');
+            break;
+        case 'DATA':
+            $ergebnis2 = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and  mode!="SSB" and mode !="CW" and mode !="FM" limit 1');
+            break;
+        default:
+            $ergebnis2 = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '" limit 1');
+    }
+    while ($row = mysqli_fetch_object($ergebnis2)) {
+        return array('W', '<td class="danger" align="center" >', '</td>');
+    }
+
+    return array('N', '<td align="center">', '</td>');
 }
 
-function count_dxcc ( $log_id, $band, $mode, $paper, $lotw, $eqsl ) {
-		
-		global $dbconnect;
-		$dbconnect -> select_db (logid_to_tableid( $log_id ));
+function count_dxcc($log_id, $band, $mode, $paper, $lotw, $eqsl)
+{
 
-		$log_id = mysqli_real_escape_string($dbconnect ,$log_id);
-		$band = mysqli_real_escape_string($dbconnect ,$band);
-		$mode = mysqli_real_escape_string($dbconnect ,$mode);
-		$paper = mysqli_real_escape_string($dbconnect ,$paper);
-		$lotw = mysqli_real_escape_string($dbconnect ,$lotw);
-		$eqsl = mysqli_real_escape_string($dbconnect ,$eqsl);
+    global $dbconnect;
+    $dbconnect->select_db(logid_to_tableid($log_id));
 
-		$qslstring = qslstring($paper, $lotw, $eqsl);
-		$querystring = 'select count(distinct adif) from cqrlog_main where adif<>0 ' ;
+    $log_id = mysqli_real_escape_string($dbconnect, $log_id);
+    $band = mysqli_real_escape_string($dbconnect, $band);
+    $mode = mysqli_real_escape_string($dbconnect, $mode);
+    $paper = mysqli_real_escape_string($dbconnect, $paper);
+    $lotw = mysqli_real_escape_string($dbconnect, $lotw);
+    $eqsl = mysqli_real_escape_string($dbconnect, $eqsl);
 
-		if ($band != "ALL") {
-				$querystring .= 'and band="' . $band .'" ';
-		}
-	 	
-		if ($mode == "DATA") {
-				$querystring .= 'and mode!="SSB" and mode!="CW" and mode!="FM" ';
-		}
-		else if ($mode != "ALL") {
-				$querystring .= 'and mode="' . $mode .'" ';
-		}
-		
-		$querystring .= $qslstring;
-		
-		$ergebnis = mysqli_query($dbconnect, $querystring );
-		$result=$ergebnis->fetch_row();
-		return $result[0];
+    $qslstring = qslstring($paper, $lotw, $eqsl);
+    $querystring = 'select count(distinct adif) from cqrlog_main where adif<>0 ';
+
+    if ($band != "ALL") {
+        $querystring .= 'and band="' . $band . '" ';
+    }
+
+    if ($mode == "DATA") {
+        $querystring .= 'and mode!="SSB" and mode!="CW" and mode!="FM" ';
+    } else if ($mode != "ALL") {
+        $querystring .= 'and mode="' . $mode . '" ';
+    }
+
+    $querystring .= $qslstring;
+
+    $ergebnis = mysqli_query($dbconnect, $querystring);
+    $result = $ergebnis->fetch_row();
+    return $result[0];
 }
 
-function qso_to_adif( $qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $state, $qslrdate, $qslsdate , $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate  ) {
+function qso_to_adif($qsodate, $timeon, $timeoff, $call, $mode, $freq, $band, $rst_sent, $rst_rcvd, $name, $comment, $qsl_sent, $qsl_rcvd, $qsl_via, $iota, $adif, $itu, $cqz, $state, $qslrdate, $qslsdate, $lotws, $lotwr, $lotwsdate, $lotwrdate, $eqsls, $eqslr, $eqslsdate, $eqslrdate)
+{
 
-		$qso ='';
+    $qso = '';
 
-		if (!empty($qsodate)) {
-				$qsodate = str_replace("-","",$qsodate);
-				$qso .= '<QSO_DATE:8>' . $qsodate ;
-		}
+    if (!empty($qsodate)) {
+        $qsodate = str_replace("-", "", $qsodate);
+        $qso .= '<QSO_DATE:8>' . $qsodate;
+    }
 
-		if (!empty($timeon)) {
-				$timeon = str_replace(":","",$timeon);
-				$qso .= '<TIME_ON:4>' . $timeon ;
-		}
+    if (!empty($timeon)) {
+        $timeon = str_replace(":", "", $timeon);
+        $qso .= '<TIME_ON:4>' . $timeon;
+    }
 
-		if (!empty($timeoff)) {
-				$timeoff = str_replace(":","",$timeoff);
-				$qso .= '<TIME_OFF:4>' . $timeoff ;
-		}
+    if (!empty($timeoff)) {
+        $timeoff = str_replace(":", "", $timeoff);
+        $qso .= '<TIME_OFF:4>' . $timeoff;
+    }
 
-		if (!empty($call)) {
-				$qso .= '<CALL:' . strlen($call). '>' . $call ;
-		}
-		
-		if (!empty($mode)) {
-				$qso .= '<MODE:' . strlen($mode). '>' . $mode ;
-		}
-		
-		if (!empty($freq)) {
-				$qso .= '<FREQ:' . strlen($freq). '>' . $freq ;
-		}
-		
-		if (!empty($band)) {
-				$qso .= '<BAND:' . strlen($band). '>' . $band ;
-		}
-		
-		if (!empty($rst_sent)) {
-				$qso .= '<RST_SENT:' . strlen($rst_sent). '>' . $rst_sent ;
-		}
+    if (!empty($call)) {
+        $qso .= '<CALL:' . strlen($call) . '>' . $call;
+    }
 
-		if (!empty($rst_rcvd)) {
-				$qso .= '<RST_RCVD:' . strlen($rst_rcvd). '>' . $rst_rcvd ;
-		}
-		
-		if (!empty($name)) {
-				$qso .= '<NAME:' . strlen($name). '>' . $name ;
-		}
-		
-		if (!empty($comment)) {
-				$qso .= '<COMMENT:' . strlen($comment). '>' . $comment ;
-		}
-		
-		if (!empty($qsl_sent)) {
-				if ($qsl_sent == "D" OR $qsl_sent == "B")	{
-						$qsl_sent ="Y";
-				}
-				
-				else {
-						$qsl_sent ="N";
-				}
-				
-				$qso .= '<QSL_SENT:1>' . $qsl_sent ;
-		}
-		
-		else {
-				$qso .= '<QSL_SENT:1>N' ;
-		}
+    if (!empty($mode)) {
+        $qso .= '<MODE:' . strlen($mode) . '>' . $mode;
+    }
 
-		if (!empty($qsl_rcvd)) {
-				$qsl_rcvd ="Y";
-				$qso .= '<QSL_RCVD:1>' . $qsl_rcvd ;
-		}
-		
-		else {
+    if (!empty($freq)) {
+        $qso .= '<FREQ:' . strlen($freq) . '>' . $freq;
+    }
 
-				$qso .= '<QSL_RCVD:1>N' ;
-		}
+    if (!empty($band)) {
+        $qso .= '<BAND:' . strlen($band) . '>' . $band;
+    }
 
-		if (!empty($qsl_via)) {
-				$qso .= '<QSL_VIA:' . strlen($qsl_via). '>' . $qsl_via ;
-		}
+    if (!empty($rst_sent)) {
+        $qso .= '<RST_SENT:' . strlen($rst_sent) . '>' . $rst_sent;
+    }
 
-		if (!empty($iota)) {
-				$qso .= '<IOTA:' . strlen($iota) . '>' . $iota ;
-		}
+    if (!empty($rst_rcvd)) {
+        $qso .= '<RST_RCVD:' . strlen($rst_rcvd) . '>' . $rst_rcvd;
+    }
 
-		if (!empty($adif)) {
-				$qso .= '<DXCC:' . strlen($adif) . '>' . $adif ;
-		}
+    if (!empty($name)) {
+        $qso .= '<NAME:' . strlen($name) . '>' . $name;
+    }
 
-		if (!empty($itu)) {
-				$qso .= '<ITUZ:' . strlen($itu) . '>' . $itu ;
-		}
+    if (!empty($comment)) {
+        $qso .= '<COMMENT:' . strlen($comment) . '>' . $comment;
+    }
 
-		if (!empty($cqz))	{
-				$qso .= '<CQZ:' . strlen($cqz) . '>' . $cqz ;
-		}
+    if (!empty($qsl_sent)) {
+        if ($qsl_sent == "D" or $qsl_sent == "B") {
+            $qsl_sent = "Y";
+        } else {
+            $qsl_sent = "N";
+        }
 
-		if (!empty($state))	{
-				$qso .= '<STATE:' . strlen($state) . '>' . $state ;
-		}
+        $qso .= '<QSL_SENT:1>' . $qsl_sent;
+    } else {
+        $qso .= '<QSL_SENT:1>N';
+    }
 
-		if (!empty($qslsdate)) {
-				$qslsdate = str_replace("-","",$qslsdate);
-				$qso .= '<QSLSDATE:8>' . $qslsdate  ;
-		}
+    if (!empty($qsl_rcvd)) {
+        $qsl_rcvd = "Y";
+        $qso .= '<QSL_RCVD:1>' . $qsl_rcvd;
+    } else {
 
-		if (!empty($qslrdate)) {
-				$qslrdate = str_replace("-","",$qslrdate);
-				$qso .= '<QSLRDATE:8>' . $qslrdate ;
-		}
+        $qso .= '<QSL_RCVD:1>N';
+    }
 
-		if (!empty($lotws)) {
-				$qso .= '<LOTW_QSL_SENT:1>Y' ;
-		}
+    if (!empty($qsl_via)) {
+        $qso .= '<QSL_VIA:' . strlen($qsl_via) . '>' . $qsl_via;
+    }
 
-		if (!empty($lotwsdate)) {
-				$lotwsdate = str_replace("-","",$lotwsdate);
-				$qso .= '<LOTW_QSLSDATE:8>' . $lotwsdate ;
-		}
+    if (!empty($iota)) {
+        $qso .= '<IOTA:' . strlen($iota) . '>' . $iota;
+    }
 
-		if (!empty($lotwr)) {
-				$qso .= '<LOTW_QSL_RCVD:1>Y' ;
-		}
+    if (!empty($adif)) {
+        $qso .= '<DXCC:' . strlen($adif) . '>' . $adif;
+    }
 
-		if (!empty($lotwrdate))	{
-				$lotwrdate = str_replace("-","",$lotwrdate);
-				$qso .= '<LOTW_QSLRDATE:8>' . $lotwrdate ;
-		}
+    if (!empty($itu)) {
+        $qso .= '<ITUZ:' . strlen($itu) . '>' . $itu;
+    }
 
-		if (!empty($eqsls)) {
-				$qso .= '<EQSL_QSL_SENT:1>Y' ;
-		}
+    if (!empty($cqz)) {
+        $qso .= '<CQZ:' . strlen($cqz) . '>' . $cqz;
+    }
 
-		if (!empty($eqslsdate)) {
-				$eqslsdate = str_replace("-","",$eqslsdate);
-				$qso .= '<EQSL_QSLSDATE:8>' . $eqslsdate ;
-		}
+    if (!empty($state)) {
+        $qso .= '<STATE:' . strlen($state) . '>' . $state;
+    }
 
-		if (!empty($eqslr)) {
-				$qso .= '<EQSL_QSL_RECEIVED:1>Y' ;
-		}
+    if (!empty($qslsdate)) {
+        $qslsdate = str_replace("-", "", $qslsdate);
+        $qso .= '<QSLSDATE:8>' . $qslsdate;
+    }
 
-		if (!empty($eqslrdate))	{
-				$eqslrdate = str_replace("-","",$eqslrdate);
-				$qso .= '<EQSL_QSLRDATE:8>' . $eqslrdate ;
-		}
+    if (!empty($qslrdate)) {
+        $qslrdate = str_replace("-", "", $qslrdate);
+        $qso .= '<QSLRDATE:8>' . $qslrdate;
+    }
 
-		$qso .=  '<EOR>';
+    if (!empty($lotws)) {
+        $qso .= '<LOTW_QSL_SENT:1>Y';
+    }
 
-		return $qso ;
+    if (!empty($lotwsdate)) {
+        $lotwsdate = str_replace("-", "", $lotwsdate);
+        $qso .= '<LOTW_QSLSDATE:8>' . $lotwsdate;
+    }
 
-		}
+    if (!empty($lotwr)) {
+        $qso .= '<LOTW_QSL_RCVD:1>Y';
+    }
 
+    if (!empty($lotwrdate)) {
+        $lotwrdate = str_replace("-", "", $lotwrdate);
+        $qso .= '<LOTW_QSLRDATE:8>' . $lotwrdate;
+    }
 
-function get_search_count ($log_id) {
-		
-		$count_searches = ("searches.txt");
-		$searches = file($count_searches);
-		return $searches[$log_id-1];
+    if (!empty($eqsls)) {
+        $qso .= '<EQSL_QSL_SENT:1>Y';
+    }
+
+    if (!empty($eqslsdate)) {
+        $eqslsdate = str_replace("-", "", $eqslsdate);
+        $qso .= '<EQSL_QSLSDATE:8>' . $eqslsdate;
+    }
+
+    if (!empty($eqslr)) {
+        $qso .= '<EQSL_QSL_RECEIVED:1>Y';
+    }
+
+    if (!empty($eqslrdate)) {
+        $eqslrdate = str_replace("-", "", $eqslrdate);
+        $qso .= '<EQSL_QSLRDATE:8>' . $eqslrdate;
+    }
+
+    $qso .=  '<EOR>';
+
+    return $qso;
 }
 
-function increment_search_count ($log_id) {
-		
-		$count_searches = ("searches.txt");
-		$searches = file($count_searches);
-		$newcount=$searches[$log_id-1]+1;
-		array_splice($searches, ($log_id - 1), 1, $newcount . "\n");
-		$string = implode("",$searches);
-		file_put_contents("searches.txt", $string);
-		return $newcount;
+
+function get_search_count($log_id)
+{
+
+    $count_searches = ("searches.txt");
+    $searches = file($count_searches);
+    return $searches[$log_id - 1];
+}
+
+function increment_search_count($log_id)
+{
+
+    $count_searches = ("searches.txt");
+    $searches = file($count_searches);
+    $newcount = $searches[$log_id - 1] + 1;
+    array_splice($searches, ($log_id - 1), 1, $newcount . "\n");
+    $string = implode("", $searches);
+    file_put_contents("searches.txt", $string);
+    return $newcount;
 }
 
 ?> 
