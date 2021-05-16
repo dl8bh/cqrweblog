@@ -82,11 +82,9 @@ class Cqrlog_common
         $call = $this->dbobj->real_escape_string($call);
         $query = sprintf('SELECT qsl_via FROM qslmgr WHERE callsign ="%s"', $call);
         $result = $this->dbobj->query($query);
-        if ($result->num_rows)
-        {
+        if ($result->num_rows) {
             return $result->fetch_object()->qsl_via;
-        } else
-        {
+        } else {
             return NULL;
         }
     }
@@ -96,12 +94,9 @@ class Cqrlog_common
         $inputband = $this->dbobj->real_escape_string($inputband);
         $query = sprintf("select b_begin from bands where band ='%s'", $inputband);
         $result = $this->dbobj->query($query);
-        if ($result->num_rows)
-        {
+        if ($result->num_rows) {
             return $result->fetch_object()->b_begin;
-        }
-        else 
-        {
+        } else {
             return NULL;
         }
     }
@@ -148,12 +143,9 @@ class Cqrlog_common
         $dxcc = $this->dbobj->real_escape_string($dxcc);
         $query = sprintf("SELECT adif FROM dxcc_ref where pref = '%s'", $dxcc);
         $result = $this->dbobj->query($query);
-        if ($result->num_rows)
-        {
+        if ($result->num_rows) {
             return $result->fetch_object()->adif;
-        }
-        else 
-        {
+        } else {
             return NULL;
         }
     }
