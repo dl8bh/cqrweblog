@@ -86,6 +86,8 @@ function call_to_dxcc ( $callsign) {
 
 function get_iota ( $call, $pref ) {
     global $Cqrlog_common;
+    echo($call);
+    echo($pref);
     return $Cqrlog_common->get_iota($call, $pref);
 }
 
@@ -151,7 +153,7 @@ function dxcc_to_adif ( $dxcc ) {
 
 function adif_to_dxcc ( $adif ) {
     global $Cqrlog_common;
-    return $Cqrlog_common->dxcc_to_adif($adif);
+    return $Cqrlog_common->adif_to_dxcc($adif);
 }
 
 function qslstring ( $paper, $lotw, $eqsl ) {
