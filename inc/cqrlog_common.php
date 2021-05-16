@@ -8,21 +8,26 @@ class Cqrlog_common {
         $this->dbobj->select_db("cqrlog_common");
     }
     
+    function adif_to_dxcc (int $adif) {
+        
+        $adif = $this->dbobj->real_escape_string($adif);
+        $query = sprintf("select pref from dxcc_ref where adif = '%u'", $adif);
+        $result = $this->dbobj->query($query);
+        return $result->fetch_object()->pref;
+}
+
     function get_iota (string $call, string $pref) {
-            
-            global $dbconnect;
-            
-            $dbconnect -> select_db("cqrlog_common");
-            $call = mysqli_real_escape_string($dbconnect ,$call);
-            $ergebnis = mysqli_query($dbconnect, 'SELECT * FROM iota_list WHERE dxcc_ref="' . $pref . '" AND "' . $call . '" RLIKE CONCAT("^",pref) AND pref !=""'  );	
-            
-            while($row = mysqli_fetch_object($ergebnis)) {
-                $iota_nr = $row->iota_nr;
-                $iota_name = $row->island_name;
-                return array ( $iota_nr, $iota_name );
-            }
-            
-            return array ( NULL , NULL);
+        $call = $this->dbobj->real_escape_string($call);
+        $pref = $this->dbobj->real_escape_string($pref);
+        $query = sprintf('SELECT * FROM iota_list WHERE dxcc_ref="%s" AND "%s" RLIKE CONCAT("^",pref) AND pref !=""', $pref, $call);
+        $result = $this->dbobj->query($query);
+        $iota_nr = NULL;
+        $iota_name = NULL;
+        if (!$result->num_rows) {
+            $iota_nr = $result->fetch_object()->iota_nr;
+            $iota_name = $result->fetch_object()->iota_name;
+        }
+        return array ( $iota_nr , $iota_name);
     }
     
     function logid_to_call ( $log_id ) {
@@ -155,22 +160,6 @@ class Cqrlog_common {
             while($row = mysqli_fetch_object($ergebnis)) {
                     
                     return $row->adif;
-            }
-    
-            return NULL;
-    }
-    
-    function adif_to_dxcc ( $adif ) {
-            
-            global $dbconnect;
-            $dbconnect -> select_db("cqrlog_common");
-            
-            $adif = mysqli_real_escape_string($dbconnect , $adif);
-            $ergebnis = mysqli_query($dbconnect, "select pref from dxcc_ref where adif = '" . $adif ."'"  );
-            
-            while($row = mysqli_fetch_object($ergebnis)) {
-                    
-                    return $row->pref;
             }
     
             return NULL;
