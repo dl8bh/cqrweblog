@@ -36,7 +36,6 @@ class Cqrlog_common
 
     function logid_to_call(int $log_id)
     {
-
         $log_id = (int) $this->dbobj->real_escape_string($log_id);
         $query = sprintf("SELECT log_name FROM log_list WHERE log_nr=%u", $log_id);
         $result = $this->dbobj->query($query);
@@ -74,7 +73,6 @@ class Cqrlog_common
 
     function freq_to_mode($inputfreq)
     {
-
         $bandmode = freq_to_band_mode($inputfreq);
         return $bandmode[1];
     }
