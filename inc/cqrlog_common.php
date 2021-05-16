@@ -32,14 +32,14 @@ class Cqrlog_common {
     }
     
     function logid_to_call (int $log_id) {
-            
-            $log_id = (int) $this->dbobj->real_escape_string($log_id);
-            $query = sprintf("SELECT log_name FROM log_list WHERE log_nr=%u", $log_id);
-            $result = $this->dbobj->query($query);
-            if ($result->num_rows) {
-                return $result->fetch_object->log_name;
-            }
-            return NULL;
+
+        $log_id = (int) $this->dbobj->real_escape_string($log_id);
+        $query = sprintf("SELECT log_name FROM log_list WHERE log_nr=%u", $log_id);
+        $result = $this->dbobj->query($query);
+        if ($result->num_rows) {
+            return $result->fetch_object->log_name;
+        }
+        return NULL;
     }
     
     function freq_to_band_mode ( $inputfreq ) {
