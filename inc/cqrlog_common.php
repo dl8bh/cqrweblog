@@ -3,7 +3,7 @@
 class Cqrlog_common {
     private $dbobj;
     
-    __construct($dbobj) {
+    function __construct($dbobj) {
 		$this->dbobj = $dbobj;
         $this->dbobj->select_db("cqrlog_common");
     }
