@@ -79,18 +79,16 @@ class Cqrlog_common
 
     function get_manager($call)
     {
-
-        global $dbconnect;
-        $dbconnect->select_db("cqrlog_common");
-
-        $call = mysqli_real_escape_string($dbconnect, $call);
-        $ergebnis = mysqli_query($dbconnect, 'SELECT qsl_via FROM qslmgr WHERE callsign ="' . $call . '"');
-
-        while ($row = mysqli_fetch_object($ergebnis)) {
-            return $row->qsl_via;
+        $call = $this->dbobj->real_escape_string($call);
+        $query = sprintf('SELECT qsl_via FROM qslmgr WHERE callsign ="%s"', $call);
+        $result = $this->dbobj->query($query);
+        if ($result->num_rows)
+        {
+            return $result->fetch_object()->qsl_via;
+        } else
+        {
+            return NULL;
         }
-
-        return NULL;
     }
 
     function band_to_freq($inputband)
