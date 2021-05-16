@@ -67,13 +67,13 @@ class Cqrlog_common
 
     function freq_to_band($inputfreq)
     {
-        $bandmode = freq_to_band_mode($inputfreq);
+        $bandmode = $this->freq_to_band_mode($inputfreq);
         return $bandmode[0];
     }
 
     function freq_to_mode($inputfreq)
     {
-        $bandmode = freq_to_band_mode($inputfreq);
+        $bandmode = $this->freq_to_band_mode($inputfreq);
         return $bandmode[1];
     }
 
