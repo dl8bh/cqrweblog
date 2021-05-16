@@ -8,11 +8,6 @@ class Cqrlog_common {
         $this->dbobj->select_db("cqrlog_common");
     }
 	
-	function logid_to_tableid ( $log_id ) {
-		$log_id = sprintf("%03d", $log_id);	
-		return 'cqrlog' . $log_id;
-	}
-	
 	function get_iota (string $call, string $pref) {
 			
 			global $dbconnect;
