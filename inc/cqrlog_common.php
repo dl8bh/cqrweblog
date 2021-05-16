@@ -22,12 +22,13 @@ class Cqrlog_common {
         $query = sprintf('SELECT * FROM iota_list WHERE dxcc_ref="%s" AND "%s" RLIKE CONCAT("^",pref) AND pref !=""', $pref, $call);
         $result = $this->dbobj->query($query);
         $iota_nr = NULL;
-        $iota_name = NULL;
-        if (!$result->num_rows) {
-            $iota_nr = $result->fetch_object()->iota_nr;
-            $iota_name = $result->fetch_object()->iota_name;
+        $island_name = NULL;
+        if ($result->num_rows) {
+            $result = $result->fetch_assoc();
+            $island_name = $result["island_name"];
+            $iota_nr = $result["iota_nr"];
         }
-        return array ( $iota_nr , $iota_name);
+        return array ($iota_nr, $island_name);
     }
     
     function logid_to_call ( $log_id ) {
