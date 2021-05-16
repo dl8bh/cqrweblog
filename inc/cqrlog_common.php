@@ -1,6 +1,6 @@
 <?php
 
-class cqrlog_common {
+class Cqrlog_common {
     private $dbobj;
     
     __construct($dbobj) {
