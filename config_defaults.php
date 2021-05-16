@@ -38,20 +38,6 @@ $defaultmode="CW";
 $default_cw_rapport="599";
 $default_ssb_rapport="59";
 
-/***************************************************
-INDIVIDUAL LOG SETTINGS, ARRAY INDEX REFLECTS LOG ID
-array(offset, log1setting, log2setting, log3setting)
-***************************************************/
-
-$altstats = array ( "offset", false, false, false, true, false);                                          // [deprecated, for classic view only] 
-                                                                                                          // let the user decide, whether to use stats or stats2 dxcc-presentation
-$enable_cluster = array ( "offset", true, true, true, true, true, true, true, true, false, true, true);   // let the user decide, if the cluster is enabled:
-$enable_help = array ( "offset", true, true, true, true, true, true, true, true, true, true, true);       // show help for users:
-$enable_searchcount = array ( "0", false, false, false, false, false, false, false, false, false, true);	// let the user decide, if searches are counted. To use this, searches.txt has 
-																																				                                  // to exist and has to be writable by the webserver 
-																																																					// (in most setups chmod 775 should work, else try chmod 777)
-$enable_pubqslr = array ( "offset", true, true, true, true, true, true, true, true, true, true);			// show information about received QSL on public qso list/search
-$enable_pubqsls = array ( "offset", true, true, true, true, true, true, true, true, true, true);			// show information about sent QSL on public qso list/search
 /*************
 CLUSTER COLORS
 *************/
