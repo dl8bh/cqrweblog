@@ -17,9 +17,7 @@ function parse_remarks($remarks, $field)
 function get_cluster_spots($number, $band)
 {
     global $apitimeout;
-    //global $clusterurl;
-    global $hamqthurl;
-    $clusterurl = $hamqthurl . 'dxc_csv.php?';
+    global $clusterurl;
     $ctx = stream_context_create(array('http' => array('timeout' => $apitimeout,)));
 
     if ($number != 0) {
@@ -63,7 +61,7 @@ function call_to_dxcc($callsign)
         return call_to_dxcc2($callsign);
     }
     $ctx = stream_context_create(array('http' => array('timeout' => 12,)));
-    $jsonurl = $hamqthurl . 'dxcc_json.php?callsign=' . $callsign;
+    $jsonurl= 'https://api.dl8bh.de/lookup/json/' . $callsign;
     $jsonData = @file_get_contents($jsonurl, false, $ctx);
     $jsonData = str_replace('".', '",', $jsonData);
     $data = json_decode($jsonData, true);

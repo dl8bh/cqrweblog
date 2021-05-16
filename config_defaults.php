@@ -25,8 +25,8 @@ $cluster_spot_num =50;     // number of spots to load from the dx-cluster
 $enable_changelog = true;  // show link to changelog in header
 //$clusterurl = 'https://www.hamqth.com/dxc_csv.php?';
 													 // original cluster data
-$clusterurl = 'https://hamqth.dl8bh.de/dxc_csv.php?'; 
-$hamqthurl = 'http://hamqth.dl8bh.de/';
+$clusterurl = 'https://api.dl8bh.de/dxc_csv.php?';
+$hamqthurl = 'http://api.dl8bh.de';
 // cached clusterspots from hamqth upstream, infrastructure by dl8bh
 													 // allow to setup another location for cluster for caching
 $apitimeout = 12;			 		 // time, after which cluster should time out. lower values if depending on hamqth.com, higher values, if you use some cached
