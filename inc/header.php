@@ -1,5 +1,8 @@
 <?php
+
 include("inc/include.php");
+include("inc/cqrlog_common.php");
+$Cqrlog_common = new Cqrlog_common($DbSpawner->newdb());
 $hamqthtimeout = FALSE;
 include("inc/userconfig.php");
 if (isset($_GET['log_id'])){
@@ -18,7 +21,7 @@ else
 {
 	$log_id=$defaultlog;
 }
-$Userconfig = new Userconfig($dbobj, $log_id, FALSE);
+$Userconfig = new Userconfig($DbSpawner->newdb(), $log_id, FALSE);
 if (isset($_GET['qso_count'])){
 $qso_count = filter_input(INPUT_GET, 'qso_count', FILTER_VALIDATE_INT);
 if (!is_int($qso_count))
