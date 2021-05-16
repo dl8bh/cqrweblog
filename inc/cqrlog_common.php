@@ -48,23 +48,21 @@ class Cqrlog_common
 
     function freq_to_band_mode($inputfreq)
     {
-
-        $inputfreq = mysqli_real_escape_string($dbconnect, $inputfreq);
-        $ergebnis = mysqli_query($dbconnect, "select cw,rtty,ssb,band from bands where b_begin <= " . $inputfreq . " and b_end >=" . $inputfreq);
-
-        while ($row = mysqli_fetch_object($ergebnis)) {
-            $returnband = $row->band;
-            if ($inputfreq < $row->cw) {
+        $inputfreq = $this->dbobj->real_escape_string($inputfreq);
+        $query = sprintf("select cw,rtty,ssb,band from bands where b_begin <= %f and b_end >= %f", $inputfreq, $inputfreq);
+        $result = $this->dbobj->query($query);
+        if ($result->num_rows) {
+            $result = $result->fetch_assoc();
+            $returnband = $result["band"];
+            if ($inputfreq < $result["cw"]) {
                 $returnmode = "CW";
-            } else if (($inputfreq >= $row->rtty) && ($inputfreq < $row->ssb)) {
+            } else if (($inputfreq >= $result["rtty"] && ($inputfreq < $result["ssb"]))) {
                 $returnmode = "RTTY";
-            } else if ($inputfreq > $row->ssb) {
+            } else if ($inputfreq > $result["ssb"]) {
                 $returnmode = "SSB";
             }
-
             return array($returnband, $returnmode);
         }
-
         return NULL;
     }
 
