@@ -86,8 +86,6 @@ function call_to_dxcc ( $callsign) {
 
 function get_iota ( $call, $pref ) {
     global $Cqrlog_common;
-    echo($call);
-    echo($pref);
     return $Cqrlog_common->get_iota($call, $pref);
 }
 
