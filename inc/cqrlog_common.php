@@ -145,18 +145,17 @@ class Cqrlog_common
 
     function dxcc_to_adif($dxcc)
     {
-
-        global $dbconnect;
-        $dbconnect->select_db("cqrlog_common");
-
-        $dxcc = mysqli_real_escape_string($dbconnect, $dxcc);
-        $ergebnis = mysqli_query($dbconnect, "select adif from dxcc_ref where pref = '" . $pref . "'");
-
-        while ($row = mysqli_fetch_object($ergebnis)) {
-
-            return $row->adif;
+        $dxcc = $this->dbobj->real_escape_string($dxcc);
+        $query = sprintf("SELECT adif FROM dxcc_ref where pref = '%s'", $dxcc);
+        $result = $this->dbobj->query($query);
+        if ($result->num_rows)
+        {
+            return $result->fetch_object()->adif;
         }
-
-        return NULL;
+        else 
+        {
+            return NULL;
+        }
     }
 }
+?>
