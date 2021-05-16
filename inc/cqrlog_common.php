@@ -40,7 +40,7 @@ class Cqrlog_common
         $query = sprintf("SELECT log_name FROM log_list WHERE log_nr=%u", $log_id);
         $result = $this->dbobj->query($query);
         if ($result->num_rows) {
-            return $result->fetch_object->log_name;
+            return $result->fetch_object()->log_name;
         }
         return NULL;
     }
@@ -93,18 +93,17 @@ class Cqrlog_common
 
     function band_to_freq($inputband)
     {
-
-        global $dbconnect;
-        $dbconnect->select_db("cqrlog_common");
-
-        $inputband = mysqli_real_escape_string($dbconnect, $inputband);
-        $ergebnis = mysqli_query($dbconnect, "select b_begin from bands where band = '" . $inputband . "'");
-
-        while ($row = mysqli_fetch_object($ergebnis)) {
-            return $row->b_begin;
+        $inputband = $this->dbobj->real_escape_string($inputband);
+        $query = sprintf("select b_begin from bands where band ='%s'", $inputband);
+        $result = $this->dbobj->query($query);
+        if ($result->num_rows)
+        {
+            return $result->fetch_object()->b_begin;
         }
-
-        return NULL;
+        else 
+        {
+            return NULL;
+        }
     }
 
     function validate_freq($freq)
