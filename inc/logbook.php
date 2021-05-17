@@ -1,5 +1,5 @@
 <?php
-
+include("qso.php");
 class Logbook
 {
     /*
@@ -32,12 +32,19 @@ class Logbook
         return $result[0];
     }
 
-    function fetch_qsos(int $num, $where)
+    function get_log(int $num, $where)
     {
-
     }
 
-    function save_qso(Qso $qso) {
+    function get_qso(int $qsoid)
+    {
+        $query = sprintf("SELECT * FROM cqrlog_main WHERE id_cqrlog_main = %u", $qsoid);
+        $result = $this->dbobj->query($query)->fetch_assoc();
+        $qso = new Qso($result);
+        return $qso;
+    }
 
+    function save_qso(Qso $qso)
+    {
     }
 }
