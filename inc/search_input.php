@@ -11,11 +11,8 @@ echo '<form class="form" role="form" action="logsearch.php?log_id=' . $log_id . 
             <select class="form-control" id="band" name="band">
                 <?php
                 echo '<option>select</option>';
-                $dbconnect->select_db("cqrlog_common");
-                $ergebnis = mysqli_query($dbconnect, "SELECT band FROM bands order by b_begin asc");
-                while ($row = mysqli_fetch_object($ergebnis)) {
-                    $band_in = $row->band;
-                    echo '<option>' . $band_in . '</option>';
+                foreach ($Cqrlog_common->get_band_list() as $select_band) {
+                    echo("<option>" . $select_band[0] . "</option>\n");
                 }
                 ?>
             </select>
