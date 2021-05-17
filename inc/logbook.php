@@ -2,6 +2,9 @@
 
 class Logbook
 {
+    /*
+    This class interfaces the cqrlogNNN tables.
+    */
     private $dbobj;
     private $log_id;
 
@@ -19,8 +22,6 @@ class Logbook
         return 'cqrlog' . $log_id;
     }
 
-
-
     function count_qsos()
     {
         $where = "1 = 1";
@@ -29,5 +30,14 @@ class Logbook
         $result = $result->fetch_row();
 
         return $result[0];
+    }
+
+    function fetch_qsos(int $num, $where)
+    {
+
+    }
+
+    function save_qso(Qso $qso) {
+
     }
 }
