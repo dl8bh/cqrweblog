@@ -10,10 +10,10 @@
                 <th class="hidden-xs" width="90px">RST Sent</th>
                 <th class="hidden-xs" width="90px">RST Rcvd</th>
                 <th class="hidden-xs" width="100px">Name</th>
-                <?php if ($enable_pubqslr[$log_id]) {
+                <?php if ($Userconfig->get_pubqslr_enabled()) {
                     echo '<th class="hidden-xs" width="100px">QSL Rcvd</th>' . "\n";
                 }
-                if ($enable_pubqsls[$log_id]) {
+                if ($Userconfig->get_pubqsls_enabled()) {
                     echo '<th class="hidden-xs" width="100px">QSL Sent</th>' . "\n";
                 } ?>
         </thead>
