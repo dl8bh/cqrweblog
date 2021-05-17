@@ -3,11 +3,13 @@
 class Cqrlog_common
 {
     private $dbobj;
+    private $band_list;
 
     function __construct($dbobj)
     {
         $this->dbobj = $dbobj;
         $this->dbobj->select_db("cqrlog_common");
+        $this->band_list = $this->_fetch_band_list();
     }
 
     function adif_to_dxcc(int $adif)
@@ -149,5 +151,16 @@ class Cqrlog_common
             return NULL;
         }
     }
+
+    function _fetch_band_list()
+    {
+        $query = "SELECT band FROM bands order by b_begin asc";
+        $result = $this->dbobj->query($query)->fetch_all();
+        return $result;
+    }
+
+    function get_band_list()
+    {
+        return $this->band_list;
+    }
 }
-?>
