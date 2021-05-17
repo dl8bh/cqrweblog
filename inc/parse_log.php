@@ -4,17 +4,16 @@
 if (isset($_POST['frequency'])) {
     $freq = htmlentities($_POST["frequency"]);
     $freq = str_replace(',', '.', $freq);
-    $freq = $validate_freq($freq);
+    $freq = $Cqrlog_common->validate_freq($freq);
 }
 
 if (isset($_POST['band'])) {
 
     if ($_POST['band'] != 'select') {
         $band = (htmlentities($_POST["band"]));
-        $freq = band_to_freq($band);
+        $freq = $Cqrlog_common->band_to_freq($band);
     } elseif (!empty($freq)) {
-
-        $band = freq_to_band($freq);
+        $band = $Cqrlog_common->freq_to_band($freq);
     }
 }
 
@@ -36,8 +35,8 @@ if (!empty($_POST["call"])) {
     $dxcc_name = $fetchqso[1];
     $itu = $fetchqso[2];
     $waz = $fetchqso[3];
-    $manager = get_manager($call);
-    $fetchiota = get_iota($call, $adif);
+    $manager = $Cqrlog_common->get_manager($call);
+    $fetchiota = $Cqrlog_common->get_iota($call, $adif);
     $iota_nr = $fetchiota[0];
     $iota_name = $fetchiota[1];
 }
