@@ -19,7 +19,7 @@ $band = freq_to_band($freq);
 
 }}
 
-if (isset($_POST["call"])) {
+if (!empty($_POST["call"])) {
 	$call = strtoupper(htmlentities($_POST["call"]));
 	if (preg_match("/(?P<teil1>\w+)\/(?P<teil2>\w+)\/{0,1}(?P<teil3>\w*)/",$call, $treffer)){
 		$id_call = $treffer[1];
@@ -42,7 +42,7 @@ if (isset($_POST["call"])) {
 	$itu = $fetchqso[2];
 	$waz = $fetchqso[3];
 	$manager = get_manager($call);
-	$fetchiota = get_iota($call, adif_to_dxcc($adif));
+	$fetchiota = get_iota($call, $adif);
 	$iota_nr = $fetchiota[0];
 	$iota_name = $fetchiota[1];
 }
