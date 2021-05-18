@@ -33,7 +33,6 @@ class Qso
     private $profile;
     private $idcall;
     private $state;
-    private $lotw;
     private $lotw_qslsdate;
     private $lotw_qslrdate;
     private $lotw_qsls;
@@ -101,7 +100,6 @@ class Qso
             "profile" => $this->profile, 
             "idcall" => $this->idcall, 
             "state" => $this->state, 
-            "lotw" => $this->lotw, 
             "lotw_qslsdate" => $this->lotw_qslsdate, 
             "lotw_qslrdate" => $this->lotw_qslrdate, 
             "lotw_qsls" => $this->lotw_qsls, 
@@ -161,7 +159,6 @@ class Qso
     function get_profile() {return $this->profile;}
     function get_idcall() {return $this->idcall;}
     function get_state() {return $this->state;}
-    function get_lotw() {return $this->lotw;}
     function get_lotw_qslsdate() {return $this->lotw_qslsdate;}
     function get_lotw_qslrdate() {return $this->lotw_qslrdate;}
     function get_lotw_qsls() {return $this->lotw_qsls;}
