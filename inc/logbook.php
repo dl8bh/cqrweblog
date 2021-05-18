@@ -44,7 +44,22 @@ class Logbook
         return $qso;
     }
 
-    function save_qso(Qso $qso)
+    function insert_qso(Qso $qso)
     {
+
+        $assoc_qso_array = $qso->return_qso_assoc_array();
+        $keys_array = array();
+        $values_array = array();
+        foreach ($assoc_qso_array as $key => $value) {
+            if ($key != "id_cqrlog_main" && !empty($value)) {
+                array_push($keys_array, $key);
+                array_push($values_array, $value);
+            }
+        }
+        $keys_string = implode(",", $keys_array);
+        $values_string = implode('","', $values_array);
+        $values_string = '"' . $values_string . '"';
+        $query = (sprintf("INSERT INTO cqrlog_main (%s) VALUES (%s)", $keys_string, $values_string));
+        $this->dbobj->query($query);
     }
 }
