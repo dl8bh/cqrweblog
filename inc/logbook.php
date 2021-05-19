@@ -67,8 +67,11 @@ class Logbook
 
     function get_qso(int $qsoid)
     {
-        $query = sprintf("SELECT * FROM cqrlog_main WHERE id_cqrlog_main = %u", $qsoid);
-        $result = $this->dbobj->query($query)->fetch_assoc();
+        $query = $this->dbobj->prepare("SELECT * FROM cqrlog_main WHERE id_cqrlog_main = ?");
+        $query->bind_param("i", $qsoid);
+        $query->execute();
+        $result = $query->get_result();
+        $result = $result->fetch_assoc();
         $qso = new Qso($result);
         return $qso;
     }
