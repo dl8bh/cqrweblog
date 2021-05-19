@@ -7,6 +7,7 @@ class Logbook
     */
     private $dbobj;
     private $log_id;
+    private $where_like = array("callsign", "remarks", "name", "loc");
 
     function __construct($dbobj, int $log_id)
     {
@@ -51,6 +52,17 @@ class Logbook
         }
         $result = $this->dbobj->query($query);
         return ($result->fetch_all(MYSQLI_ASSOC));
+    }
+
+    function get_log(int $num, array $assoc_where_array)
+    {
+        $fetched_assoc_array = $this->_fetch_log_assoc($num, $assoc_where_array);
+        $output_array = array();
+        foreach ($fetched_assoc_array as $row) {
+            $qso = new Qso($row);
+            $output_array[] = $qso;
+        }
+        return ($output_array);
     }
 
     function get_qso(int $qsoid)
