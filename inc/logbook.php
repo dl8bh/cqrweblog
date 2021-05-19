@@ -32,8 +32,25 @@ class Logbook
         return $result[0];
     }
 
-    function get_log(int $num, $where)
+    function _fetch_log_assoc(int $num, array $assoc_where_array)
     {
+        $query = "SELECT * FROM view_cqrlog_main_by_qsodate";
+        $wherestring = "";
+        foreach ($assoc_where_array as $key => $value) {
+            if (in_array($key, $this->where_like)) {
+                $wherestring = $wherestring . sprintf("AND %s LIKE '%s' ", $key, $value);
+            } else {
+                $wherestring = $wherestring .  sprintf("AND %s='%s' ", $key, $value);
+            }
+        }
+        if (!empty($wherestring)) {
+            $query = $query . " WHERE 1=1 " . $wherestring;
+        }
+        if ($num > 0) {
+            $query = $query . " LIMIT " . $num;
+        }
+        $result = $this->dbobj->query($query);
+        return ($result->fetch_all(MYSQLI_ASSOC));
     }
 
     function get_qso(int $qsoid)
