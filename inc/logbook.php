@@ -35,9 +35,11 @@ class Logbook
 
     function _fetch_log_assoc(int $num, array $assoc_where_array)
     {
-        $query = "SELECT * FROM view_cqrlog_main_by_qsodate";
+        $query = "SELECT * FROM cqrlog_main";
         $wherestring = "";
         foreach ($assoc_where_array as $key => $value) {
+            $key = $this->dbobj->real_escape_string($key);
+            $value = $this->dbobj->real_escape_string($value);
             if (in_array($key, $this->where_like)) {
                 $wherestring = $wherestring . sprintf("AND %s LIKE '%s' ", $key, $value);
             } else {
@@ -47,9 +49,12 @@ class Logbook
         if (!empty($wherestring)) {
             $query = $query . " WHERE 1=1 " . $wherestring;
         }
+
+        $query = $query . " ORDER BY qsodate DESC, time_on DESC";
         if ($num > 0) {
             $query = $query . " LIMIT " . $num;
         }
+        echo ($query);
         $result = $this->dbobj->query($query);
         return ($result->fetch_all(MYSQLI_ASSOC));
     }
@@ -91,6 +96,7 @@ class Logbook
         $keys_string = implode(",", $keys_array);
         $values_string = implode('","', $values_array);
         $values_string = '"' . $values_string . '"';
+
         $query = (sprintf("INSERT INTO cqrlog_main (%s) VALUES (%s)", $keys_string, $values_string));
         $this->dbobj->query($query);
     }
