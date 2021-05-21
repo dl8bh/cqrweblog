@@ -12,6 +12,7 @@ include("inc/parse_log.php");
 $logactive=true;
 include("inc/logbook.php");
 $logbook = new Logbook ($DbSpawner->newdb(), $log_id);
+$where = array();
 echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logbook</title>';
 include("inc/metaheader.php");
 ?>

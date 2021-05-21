@@ -16,7 +16,7 @@
         </thead>
         <?php
         $qso_count = mysqli_real_escape_string($dbconnect, $qso_count);
-        $qsotable = $logbook->get_log($qso_count, array());
+        $qsotable = $logbook->get_log($qso_count, $where);
         foreach ($qsotable as $qso) {
             echo '<tr>' . "\n";
             echo (sprintf("<td>%s</td>\n", $qso->get_qsodate()));
