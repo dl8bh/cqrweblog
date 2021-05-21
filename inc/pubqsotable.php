@@ -23,7 +23,8 @@
         //$dbconnect -> select_db("cqrlog001");
         $qso_count = mysqli_real_escape_string($dbconnect, $qso_count);
         $query = mysqli_query($dbconnect, "SELECT qsodate, time_on, callsign, band, mode, rst_r, rst_s, remarks, name, qsl_r, qsl_s, qslr_date, qsls_date FROM view_cqrlog_main_by_qsodate " . $where . " LIMIT " . $qso_count);
-        while ($row = mysqli_fetch_object($query)) {
+        $qsotable = $Logbook->get_log($qso_count, $where);
+        foreach ($qsotable as $qso) {
             $date = $row->qsodate;
             $callsign = $row->callsign;
             $time = $row->time_on;
@@ -72,19 +73,19 @@
                 }
             }
             echo '<tr>' . "\n";
-            echo '<td>' . $date . '</td>' . "\n";
-            echo '<td>' . $time . '</td>' . "\n";
-            echo '<td align="center">' . $band . '</td>' . "\n";
-            echo '<td align="center"><font color="red"><b>' . $callsign . '</b></font></td>' . "\n";
-            echo '<td align="center"><i>' . $mode . '</i></td>' . "\n";
-            echo '<td class="hidden-xs">' . $rst_s . '</td>' . "\n";
-            echo '<td class="hidden-xs">' . $rst_r . '</td>' . "\n";
-            echo '<td class="hidden-xs">' . $name . '</td>' . "\n";
+            echo (sprintf("<td>%s</td>\n", $qso->get_qsodate()));
+            echo (sprintf("<td>%s</td>\n", $qso->get_time_on()));
+            echo (sprintf("<td align=\"center\">%s</td>\n", $qso->get_band()));
+            echo (sprintf("<td align=\"center\"><font color=\"red\"><b>%s</b></font></td>\n", $qso->get_callsign()));
+            echo (sprintf("<td align=\"center\"><i>%s </i></td>\n", $qso->get_mode()));
+            echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_rst_s()));
+            echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_rst_r()));
+            echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_name()));
             if ($Userconfig->get_pubqslr_enabled()) {
-                echo '<td class="hidden-xs">' . $qsl_r . '</td>' . "\n";
+                echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_qsl_r()));
             }
             if ($Userconfig->get_pubqsls_enabled()) {
-                echo '<td class="hidden-xs">' . $qsl_s . '</td>' . "\n";
+                echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_qsl_s()));
             }
             echo '</tr>' . "\n";
         }

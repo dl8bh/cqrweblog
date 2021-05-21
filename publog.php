@@ -21,6 +21,9 @@ include("inc/header.php");
 <body>
 
     <?php
+    include("inc/logbook.php");
+    $Logbook = new Logbook($DbSpawner->newdb(), $log_id);
+    $where = array();
     if ($publog_enabled) {
         $publog = true;
         if ($qso_count > $max_public_count) {
