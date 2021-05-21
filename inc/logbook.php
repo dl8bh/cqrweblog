@@ -50,7 +50,7 @@ class Logbook
             $query = $query . " WHERE 1=1 " . $wherestring;
         }
 
-        $query = $query . " ORDER BY qsodate DESC, time_on DESC";
+        $query = $query . " ORDER BY qsodate DESC, time_on DESC, id_cqrlog_main DESC";
         if ($num > 0) {
             $query = $query . " LIMIT " . $num;
         }
