@@ -11,7 +11,7 @@ include("inc/parse_search.php");
 <?php 
 $searchactive=true;
 include("inc/logbook.php");
-$logbook = new Logbook ($DbSpawner->newdb(), $log_id);
+$Logbook = new Logbook ($DbSpawner->newdb(), $log_id);
 echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logsearch</title>'
 ?>
 <link rel="stylesheet" type="text/css" href="inc/css/logold.css">
@@ -31,7 +31,7 @@ include("inc/search_proc.php");
 ?>
 
 <?php 
-$match_amount = $logbook->count_qsos( $log_id );
+$match_amount = $Logbook->count_qsos( $log_id );
 switch ($match_amount) {
     case 0:
   echo '<div class="alert alert-danger ">' . "\n" .
