@@ -28,7 +28,6 @@
             echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_rst_r()));
             echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_name()));
             echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_remarks()));
-            echo ($qso->get_id_cqrlog_main());
             echo (sprintf("<td><a href=\"edit.php?log_id=%u&qso_id=%u\" target=\"_blank\">Edit</a></td>\n", $log_id, $qso->get_id_cqrlog_main()));
             echo '</tr>' . "\n";
         }
