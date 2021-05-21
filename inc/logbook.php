@@ -54,7 +54,6 @@ class Logbook
         if ($num > 0) {
             $query = $query . " LIMIT " . $num;
         }
-        echo ($query);
         $result = $this->dbobj->query($query);
         return ($result->fetch_all(MYSQLI_ASSOC));
     }
