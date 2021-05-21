@@ -129,6 +129,153 @@ class Qso
         );
         return $array;
     }
+    function return_adif()
+{
+
+    $qso = '';
+
+    if (!empty($this->qsodate)) {
+        $qsodate = str_replace("-", "", $this->qsodate);
+        $qso .= '<QSO_DATE:8>' . $qsodate;
+    }
+
+    if (!empty($this->time_on)) {
+        $timeon = str_replace(":", "", $this->time_on);
+        $qso .= '<TIME_ON:4>' . $timeon;
+    }
+
+    if (!empty($this->time_off)) {
+        $timeoff = str_replace(":", "", $this->time_off);
+        $qso .= '<TIME_OFF:4>' . $timeoff;
+    }
+
+    if (!empty($this->callsign)) {
+        $qso .= '<CALL:' . strlen($this->callsign) . '>' . $this->callsign;
+    }
+
+    if (!empty($this->mode)) {
+        $qso .= '<MODE:' . strlen($this->mode) . '>' . $this->mode;
+    }
+
+    if (!empty($this->freq)) {
+        $qso .= '<FREQ:' . strlen($this->freq) . '>' . $this->freq;
+    }
+
+    if (!empty($this->band)) {
+        $qso .= '<BAND:' . strlen($this->band) . '>' . $this->band;
+    }
+
+    if (!empty($this->rst_s)) {
+        $qso .= '<RST_SENT:' . strlen($this->rst_s) . '>' . $this->rst_s;
+    }
+
+    if (!empty($this->rst_r)) {
+        $qso .= '<RST_RCVD:' . strlen($this->rst_r) . '>' . $this->rst_r;
+    }
+
+    if (!empty($this->name)) {
+        $qso .= '<NAME:' . strlen($this->name) . '>' . $this->name;
+    }
+
+    if (!empty($this->remarks)) {
+        $qso .= '<COMMENT:' . strlen($this->remarks) . '>' . $this->remarks;
+    }
+
+    if (!empty($this->qsl_s)) {
+        $qsl_sent="";
+        if ($this->qsl_s == "D" or $this->qsl_s == "B") {
+            $qsl_sent = "Y";
+        } else {
+            $qsl_sent = "N";
+        }
+
+        $qso .= '<QSL_SENT:1>' . $qsl_sent;
+    } else {
+        $qso .= '<QSL_SENT:1>N';
+    }
+
+    if (!empty($this->qsl_r)) {
+        $qsl_rcvd = "Y";
+        $qso .= '<QSL_RCVD:1>' . $qsl_rcvd;
+    } else {
+
+        $qso .= '<QSL_RCVD:1>N';
+    }
+
+    if (!empty($this->qsl_via)) {
+        $qso .= '<QSL_VIA:' . strlen($this->qsl_via) . '>' . $this->qsl_via;
+    }
+
+    if (!empty($this->iota)) {
+        $qso .= '<IOTA:' . strlen($this->iota) . '>' . $this->iota;
+    }
+
+    if (!empty($this->adif)) {
+        $qso .= '<DXCC:' . strlen($this->adif) . '>' . $this->adif;
+    }
+
+    if (!empty($this->itu)) {
+        $qso .= '<ITUZ:' . strlen($this->itu) . '>' . $this->itu;
+    }
+
+    if (!empty($this->waz)) {
+        $qso .= '<CQZ:' . strlen($this->waz) . '>' . $this->waz;
+    }
+
+    if (!empty($this->state)) {
+        $qso .= '<STATE:' . strlen($this->state) . '>' . $this->state;
+    }
+
+    if (!empty($this->qsls_date)) {
+        $qslsdate = str_replace("-", "", $this->qsls_date);
+        $qso .= '<QSLSDATE:8>' . $qslsdate;
+    }
+
+    if (!empty($this->qslr_date)) {
+        $qslrdate = str_replace("-", "", $this->qslr_date);
+        $qso .= '<QSLRDATE:8>' . $qslrdate;
+    }
+
+    if (!empty($this->lotw_qsls)) {
+        $qso .= '<LOTW_QSL_SENT:1>Y';
+    }
+
+    if (!empty($this->lotw_qslsdate)) {
+        $lotwsdate = str_replace("-", "", $this->lotw_qslsdate);
+        $qso .= '<LOTW_QSLSDATE:8>' . $lotwsdate;
+    }
+
+    if (!empty($this->lotw_qsls)) {
+        $qso .= '<LOTW_QSL_RCVD:1>Y';
+    }
+
+    if (!empty($this->lotw_qslrdate)) {
+        $lotwrdate = str_replace("-", "", $this->lotw_qslrdate);
+        $qso .= '<LOTW_QSLRDATE:8>' . $lotwrdate;
+    }
+
+    if (!empty($this->eqsl_qsl_sent)) {
+        $qso .= '<EQSL_QSL_SENT:1>Y';
+    }
+
+    if (!empty($this->eqsl_qslsdate)) {
+        $eqslsdate = str_replace("-", "", $this->eqsl_qslsdate);
+        $qso .= '<EQSL_QSLSDATE:8>' . $eqslsdate;
+    }
+
+    if (!empty($this->eqsl_qsl_rcvd)) {
+        $qso .= '<EQSL_QSL_RECEIVED:1>Y';
+    }
+
+    if (!empty($this->eqsl_qslrdate)) {
+        $eqslrdate = str_replace("-", "", $this->eqsl_qslrdate);
+        $qso .= '<EQSL_QSLRDATE:8>' . $eqslrdate;
+    }
+
+    $qso .=  '<EOR>';
+
+    return $qso;
+}
 
     function get_id_cqrlog_main() {return $this->id_cqrlog_main;}
     function get_qsodate() {return $this->qsodate;}
