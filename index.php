@@ -10,7 +10,9 @@ include("inc/parse_log.php");
 <head>
 <?php 
 $logactive=true;
-echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logbook</title>';
+include("inc/logbook.php");
+$logbook = new Logbook ($DbSpawner->newdb(), $log_id);
+echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logbook</title>';
 include("inc/metaheader.php");
 ?>
 </head>
@@ -19,7 +21,7 @@ include("inc/metaheader.php");
 <?php
 include("inc/navbar.php");
 echo '<div id="head">' . "\n";
-echo '<h1 align="center">Logbook of ' . strtoupper(logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
+echo '<h1 align="center">Logbook of ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
 echo '</div>' . "\n";
 if ($Userconfig->get_cluster_enabled()&&$hamqth_api&&!($hamqthtimeout))
 {
@@ -34,7 +36,7 @@ include ("inc/log_input.php");
 include("inc/log_proc.php");
 
 
-$qso_amount=count_qsos( $log_id );
+$qso_amount=$logbook->count_qsos();
 switch ($qso_amount) {
     case 0:
   echo '<div class=" hidden-xs col-md-3 col-sm-3 alert alert-danger">' . "\n" .
