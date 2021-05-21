@@ -10,7 +10,9 @@ include("inc/parse_search.php");
 <head>
 <?php 
 $searchactive=true;
-echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
+include("inc/logbook.php");
+$logbook = new Logbook ($DbSpawner->newdb(), $log_id);
+echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logsearch</title>'
 ?>
 <link rel="stylesheet" type="text/css" href="inc/css/logold.css">
 <meta charset="UTF-8">
@@ -20,7 +22,7 @@ echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s Logsearch</title>'
 
 <?php
 include("inc/navbar.php");
-echo '<h1 align="center">Logsearch of ' . strtoupper(logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
+echo '<h1 align="center">Logsearch of ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
 include("inc/search_input.php");
 ?>
 
@@ -29,7 +31,7 @@ include("inc/search_proc.php");
 ?>
 
 <?php 
-$match_amount =count_qsos( $log_id );
+$match_amount = $logbook->count_qsos( $log_id );
 switch ($match_amount) {
     case 0:
   echo '<div class="alert alert-danger ">' . "\n" .
