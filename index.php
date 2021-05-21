@@ -11,7 +11,7 @@ include("inc/parse_log.php");
 <?php 
 $logactive=true;
 include("inc/logbook.php");
-$logbook = new Logbook ($DbSpawner->newdb(), $log_id);
+$Logbook = new Logbook ($DbSpawner->newdb(), $log_id);
 $where = array();
 echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logbook</title>';
 include("inc/metaheader.php");
@@ -37,7 +37,7 @@ include ("inc/log_input.php");
 include("inc/log_proc.php");
 
 
-$qso_amount=$logbook->count_qsos();
+$qso_amount=$Logbook->count_qsos();
 switch ($qso_amount) {
     case 0:
   echo '<div class=" hidden-xs col-md-3 col-sm-3 alert alert-danger">' . "\n" .
