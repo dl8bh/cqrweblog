@@ -9,7 +9,7 @@ include("inc/parse_stats.php");
 <html>
 <head>
 <?php 
-echo '<title>' . strtoupper(logid_to_call($log_id)) . ' \'s DXCC statistics</title>';
+echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s DXCC statistics</title>';
 include("inc/metaheader.php");
 ?>
 </head>
@@ -18,7 +18,7 @@ include("inc/metaheader.php");
 <?php
 $statsactive=true;
 include("inc/navbar.php");
-echo '<h1 align="center">DXCC statistics of ' . strtoupper(logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
+echo '<h1 align="center">DXCC statistics of ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
 include("inc/stats_input.php");
 
 if ($inlog){

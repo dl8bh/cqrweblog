@@ -12,7 +12,7 @@ echo '<table class="table table-hover borderless table-condensed" align="center"
 
 foreach($spots as $key => $qso){
 		$dxmessage='';
-		$clusterbandmode = freq_to_band_mode($qso[1]/1000);
+		$clusterbandmode = $Cqrlog_common->freq_to_band_mode($qso[1]/1000);
 		$checkadif = check_adif($qso[10], $log_id, $clusterbandmode[0], $clusterbandmode[1]);
     if (check_dupe($log_id, $qso[2], $clusterbandmode[0], $clusterbandmode[1])) {
 			$fontcolor=$dupecolor;		

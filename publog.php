@@ -29,7 +29,7 @@ include("inc/header.php");
         if ($qso_count > $max_public_count) {
             $qso_count = $max_public_count;
         }
-        echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper(logid_to_call($log_id)) . '</h1><br /><br />' . "\n";
+        echo '<h1 align="center">Last ' . $qso_count . ' QSOs of ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . '</h1><br /><br />' . "\n";
         if ($pubsearch_enabled) {
             include("inc/pubsearch_input.php");
         }
@@ -40,7 +40,7 @@ include("inc/header.php");
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="alert alert-info col-sm-4">
-                    There have been <?php echo $Userconfig->get_searchcount(); ?> searches from <?php echo count_qsos($log_id); ?> QSOs in Log.
+                    There have been <?php echo $Userconfig->get_searchcount(); ?> searches from <?php echo $Logbook->count_qsos($log_id); ?> QSOs in Log.
                 </div>
             </div>
         <?php
@@ -50,7 +50,7 @@ include("inc/header.php");
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="alert alert-info col-sm-4">
-                    <?php echo    count_qsos($log_id); ?> QSO in Log
+                    <?php echo($Logbook->count_qsos($log_id)); ?> QSO in Log
                 </div>
             </div>
     <?php

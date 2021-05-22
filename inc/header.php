@@ -11,7 +11,7 @@ if (!is_int($log_id))
 		{
 				$log_id=$defaultlog;
 		}
-if (!logid_to_call($log_id))
+if (!$Cqrlog_common->logid_to_call($log_id))
 		{
 				$log_id=$defaultlog;
 		}
