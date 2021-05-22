@@ -205,26 +205,26 @@ class Logbook
         return $band;
     }
 
-    private function get_qsl_string($paper, $lotw, $eqsl)
+    private function get_qsl_string(array $qslarray)
     {
         $qslstring = "";
 
-        if (($paper) && ($lotw) && ($eqsl)) {
+        if (($qslarray["paper"]) && ($qslarray["lotw"]) && ($qslarray["eqsl"])) {
             $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-        } elseif (($paper) && ($lotw)) {
+        } elseif (($qslarray["paper"]) && ($qslarray["lotw"])) {
             $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
-        } elseif (($paper) && ($eqsl)) {
+        } elseif (($qslarray["paper"]) && ($qslarray["eqsl"])) {
             $qslstring = ' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
-        } elseif (($lotw) && ($eqsl)) {
+        } elseif (($qslarray["lotw"]) && ($qslarray["eqsl"])) {
             $qslstring = ' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-        } elseif ($lotw) {
+        } elseif ($qslarray["lotw"]) {
             $qslstring = ' and lotw_qslrdate IS NOT NULL ';
-        } elseif ($eqsl) {
+        } elseif ($qslarray["eqsl"]) {
             $qslstring = ' and eqsl_qslrdate IS NOT NULL ';
-        } elseif ($paper) {
+        } elseif ($qslarray["paper"]) {
             $qslstring = ' and qsl_r !="" ';
         }
-
+    
         return $qslstring;
     }
 }
