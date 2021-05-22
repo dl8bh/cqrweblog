@@ -16,19 +16,15 @@
         </tr>
         <?php
 
-        $dbconnect->select_db("cqrlog_common");
-        $query = mysqli_query($dbconnect, 'SELECT distinct adif,pref,name from dxcc_ref ' . $wheredxcc);
-        while ($row = mysqli_fetch_object($query)) {
-            $dxcc = $row->pref;
-            $name = $row->name;
-            $adif = $row->adif;
+        $dxcc_ref_list = $Cqrlog_common->get_dxcc_ref_list("");
+        foreach($dxcc_ref_list as $dxcc_ref) {
             echo '<tr>' . "\n";
-            echo '<td>' . $dxcc . '</td>' . "\n";
+            echo '<td>' . $dxcc_ref["pref"] . '</td>' . "\n";
 
-            echo '<td><div class="hidden-xs">' . $name . '</div></td>' . "\n";
+            echo '<td><div class="hidden-xs">' . $dxcc_ref["name"] . '</div></td>' . "\n";
 
             foreach ($bands as $band_in) {
-                $checkadif = check_adif($adif, $log_id, $band_in, 'ALL', $paperqsl, $lotwqsl, $eqslqsl);
+                $checkadif = check_adif($dxcc_ref["adif"], $log_id, $band_in, 'ALL', $paperqsl, $lotwqsl, $eqslqsl);
                 if ($checkadif[0] == "N") {
                     echo  '<td style="text-align:center">' . $band_in . $checkadif[2] . "\n";
                 } else {
@@ -43,7 +39,7 @@
                 echo '<td align="right">' . $mode_proc . '</td>' . "\n";
 
                 foreach ($bands as $band_in) {
-                    $checkadif = check_adif($adif, $log_id, $band_in, $mode_proc, $paperqsl, $lotwqsl, $eqslqsl);
+                    $checkadif = check_adif($dxcc_ref["adif"], $log_id, $band_in, $mode_proc, $paperqsl, $lotwqsl, $eqslqsl);
                     echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
                 }
                 echo '</tr>' . "\n";
