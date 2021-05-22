@@ -193,4 +193,11 @@ class Logbook
         $query->bind_param($datatype_string, ...$values_array);
         $query->execute();
     }
+
+    function get_active_bands()
+    {
+        $query = "SELECT DISTINCT t2.band FROM cqrlog_main t1 JOIN cqrlog_common.bands t2 ON t1.band = t2.band ORDER BY t2.b_begin ASC";
+        $result = $this->dbobj->query($query)->fetch_all();
+        return ($result);
+    }
 }
