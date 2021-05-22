@@ -15,21 +15,24 @@ class Cqrlog_common
     function adif_to_dxcc(int $adif)
     {
         $adif = $this->dbobj->real_escape_string($adif);
-        $query = sprintf("select pref from dxcc_ref where adif = '%u'", $adif);
-        $result = $this->dbobj->query($query);
+        $query = sprintf("SELECT pref FROM dxcc_ref WHERE adif = ?", $adif);
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("i", $adif);
+        $stmt->execute();
+        $result = $stmt->get_result();
         return $result->fetch_object()->pref;
     }
 
     function get_iota(string $call, string $pref)
     {
-        $call = $this->dbobj->real_escape_string($call);
-        $pref = $this->dbobj->real_escape_string($pref);
-        $query = sprintf('SELECT * FROM iota_list WHERE dxcc_ref="%s" AND "%s" RLIKE CONCAT("^",pref) AND pref !=""', $pref, $call);
         $query = 'SELECT * FROM iota_list WHERE dxcc_ref=? AND ? RLIKE CONCAT("^",pref) AND pref !=""';# $pref, $call);
         $stmt = $this->dbobj->prepare($query);
         $stmt->bind_param("ss", $pref, $call);
         $stmt->execute();
         $result = $stmt->get_result();
+        $iota_nr = NULL;
+        $island_name = NULL;
+        if ($result->num_rows) {
             $result = $result->fetch_assoc();
             $island_name = $result["island_name"];
             $iota_nr = $result["iota_nr"];
