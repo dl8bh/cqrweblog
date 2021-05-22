@@ -15,8 +15,11 @@ class Cqrlog_common
     function adif_to_dxcc(int $adif)
     {
         $adif = $this->dbobj->real_escape_string($adif);
-        $query = sprintf("select pref from dxcc_ref where adif = '%u'", $adif);
-        $result = $this->dbobj->query($query);
+        $query = sprintf("SELECT pref FROM dxcc_ref WHERE adif = ?", $adif);
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("i", $adif);
+        $stmt->execute();
+        $result = $stmt->get_result();
         return $result->fetch_object()->pref;
     }
 
