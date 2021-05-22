@@ -10,7 +10,7 @@ include("inc/parse_search.php");
 
 <head>
     <?php
-    echo '<title>Am I in ' . strtoupper(logid_to_call($log_id)) . ' \'s Log</title>'
+    echo '<title>Am I in ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Log</title>'
     ?>
     <meta charset="UTF-8">
     <?php include("inc/metaheader.php"); ?>
@@ -25,7 +25,7 @@ include("inc/parse_search.php");
     if ($pubsearch_enabled) {
         $pubsearch = true;
 
-        echo '<h1 align="center">Am I in ' . strtoupper(logid_to_call($log_id)) . '\'s Log?</h1><br /><br />';
+        echo '<h1 align="center">Am I in ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . '\'s Log?</h1><br /><br />';
         include("inc/pubsearch_input.php");
 
         include("inc/search_proc.php");
@@ -44,7 +44,7 @@ include("inc/parse_search.php");
     <?php
             }
             echo '<div class="row"><div class="col-sm-4"></div>	' . "\n";
-            $match_amount = count_qsos($log_id);
+            $match_amount = "FIXME";
             switch ($match_amount) {
                 case 0:
                     echo '<div class="alert alert-warning col-sm-4">' . "\n" .
