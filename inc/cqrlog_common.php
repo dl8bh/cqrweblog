@@ -56,8 +56,11 @@ class Cqrlog_common
     function freq_to_band_mode($inputfreq)
     {
         $inputfreq = $this->dbobj->real_escape_string($inputfreq);
-        $query = sprintf("select cw,rtty,ssb,band from bands where b_begin <= %f and b_end >= %f", $inputfreq, $inputfreq);
-        $result = $this->dbobj->query($query);
+        $query = "SELECT cw,rtty,ssb,band FROM bands WHERE b_begin <= ? AND b_end >= ?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("ss", $inputfreq);
+        $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows) {
             $result = $result->fetch_assoc();
             $returnband = $result["band"];
