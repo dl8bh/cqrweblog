@@ -19,25 +19,9 @@
         </thead>
         </tr>
         <?php
-        $dbconnect->select_db(logid_to_tableid($log_id));
-        //$dbconnect -> select_db("cqrlog001");
         $qso_count = mysqli_real_escape_string($dbconnect, $qso_count);
-        $query = mysqli_query($dbconnect, "SELECT qsodate, time_on, callsign, band, mode, rst_r, rst_s, remarks, name, qsl_r, qsl_s, qslr_date, qsls_date FROM view_cqrlog_main_by_qsodate " . $where . " LIMIT " . $qso_count);
         $qsotable = $Logbook->get_log($qso_count, $where);
         foreach ($qsotable as $qso) {
-            $date = $row->qsodate;
-            $callsign = $row->callsign;
-            $time = $row->time_on;
-            $band = $row->band;
-            $mode = $row->mode;
-            $rst_r = $row->rst_r;
-            $rst_s = $row->rst_s;
-            $qsl_s = $row->qsl_s;
-            $qsl_r = $row->qsl_r;
-            $qslrdate = $row->qslr_date;
-            $qslsdate = $row->qsls_date;
-            $name = $row->name;
-
             if ($Userconfig->get_pubqslr_enabled()) {
                 switch ($qsl_r) {
                     case 'Q':
