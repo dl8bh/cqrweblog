@@ -228,17 +228,40 @@ class Logbook
         return $qslstring;
     }
 
-    function get_stats(int $adif_dxcc, array $qslarray)
+    private function _fetch_stats_assoc_array(int $adif_dxcc, array $qslarray)
     {
         $qslstring = $this->get_qsl_string($qslarray);
-        $wherestring = "WHERE 1=1";
+        $wherestring = "WHERE adif > 0";
         if (!empty($qslstring)) {
             $wherestring .= sprintf(" AND %s", $qslstring);
         }
+        if ($adif_dxcc > 0) {
+            $wherestring .= sprintf(" AND adif=?", $adif_dxcc);
+        }
         $query = sprintf("SELECT DISTINCT adif,band,mode FROM cqrlog_main %s ORDER BY adif, band DESC", $wherestring);
-        $result = $this->dbobj->query($query)->fetch_all(MYSQLI_ASSOC);
+        if ($adif_dxcc > 0) {
+            $stmt = $this->dbobj->prepare($query);
+            $stmt->bind_param("i", $adif_dxcc);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $result = $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            $result = $this->dbobj->query($query);
+            $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return $result;
+    }
+
+    function get_stats(int $adif_dxcc, array $qslarray)
+    {
+        $worked_array = $this->_fetch_stats_assoc_array($adif_dxcc, array());
+        $confirmed_array = array();
+        if (!empty($qslarray)){
+            $confirmed_array = $this->_fetch_stats_assoc_array($adif_dxcc, $qslarray);
+        }
+        
         $resultarray = array();
-        foreach ($result as $row) {
+        foreach ($worked_array as $row) {
             $adif = $row["adif"];
             $band = $row["band"];
             $mode = $row["mode"];
@@ -248,7 +271,19 @@ class Logbook
             if (!in_array($band, array_keys($resultarray[$adif]))) {
                 $resultarray[$adif][$band] = array();
             }
-            $resultarray[$adif][$band][] = $mode;
+            $resultarray[$adif][$band][$mode] = "W";
+        }
+        foreach ($confirmed_array as $row) {
+            $adif = $row["adif"];
+            $band = $row["band"];
+            $mode = $row["mode"];
+            if (!in_array($adif, array_keys($resultarray))) {
+                $resultarray[$adif] = array();
+            }
+            if (!in_array($band, array_keys($resultarray[$adif]))) {
+                $resultarray[$adif][$band] = array();
+            }
+            $resultarray[$adif][$band][$mode] = "C";
         }
         return $resultarray;
     }
