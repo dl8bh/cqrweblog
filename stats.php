@@ -3,6 +3,8 @@ include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
 include("inc/parse_stats.php");
+include("inc/logbook.php");
+$Logbook = new Logbook($DbSpawner->newdb(), $log_id);
 ?>
 
 <!DOCTYPE html> 
