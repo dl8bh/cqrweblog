@@ -37,13 +37,20 @@ class Logbook
     {
         $query = "SELECT * FROM cqrlog_main";
         $wherestring = "";
+        $keyvalue_array = array();
+        $datatype_string = '';
         foreach ($assoc_where_array as $key => $value) {
+            array_push($keyvalue_array, $key);
+            array_push($keyvalue_array, $value);
+            $datatype_string = $datatype_string . "s";
+
             $key = $this->dbobj->real_escape_string($key);
             $value = $this->dbobj->real_escape_string($value);
+
             if (in_array($key, $this->where_like)) {
-                $wherestring = $wherestring . sprintf("AND %s LIKE '%s' ", $key, $value);
+                $wherestring = $wherestring . "AND ? LIKE '?' ";
             } else {
-                $wherestring = $wherestring .  sprintf("AND %s='%s' ", $key, $value);
+                $wherestring = $wherestring .  "AND ?='?' ";
             }
         }
         if (!empty($wherestring)) {
@@ -54,7 +61,10 @@ class Logbook
         if ($num > 0) {
             $query = $query . " LIMIT " . $num;
         }
-        $result = $this->dbobj->query($query);
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param($datatype_string, ...$keyvalue_array);
+        $stmt->execute();
+        $result = $stmt->get_result();
         return ($result->fetch_all(MYSQLI_ASSOC));
     }
 
