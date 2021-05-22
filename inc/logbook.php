@@ -204,4 +204,27 @@ class Logbook
         }
         return $band;
     }
+
+    private function get_qsl_string($paper, $lotw, $eqsl)
+    {
+        $qslstring = "";
+
+        if (($paper) && ($lotw) && ($eqsl)) {
+            $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+        } elseif (($paper) && ($lotw)) {
+            $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
+        } elseif (($paper) && ($eqsl)) {
+            $qslstring = ' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
+        } elseif (($lotw) && ($eqsl)) {
+            $qslstring = ' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+        } elseif ($lotw) {
+            $qslstring = ' and lotw_qslrdate IS NOT NULL ';
+        } elseif ($eqsl) {
+            $qslstring = ' and eqsl_qslrdate IS NOT NULL ';
+        } elseif ($paper) {
+            $qslstring = ' and qsl_r !="" ';
+        }
+
+        return $qslstring;
+    }
 }
