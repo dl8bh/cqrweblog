@@ -170,7 +170,7 @@ class Cqrlog_common
 
     function _fetch_band_list()
     {
-        $query = "SELECT band FROM bands order by b_begin asc";
+        $query = "SELECT band FROM bands ORDER BY b_begin ASC";
         $result = $this->dbobj->query($query)->fetch_all();
         return $result;
     }
