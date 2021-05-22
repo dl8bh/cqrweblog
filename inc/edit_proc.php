@@ -41,61 +41,53 @@ if (empty($call)){
     $update="DELETE from cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'";
     }
     else {
-
+        $updatearray = array();
 				if (!isset($adif)) {
-
-						$update="UPDATE cqrlog_main SET" .
-						" qsodate = '" . $qsodate . 
-						"', time_on = '" .$time_on .
-						"', band = '" . $band .
-						"', freq = '" . $freq .
-						"', callsign = '" . $call . 
-						"', rst_r = '". $rst_rcvd .
-						"', rst_s = '" . $rst_sent .
-						"', remarks = '" . $remarks .
-						"', mode = '" . $mode .
-						"', name = '" . $name .
-						"', qth = '" . $qth .
-						"', iota = '" . $iota_nr .
-						"', loc = '" . $loc .
-						"', waz = '" . $waz .
-						"', qsl_s = '" . $qsls .
-						"', qsls_date = '" . $qsls_date .
-						"', qsl_r = '" . $qslr .
-						"', qslr_date = '" . $qslr_date .
-						"', state = '" . $state .
-						"', qsl_via = '" . $manager .
-						"', itu = '" . $itu . "'
-
-						WHERE id_cqrlog_main = '" . $qso_id . "'";
+						$updatearray["qsodate"] =  $qsodate; 
+						$updatearray["time_on"] = $time_on;
+						$updatearray["band"] =  $band;
+						$updatearray["freq"] =  $freq;
+						$updatearray["callsign"] =  $call; 
+						$updatearray["rst_r"] = $rst_rcvd;
+						$updatearray["rst_s"] =  $rst_sent;
+						$updatearray["remarks"] =  $remarks;
+						$updatearray["mode"] =  $mode;
+						$updatearray["name"] =  $name;
+						$updatearray["qth"] =  $qth;
+						$updatearray["iota"] =  $iota_nr;
+						$updatearray["loc"] =  $loc;
+						$updatearray["waz"] =  $waz;
+						$updatearray["qsl_s"] =  $qsls;
+						$updatearray["qsls_date"] =  $qsls_date;
+						$updatearray["qsl_r"] =  $qslr;
+						$updatearray["qslr_date"] =  $qslr_date;
+						$updatearray["state"] =  $state;
+						$updatearray["qsl_via"] =  $manager;
+						$updatearray["itu"] =  $itu;
 				}
 				else {
-
-						$update="UPDATE cqrlog_main SET" .
-						" qsodate = '" . $qsodate . 
-						"', time_on = '" .$time_on .
-						"', adif = '" .$adif .
-						"', band = '" . $band .
-						"', freq = '" . $freq .
-						"', callsign = '" . $call . 
-						"', rst_r = '". $rst_rcvd .
-						"', rst_s = '" . $rst_sent .
-						"', remarks = '" . $remarks .
-						"', mode = '" . $mode .
-						"', name = '" . $name .
-						"', qth = '" . $qth .
-						"', iota = '" . $iota_nr .
-						"', loc = '" . $loc .
-						"', waz = '" . $waz .
-						"', qsl_s = '" . $qsls .
-						"', qsls_date = '" . $qsls_date .
-						"', qsl_r = '" . $qslr .
-						"', qslr_date = '" . $qslr_date .
-						"', state = '" . $state .
-						"', qsl_via = '" . $manager .
-						"', itu = '" . $itu . "'
-
-						WHERE id_cqrlog_main = '" . $qso_id . "'";
+						$updatearray["qsodate"] = $qsodate; 
+						$updatearray["time_on"] =$time_on;
+						$updatearray["adif"] =$adif;
+						$updatearray["band"] = $band;
+						$updatearray["freq"] = $freq;
+						$updatearray["callsign"] = $call; 
+						$updatearray["rst_r"] =$rst_rcvd;
+						$updatearray["rst_s"] = $rst_sent;
+						$updatearray["remarks"] = $remarks;
+						$updatearray["mode"] = $mode;
+						$updatearray["name"] = $name;
+						$updatearray["qth"] = $qth;
+						$updatearray["iota"] = $iota_nr;
+						$updatearray["loc"] = $loc;
+						$updatearray["waz"] = $waz;
+						$updatearray["qsl_s"] = $qsls;
+						$updatearray["qsls_date"] = $qsls_date;
+						$updatearray["qsl_r"] = $qslr;
+						$updatearray["qslr_date"] = $qslr_date;
+						$updatearray["state"] = $state;
+						$updatearray["qsl_via"] = $manager;
+						$updatearray["itu"] = $itu;
 		}
 
 		}
@@ -103,8 +95,9 @@ if (empty($call)){
 	echo $update;
     }
      else{
-	$dbconnect -> select_db( logid_to_tableid( $log_id ) );
-	mysqli_query($dbconnect, $update);
+         $Logbook->edit_qso($qso_id, $updatearray);
+	#$dbconnect -> select_db( logid_to_tableid( $log_id ) );
+	#mysqli_query($dbconnect, $update);
 	if (isset($_POST['Delete'])){
 			?>
 						<div class="alert alert-warning">
