@@ -1,6 +1,6 @@
 <?php
 
-$filename = strtoupper(logid_to_call($log_id)) . '.adi';
+$filename = strtoupper($Cqrlog_common->logid_to_call($log_id)) . '.adi';
 $filename = str_replace("/", "-", $filename);
 $filepath = $exportdir . $filename;
 $file = fopen($filepath, "w+");
