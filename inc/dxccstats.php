@@ -7,13 +7,8 @@
 		echo '<th width="160px"><div class="hidden-xs">Name / Mode</div></th>' . "\n";
 
 	$i=0;
-	$dbconnect -> select_db("cqrlog_common");
-	$ergebnis = mysqli_query($dbconnect, 'SELECT DISTINCT t1.band from cqrlog_common.bands t1 join ' . logid_to_tableid( $log_id ) . '.cqrlog_main t2 on t1.band = t2.band order by t1.b_begin asc');
-	while (	$band = mysqli_fetch_object($ergebnis))
-	{
-	$bands[] = $band->band;
-	}
-	foreach((array)$bands as $band_in)
+	$bands = $Logbook->get_active_bands();
+	foreach($bands as $band_in)
 	{
 	echo '<th style="text-align:center" width="30px">' . $band_in . '</th>' . "\n";
 	}
@@ -33,7 +28,7 @@ while($row = mysqli_fetch_object($query)){
 	
 			echo '<td><div class="hidden-xs">' . $name . '</div></td>' . "\n";
 
-	foreach((array) $bands as $band_in)
+	foreach($bands as $band_in)
 	{
 	$checkadif = check_adif ( $adif, $log_id, $band_in, 'ALL',$paperqsl,$lotwqsl,$eqslqsl);
 	if ($checkadif[0]=="N")
@@ -52,7 +47,7 @@ foreach($mode as $mode_proc){
 	echo '<td></td>' . "\n";
 	echo '<td align="right">' . $mode_proc . '</td>' . "\n";
 	
-	foreach((array) $bands as $band_in)
+	foreach($bands as $band_in)
 	{
 	$checkadif = check_adif ( $adif, $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl);
 	echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
@@ -78,7 +73,7 @@ foreach($mode as $mode_proc){
 
 	echo '<tr>' . "\n";
 	echo '<td align="right">' . $mode_proc . ' confirmed</td>' . "\n";
-	foreach((array) $bands as $band_in)
+	foreach($bands as $band_in)
 	{
 	echo '<td align="center" class="success">' . count_dxcc ( $log_id, $band_in, $mode_proc,$paperqsl,$lotwqsl,$eqslqsl) . '</td>' . "\n";
 	}
@@ -88,7 +83,7 @@ foreach($mode as $mode_proc){
 
 	echo '<tr>' . "\n";
 	echo '<td align="right">' . $mode_proc . ' worked</td>' . "\n";
-	foreach((array) $bands as $band_in)
+	foreach($bands as $band_in)
 	{
 	echo  '<td align="center" class="danger">' . count_dxcc (  $log_id, $band_in, $mode_proc,false,false,false) . '</td>' . "\n";
 	}
