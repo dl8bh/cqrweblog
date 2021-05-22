@@ -42,9 +42,11 @@ class Cqrlog_common
 
     function logid_to_call(int $log_id)
     {
-        $log_id = (int) $this->dbobj->real_escape_string($log_id);
-        $query = sprintf("SELECT log_name FROM log_list WHERE log_nr=%u", $log_id);
-        $result = $this->dbobj->query($query);
+        $query = "SELECT log_name FROM log_list WHERE log_nr=?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("i", $log_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows) {
             return $result->fetch_object()->log_name;
         }
