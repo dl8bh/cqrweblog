@@ -146,21 +146,23 @@ class Logbook
 
     function insert_qso(Qso $qso)
     {
-
         $assoc_qso_array = $qso->return_qso_assoc_array();
         $keys_array = array();
         $values_array = array();
+        $value_questionmarks = array();
+        $datatype_string = "";
         foreach ($assoc_qso_array as $key => $value) {
-            if ($key != "id_cqrlog_main" && !empty($value)) {
+            if ($key != "id_cqrlog_main" && !empty($value) && in_array($key, $this->legal_fields)) {
                 array_push($keys_array, $key);
                 array_push($values_array, $value);
+                array_push($value_questionmarks, "?");
+                $datatype_string = $datatype_string . "s";
             }
         }
         $keys_string = implode(",", $keys_array);
-        $values_string = implode('","', $values_array);
-        $values_string = '"' . $values_string . '"';
-
-        $query = (sprintf("INSERT INTO cqrlog_main (%s) VALUES (%s)", $keys_string, $values_string));
-        $this->dbobj->query($query);
+        $values_string = implode(',', $value_questionmarks);
+        $query = $this->dbobj->prepare(sprintf("INSERT INTO cqrlog_main (%s) VALUES (%s)", $keys_string, $values_string));
+        $query->bind_param($datatype_string, ...$values_array);
+        $query->execute();
     }
 }
