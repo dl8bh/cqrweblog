@@ -8,6 +8,63 @@ class Logbook
     private $dbobj;
     private $log_id;
     private $where_like = array("callsign", "remarks", "name", "loc");
+    private $legal_fields = array(
+        "id_cqrlog_main",
+        "qsodate",
+        "time_on",
+        "time_off",
+        "callsign",
+        "freq",
+        "mode",
+        "rst_s",
+        "rst_r",
+        "name",
+        "qth",
+        "qsl_s",
+        "qsl_r",
+        "qsl_via",
+        "iota",
+        "pwr",
+        "itu",
+        "waz",
+        "loc",
+        "my_loc",
+        "county",
+        "award",
+        "remarks",
+        "adif",
+        "band",
+        "qso_dxcc",
+        "profile",
+        "idcall",
+        "state",
+        "lotw_qslsdate",
+        "lotw_qslrdate",
+        "lotw_qsls",
+        "lotw_qslr",
+        "cont",
+        "qsls_date",
+        "qslr_date",
+        "club_nr1",
+        "club_nr2",
+        "club_nr3",
+        "club_nr4",
+        "club_nr5",
+        "eqsl_qsl_sent",
+        "eqsl_qslsdate",
+        "eqsl_qsl_rcvd",
+        "eqsl_qslrdate",
+        "rxfreq",
+        "satellite",
+        "prop_mode",
+        "stx",
+        "srx",
+        "stx_string",
+        "srx_string",
+        "contestname",
+        "dok",
+        "operator"
+    );
 
     function __construct($dbobj, int $log_id)
     {
@@ -37,20 +94,17 @@ class Logbook
     {
         $query = "SELECT * FROM cqrlog_main";
         $wherestring = "";
-        $keyvalue_array = array();
+        $key_array = array();
         $datatype_string = '';
         foreach ($assoc_where_array as $key => $value) {
-            array_push($keyvalue_array, $key);
-            array_push($keyvalue_array, $value);
-            $datatype_string = $datatype_string . "s";
-
-            $key = $this->dbobj->real_escape_string($key);
-            $value = $this->dbobj->real_escape_string($value);
-
-            if (in_array($key, $this->where_like)) {
-                $wherestring = $wherestring . "AND ? LIKE '?' ";
-            } else {
-                $wherestring = $wherestring .  "AND ?='?' ";
+            if (in_array($key, $this->legal_fields)) {
+                array_push($key_array, $value);
+                $datatype_string = $datatype_string . "s";
+                if (in_array($key, $this->where_like)) {
+                    $wherestring = $wherestring . sprintf("AND %s LIKE ? ", $key);
+                } else {
+                    $wherestring = $wherestring .  sprintf("AND %s=? ",$key);
+                }
             }
         }
         if (!empty($wherestring)) {
@@ -62,7 +116,7 @@ class Logbook
             $query = $query . " LIMIT " . $num;
         }
         $stmt = $this->dbobj->prepare($query);
-        $stmt->bind_param($datatype_string, ...$keyvalue_array);
+        $stmt->bind_param($datatype_string, ...$key_array);
         $stmt->execute();
         $result = $stmt->get_result();
         return ($result->fetch_all(MYSQLI_ASSOC));
