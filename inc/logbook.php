@@ -103,7 +103,7 @@ class Logbook
                 if (in_array($key, $this->where_like)) {
                     $wherestring = $wherestring . sprintf("AND %s LIKE ? ", $key);
                 } else {
-                    $wherestring = $wherestring .  sprintf("AND %s=? ",$key);
+                    $wherestring = $wherestring .  sprintf("AND %s=? ", $key);
                 }
             }
         }
