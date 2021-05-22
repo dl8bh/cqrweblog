@@ -58,9 +58,10 @@ class Cqrlog_common
         $inputfreq = $this->dbobj->real_escape_string($inputfreq);
         $query = "SELECT cw,rtty,ssb,band FROM bands WHERE b_begin <= ? AND b_end >= ?";
         $stmt = $this->dbobj->prepare($query);
-        $stmt->bind_param("ss", $inputfreq);
+        $stmt->bind_param("ss", $inputfreq, $inputfreq);
         $stmt->execute();
         $result = $stmt->get_result();
+        $returnmode = NULL;
         if ($result->num_rows) {
             $result = $result->fetch_assoc();
             $returnband = $result["band"];
@@ -88,11 +89,13 @@ class Cqrlog_common
         return $bandmode[1];
     }
 
-    function get_manager($call)
+    function get_manager($callsign)
     {
-        $call = $this->dbobj->real_escape_string($call);
-        $query = sprintf('SELECT qsl_via FROM qslmgr WHERE callsign ="%s"', $call);
-        $result = $this->dbobj->query($query);
+        $query = "SELECT qsl_via FROM qslmgr WHERE callsign = ?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("s", $callsign);
+        $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows) {
             return $result->fetch_object()->qsl_via;
         } else {
