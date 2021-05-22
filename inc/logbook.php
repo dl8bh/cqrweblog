@@ -202,7 +202,7 @@ class Logbook
         foreach ($result as $band) {
             array_push($bands, $band[0]);
         }
-        return $band;
+        return $bands;
     }
 
     private function get_qsl_string(array $qslarray)
