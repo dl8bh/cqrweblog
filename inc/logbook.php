@@ -210,19 +210,19 @@ class Logbook
         $qslstring = "";
 
         if (($qslarray["paper"]) && ($qslarray["lotw"]) && ($qslarray["eqsl"])) {
-            $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+            $qslstring = '( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
         } elseif (($qslarray["paper"]) && ($qslarray["lotw"])) {
-            $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
+            $qslstring = '( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
         } elseif (($qslarray["paper"]) && ($qslarray["eqsl"])) {
-            $qslstring = ' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
+            $qslstring = '( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
         } elseif (($qslarray["lotw"]) && ($qslarray["eqsl"])) {
-            $qslstring = ' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
+            $qslstring = '( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
         } elseif ($qslarray["lotw"]) {
-            $qslstring = ' and lotw_qslrdate IS NOT NULL ';
+            $qslstring = 'lotw_qslrdate IS NOT NULL';
         } elseif ($qslarray["eqsl"]) {
-            $qslstring = ' and eqsl_qslrdate IS NOT NULL ';
+            $qslstring = 'eqsl_qslrdate IS NOT NULL';
         } elseif ($qslarray["paper"]) {
-            $qslstring = ' and qsl_r !="" ';
+            $qslstring = 'qsl_r !=""';
         }
 
         return $qslstring;
@@ -231,9 +231,11 @@ class Logbook
     function get_stats(int $adif_dxcc, array $qslarray)
     {
         $qslstring = $this->get_qsl_string($qslarray);
+        $wherestring = "WHERE 1=1";
         if (!empty($qslstring)) {
+            $wherestring .= sprintf(" AND %s", $qslstring);
         }
-        $query = "SELECT DISTINCT adif,band,mode FROM cqrlog_main ORDER BY adif, band DESC";
+        $query = sprintf("SELECT DISTINCT adif,band,mode FROM cqrlog_main %s ORDER BY adif, band DESC", $wherestring);
         $result = $this->dbobj->query($query)->fetch_all(MYSQLI_ASSOC);
         $resultarray = array();
         foreach ($result as $row) {
