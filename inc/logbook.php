@@ -224,7 +224,30 @@ class Logbook
         } elseif ($qslarray["paper"]) {
             $qslstring = ' and qsl_r !="" ';
         }
-    
+
         return $qslstring;
+    }
+
+    function get_stats(int $adif_dxcc, array $qslarray)
+    {
+        $qslstring = $this->get_qsl_string($qslarray);
+        if (!empty($qslstring)) {
+        }
+        $query = "SELECT DISTINCT adif,band,mode FROM cqrlog_main ORDER BY adif, band DESC";
+        $result = $this->dbobj->query($query)->fetch_all(MYSQLI_ASSOC);
+        $resultarray = array();
+        foreach ($result as $row) {
+            $adif = $row["adif"];
+            $band = $row["band"];
+            $mode = $row["mode"];
+            if (!in_array($adif, array_keys($resultarray))) {
+                $resultarray[$adif] = array();
+            }
+            if (!in_array($band, array_keys($resultarray[$adif]))) {
+                $resultarray[$adif][$band] = array();
+            }
+            $resultarray[$adif][$band][] = $mode;
+        }
+        return $resultarray;
     }
 }
