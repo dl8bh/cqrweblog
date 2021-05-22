@@ -116,7 +116,9 @@ class Logbook
             $query = $query . " LIMIT " . $num;
         }
         $stmt = $this->dbobj->prepare($query);
-        $stmt->bind_param($datatype_string, ...$key_array);
+        if (!empty($datatype_string) && !empty($key_array)) {
+            $stmt->bind_param($datatype_string, ...$key_array);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
         return ($result->fetch_all(MYSQLI_ASSOC));
