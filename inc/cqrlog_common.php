@@ -105,9 +105,11 @@ class Cqrlog_common
 
     function band_to_freq($inputband)
     {
-        $inputband = $this->dbobj->real_escape_string($inputband);
-        $query = sprintf("select b_begin from bands where band ='%s'", $inputband);
-        $result = $this->dbobj->query($query);
+        $query = "SELECT b_begin FROM bands WHERE band = ?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("s", $inputband);
+        $stmt->execute();
+        $result = $stmt->get_result();
         if ($result->num_rows) {
             return $result->fetch_object()->b_begin;
         } else {
