@@ -25,7 +25,7 @@ class Cqrlog_common
 
     function get_iota(string $call, string $pref)
     {
-        $query = 'SELECT * FROM iota_list WHERE dxcc_ref=? AND ? RLIKE CONCAT("^",pref) AND pref !=""';# $pref, $call);
+        $query = 'SELECT * FROM iota_list WHERE dxcc_ref=? AND ? RLIKE CONCAT("^",pref) AND pref !=""'; # $pref, $call);
         $stmt = $this->dbobj->prepare($query);
         $stmt->bind_param("ss", $pref, $call);
         $stmt->execute();
@@ -178,5 +178,20 @@ class Cqrlog_common
     function get_band_list()
     {
         return $this->band_list;
+    }
+
+    function get_dxcc_ref_list($pref)
+    {
+        $query = "SELECT DISTINCT adif,pref,name FROM dxcc_ref WHERE deleted=0";
+        if (!empty($pref)) {
+            $query .= " AND pref LIKE ?";
+            $stmt = $this->dbobj->prepare($query);
+            $stmt->bind_param("s", $pref);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return ($result->fetch_all(MYSQLI_ASSOC));
+        } else {
+            return $this->dbobj->query($query)->fetch_all(MYSQLI_ASSOC);
+        }
     }
 }
