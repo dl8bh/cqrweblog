@@ -97,7 +97,7 @@ class Logbook
         $key_array = array();
         $datatype_string = '';
         foreach ($assoc_where_array as $key => $value) {
-            if (in_array($key, $this->legal_fields)) {
+            if (in_array($key, array_keys($this->legal_fields))) {
                 array_push($key_array, $value);
                 $datatype_string = $datatype_string . "s";
                 if (in_array($key, $this->where_like)) {
@@ -164,6 +164,32 @@ class Logbook
         $keys_string = implode(",", $keys_array);
         $values_string = implode(',', $value_questionmarks);
         $query = $this->dbobj->prepare(sprintf("INSERT INTO cqrlog_main (%s) VALUES (%s)", $keys_string, $values_string));
+        $query->bind_param($datatype_string, ...$values_array);
+        $query->execute();
+    }
+    function edit_qso(int $qso_id, array $update_array)
+    {
+        $keys_array = array();
+        $values_array = array();
+        $value_questionmarks = array();
+        $datatype_string = "";
+        $setstring = "";
+        $counter = 0;
+        foreach ($update_array as $key => $value) {
+            if ($key != "id_cqrlog_main" && !empty($value) && in_array($key, array_keys($this->legal_fields))) {
+                if ($counter == 0) {
+                    $setstring = sprintf("%s=?", $key);
+                } else {
+                    $setstring = $setstring . sprintf(", %s=?", $key);
+                }
+                array_push($values_array, $value);
+                $datatype_string = $datatype_string . $this->legal_fields[$key];
+                $counter += 1;
+            }
+        }
+        array_push($values_array, $qso_id);
+        $datatype_string = $datatype_string . "i";
+        $query = $this->dbobj->prepare(sprintf("UPDATE cqrlog_main SET %s WHERE id_cqrlog_main=?", $setstring));
         $query->bind_param($datatype_string, ...$values_array);
         $query->execute();
     }
