@@ -167,7 +167,7 @@ class Logbook
         $query->bind_param($datatype_string, ...$values_array);
         $query->execute();
     }
-    
+
     function edit_qso(int $qso_id, array $update_array)
     {
         $keys_array = array();
