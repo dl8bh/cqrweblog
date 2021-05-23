@@ -294,4 +294,42 @@ class Logbook
         }
         return $resultarray;
     }
+
+    function count_dxcc(string $band, string $mode, array $qslarray)
+    {
+        $qslstring = $this->get_qsl_string($qslarray);
+        $datatype_string = "";
+
+        $querystring = "SELECT COUNT(DISTINCT adif) FROM cqrlog_main WHERE adif<>0";
+        $valuearray = array();
+        if ($band != "ALL") {
+            $querystring .= " AND band=?";
+            array_push($valuearray, $band);
+            $datatype_string .= "s";
+        }
+
+        if ($mode == "DATA") {
+            $querystring .= " AND mode!=\"SSB\" AND mode!=\"CW\" AND mode!=\"FM\"";
+        } else if ($mode != "ALL") {
+            $querystring .= " AND mode=?";
+            array_push($valuearray, $mode);
+            $datatype_string .= "s";
+        }
+        if (!empty($qslstring)) {
+            $querystring .= sprintf(" AND %s", $qslstring);
+        }
+
+
+        if (empty($datatype_string)) {
+            $result = $this->dbobj->query($querystring)->fetch_array(MYSQLI_NUM);
+            return $result[0];
+        } else {
+            $query = $this->dbobj->prepare($querystring);
+            $query->bind_param($datatype_string, ...$valuearray);
+            $query->execute();
+            $result = $query->get_result();
+            $result = $result->fetch_array(MYSQLI_NUM);
+            return $result[0];
+        }
+    }
 }
