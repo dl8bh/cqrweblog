@@ -271,6 +271,7 @@ class Logbook
             if (!in_array($band, array_keys($resultarray[$adif]))) {
                 $resultarray[$adif][$band] = array();
             }
+            $resultarray[$adif][$band]["STATUS"] = "W";
             $resultarray[$adif][$band][$mode] = "W";
         }
         foreach ($confirmed_array as $row) {
@@ -283,6 +284,7 @@ class Logbook
             if (!in_array($band, array_keys($resultarray[$adif]))) {
                 $resultarray[$adif][$band] = array();
             }
+            $resultarray[$adif][$band]["STATUS"] = "C";
             $resultarray[$adif][$band][$mode] = "C";
         }
         return $resultarray;
