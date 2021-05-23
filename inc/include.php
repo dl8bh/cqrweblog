@@ -79,30 +79,6 @@ function call_to_dxcc($callsign)
     return array($dxcc_adif, $dxcc_name, $dxcc_itu, $dxcc_waz);
 }
 
-function qslstring($paper, $lotw, $eqsl)
-{
-
-
-    $qslstring = "";
-
-    if (($paper) && ($lotw) && ($eqsl)) {
-        $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-    } elseif (($paper) && ($lotw)) {
-        $qslstring = ' and ( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) )';
-    } elseif (($paper) && ($eqsl)) {
-        $qslstring = ' and ( (qsl_r !="" ) OR (eqsl_qslrdate IS NOT NULL) )';
-    } elseif (($lotw) && ($eqsl)) {
-        $qslstring = ' and ( (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
-    } elseif ($lotw) {
-        $qslstring = ' and lotw_qslrdate IS NOT NULL ';
-    } elseif ($eqsl) {
-        $qslstring = ' and eqsl_qslrdate IS NOT NULL ';
-    } elseif ($paper) {
-        $qslstring = ' and qsl_r !="" ';
-    }
-
-    return $qslstring;
-}
 
 function check_dupe($log_id, $callsign, $band = 'ALL', $mode = 'ALL')
 {
@@ -122,96 +98,6 @@ function check_dupe($log_id, $callsign, $band = 'ALL', $mode = 'ALL')
         return true;
     }
     return false;
-}
-
-function check_adif($adif, $log_id, $band = 'ALL', $mode = 'ALL', $paper = true, $lotw = true, $eqsl = true)
-{
-
-    global $dbconnect;
-    $dbconnect->select_db(logid_to_tableid($log_id));
-
-    $adif = mysqli_real_escape_string($dbconnect, $adif);
-    $log_id = mysqli_real_escape_string($dbconnect, $log_id);
-    $band = mysqli_real_escape_string($dbconnect, $band);
-    $mode = mysqli_real_escape_string($dbconnect, $mode);
-    $paper = mysqli_real_escape_string($dbconnect, $paper);
-    $lotw = mysqli_real_escape_string($dbconnect, $lotw);
-    $eqsl = mysqli_real_escape_string($dbconnect, $eqsl);
-
-    $qslstring = qslstring($paper, $lotw, $eqsl);
-    if ($mode == "RTTY") {
-        $mode = "DATA";
-    }
-    if ($band == "ALL") {
-        $bandstring = '';
-    } else {
-        $bandstring = ' and band="' . $band . '"';
-    }
-
-    $dbconnect->select_db(logid_to_tableid($log_id));
-    switch ($mode) {
-        case 'ALL':
-            $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . $qslstring  . ' limit 1');
-            break;
-        case 'DATA':
-            $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode!="SSB" and mode !="CW" and mode !="FM"'  . $qslstring  . ' limit 1');
-            break;
-        default:
-            $ergebnis = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '"'  . $qslstring  . ' limit 1');
-    }
-
-    while ($row = mysqli_fetch_object($ergebnis)) {
-        return array("C", '<td align="center" class="success">',  '</td>');
-    }
-
-    switch ($mode) {
-        case 'ALL':
-            $ergebnis2 = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' limit 1');
-            break;
-        case 'DATA':
-            $ergebnis2 = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and  mode!="SSB" and mode !="CW" and mode !="FM" limit 1');
-            break;
-        default:
-            $ergebnis2 = mysqli_query($dbconnect,    'select callsign from cqrlog_main where adif=' . $adif . $bandstring . ' and mode="' . $mode . '" limit 1');
-    }
-    while ($row = mysqli_fetch_object($ergebnis2)) {
-        return array('W', '<td class="danger" align="center" >', '</td>');
-    }
-
-    return array('N', '<td align="center">', '</td>');
-}
-
-function count_dxcc($log_id, $band, $mode, $paper, $lotw, $eqsl)
-{
-
-    global $dbconnect;
-    $dbconnect->select_db(logid_to_tableid($log_id));
-
-    $log_id = mysqli_real_escape_string($dbconnect, $log_id);
-    $band = mysqli_real_escape_string($dbconnect, $band);
-    $mode = mysqli_real_escape_string($dbconnect, $mode);
-    $paper = mysqli_real_escape_string($dbconnect, $paper);
-    $lotw = mysqli_real_escape_string($dbconnect, $lotw);
-    $eqsl = mysqli_real_escape_string($dbconnect, $eqsl);
-
-    $qslstring = qslstring($paper, $lotw, $eqsl);
-    $querystring = 'select count(distinct adif) from cqrlog_main where adif<>0 ';
-
-    if ($band != "ALL") {
-        $querystring .= 'and band="' . $band . '" ';
-    }
-
-    if ($mode == "DATA") {
-        $querystring .= 'and mode!="SSB" and mode!="CW" and mode!="FM" ';
-    } else if ($mode != "ALL") {
-        $querystring .= 'and mode="' . $mode . '" ';
-    }
-
-    $querystring .= $qslstring;
-
-    $ergebnis = mysqli_query($dbconnect, $querystring);
-    $result = $ergebnis->fetch_row();
-    return $result[0];
 }
 
 
