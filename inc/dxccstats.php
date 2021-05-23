@@ -38,7 +38,7 @@
 
             foreach ($bands as $band_in) {
                 $checkadif = "N";
-                if ($stats_array[$dxcc_ref["adif"]][$band_in]["STATUS"]) {
+                if (isset($stats_array[$dxcc_ref["adif"]][$band_in]["STATUS"])) {
                     $checkadif = $stats_array[$dxcc_ref["adif"]][$band_in]["STATUS"];
                 }
                 if ($checkadif == "N") {
@@ -56,7 +56,7 @@
 
                 foreach ($bands as $band_in) {
                     $checkadif = "N";
-                    if ($stats_array[$dxcc_ref["adif"]][$band_in][$mode_proc]) {
+                    if (isset($stats_array[$dxcc_ref["adif"]][$band_in][$mode_proc])) {
                         $checkadif = $stats_array[$dxcc_ref["adif"]][$band_in][$mode_proc];
                     }
                     echo  $stats_templates[$checkadif] . $band_in . "</td>" . "\n";
