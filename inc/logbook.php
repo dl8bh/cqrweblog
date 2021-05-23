@@ -167,6 +167,7 @@ class Logbook
         $query->bind_param($datatype_string, ...$values_array);
         $query->execute();
     }
+    
     function edit_qso(int $qso_id, array $update_array)
     {
         $keys_array = array();
@@ -256,10 +257,10 @@ class Logbook
     {
         $worked_array = $this->_fetch_stats_assoc_array($adif_dxcc, array());
         $confirmed_array = array();
-        if (!empty($qslarray)){
+        if (!empty($qslarray)) {
             $confirmed_array = $this->_fetch_stats_assoc_array($adif_dxcc, $qslarray);
         }
-        
+
         $resultarray = array();
         foreach ($worked_array as $row) {
             $adif = $row["adif"];
