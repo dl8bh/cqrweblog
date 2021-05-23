@@ -210,6 +210,10 @@ class Logbook
     {
         $qslstring = "";
 
+        if (empty($qslarray)) {
+            return NULL;
+        }
+
         if (($qslarray["paper"]) && ($qslarray["lotw"]) && ($qslarray["eqsl"])) {
             $qslstring = '( (qsl_r !="" ) OR (lotw_qslrdate IS NOT NULL) OR (eqsl_qslrdate IS NOT NULL) )';
         } elseif (($qslarray["paper"]) && ($qslarray["lotw"])) {
