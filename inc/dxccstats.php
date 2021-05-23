@@ -16,19 +16,35 @@
         </tr>
         <?php
 
+        $stats_templates = array(
+            "C" => "<td align=\"center\" class=\"success\">",
+            "W" => "<td class=\"danger\" align=\"center\" >",
+            "N" => "<td align=\"center\">"
+        );
+        $qslarray = array(
+            "paper" => $paperqsl,
+            "lotw" => $lotwqsl,
+            "eqsl" => $eqslqsl
+        );
+        $stats_array = $Logbook->get_stats(0, $qslarray);
+
+
         $dxcc_ref_list = $Cqrlog_common->get_dxcc_ref_list("");
-        foreach($dxcc_ref_list as $dxcc_ref) {
+        foreach ($dxcc_ref_list as $dxcc_ref) {
             echo '<tr>' . "\n";
             echo '<td>' . $dxcc_ref["pref"] . '</td>' . "\n";
 
             echo '<td><div class="hidden-xs">' . $dxcc_ref["name"] . '</div></td>' . "\n";
 
             foreach ($bands as $band_in) {
-                $checkadif = check_adif($dxcc_ref["adif"], $log_id, $band_in, 'ALL', $paperqsl, $lotwqsl, $eqslqsl);
-                if ($checkadif[0] == "N") {
+                $checkadif = "N";
+                if ($stats_array[$dxcc_ref["adif"]][$band_in]["STATUS"]) {
+                    $checkadif = $stats_array[$dxcc_ref["adif"]][$band_in]["STATUS"];
+                }
+                if ($checkadif == "N") {
                     echo  '<td style="text-align:center">' . $band_in . $checkadif[2] . "\n";
                 } else {
-                    echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
+                    echo  $stats_templates[$checkadif] . $band_in . "</td>" . "\n";
                 }
             }
 
@@ -39,8 +55,11 @@
                 echo '<td align="right">' . $mode_proc . '</td>' . "\n";
 
                 foreach ($bands as $band_in) {
-                    $checkadif = check_adif($dxcc_ref["adif"], $log_id, $band_in, $mode_proc, $paperqsl, $lotwqsl, $eqslqsl);
-                    echo  $checkadif[1] . $band_in . $checkadif[2] . "\n";
+                    $checkadif = "N";
+                    if ($stats_array[$dxcc_ref["adif"]][$band_in][$mode_proc]) {
+                        $checkadif = $stats_array[$dxcc_ref["adif"]][$band_in][$mode_proc];
+                    }
+                    echo  $stats_templates[$checkadif] . $band_in . "</td>" . "\n";
                 }
                 echo '</tr>' . "\n";
             }
