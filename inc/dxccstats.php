@@ -82,18 +82,18 @@
                 echo '<tr>' . "\n";
                 echo '<td align="right">' . $mode_proc . ' confirmed</td>' . "\n";
                 foreach ($bands as $band_in) {
-                    echo '<td align="center" class="success">' . count_dxcc($log_id, $band_in, $mode_proc, $paperqsl, $lotwqsl, $eqslqsl) . '</td>' . "\n";
+                    echo '<td align="center" class="success">' . $Logbook->count_dxcc($band_in, $mode_proc, $qslarray) . '</td>' . "\n";
                 }
-                echo '<td align="center" class="success">' . count_dxcc($log_id, "ALL", $mode_proc, $paperqsl, $lotwqsl, $eqslqsl) . '</td>' . "\n";
+                echo '<td align="center" class="success">' . $Logbook->count_dxcc("ALL", $mode_proc, $qslarray) . '</td>' . "\n";
                 echo '</tr>' . "\n";
 
 
                 echo '<tr>' . "\n";
                 echo '<td align="right">' . $mode_proc . ' worked</td>' . "\n";
                 foreach ($bands as $band_in) {
-                    echo  '<td align="center" class="danger">' . count_dxcc($log_id, $band_in, $mode_proc, false, false, false) . '</td>' . "\n";
+                    echo  '<td align="center" class="danger">' . $Logbook->count_dxcc($band_in, $mode_proc, array()) . '</td>' . "\n";
                 }
-                echo  '<td align="center" class="danger">' . count_dxcc($log_id, "ALL", $mode_proc, false, false, false) . '</td>' . "\n";
+                echo  '<td align="center" class="danger">' . $Logbook->count_dxcc("ALL", $mode_proc, array()) . '</td>' . "\n";
                 echo '</tr>' . "\n";
             }
         }
