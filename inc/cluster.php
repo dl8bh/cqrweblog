@@ -9,34 +9,34 @@
     $out  = "";
     echo '<table class="table table-hover borderless table-condensed" align="center" >' . "\n";
 
-    foreach ($spots as $key => $qso) {
+    foreach ($spots as $key => $spot) {
         $dxmessage = '';
-        $clusterbandmode = $Cqrlog_common->freq_to_band_mode($qso[1] / 1000);
-        $checkadif = $Logbook->get_stats($qso[10], array());
+        $clusterbandmode = $Cqrlog_common->freq_to_band_mode($spot[1] / 1000);
+        $checkadif = $Logbook->get_stats($spot[10], array());
         $qsoarray = array(
-            "callsign" => $qso[2],
+            "callsign" => $spot[2],
             "band" => $clusterbandmode[0],
             "mode" => $clusterbandmode[1]
         );
         $band = $clusterbandmode[0];
         $mode = $clusterbandmode[1];
-        $qsoobject = new Qso($qsoarray);
-        if ($Logbook->check_dupe($qsoobject)) {
+        $qso = new Qso($qsoarray);
+        if ($Logbook->check_dupe($qso)) {
             $fontcolor = $dupecolor;
             $dxmessage = '<b><font color="' . $fontcolor . '">DUPE</font></b>';
-        } elseif (!isset($checkadif[$qso[10]])) {
+        } elseif (!isset($checkadif[$spot[10]])) {
             $fontcolor = $atnocolor;
             $dxmessage = '<b><font color="' . $fontcolor . '">NEW ONE</font></b>';
-        } elseif (!isset($checkadif[$qso[10]][$band][$mode])) {
-            if (!isset($checkadif[$qso[10]][$band])) {
+        } elseif (!isset($checkadif[$spot[10]][$band][$mode])) {
+            if (!isset($checkadif[$spot[10]][$band])) {
                 $fontcolor = $newbandcolor;
                 $dxmessage = '<b><font color="' . $fontcolor . '">NEW BAND</font></b>';
-            } elseif (!isset($checkadif[$qso[10]][$mode])) {
+            } elseif (!isset($checkadif[$spot[10]][$mode])) {
                 $fontcolor = $newmodecolor;
                 $dxmessage = '<b><font color="' . $fontcolor . '">NEW MODE</font></b>';
             }
         } else {
-            switch ($checkadif[$qso[10]][$band][$mode]) {
+            switch ($checkadif[$spot[10]][$band][$mode]) {
                 case "C":
                     $fontcolor = $confirmedcolor;
                 case "W":
@@ -44,15 +44,15 @@
             }
         }
 
- 
-        
+
+
         $out .= '<tr class="small">';
         $out .= '<td class="hidden-xs">' . $dxmessage . '</td>	' . "\n";
-        $out .= '<td class="hidden-xs">DX de ' . $qso[0] . ':</td>' . "\n";
-        $out .= '<td>' . $qso[1] . '</td>' . "\n";
-        $out .=    '<td><a href="javascript:fillClusterData(\'' . $qso[2] . '\',\'' . $qso[1] . '\',\'' . $clusterbandmode[1] . '\');" style="color:' . $fontcolor . '; font-weight: bold;">' . $qso[2] . '</a></td>' . "\n";
-        $out .= '<td>' . $qso[3] . '</td>' . "\n";
-        $out .= '<td>' . $qso[4] . '</td>' . "\n";
+        $out .= '<td class="hidden-xs">DX de ' . $spot[0] . ':</td>' . "\n";
+        $out .= '<td>' . $spot[1] . '</td>' . "\n";
+        $out .=    '<td><a href="javascript:fillClusterData(\'' . $spot[2] . '\',\'' . $spot[1] . '\',\'' . $clusterbandmode[1] . '\');" style="color:' . $fontcolor . '; font-weight: bold;">' . $spot[2] . '</a></td>' . "\n";
+        $out .= '<td>' . $spot[3] . '</td>' . "\n";
+        $out .= '<td>' . $spot[4] . '</td>' . "\n";
         $out .= "</tr>" . "\n";
     }
     $out .= "</table>";
