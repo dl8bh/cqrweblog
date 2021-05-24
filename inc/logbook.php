@@ -277,7 +277,9 @@ class Logbook
                 $resultarray[$adif][$band] = array();
             }
             $resultarray[$adif][$band]["STATUS"] = "W";
+            $resultarray[$adif]["STATUS"] = "W";
             $resultarray[$adif][$band][$mode] = "W";
+            $resultarray[$adif][$mode] = "W";
         }
         foreach ($confirmed_array as $row) {
             $adif = $row["adif"];
@@ -290,6 +292,8 @@ class Logbook
                 $resultarray[$adif][$band] = array();
             }
             $resultarray[$adif][$band]["STATUS"] = "C";
+            $resultarray[$adif]["STATUS"] = "C";
+            $resultarray[$adif][$mode] = "C";
             $resultarray[$adif][$band][$mode] = "C";
         }
         return $resultarray;
