@@ -332,4 +332,23 @@ class Logbook
             return $result[0];
         }
     }
+
+    function check_dupe(Qso $qso)
+    {
+        $band = $qso->get_band();
+        $mode = $qso->get_mode();
+        $callsign = $qso->get_callsign();
+
+        $querystring = "SELECT callsign FROM cqrlog_main WHERE callsign=? AND mode=? AND band=? LIMIT 1";
+
+        $query = $this->dbobj->prepare($querystring);
+        $query->bind_param("sss", $callsign, $mode, $band);
+        $query->execute();
+        $result = $query->get_result();
+        if ($result->num_rows > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 }
