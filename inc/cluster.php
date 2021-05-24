@@ -12,7 +12,7 @@
     foreach ($spots as $key => $spot) {
         $dxmessage = '';
         $clusterbandmode = $Cqrlog_common->freq_to_band_mode($spot[1] / 1000);
-        $checkadif = $Logbook->get_stats($spot[10], array());
+        $checkadif = $Logbook->get_stats($spot[10], array("paper" => TRUE, "lotw" => TRUE, "eqsl" => FALSE));
         $qsoarray = array(
             "callsign" => $spot[2],
             "band" => $clusterbandmode[0],
@@ -39,8 +39,10 @@
             switch ($checkadif[$spot[10]][$band][$mode]) {
                 case "C":
                     $fontcolor = $confirmedcolor;
+                    break;
                 case "W":
                     $fontcolor = $workedcolor;
+                    break;
             }
         }
 
