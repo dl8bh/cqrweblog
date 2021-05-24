@@ -26,10 +26,14 @@
             "lotw" => $lotwqsl,
             "eqsl" => $eqslqsl
         );
-        $stats_array = $Logbook->get_stats(0, $qslarray);
+        if(empty($dxcc)){
+            $stats_array = $Logbook->get_stats(0, $qslarray);
+        } else {
+            $stats_array = $Logbook->get_stats($dxcc, $qslarray);
+        }
 
 
-        $dxcc_ref_list = $Cqrlog_common->get_dxcc_ref_list("");
+        $dxcc_ref_list = $Cqrlog_common->get_dxcc_ref_list($prefix);
         foreach ($dxcc_ref_list as $dxcc_ref) {
             echo '<tr>' . "\n";
             echo '<td>' . $dxcc_ref["pref"] . '</td>' . "\n";
@@ -65,7 +69,7 @@
             }
         }
         echo '</table></div>' . "\n";
-        if (empty($call)) {
+        if (empty($prefix)) {
             echo '<div class="table-responsive">' . "\n";
             echo '<table class="table table-condensed" align="center" cellpadding="0" cellspacing="0">' . "\n";
             echo '<tr><th> DXCC Count</th>' . "\n";

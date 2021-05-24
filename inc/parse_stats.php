@@ -1,7 +1,9 @@
 <?php
 // Parse Input
-if (isset($_POST["dxcc"])) {
-    $dxcc = strtoupper(htmlentities($_POST["dxcc"]));
+$prefix = "";
+if (isset($_POST["prefix"])) {
+    $prefix = strtoupper(htmlentities($_POST["prefix"]));
+    $dxcc = $Cqrlog_common->dxcc_to_adif($prefix);
 }
 
 if (isset($_POST["band"])) {
@@ -19,7 +21,8 @@ if (!isset($mode)) {
 if (isset($_POST["callsign"])) {
     $call = strtoupper(htmlentities($_POST["callsign"]));
     if (!empty($call)) {
-        $dxcc = $Cqrlog_common->adif_to_dxcc(call_to_dxcc($call)[0]);
+        $dxcc = call_to_dxcc($call)[0];
+        $prefix = $Cqrlog_common->adif_to_dxcc(call_to_dxcc($call)[0]);
         $mode = array("CW", "SSB", "DATA");
     }
 }

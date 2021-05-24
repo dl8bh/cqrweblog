@@ -6,8 +6,8 @@ echo '<form class="form" role="form" action="stats.php?log_id=' . $log_id . '" m
 <div class="row">
 <div class="col-sm-4"></div>
 		<div class="form-group col-sm-1 col-xs-4">
-				<label for="dxcc" class="control-label">DXCC</label>
-				<input type="text" maxlength="7" size="5" id="dxcc" data-toggle="tooltip" class="form-control" name="dxcc" title="use % as wildcard">
+				<label for="prefix" class="control-label">DXCC-Prefix</label>
+				<input type="text" maxlength="7" size="5" id="prefix" data-toggle="tooltip" class="form-control" name="prefix" title="use % as wildcard">
 		</div>
 		
 		<div class="form-group col-sm-1 col-xs-4">
