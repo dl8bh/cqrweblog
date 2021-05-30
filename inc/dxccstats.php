@@ -46,7 +46,7 @@
                     $checkadif = $stats_array[$dxcc_ref["adif"]][$band_in]["STATUS"];
                 }
                 if ($checkadif == "N") {
-                    echo  '<td style="text-align:center">' . $band_in . $checkadif . "\n";
+                    echo  '<td style="text-align:center">' . $band_in . "\n";
                 } else {
                     echo  $stats_templates[$checkadif] . $band_in . "</td>" . "\n";
                 }
