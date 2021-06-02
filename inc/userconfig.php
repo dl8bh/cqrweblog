@@ -46,12 +46,16 @@ class Userconfig {
         }
     }
 
-    private function _init_config_from_db(int $log_nr) {
+    private function _init_config_from_db(int $log_nr)
+    {
         $query = sprintf("SELECT * from settings where log_nr='%u'", $this->log_nr);
-        $result = $this->dbobj->query($query);
-        while($row = $result->fetch_assoc()) {
-            #var_dump($row);
-            foreach($row as $key => $value){
+        $query = "SELECT * from settings where log_nr=?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("i", $this->log_nr);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            foreach ($row as $key => $value) {
                 $this->$key = $value;
             }
         }
