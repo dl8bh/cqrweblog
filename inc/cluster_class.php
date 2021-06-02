@@ -21,7 +21,15 @@ class dxcccluster
     {
         $resultstring = curl_exec($this->curl_session);
         $jsonarray = json_decode($resultstring, TRUE);
-        foreach (array_reverse($jsonarray) as $key => $value) {
+        $i = 0;
+        foreach ($jsonarray as $spot) {
+            foreach ($filter as $filter_key => $filter_value) {
+                if ($spot[$filter_key] != $filter_value) {
+                    unset($jsonarray[$i]);
+                    break;
+                }
+            }
+            $i += 1;
         }
         return array_slice($jsonarray, 0, $limit);
     }
