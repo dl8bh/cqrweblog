@@ -94,7 +94,7 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
     <div class="col-md-2 hidden-sm">
 
         <?php
-        if ($enable_help[$log_id]) {
+        if ($Userconfig->enable_help()) {
         ?>
             <button type="button" class="col-md-12 hidden-xs btn btn-info" data-toggle="collapse" data-target="#help">Show help</button>
             <div id="help" class="collapse panel panel-default hidden-xs">
