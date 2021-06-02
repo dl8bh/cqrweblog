@@ -159,9 +159,11 @@ class Userconfig
 
     function set_searchcount(int $searchcount)
     {
-        $searchcount = $this->dbobj->real_escape_string($searchcount);
-        $query = sprintf("UPDATE settings SET searchcount='%u' WHERE log_nr='%u'", $searchcount, $this->log_nr);
-        $result = $this->dbobj->query($query);
+        $query = "UPDATE settings SET searchcount=? WHERE log_nr=?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("ii", $searchcount, $this->log_nr);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $this->update_searchcount();
         return $result;
     }
