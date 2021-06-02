@@ -1,15 +1,15 @@
 <div id="cluster" class="table-responsive">
     <?php
     include("./inc/cluster_class.php");
-    $cluster = New dxcccluster("https://api.dl8bh.de/cluster/");
+    $cluster = new dxcccluster("https://api.dl8bh.de/cluster/");
     if (isset($band)) {
-        $spots = $cluster->get_cluster_spots($cluster_spot_num, array("band"=>$band));
+        $spots = $cluster->get_cluster_spots($cluster_spot_num, array("band" => $band));
     } else {
         $spots = $cluster->get_cluster_spots($cluster_spot_num, array());
     }
     $out  = "";
     echo '<table class="table table-hover borderless table-condensed" align="center" >' . "\n";
-        $checkadif = $Logbook->get_stats(0, array("paper" => TRUE, "lotw" => TRUE, "eqsl" => FALSE));
+    $checkadif = $Logbook->get_stats(0, array("paper" => TRUE, "lotw" => TRUE, "eqsl" => FALSE));
     foreach ($spots as $key => $spot) {
 
         $dxmessage = '';
