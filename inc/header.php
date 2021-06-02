@@ -2,7 +2,9 @@
 
 include("inc/include.php");
 include("inc/cqrlog_common.php");
+include("inc/checkdxcc.php");
 $Cqrlog_common = new Cqrlog_common($DbSpawner->newdb());
+$Checkdxcc = new Checkdxcc("https://api.dl8bh.de/lookup/json/");
 $hamqthtimeout = FALSE;
 include("inc/userconfig.php");
 if (isset($_GET['log_id'])){

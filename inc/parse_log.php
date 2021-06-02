@@ -1,7 +1,5 @@
 <?php
 // Parse Input
-include("inc/checkdxcc.php");
-$Checkdxcc = new Checkdxcc("https://api.dl8bh.de/lookup/json/");
 if (isset($_POST['frequency'])) {
     $freq = htmlentities($_POST["frequency"]);
     $freq = str_replace(',', '.', $freq);
