@@ -1,6 +1,7 @@
 <?php
 // Parse Input
-
+include("inc/checkdxcc.php");
+$Checkdxcc = new Checkdxcc("https://api.dl8bh.de/lookup/json/");
 if (isset($_POST['frequency'])) {
     $freq = htmlentities($_POST["frequency"]);
     $freq = str_replace(',', '.', $freq);
@@ -30,11 +31,11 @@ if (!empty($_POST["call"])) {
     } else {
         $id_call = $call;
     }
-    $fetchqso = call_to_dxcc($call);
-    $adif = $fetchqso[0];
-    $dxcc_name = $fetchqso[1];
-    $itu = $fetchqso[2];
-    $waz = $fetchqso[3];
+    $fetchqso = $Checkdxcc->call_to_dxcc($call);
+    $adif = $fetchqso["adif"];
+    $dxcc_name = $fetchqso["details"];
+    $itu = $fetchqso["itu"];
+    $waz = $fetchqso["waz"];
     $manager = $Cqrlog_common->get_manager($call);
     $fetchiota = $Cqrlog_common->get_iota($call, $adif);
     $iota_nr = $fetchiota[0];
