@@ -61,11 +61,14 @@ class Userconfig {
         }
     }
 
-    function _check_if_config_exists(int $log_nr) {
-        $query = sprintf("SELECT log_nr from settings where log_nr='%u'", $this->log_nr);
-        $result = $this->dbobj->query($query);
+    function _check_if_config_exists(int $log_nr)
+    {
+        $query = $this->dbobj->prepare("SELECT log_nr from settings where log_nr=?");
+        $query->bind_param("i", $log_nr);
+        $query->execute();
+        $result = $query->get_result();
         $result = $result->num_rows;
-        return((boolean) $result);
+        return (bool) $result;
     }
 
     private function _init_config_to_db(int $log_nr) {
