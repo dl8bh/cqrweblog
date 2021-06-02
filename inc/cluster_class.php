@@ -23,6 +23,6 @@ class dxcccluster
         $jsonarray = json_decode($resultstring, TRUE);
         foreach (array_reverse($jsonarray) as $key => $value) {
         }
-        return $jsonarray;
+        return array_slice($jsonarray, 0, $limit);
     }
 }
