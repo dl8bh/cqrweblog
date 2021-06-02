@@ -74,8 +74,12 @@ class Userconfig
 
     private function _init_config_to_db(int $log_nr)
     {
-        $query = sprintf("INSERT INTO settings(log_nr) VALUES (%u)", $this->log_nr);
-        $result = $this->dbobj->query($query);
+        $query = $this->dbobj->prepare("INSERT INTO settings(log_nr) VALUES (?)");
+        $query->bind_param("i", $log_nr);
+        $query->execute();
+        $result = $query->get_result();
+        $result = $result->num_rows;
+        return (bool) $result;
     }
 
     function get_cluster_enabled()
