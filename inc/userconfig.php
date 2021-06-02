@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 COMMIT;
 */
-class Userconfig {
+class Userconfig
+{
     private $dbobj;
     private $log_nr;
     private $cluster_enable;
@@ -25,14 +26,15 @@ class Userconfig {
     private $pubqslr_enable;
     private $pubqsls_enable;
     private $searchcount;
-    
+
     private $config_exists;
     private $call;
 
-  
 
-    function __construct($dbobj, int $log_nr, bool $create) {
-        
+
+    function __construct($dbobj, int $log_nr, bool $create)
+    {
+
         $this->dbobj = $dbobj;
         $this->dbobj->select_db("cqrlog_web");
         $this->log_nr = $dbobj->real_escape_string($log_nr);
@@ -48,7 +50,6 @@ class Userconfig {
 
     private function _init_config_from_db(int $log_nr)
     {
-        $query = sprintf("SELECT * from settings where log_nr='%u'", $this->log_nr);
         $query = "SELECT * from settings where log_nr=?";
         $stmt = $this->dbobj->prepare($query);
         $stmt->bind_param("i", $this->log_nr);
@@ -71,79 +72,93 @@ class Userconfig {
         return (bool) $result;
     }
 
-    private function _init_config_to_db(int $log_nr) {
+    private function _init_config_to_db(int $log_nr)
+    {
         $query = sprintf("INSERT INTO settings(log_nr) VALUES (%u)", $this->log_nr);
         $result = $this->dbobj->query($query);
     }
 
-    function get_cluster_enabled() {
+    function get_cluster_enabled()
+    {
         return $this->cluster_enable;
     }
 
-    function enable_cluster() {
+    function enable_cluster()
+    {
         $query = sprintf("UPDATE settings SET enable_cluster = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
-        return($result);
+        return $result;
     }
-    
-    function disable_cluster() {
+
+    function disable_cluster()
+    {
         $query = sprintf("UPDATE settings SET enable_cluster = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
-        return($result);
+        return $result;
     }
 
 
-    function get_help_enabled() {
+    function get_help_enabled()
+    {
         return $this->help_enable;
     }
 
-    function enable_help() {
+    function enable_help()
+    {
         $query = sprintf("UPDATE settings SET enable_help = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
-        return($result);
-    }
-    
-    function disable_help() {
-        $query = sprintf("UPDATE settings SET enable_help = '0' WHERE log_nr='%u'", $this->log_nr);
-        $result = $this->dbobj->query($query);
-        return($result);
+        return $result;
     }
 
-    
-    function get_searchcount_enabled() {
+    function disable_help()
+    {
+        $query = sprintf("UPDATE settings SET enable_help = '0' WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        return $result;
+    }
+
+
+    function get_searchcount_enabled()
+    {
         return $this->searchcount_enable;
     }
 
-    function enable_searchcount() {
+    function enable_searchcount()
+    {
         $query = sprintf("UPDATE settings SET enable_searchcount = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
-    
-    function disable_searchcount() {
+
+    function disable_searchcount()
+    {
         $query = sprintf("UPDATE settings SET enable_searchcount = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
 
-    function get_searchcount() {
+    function get_searchcount()
+    {
         return (int) $this->searchcount;
     }
-    
-    private function update_searchcount() {
+
+    private function update_searchcount()
+    {
         $query = sprintf("SELECT searchcount from settings where log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         $this->searchcount = (int) $result->fetch_object()->searchcount;
     }
 
-    function inc_searchcount() {
+    function inc_searchcount()
+    {
         $query = sprintf("UPDATE settings SET searchcount = searchcount + 1 WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         $this->update_searchcount();
         return $result;
     }
 
-    function set_searchcount(int $searchcount) {
+    function set_searchcount(int $searchcount)
+    {
         $searchcount = $this->dbobj->real_escape_string($searchcount);
         $query = sprintf("UPDATE settings SET searchcount='%u' WHERE log_nr='%u'", $searchcount, $this->log_nr);
         $result = $this->dbobj->query($query);
@@ -152,40 +167,42 @@ class Userconfig {
     }
 
 
-    function get_pubqslr_enabled() {
+    function get_pubqslr_enabled()
+    {
         return $this->pubqslr_enable;
     }
 
-    function enable_pubqslr() {
+    function enable_pubqslr()
+    {
         $query = sprintf("UPDATE settings SET enable_pubqslr = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
-    
-    function disable_pubqslr() {
+
+    function disable_pubqslr()
+    {
         $query = sprintf("UPDATE settings SET enable_pubqslr = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
 
 
-    function get_pubqsls_enabled() {
+    function get_pubqsls_enabled()
+    {
         return $this->pubqsls_enable;
     }
 
-    function enable_pubqsls() {
+    function enable_pubqsls()
+    {
         $query = sprintf("UPDATE settings SET enable_pubqsls = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
-    
-    function disable_pubqsls() {
+
+    function disable_pubqsls()
+    {
         $query = sprintf("UPDATE settings SET enable_pubqsls = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
-
 }
-
-
-?>
