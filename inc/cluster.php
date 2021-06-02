@@ -52,7 +52,7 @@
         $out .= '<tr class="small">';
         $out .= '<td class="hidden-xs">' . $dxmessage . '</td>	' . "\n";
         $out .= '<td class="hidden-xs">DX de ' . $spot["de_call"] . ':</td>' . "\n";
-        $out .= '<td>' . $spot["qrg"] . '</td>' . "\n";
+        $out .= '<td>' . number_format($spot["qrg"], 1, ".", "") . '</td>' . "\n";
         $out .=    '<td><a href="javascript:fillClusterData(\'' . $spot["dx_call"] . '\',\'' . $spot["qrg"] . '\',\'' . $clusterbandmode[1] . '\');" style="color:' . $fontcolor . '; font-weight: bold;">' . $spot["dx_call"] . '</a></td>' . "\n";
         $out .= '<td>' . $spot["comment"] . '</td>' . "\n";
         $out .= '<td>' . $spot["timestamp"] . '</td>' . "\n";
