@@ -180,6 +180,13 @@ class Cqrlog_common
         return $this->band_list;
     }
 
+    function get_log_list()
+    {
+        $query = "SELECT log_nr, log_name FROM log_list";
+        $result = $this->dbobj->query($query)->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
+
     function get_dxcc_ref_list($pref)
     {
         $query = "SELECT DISTINCT adif,pref,name FROM dxcc_ref WHERE deleted=0";

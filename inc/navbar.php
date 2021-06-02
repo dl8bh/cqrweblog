@@ -6,11 +6,10 @@
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
 		<?php
-		$ergebnis = mysqli_query($dbconnect, "SELECT log_nr, log_name FROM log_list");
-		while($row = mysqli_fetch_object($ergebnis))
-		{
-				$log_nr = $row->log_nr;
-				$log_name = $row->log_name;
+        foreach ($Cqrlog_common->get_log_list() as $log)
+        {
+				$log_nr = $log["log_nr"];
+				$log_name = $log["log_name"];
 				if (isset($logactive)) {
 					echo '<li><a href="index.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
 				}
@@ -50,6 +49,7 @@
 						echo '<li class="hidden-xs"><a href="' . $cqrweblog_root . 'CHANGELOG.txt">Changelog</a></li>' . "\n";
 				}
 				?>
+		  <li><a href="login.php">Login</a></li>
 			</ul>
     </div>
   </div>
