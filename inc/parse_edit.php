@@ -96,11 +96,11 @@ if (isset($_POST["call_input"])) {
             } else {
                 $id_call = $call;
             }
-            $fetchqso = call_to_dxcc($call);
-            $adif = $fetchqso[0];
-            $dxcc_name = $fetchqso[1];
-            $itu = $fetchqso[2];
-            $waz = $fetchqso[3];
+            $fetchqso = $Checkdxcc->call_to_dxcc($call);
+            $adif = $fetchqso["adif"];
+            $dxcc_name = $fetchqso["details"];
+            $itu = $fetchqso["itu"];
+            $waz = $fetchqso["waz"];
             $manager = $Cqrlog_common->get_manager($call);
             $fetchiota = $Cqrlog_common->get_iota($call, $Cqrlog_common->adif_to_dxcc($adif));
             if (!empty($fetchiota[0])) {
