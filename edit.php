@@ -2,6 +2,8 @@
 include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
+include("inc/logbook.php");
+$Logbook = new Logbook($DbSpawner->newdb(), $log_id);
 include("inc/parse_edit.php");
 ?>
 
@@ -10,8 +12,7 @@ include("inc/parse_edit.php");
 <?php 
 echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logbook</title>';
 include("inc/metaheader.php");
-include("inc/logbook.php");
-$Logbook = new Logbook($DbSpawner->newdb(), $log_id);
+
 ?>
 <meta charset="UTF-8">
 </head>
