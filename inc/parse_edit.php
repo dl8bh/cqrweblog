@@ -1,31 +1,30 @@
 <?php
 // Parse Input
 
-$dbconnect->select_db(logid_to_tableid($log_id));
-$query = mysqli_query($dbconnect, "SELECT * FROM cqrlog_main WHERE id_cqrlog_main = '" . $qso_id . "'");
-while ($row = mysqli_fetch_object($query)) {
-    $date = $row->qsodate;
-    $callsign = $row->callsign;
-    $time = $row->time_on;
-    $band = $row->band;
-    $freq = $row->freq;
-    $mode = $row->mode;
-    $rst_r = $row->rst_r;
-    $rst_s = $row->rst_s;
-    $remarks = $row->remarks;
-    $name = $row->name;
-    $qth = $row->qth;
-    $iota_nr = $row->iota;
-    $loc = $row->loc;
-    $itu = $row->itu;
-    $waz = $row->waz;
-    $qsls = $row->qsl_s;
-    $qsls_date = $row->qsls_date;
-    $qslr = $row->qsl_r;
-    $qslr_date = $row->qslr_date;
-    $state = $row->state;
-    $manager = $row->qsl_via;
-}
+$qso = $Logbook->get_qso($qso_id);
+
+    $date = $qso->get_qsodate();
+    $callsign = $qso->get_callsign();
+    $time = $qso->get_time_on();
+    $band = $qso->get_band();
+    $freq = $qso->get_freq();
+    $mode = $qso->get_mode();
+    $rst_r = $qso->get_rst_r();
+    $rst_s = $qso->get_rst_s();
+    $remarks = $qso->get_remarks();
+    $name = $qso->get_name();
+    $qth = $qso->get_qth();
+    $iota_nr = $qso->get_iota();
+    $loc = $qso->get_loc();
+    $itu = $qso->get_itu();
+    $waz = $qso->get_waz();
+    $qsls = $qso->get_qsl_s();
+    $qsls_date = $qso->get_qsls_date();
+    $qslr = $qso->get_qsl_r();
+    $qslr_date = $qso->get_qslr_date();
+    $state = $qso->get_state();
+    $manager = $qso->get_qsl_via();
+
 if (!isset($callsign)) {
     $date = "";
     $callsign = "";
