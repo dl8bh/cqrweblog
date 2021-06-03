@@ -169,7 +169,7 @@ class Userconfig
 
     private function update_searchcount()
     {
-        $query = sprintf("SELECT searchcount from settings where log_nr='%u'", $this->log_nr);
+        $query = sprintf("SELECT searchcount FROM settings WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         $this->searchcount = (int) $result->fetch_object()->searchcount;
     }
