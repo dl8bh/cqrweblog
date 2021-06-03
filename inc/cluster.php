@@ -3,7 +3,7 @@
     include("./inc/cluster_class.php");
     $cluster = new dxcccluster("https://api.dl8bh.de/cluster/");
     if (isset($band)) {
-        $spots = $cluster->get_cluster_spots($cluster_spot_num, array("band" => $band));
+        $spots = $cluster->get_cluster_spots($cluster_spot_num, array("bands" => array($band)));
     } else {
         $spots = $cluster->get_cluster_spots($cluster_spot_num, array());
     }
