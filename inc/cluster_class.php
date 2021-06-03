@@ -25,12 +25,24 @@ class dxcccluster
         foreach ($jsonarray as $spot) {
             foreach ($filter as $filter_key => $filter_value) {
                 if ($filter_key == "bands") {
-                    if (!in_array($spot["band"], $filter_value)) {
-                        unset($jsonarray[$i]);
-                        break;
+                    if (isset($filter_value[0])) {
+                        if (!in_array($spot["band"], $filter_value)) {
+                            unset($jsonarray[$i]);
+                            break;
+                        }
                     }
                 } elseif ($filter_key == "modes") {
-                    if (!in_array($spot["mode"], $filter_value)) {
+                    if (isset($filter_value[0])) {
+                        if (!in_array($spot["mode"], $filter_value)) {
+                            unset($jsonarray[$i]);
+                            break;
+                        }
+                    }
+                } elseif ($filter_key == "skimmer_mode") {
+                    if ($filter_value == 1 && !$spot["skimmer"]) {
+                        unset($jsonarray[$i]);
+                        break;
+                    } elseif ($filter_value == 0 && $spot["skimmer"]) {
                         unset($jsonarray[$i]);
                         break;
                     }
