@@ -101,7 +101,7 @@ class Userconfig
 
     function enable_cluster(int $numspots)
     {
-        $query = $this->dbobj->prepare("UPDATE settings SET enable_cluster = ? WHERE log_nr = ?");
+        $query = $this->dbobj->prepare("UPDATE settings SET cluster_enable = ? WHERE log_nr = ?");
         $query->bind_param("ii", $numspots, $this->log_nr);
         $query->execute();
         $result = $query->get_result();
@@ -110,7 +110,7 @@ class Userconfig
 
     function disable_cluster()
     {
-        $query = $this->dbobj->prepare("UPDATE settings SET cluster_enable = 0 WHERE log_nr = ?");
+        $query = $this->dbobj->prepare("UPDATE settings SET enable_cluster = 0 WHERE log_nr = ?");
         $query->bind_param("i", $this->log_nr);
         $query->execute();
         $result = $query->get_result();
