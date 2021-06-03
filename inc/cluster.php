@@ -2,19 +2,14 @@
     <?php
     include("./inc/cluster_class.php");
     $cluster = new dxcccluster("https://api.dl8bh.de/cluster/");
+    $clusterfilter = array(
+        "bands" => $Userconfig->get_cluster_bands(),
+        "modes" => $Userconfig->get_cluster_modes(),
+        "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode());
     if (isset($band)) {
-        $spots = $cluster->get_cluster_spots($Userconfig->get_cluster_enabled(), array(
-            "bands" => array($band),
-            "modes" => $Userconfig->get_cluster_modes(),
-            "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode()
-        ));
-    } else {
-        $spots = $cluster->get_cluster_spots($Userconfig->get_cluster_enabled(), array(
-            "bands" => $Userconfig->get_cluster_bands(),
-            "modes" => $Userconfig->get_cluster_modes(),
-            "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode()
-        ));
+        $clusterfilter["bands"] = array($band);
     }
+    $spots = $cluster->get_cluster_spots($Userconfig->get_cluster_enabled(), $clusterfilter);
     $out  = "";
     echo '<table class="table table-hover borderless table-condensed" align="center" >' . "\n";
     $checkadif = $Logbook->get_stats(0, array("paper" => TRUE, "lotw" => TRUE, "eqsl" => FALSE));
