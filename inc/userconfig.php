@@ -33,11 +33,14 @@ class Userconfig
     private $dbobj;
     private $log_nr;
     private $cluster_enable;
+    private $cluster_skimmer_enable;
     private $help_enable;
     private $searchcount_enable;
     private $pubqslr_enable;
     private $pubqsls_enable;
     private $searchcount;
+    private $cluster_bands;
+    private $cluster_modes;
 
     private $config_exists;
     private $call;
@@ -72,6 +75,8 @@ class Userconfig
                 $this->$key = $value;
             }
         }
+        $this->cluster_bands = json_decode($this->cluster_bands);
+        $this->cluster_modes = json_decode($this->cluster_modes);
     }
 
     function _check_if_config_exists(int $log_nr)
@@ -188,6 +193,82 @@ class Userconfig
         return $result;
     }
 
+    function get_cluster_bands()
+    {
+        return $this->cluster_bands;
+    }
+
+    function set_cluster_bands(array $bands)
+    {
+        $json_bands = json_encode($bands);
+        if (!isset($json_bands[0])) {
+            $json_bands = null;
+        }
+        $querystring = "UPDATE settings SET cluster_bands = ? WHERE log_nr=?";
+        $query = $this->dbobj->prepare($querystring);
+        $query->bind_param("si", $json_bands, $this->log_nr);
+        $query->execute();
+        $this->update_cluster_bands();
+    }
+
+    private function update_cluster_bands()
+    {
+        $query = sprintf("SELECT cluster_bands FROM settings WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        $this->cluster_bands = json_decode($result->fetch_object()->cluster_bands);
+    }
+
+    function get_cluster_modes()
+    {
+        return $this->cluster_bands;
+    }
+
+    function set_cluster_modes(array $modes)
+    {
+        $json_modes = json_encode($modes);
+        if (!isset($json_modes[0])) {
+            $json_modes = null;
+        }
+        $querystring = "UPDATE settings SET cluster_modes = ? WHERE log_nr=?";
+        $query = $this->dbobj->prepare($querystring);
+        $query->bind_param("si", $json_modes, $this->log_nr);
+        $query->execute();
+        $this->update_cluster_modes();
+    }
+
+    private function update_cluster_modes()
+    {
+        $query = sprintf("SELECT cluster_modes FROM settings WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        $this->cluster_modes = json_decode($result->fetch_object()->cluster_modes);
+    }
+
+
+    function get_skimmer_enabled()
+    {
+        return $this->cluster_skimmer_enable;
+    }
+
+    function set_skimmer(int $cluster_skimmer_mode)
+    {
+        if ($cluster_skimmer_mode > 2 || $cluster_skimmer_mode < 0) {
+            throw new Exception("invalid cluster mode");
+        }
+        $query = $this->dbobj->prepare("UPDATE settings SET cluster_skimmer_enable = ? WHERE log_nr = ?");
+        $query->bind_param("ii", $cluster_skimmer_mode, $this->log_nr);
+        $query->execute();
+        $result = $query->get_result();
+        return $result;
+    }
+
+    function disable_skimmer()
+    {
+        $query = $this->dbobj->prepare("UPDATE settings SET cluster_skimmer_enable = 0 WHERE log_nr = ?");
+        $query->bind_param("i", $this->log_nr);
+        $query->execute();
+        $result = $query->get_result();
+        return $result;
+    }
 
     function get_pubqslr_enabled()
     {
