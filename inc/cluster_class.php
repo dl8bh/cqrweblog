@@ -22,6 +22,7 @@ class dxcccluster
         $resultstring = curl_exec($this->curl_session);
         $jsonarray = json_decode($resultstring, TRUE);
         $i = 0;
+        $cancelcounter = 0;
         foreach ($jsonarray as $spot) {
             foreach ($filter as $filter_key => $filter_value) {
                 if ($filter_key == "bands") {
@@ -50,8 +51,12 @@ class dxcccluster
                     unset($jsonarray[$i]);
                     break;
                 }
+                $cancelcounter += 1;
             }
             $i += 1;
+            if ($cancelcounter > $limit) {
+                break;
+            }
         }
         return array_slice($jsonarray, 0, $limit);
     }
