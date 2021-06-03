@@ -220,7 +220,7 @@ class Userconfig
 
     function get_cluster_modes()
     {
-        return $this->cluster_bands;
+        return $this->cluster_modes;
     }
 
     function set_cluster_modes(array $modes)
