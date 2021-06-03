@@ -30,7 +30,10 @@
         $band = $clusterbandmode[0];
         $mode = $clusterbandmode[1];
         $qso = new Qso($qsoarray);
-        if ($Logbook->check_dupe($qso)) {
+        if ($spot["adif"] == 0) {
+            $fontcolor = $dupecolor;
+            $dxmessage = '<b><font color="' . $fontcolor . '">INVALID DXCC</font></b>';
+        } elseif ($Logbook->check_dupe($qso)) {
             $fontcolor = $dupecolor;
             $dxmessage = '<b><font color="' . $fontcolor . '">DUPE</font></b>';
         } elseif (!isset($checkadif[$spot["adif"]])) {
