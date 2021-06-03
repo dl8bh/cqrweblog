@@ -4,14 +4,16 @@
     $cluster = new dxcccluster("https://api.dl8bh.de/cluster/");
     if (isset($band)) {
         $spots = $cluster->get_cluster_spots($cluster_spot_num, array(
-            "bands" => array($band), 
-            "modes" => $Userconfig->get_cluster_modes(), 
-            "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode()));
+            "bands" => array($band),
+            "modes" => $Userconfig->get_cluster_modes(),
+            "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode()
+        ));
     } else {
         $spots = $cluster->get_cluster_spots($cluster_spot_num, array(
             "bands" => $Userconfig->get_cluster_bands(),
             "modes" => $Userconfig->get_cluster_modes(),
-            "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode()));
+            "skimmer_mode" => $Userconfig->get_cluster_skimmer_mode()
+        ));
     }
     $out  = "";
     echo '<table class="table table-hover borderless table-condensed" align="center" >' . "\n";
