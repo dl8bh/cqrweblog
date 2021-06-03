@@ -244,12 +244,12 @@ class Userconfig
     }
 
 
-    function get_skimmer_enabled()
+    function get_cluster_skimmer_mode()
     {
         return $this->cluster_skimmer_enable;
     }
 
-    function set_skimmer(int $cluster_skimmer_mode)
+    function set_cluster_skimmer_mode(int $cluster_skimmer_mode)
     {
         if ($cluster_skimmer_mode > 2 || $cluster_skimmer_mode < 0) {
             throw new Exception("invalid cluster mode");
