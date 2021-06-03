@@ -67,7 +67,7 @@ class Userconfig
     {
         $query = "SELECT * from settings where log_nr=?";
         $stmt = $this->dbobj->prepare($query);
-        $stmt->bind_param("i", $this->log_nr);
+        $stmt->bind_param("i", $log_nr);
         $stmt->execute();
         $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()) {
