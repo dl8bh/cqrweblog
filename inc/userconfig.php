@@ -99,17 +99,21 @@ class Userconfig
         return $this->cluster_enable;
     }
 
-    function enable_cluster()
+    function enable_cluster(int $numspots)
     {
-        $query = sprintf("UPDATE settings SET enable_cluster = '1' WHERE log_nr='%u'", $this->log_nr);
-        $result = $this->dbobj->query($query);
+        $query = $this->dbobj->prepare("UPDATE settings SET enable_cluster = ? WHERE log_nr = ?");
+        $query->bind_param("ii", $numspots, $this->log_nr);
+        $query->execute();
+        $result = $query->get_result();
         return $result;
     }
 
     function disable_cluster()
     {
-        $query = sprintf("UPDATE settings SET enable_cluster = '0' WHERE log_nr='%u'", $this->log_nr);
-        $result = $this->dbobj->query($query);
+        $query = $this->dbobj->prepare("UPDATE settings SET enable_cluster = 0 WHERE log_nr = ?");
+        $query->bind_param("i", $this->log_nr);
+        $query->execute();
+        $result = $query->get_result();
         return $result;
     }
 
