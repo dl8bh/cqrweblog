@@ -13,8 +13,8 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
         <select class="form-control" id="band" name="band" tabindex=1 onchange="bandtofreq()">
             <?php
             echo '<option>select</option>';
-            foreach ($Cqrlog_common->get_band_list() as $band) {
-                echo '<option>' . $band[0] . '</option>';
+            foreach ($Cqrlog_common->get_band_list() as $select_band) {
+                echo '<option>' . $select_band[0] . '</option>';
             }
             ?>
         </select>
