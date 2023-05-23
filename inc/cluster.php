@@ -22,28 +22,28 @@
             "band" => $clusterbandmode[0],
             "mode" => $clusterbandmode[1]
         );
-        $band = $clusterbandmode[0];
-        $mode = $clusterbandmode[1];
-        $qso = new Qso($qsoarray);
+        $cluster_band = $clusterbandmode[0];
+        $cluster_mode = $clusterbandmode[1];
+        $cluster_qso = new Qso($qsoarray);
         if ($spot["adif"] == 0) {
             $fontcolor = $dupecolor;
             $dxmessage = '<b><font color="' . $fontcolor . '">INVALID DXCC</font></b>';
-        } elseif ($Logbook->check_dupe($qso)) {
+        } elseif ($Logbook->check_dupe($cluster_qso)) {
             $fontcolor = $dupecolor;
             $dxmessage = '<b><font color="' . $fontcolor . '">DUPE</font></b>';
         } elseif (!isset($checkadif[$spot["adif"]])) {
             $fontcolor = $atnocolor;
             $dxmessage = '<b><font color="' . $fontcolor . '">NEW ONE</font></b>';
-        } elseif (!isset($checkadif[$spot["adif"]][$band][$mode])) {
-            if (!isset($checkadif[$spot["adif"]][$band])) {
+        } elseif (!isset($checkadif[$spot["adif"]][$cluster_band][$cluster_mode])) {
+            if (!isset($checkadif[$spot["adif"]][$cluster_band])) {
                 $fontcolor = $newbandcolor;
                 $dxmessage = '<b><font color="' . $fontcolor . '">NEW BAND</font></b>';
-            } elseif (!isset($checkadif[$spot["adif"]][$mode])) {
+            } elseif (!isset($checkadif[$spot["adif"]][$cluster_mode])) {
                 $fontcolor = $newmodecolor;
                 $dxmessage = '<b><font color="' . $fontcolor . '">NEW MODE</font></b>';
             }
         } else {
-            switch ($checkadif[$spot["adif"]][$band][$mode]) {
+            switch ($checkadif[$spot["adif"]][$cluster_band][$cluster_mode]) {
                 case "C":
                     $fontcolor = $confirmedcolor;
                     break;
