@@ -1,5 +1,6 @@
 <?php
-
+include("adif.php");
+$adif = new Adif();
 $filename = strtoupper($Cqrlog_common->logid_to_call($log_id)) . '.adi';
 $filename = str_replace("/", "-", $filename);
 $filepath = $exportdir . $filename;
@@ -15,11 +16,11 @@ $dbconnect->select_db(logid_to_tableid($log_id));
 $qsotable = $Logbook->get_log(0, $where);
 $qsotable = array_reverse($qsotable);
 foreach ($qsotable as $qso) {
-    $fileinput = $qso->return_adif() . "\n";
+    $fileinput = $adif->return_adif($qso) . "\n";
     fwrite($file, $fileinput);
     fflush($file);
 }
-mysqli_free_result($query);
+// mysqli_free_result($query);
 
 fclose($file);
 echo '<h3><a href="' . $filepath . '">Download ADI</a></h3>';
