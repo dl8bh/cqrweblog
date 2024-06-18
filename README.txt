@@ -15,6 +15,28 @@ Optional, if hamqth-dxcc-resolution does not work with your setup:
 -edit config.php.example, move it to config.php
 -consider htaccess rules to block unauthorized users
 
+====SETTINGS-TABLE====
+
+You need to create a mysql/mariadb table "settings" like this:
+
+Default values can be stored in log_nr 0.
+
+CREATE TABLE `settings` (
+  `log_nr` tinyint UNSIGNED NOT NULL,
+  `cluster_enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 => Cluster disabled, >1 => num of cluster spots',
+  `cluster_skimmer_enabled` tinyint NOT NULL DEFAULT '0' COMMENT '0 => cluster only, 1 => skimmer only, 2 => both',
+  `cluster_bands` varchar(255) DEFAULT NULL COMMENT 'serialized array of band-strings',
+  `cluster_modes` varchar(255) DEFAULT NULL COMMENT 'serialized array of mode-strings',
+  `help_enable` tinyint(1) NOT NULL DEFAULT '1',
+  `searchcount_enable` tinyint(1) NOT NULL DEFAULT '1',
+  `pubqslr_enable` tinyint(1) NOT NULL DEFAULT '1',
+  `pubqsls_enable` tinyint(1) NOT NULL DEFAULT '1',
+  `searchcount` int UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`log_nr`);
+COMMIT;
 
 ====USAGE====
 Some general URL-parameters:
