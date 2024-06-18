@@ -7,6 +7,7 @@ $hostname="localhost";     // hostname of mysql-server
 $dbuser="cqrlog";          // mysql-username
 $dbpass="password123";     // mysql-passwort
 $db="cqrlog_common";       // default database of cqrlog, dont change unless you know what you are doing!
+$port=3306;       // default database of cqrlog, dont change unless you know what you are doing!
 
 /*******************
 GENERAL LOG SETTINGS
