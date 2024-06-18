@@ -5,6 +5,16 @@ class Adif
     /*
     This class handles adif entries and files.
     */
+    private $adif_header;
+    function __construct()
+    {
+        $this->adif_header =  '<ADIF_VER:5>2.2.1' . "\n";
+        $this->adif_header .= 'ADIF export from cqrweblog' . "\n\n";
+        $this->adif_header .= 'Internet: http://www.dl8bh.de/cqrweblog/' . "\n\n";
+        $this->adif_header .= '<PROGRAMID:9>CQRWEBLOG' . "\n";
+        $this->adif_header .= '<PROGRAMVERSION:3>0.9' . "\n";
+        $this->adif_header .= '<EOH>' . "\n";
+    }
 
     function read_adif_file($adif_file_string)
     {
@@ -193,7 +203,17 @@ class Adif
         return $return_array;
     }
 
-    function return_adif(Qso $qso)
+
+    function qsotable_to_adif_string($qso_array)
+    {
+        $filestring = $this->adif_header;
+        foreach ($qso_array as $qso) {
+            $filestring .= $this->qso_to_adif_record($qso) . "\n";
+        }
+        return $filestring;
+    }
+
+    function qso_to_adif_record(Qso $qso)
     {
 
         $adifline = '';
