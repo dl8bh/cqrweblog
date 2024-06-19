@@ -9,7 +9,7 @@
     if (isset($band)) {
         $clusterfilter["bands"] = array($band);
     }
-    $spots = $cluster->get_cluster_spots($Userconfig->get_cluster_enabled(), $clusterfilter);
+    $spots = $cluster->get_cluster_spots($Userconfig->get_cluster_spot_number(), $clusterfilter);
     $out  = "";
     echo '<table class="table table-hover borderless table-condensed" align="center" >' . "\n";
     $checkadif = $Logbook->get_stats(0, array("paper" => TRUE, "lotw" => TRUE, "eqsl" => FALSE));

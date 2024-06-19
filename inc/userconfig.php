@@ -5,35 +5,30 @@ Class for user specific configuration, that uses the "cqrlog_web" database and t
 Default values can be stored in log_nr 0.
 
 CREATE TABLE `settings` (
-  `log_nr` tinyint UNSIGNED NOT NULL,
-  `cluster_enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0 => Cluster disabled, >1 => num of cluster spots',
-  `cluster_skimmer_enabled` tinyint NOT NULL DEFAULT '0' COMMENT '0 => cluster only, 1 => skimmer only, 2 => both',
+  `log_nr` tinyint(3) UNSIGNED NOT NULL,
+  `password` varchar(60) DEFAULT NULL,
+  `cluster_spot_number` tinyint(1) NOT NULL DEFAULT 50 COMMENT 'Number of Spots',
+  `cluster_skimmer_mode` tinyint(4) NOT NULL DEFAULT 3 COMMENT '0 => disabled, 1 => cluster only, 2 => skimmer only, 3 => both',
   `cluster_bands` varchar(255) DEFAULT NULL COMMENT 'serialized array of band-strings',
   `cluster_modes` varchar(255) DEFAULT NULL COMMENT 'serialized array of mode-strings',
-  `help_enable` tinyint(1) NOT NULL DEFAULT '1',
-  `searchcount_enable` tinyint(1) NOT NULL DEFAULT '1',
-  `pubqslr_enable` tinyint(1) NOT NULL DEFAULT '1',
-  `pubqsls_enable` tinyint(1) NOT NULL DEFAULT '1',
-  `searchcount` int UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `help_enable` tinyint(1) NOT NULL DEFAULT 1,
+  `searchcount_enable` tinyint(1) NOT NULL DEFAULT 1,
+  `pubqslr_enable` tinyint(1) NOT NULL DEFAULT 1,
+  `pubqsls_enable` tinyint(1) NOT NULL DEFAULT 1,
+  `searchcount` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Indizes der exportierten Tabellen
---
 
---
--- Indizes für die Tabelle `settings`
---
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`log_nr`);
-COMMIT;
 */
+
 class Userconfig
 {
     private $dbobj;
     private $log_nr;
-    private $cluster_enable;
-    private $cluster_skimmer_enable;
+    private $cluster_spot_number;
+    private $cluster_skimmer_mode;
     private $help_enable;
     private $searchcount_enable;
     private $pubqslr_enable;
@@ -101,21 +96,21 @@ class Userconfig
 
     function get_cluster_enabled()
     {
-        return $this->cluster_enable;
+        if ($this->get_cluster_skimmer_mode() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    function enable_cluster(int $numspots)
+    function get_cluster_spot_number()
     {
-        $query = $this->dbobj->prepare("UPDATE settings SET cluster_enable = ? WHERE log_nr = ?");
-        $query->bind_param("ii", $numspots, $this->log_nr);
-        $query->execute();
-        $result = $query->get_result();
-        return $result;
+        return $this->cluster_spot_number;
     }
 
     function disable_cluster()
     {
-        $query = $this->dbobj->prepare("UPDATE settings SET cluster_enable = 0 WHERE log_nr = ?");
+        $query = $this->dbobj->prepare("UPDATE settings SET cluster_skimmer_mode = 0 WHERE log_nr = ?");
         $query->bind_param("i", $this->log_nr);
         $query->execute();
         $result = $query->get_result();
@@ -246,15 +241,15 @@ class Userconfig
 
     function get_cluster_skimmer_mode()
     {
-        return $this->cluster_skimmer_enable;
+        return $this->cluster_skimmer_mode;
     }
 
     function set_cluster_skimmer_mode(int $cluster_skimmer_mode)
     {
-        if ($cluster_skimmer_mode > 2 || $cluster_skimmer_mode < 0) {
+        if ($cluster_skimmer_mode > 3 || $cluster_skimmer_mode < 0) {
             throw new Exception("invalid cluster mode");
         }
-        $query = $this->dbobj->prepare("UPDATE settings SET cluster_skimmer_enable = ? WHERE log_nr = ?");
+        $query = $this->dbobj->prepare("UPDATE settings SET cluster_skimmer_mode = ? WHERE log_nr = ?");
         $query->bind_param("ii", $cluster_skimmer_mode, $this->log_nr);
         $query->execute();
         $result = $query->get_result();
@@ -263,13 +258,8 @@ class Userconfig
 
     function disable_skimmer()
     {
-        $query = $this->dbobj->prepare("UPDATE settings SET cluster_skimmer_enable = 0 WHERE log_nr = ?");
-        $query->bind_param("i", $this->log_nr);
-        $query->execute();
-        $result = $query->get_result();
-        return $result;
+        $this->set_cluster_skimmer_mode(0);
     }
-
     function get_pubqslr_enabled()
     {
         return $this->pubqslr_enable;
