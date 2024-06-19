@@ -21,43 +21,44 @@ class dxcccluster
     {
         $resultstring = curl_exec($this->curl_session);
         $jsonarray = json_decode($resultstring, TRUE);
-        $i = 0;
-        $cancelcounter = 0;
+        $returnarray = array();
+        $hitcount = 0;
         foreach ($jsonarray as $spot) {
+            $delete = false;
             foreach ($filter as $filter_key => $filter_value) {
-                if ($filter_key == "bands") {
-                    if (isset($filter_value[0])) {
-                        if (!in_array($spot["band"], $filter_value)) {
-                            unset($jsonarray[$i]);
-                            break;
+                if (!$delete) {
+                    if ($filter_key == "bands") {
+                        if (isset($filter_value[0])) {
+                            if (!in_array($spot["band"], $filter_value)) {
+                                $delete = true;
+                            }
                         }
-                    }
-                } elseif ($filter_key == "modes") {
-                    if (isset($filter_value[0])) {
-                        if (!in_array($spot["mode"], $filter_value)) {
-                            unset($jsonarray[$i]);
-                            break;
+                    } elseif ($filter_key == "modes") {
+                        if (isset($filter_value[0])) {
+                            if (!in_array($spot["mode"], $filter_value)) {
+                                $delete = true;
+                            }
                         }
+                    } elseif ($filter_key == "skimmer_mode") {
+                        if ($filter_value == 2 && !$spot["skimmer"]) {
+                            $delete = true;
+                        } elseif ($filter_value == 1 && $spot["skimmer"]) {
+                            $delete = true;
+                        }
+                    } elseif ($spot[$filter_key] != $filter_value) {
+                        $delete = true;
                     }
-                } elseif ($filter_key == "skimmer_mode") {
-                    if ($filter_value == 1 && !$spot["skimmer"]) {
-                        unset($jsonarray[$i]);
-                        break;
-                    } elseif ($filter_value == 0 && $spot["skimmer"]) {
-                        unset($jsonarray[$i]);
-                        break;
-                    }
-                } elseif ($spot[$filter_key] != $filter_value) {
-                    unset($jsonarray[$i]);
-                    break;
                 }
-                $cancelcounter += 1;
             }
-            $i += 1;
-            if ($cancelcounter > $limit) {
+            if (!$delete) {
+                $hitcount += 1;
+                $spot["comment"] = strip_tags($spot["comment"]);
+                array_push($returnarray, $spot);
+            }
+            if ($hitcount == $limit) {
                 break;
             }
         }
-        return array_slice($jsonarray, 0, $limit);
+        return $returnarray;
     }
 }
