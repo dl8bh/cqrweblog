@@ -190,7 +190,10 @@ class Userconfig
 
     function get_cluster_bands()
     {
-        return $this->cluster_bands;
+        if ($this->cluster_bands) {
+            return $this->cluster_bands;
+        }
+        return array();
     }
 
     function set_cluster_bands(array $bands)
@@ -215,7 +218,11 @@ class Userconfig
 
     function get_cluster_modes()
     {
-        return $this->cluster_modes;
+        if ($this->cluster_modes) {
+            return $this->cluster_modes;
+        } else {
+            return array();
+        }
     }
 
     function set_cluster_modes(array $modes)
