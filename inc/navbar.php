@@ -23,30 +23,10 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li <?php if (isset($logactive)) {
-                        echo 'class="active"';
-                    } ?>><a href="
-					<?php echo $cqrweblog_root . 'index.php?log_id=' . $log_id ?>
-				">Log</a></li>
-                <li <?php if (isset($searchactive)) {
-                        echo 'class="active"';
-                    } ?>><a href="
-				<?php echo $cqrweblog_root . 'logsearch.php?log_id=' . $log_id ?>
-				">Search / Export</a></li>
-                <li <?php if (isset($statsactive)) {
-                        echo 'class="active"';
-                    } ?>><a href="
-				<?php echo $cqrweblog_root . 'stats.php?log_id=' . $log_id; ?>
-				">Statistics</a></li>
-                <li class="hidden-xs"><a href="
-				<?php echo $cqrweblog_root . 'publog.php?log_id=' . $log_id; ?>
-				">Public</a></li>
-                <?php
-                if ($enable_changelog) {
-                    echo '<li class="hidden-xs"><a href="' . $cqrweblog_root . 'CHANGELOG.txt">Changelog</a></li>' . "\n";
-                }
-                ?>
-                <li><a href="login.php">Login</a></li>
+                <li<?php if (isset($statsactive)) {echo ' class="active"'; }?>>
+                    <a href="<?php echo $cqrweblog_root . 'stats.php?log_id=' . $log_id; ?>">Statistics</a>
+                </li>
+                <li class="hidden-xs">
             </ul>
         </div>
     </div>
