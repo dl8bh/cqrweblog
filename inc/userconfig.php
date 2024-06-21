@@ -36,9 +36,10 @@ class Userconfig
     private $searchcount;
     private $cluster_bands;
     private $cluster_modes;
-
+    private $allowed_bands;
     private $config_exists;
     private $call;
+    private $Cqrlog_common;
 
 
 
@@ -56,6 +57,8 @@ class Userconfig
         } else {
             $this->_init_config_from_db(0);
         }
+        $this->Cqrlog_common = new Cqrlog_common($dbobj);
+        $this->allowed_bands = $this->Cqrlog_common->get_band_list();
     }
 
     private function _init_config_from_db(int $log_nr)
@@ -198,6 +201,11 @@ class Userconfig
 
     function set_cluster_bands(array $bands)
     {
+        foreach ($bands as $band) {
+            if (!in_array($band, $this->allowed_bands)) {
+                throw new Exception($band . " is not a valid band");
+            }
+        }
         $json_bands = json_encode($bands);
         if (!isset($json_bands[0])) {
             $json_bands = null;
@@ -227,6 +235,11 @@ class Userconfig
 
     function set_cluster_modes(array $modes)
     {
+        foreach ($modes as $mode) {
+            if (!in_array($mode, ["CW", "SSB", "RTTY"])) {
+                throw new Exception($mode . " is not a valid mode");
+            }
+        }
         $json_modes = json_encode($modes);
         if (!isset($json_modes[0])) {
             $json_modes = null;
