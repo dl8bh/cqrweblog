@@ -31,6 +31,7 @@ class Userconfig
     private $cluster_skimmer_mode;
     private $help_enable;
     private $searchcount_enable;
+    private $pubsearch_enable;
     private $pubqslr_enable;
     private $pubqsls_enable;
     private $searchcount;
@@ -128,18 +129,36 @@ class Userconfig
 
     function enable_help()
     {
-        $query = sprintf("UPDATE settings SET enable_help = '1' WHERE log_nr='%u'", $this->log_nr);
+        $query = sprintf("UPDATE settings SET help_enable = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
 
     function disable_help()
     {
-        $query = sprintf("UPDATE settings SET enable_help = '0' WHERE log_nr='%u'", $this->log_nr);
+        $query = sprintf("UPDATE settings SET help_enable = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
 
+    function get_pubsearch_enabled()
+    {
+        return $this->pubsearch_enable;
+    }
+
+    function enable_pubsearch()
+    {
+        $query = sprintf("UPDATE settings SET pubsearch_enable = '1' WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        return $result;
+    }
+
+    function disable_pubsearch()
+    {
+        $query = sprintf("UPDATE settings SET pubsearch_enable = '0' WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        return $result;
+    }
 
     function get_searchcount_enabled()
     {
@@ -237,7 +256,7 @@ class Userconfig
     {
         foreach ($modes as $mode) {
             if (!in_array($mode, ["CW", "SSB", "RTTY"])) {
-                throw new Exception($mode . " is not a valid mode");
+                throw new Exception($mode . "is not a valid mode");
             }
         }
         $json_modes = json_encode($modes);
