@@ -2,7 +2,7 @@
 include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
-include("inc/parse_search.php");
+include("inc/parse_settings.php");
 ?>
 
 <!DOCTYPE html>
@@ -25,14 +25,6 @@ include("inc/parse_search.php");
     include("inc/navbar.php");
     echo '<h1 align="center">Settings of ' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . '</h1><div class="hidden-xs hidden-sm"><br /><br /></div>';
     include("inc/settings_input.php");
-    ?>
-
-    <?php
-    include("inc/search_proc.php");
-    ?>
-
-    <?php
-
     include("inc/metafooter.php");
 
     ?>
