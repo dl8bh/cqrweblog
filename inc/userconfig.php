@@ -107,6 +107,27 @@ class Userconfig
         }
     }
 
+
+    function set_cluster_spot_number(int $spot_number)
+    {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
+        $query = "UPDATE settings SET cluster_spot_number=? WHERE log_nr=?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("ii", $spot_number, $this->log_nr);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $this->update_cluster_spot_number();
+        return $result;
+    }
+
+    private function update_cluster_spot_number()
+    {
+        $query = sprintf("SELECT cluster_spot_number FROM settings WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        $this->cluster_spot_number = (int) $result->fetch_object()->cluster_spot_number;
+    }
     function get_cluster_spot_number()
     {
         return $this->cluster_spot_number;
