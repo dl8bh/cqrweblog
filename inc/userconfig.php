@@ -48,7 +48,7 @@ class Userconfig
     {
         $this->dbobj = $dbobj;
         $Cqrlog_common = new Cqrlog_common($dbobj);
-        $this->allowed_bands = $Cqrlog_common->get_band_list();
+        $this->allowed_bands = $Cqrlog_common->get_band_string_array();
         $this->dbobj->select_db("cqrlog_web");
         $this->log_nr = $dbobj->real_escape_string($log_nr);
         $this->config_exists = $this->_check_if_config_exists($log_nr);
@@ -271,7 +271,7 @@ class Userconfig
             $this->_init_config_to_db($this->log_nr);
         }
         foreach ($bands as $band) {
-            if (!in_array($band, $this->allowed_bands)) {
+            if (in_array($band, $this->allowed_bands) == false) {
                 throw new Exception($band . " is not a valid band");
             }
         }
