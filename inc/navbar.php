@@ -15,6 +15,8 @@
                             echo '<li><a href="logsearch.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
                         } else if (isset($statsactive)) {
                             echo '<li><a href="stats.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
+                        } else if (isset($settingsactive)) {
+                            echo '<li><a href="settings.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
                         }
                     }
                     ?>
