@@ -46,8 +46,9 @@ class Userconfig
 
     function __construct($dbobj, int $log_nr, bool $create)
     {
-
         $this->dbobj = $dbobj;
+        $Cqrlog_common = new Cqrlog_common($dbobj);
+        $this->allowed_bands = $Cqrlog_common->get_band_list();
         $this->dbobj->select_db("cqrlog_web");
         $this->log_nr = $dbobj->real_escape_string($log_nr);
         $this->config_exists = $this->_check_if_config_exists($log_nr);
@@ -58,15 +59,14 @@ class Userconfig
         } else {
             $this->_init_config_from_db(0);
         }
-        $this->Cqrlog_common = new Cqrlog_common($dbobj);
-        $this->allowed_bands = $this->Cqrlog_common->get_band_list();
     }
 
-    private function _init_config_from_db(int $log_nr)
+    private function _init_config_from_db(int $init_log_nr)
     {
+        $orig_log_nr = $this->log_nr;
         $query = "SELECT * from settings where log_nr=?";
         $stmt = $this->dbobj->prepare($query);
-        $stmt->bind_param("i", $log_nr);
+        $stmt->bind_param("i", $init_log_nr);
         $stmt->execute();
         $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()) {
@@ -76,6 +76,7 @@ class Userconfig
         }
         $this->cluster_bands = json_decode($this->cluster_bands);
         $this->cluster_modes = json_decode($this->cluster_modes);
+        $this->log_nr = $orig_log_nr;
     }
 
     function _check_if_config_exists(int $log_nr)
@@ -95,6 +96,7 @@ class Userconfig
         $query->execute();
         $result = $query->get_result();
         $result = $result->num_rows;
+        $this->config_exists = $this->_check_if_config_exists($log_nr);
         return (bool) $result;
     }
 
@@ -150,6 +152,9 @@ class Userconfig
 
     function enable_help()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET help_enable = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -157,6 +162,9 @@ class Userconfig
 
     function disable_help()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET help_enable = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -169,6 +177,9 @@ class Userconfig
 
     function enable_pubsearch()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET pubsearch_enable = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -176,6 +187,9 @@ class Userconfig
 
     function disable_pubsearch()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET pubsearch_enable = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -188,6 +202,9 @@ class Userconfig
 
     function enable_searchcount()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET enable_searchcount = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -195,6 +212,9 @@ class Userconfig
 
     function disable_searchcount()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET enable_searchcount = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -214,6 +234,9 @@ class Userconfig
 
     function inc_searchcount()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET searchcount = searchcount + 1 WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         $this->update_searchcount();
@@ -222,6 +245,9 @@ class Userconfig
 
     function set_searchcount(int $searchcount)
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = "UPDATE settings SET searchcount=? WHERE log_nr=?";
         $stmt = $this->dbobj->prepare($query);
         $stmt->bind_param("ii", $searchcount, $this->log_nr);
@@ -241,6 +267,9 @@ class Userconfig
 
     function set_cluster_bands(array $bands)
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         foreach ($bands as $band) {
             if (!in_array($band, $this->allowed_bands)) {
                 throw new Exception($band . " is not a valid band");
@@ -275,6 +304,9 @@ class Userconfig
 
     function set_cluster_modes(array $modes)
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         foreach ($modes as $mode) {
             if (!in_array($mode, ["CW", "SSB", "RTTY"])) {
                 throw new Exception($mode . "is not a valid mode");
@@ -306,6 +338,9 @@ class Userconfig
 
     function set_cluster_skimmer_mode(int $cluster_skimmer_mode)
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         if ($cluster_skimmer_mode > 3 || $cluster_skimmer_mode < 0) {
             throw new Exception("invalid cluster mode");
         }
@@ -327,6 +362,9 @@ class Userconfig
 
     function enable_pubqslr()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET enable_pubqslr = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -334,6 +372,9 @@ class Userconfig
 
     function disable_pubqslr()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET enable_pubqslr = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -347,6 +388,9 @@ class Userconfig
 
     function enable_pubqsls()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET enable_pubqsls = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
@@ -354,6 +398,9 @@ class Userconfig
 
     function disable_pubqsls()
     {
+        if (!$this->config_exists) {
+            $this->_init_config_to_db($this->log_nr);
+        }
         $query = sprintf("UPDATE settings SET enable_pubqsls = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
