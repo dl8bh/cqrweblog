@@ -4,12 +4,14 @@ class Cqrlog_common
 {
     private $dbobj;
     private $band_list;
+    private $log_list;
 
     function __construct($dbobj)
     {
         $this->dbobj = $dbobj;
         $this->dbobj->select_db("cqrlog_common");
         $this->band_list = $this->_fetch_band_list();
+        $this->log_list = $this->_fetch_log_list();
     }
 
     function adif_to_dxcc(int $adif)
@@ -180,11 +182,15 @@ class Cqrlog_common
         return $this->band_list;
     }
 
-    function get_log_list()
+    function _fetch_log_list()
     {
         $query = "SELECT log_nr, log_name FROM log_list";
         $result = $this->dbobj->query($query)->fetch_all(MYSQLI_ASSOC);
         return $result;
+    }
+    function get_log_list()
+    {
+        return $this->log_list;
     }
 
     function get_dxcc_ref_list($pref)
