@@ -7,6 +7,7 @@ class Logbook
     */
     private $dbobj;
     private $log_id;
+    private $database_name;
     private $where_like = array("callsign", "remarks", "name", "loc");
     private $legal_fields = array(
         "id_cqrlog_main" => "i",
