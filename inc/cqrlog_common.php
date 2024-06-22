@@ -181,6 +181,15 @@ class Cqrlog_common
     {
         return $this->band_list;
     }
+    
+    function get_band_string_array()
+    {
+        $returnarray = array();
+        foreach ($this->band_list as $band) {
+            array_push($returnarray, $band[0]);
+        }
+        return $returnarray;
+    }
 
     function _fetch_log_list()
     {
