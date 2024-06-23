@@ -89,13 +89,13 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
             <label for="pubsearch" class="control-label">Public Search</label>
             <div id="pubsearch">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="pubsearch_enable" value="pubsearch_enable"<?php if ($Userconfig->get_pubsearch_enabled()) {echo " checked";}?>>Public Search Enabled</label>
+                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_enabled"<?php if ($Userconfig->get_pubsearch_enabled()) {echo " checked";}?>>Public Search Enabled</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="pubsearch_qslr_visible" value="pubsearch_qslr_visible"<?php if ($Userconfig->get_pubqslr_enabled()) {echo " checked";}?>>QSL Received public visible</label>
+                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_qslr_visible"<?php if ($Userconfig->get_pubqslr_enabled()) {echo " checked";}?>>QSL Received public visible</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="pubsearch_qsls_visible" value="pubsearch_qsls_visible"<?php if ($Userconfig->get_pubqsls_enabled()) {echo " checked";}?>>QSL Sent visible</label>
+                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_qsls_visible"<?php if ($Userconfig->get_pubqsls_enabled()) {echo " checked";}?>>QSL Sent visible</label>
                 </div>
             </div>
         </div>
