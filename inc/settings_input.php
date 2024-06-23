@@ -54,13 +54,13 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
             <label for="cluster_modes" class="control-label">Cluster Modes</label>
             <div id="Cluster Modes">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="cluster_mode_settings[]" value="cluster_cw_enabled"<?php if (in_array("CW", $enabled_modes)) {echo " checked";}?>>CW</label>
+                    <label><input type="checkbox" name="cluster_mode_settings[]" value="CW"<?php if (in_array("CW", $enabled_modes)) {echo " checked";}?>>CW</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="cluster_mode_settings[]" value="cluster_ssb_enabled"<?php if (in_array("SSB", $enabled_modes)) {echo " checked";}?>>SSB</label>
+                    <label><input type="checkbox" name="cluster_mode_settings[]" value="SSB"<?php if (in_array("SSB", $enabled_modes)) {echo " checked";}?>>SSB</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="cluster_mode_settings[]" value="cluster_rtty_enabled"<?php if (in_array("RTTY", $enabled_modes)) {echo " checked";}?>>RTTY / DATA</label>
+                    <label><input type="checkbox" name="cluster_mode_settings[]" value="RTTY"<?php if (in_array("RTTY", $enabled_modes)) {echo " checked";}?>>RTTY / DATA</label>
                 </div>
 
             </div>
