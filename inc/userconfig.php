@@ -365,7 +365,7 @@ class Userconfig
         if (!$this->config_exists) {
             $this->_init_config_to_db($this->log_nr);
         }
-        $query = sprintf("UPDATE settings SET enable_pubqslr = '1' WHERE log_nr='%u'", $this->log_nr);
+        $query = sprintf("UPDATE settings SET pubqslr_enable = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
@@ -375,7 +375,7 @@ class Userconfig
         if (!$this->config_exists) {
             $this->_init_config_to_db($this->log_nr);
         }
-        $query = sprintf("UPDATE settings SET enable_pubqslr = '0' WHERE log_nr='%u'", $this->log_nr);
+        $query = sprintf("UPDATE settings SET pubqslr_enable = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
@@ -391,7 +391,7 @@ class Userconfig
         if (!$this->config_exists) {
             $this->_init_config_to_db($this->log_nr);
         }
-        $query = sprintf("UPDATE settings SET enable_pubqsls = '1' WHERE log_nr='%u'", $this->log_nr);
+        $query = sprintf("UPDATE settings SET pubqsls_enable = '1' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
@@ -401,7 +401,7 @@ class Userconfig
         if (!$this->config_exists) {
             $this->_init_config_to_db($this->log_nr);
         }
-        $query = sprintf("UPDATE settings SET enable_pubqsls = '0' WHERE log_nr='%u'", $this->log_nr);
+        $query = sprintf("UPDATE settings SET pubqsls_enable = '0' WHERE log_nr='%u'", $this->log_nr);
         $result = $this->dbobj->query($query);
         return $result;
     }
