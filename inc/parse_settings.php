@@ -26,22 +26,17 @@ if (isset($_POST["pubsearch_settings"])) {
     $pubsearch_settings = $_POST["pubsearch_settings"];
     if (in_array("pubsearch_enabled", $pubsearch_settings)) {
         $Userconfig->enable_pubsearch();
-    }
-    else {
+    } else {
         $Userconfig->disable_pubsearch();
     }
     if (in_array("pubsearch_qslr_visible", $pubsearch_settings)) {
         $Userconfig->enable_pubqslr();
-    }
-    else {
+    } else {
         $Userconfig->disable_pubqslr();
     }
     if (in_array("pubsearch_qsls_visible", $pubsearch_settings)) {
         $Userconfig->enable_pubqsls();
-    }
-    else {
+    } else {
         $Userconfig->disable_pubqsls();
     }
 }
-
-
