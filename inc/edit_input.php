@@ -15,7 +15,7 @@ if (isset($qso_id)) {
                 <?php
                 echo '<option>select</option>';
                 foreach ($Cqrlog_common->get_band_list() as $band_in) {
-                    echo '<option>' . $band_in[0] . '</option>';
+                    echo '<option>' . $band_in . '</option>';
                 }
                 ?>
             </select>

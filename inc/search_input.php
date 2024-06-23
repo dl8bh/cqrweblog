@@ -12,7 +12,7 @@ echo '<form class="form" role="form" action="logsearch.php?log_id=' . $log_id . 
                 <?php
                 echo '<option>select</option>';
                 foreach ($Cqrlog_common->get_band_list() as $select_band) {
-                    echo("<option>" . $select_band[0] . "</option>\n");
+                    echo("<option>" . $select_band . "</option>\n");
                 }
                 ?>
             </select>

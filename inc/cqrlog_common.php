@@ -174,21 +174,17 @@ class Cqrlog_common
     {
         $query = "SELECT band FROM bands ORDER BY b_begin ASC";
         $result = $this->dbobj->query($query)->fetch_all();
-        return $result;
+        $result;
+        $returnarray = array();
+        foreach ($result as $band) {
+            array_push($returnarray, $band[0]);
+        }
+        return $returnarray;
     }
 
     function get_band_list()
     {
         return $this->band_list;
-    }
-    
-    function get_band_string_array()
-    {
-        $returnarray = array();
-        foreach ($this->band_list as $band) {
-            array_push($returnarray, $band[0]);
-        }
-        return $returnarray;
     }
 
     function _fetch_log_list()

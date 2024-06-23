@@ -14,7 +14,7 @@ echo '<form class="form" role="form" name="input" action="index.php' . $urlparam
             <?php
             echo '<option>select</option>';
             foreach ($Cqrlog_common->get_band_list() as $select_band) {
-                echo '<option>' . $select_band[0] . '</option>';
+                echo '<option>' . $select_band . '</option>';
             }
             ?>
         </select>
