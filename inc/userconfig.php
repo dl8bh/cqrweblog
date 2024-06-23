@@ -48,7 +48,7 @@ class Userconfig
     {
         $this->dbobj = $dbobj;
         $Cqrlog_common = new Cqrlog_common($dbobj);
-        $this->allowed_bands = $Cqrlog_common->get_band_string_array();
+        $this->allowed_bands = $Cqrlog_common->get_band_list();
         $this->dbobj->select_db("cqrlog_web");
         $this->log_nr = $dbobj->real_escape_string($log_nr);
         $this->config_exists = $this->_check_if_config_exists($log_nr);
