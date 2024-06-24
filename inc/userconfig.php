@@ -348,7 +348,15 @@ class Userconfig
         $query->bind_param("ii", $cluster_skimmer_mode, $this->log_nr);
         $query->execute();
         $result = $query->get_result();
+        $this->update_cluster_skimmer_mode();
         return $result;
+    }
+
+    private function update_cluster_skimmer_mode()
+    {
+        $query = sprintf("SELECT cluster_skimmer_mode FROM settings WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        $this->cluster_skimmer_mode = json_decode($result->fetch_object()->get_cluster_skimmer_mode);
     }
 
     function disable_skimmer()
