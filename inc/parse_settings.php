@@ -1,6 +1,9 @@
 <?php
 // Parse Input
-//print_r($_POST);
+if (isset($_POST["cluster_skimmer_mode"])) {
+    $cluster_enabled = (int) $_POST["cluster_skimmer_mode"];
+    $Userconfig->set_cluster_skimmer_mode($cluster_enabled);
+}
 
 if (isset($_POST["cluster_spot_count"])) {
     $cluster_spot_count = htmlentities($_POST["cluster_spot_count"]);

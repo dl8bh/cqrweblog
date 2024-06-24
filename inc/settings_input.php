@@ -13,7 +13,7 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
             <input onClick="this.setSelectionRange(0,this.value.length)" class="form-control" id="cluster_spot_count" value="<?php echo ($Userconfig->get_cluster_spot_number()) ?>" type="text" maxlength="55" size="15" name="cluster_spot_count" data-toggle="tooltip" title="use n for number of spots, 0 for cluster disable">
         </div>
         <div class="form-group col-md-2 col-sm-2 col-xs-6">
-            <label for="cluster_mode" class="control-label">Cluster Mode</label>
+            <label for="cluster_skimmer_mode" class="control-label">Cluster Mode</label>
             <?php
             $skimmer_mode = $Userconfig->get_cluster_skimmer_mode();
             $select_options = "";
@@ -41,12 +41,13 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
 
 
             ?>
-            <select class="form-control" id="band" name="band">
+            <select class="form-control" id="cluster_skimmer_mode" name="cluster_skimmer_mode">
                 <?php
                 echo $select_options;
                 ?>
             </select>
         </div>
+
         <?php
         $enabled_modes = $Userconfig->get_cluster_modes();
         ?>
@@ -54,13 +55,19 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
             <label for="cluster_modes" class="control-label">Cluster Modes</label>
             <div id="Cluster Modes">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="cluster_mode_settings[]" value="CW"<?php if (in_array("CW", $enabled_modes)) {echo " checked";}?>>CW</label>
+                    <label><input type="checkbox" name="cluster_mode_settings[]" value="CW" <?php if (in_array("CW", $enabled_modes)) {
+                                                                                                echo " checked";
+                                                                                            } ?>>CW</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="cluster_mode_settings[]" value="SSB"<?php if (in_array("SSB", $enabled_modes)) {echo " checked";}?>>SSB</label>
+                    <label><input type="checkbox" name="cluster_mode_settings[]" value="SSB" <?php if (in_array("SSB", $enabled_modes)) {
+                                                                                                    echo " checked";
+                                                                                                } ?>>SSB</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="cluster_mode_settings[]" value="RTTY"<?php if (in_array("RTTY", $enabled_modes)) {echo " checked";}?>>RTTY / DATA</label>
+                    <label><input type="checkbox" name="cluster_mode_settings[]" value="RTTY" <?php if (in_array("RTTY", $enabled_modes)) {
+                                                                                                    echo " checked";
+                                                                                                } ?>>RTTY / DATA</label>
                 </div>
 
             </div>
@@ -71,11 +78,13 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
                 <?php
                 $enabled_bands = $Userconfig->get_cluster_bands();
                 foreach ($Cqrlog_common->get_band_list() as $band) {
-                    if(in_array($band[0], $enabled_bands)) {
+                    if (in_array($band[0], $enabled_bands)) {
                     }
                 ?>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="enabled_bands[]; ?>_enabled" value="<?php echo $band; ?>"<?php if (in_array($band, $enabled_bands)) {echo " checked";} ?>><?php echo $band ?></label>
+                        <label><input type="checkbox" name="enabled_bands[]; ?>_enabled" value="<?php echo $band; ?>" <?php if (in_array($band, $enabled_bands)) {
+                                                                                                                            echo " checked";
+                                                                                                                        } ?>><?php echo $band ?></label>
                     </div>
 
                 <?php
@@ -89,13 +98,19 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
             <label for="pubsearch" class="control-label">Public Search</label>
             <div id="pubsearch">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_enabled"<?php if ($Userconfig->get_pubsearch_enabled()) {echo " checked";}?>>Public Search Enabled</label>
+                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_enabled" <?php if ($Userconfig->get_pubsearch_enabled()) {
+                                                                                                            echo " checked";
+                                                                                                        } ?>>Public Search Enabled</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_qslr_visible"<?php if ($Userconfig->get_pubqslr_enabled()) {echo " checked";}?>>QSL Received public visible</label>
+                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_qslr_visible" <?php if ($Userconfig->get_pubqslr_enabled()) {
+                                                                                                                    echo " checked";
+                                                                                                                } ?>>QSL Received public visible</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_qsls_visible"<?php if ($Userconfig->get_pubqsls_enabled()) {echo " checked";}?>>QSL Sent visible</label>
+                    <label><input type="checkbox" name="pubsearch_settings[]" value="pubsearch_qsls_visible" <?php if ($Userconfig->get_pubqsls_enabled()) {
+                                                                                                                    echo " checked";
+                                                                                                                } ?>>QSL Sent visible</label>
                 </div>
             </div>
         </div>
