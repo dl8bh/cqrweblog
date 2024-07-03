@@ -3,6 +3,7 @@ include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
 include("inc/parse_settings.php");
+$page = basename(__FILE__, '.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +11,6 @@ include("inc/parse_settings.php");
 
 <head>
     <?php
-    $settingsactive = true;
-
     echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Settings</title>'
     ?>
     <link rel="stylesheet" type="text/css" href="inc/css/logold.css">

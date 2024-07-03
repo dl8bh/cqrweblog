@@ -4,6 +4,7 @@ include("config.php");
 include("inc/header.php");
 include("inc/parse_stats.php");
 include("inc/logbook.php");
+$page = basename(__FILE__, '.php');
 $Logbook = new Logbook($DbSpawner->newdb(), $log_id);
 ?>
 

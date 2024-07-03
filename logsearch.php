@@ -3,6 +3,7 @@ include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
 include("inc/parse_search.php");
+$page = basename(__FILE__, '.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +11,6 @@ include("inc/parse_search.php");
 
 <head>
     <?php
-    $searchactive = true;
     include("inc/logbook.php");
     $Logbook = new Logbook($DbSpawner->newdb(), $log_id);
     echo '<title>' . strtoupper($Cqrlog_common->logid_to_call($log_id)) . ' \'s Logsearch</title>'

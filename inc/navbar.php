@@ -9,13 +9,13 @@
                     foreach ($Cqrlog_common->get_log_list() as $log) {
                         $log_nr = $log["log_nr"];
                         $log_name = $log["log_name"];
-                        if (isset($logactive)) {
+                        if ($page == "index") {
                             echo '<li><a href="index.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
-                        } else if (isset($searchactive)) {
+                        } else if ($page == "logsearch") {
                             echo '<li><a href="logsearch.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
-                        } else if (isset($statsactive)) {
+                        } else if ($page == "stats") {
                             echo '<li><a href="stats.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
-                        } else if (isset($settingsactive)) {
+                        } else if ($page == "settings") {
                             echo '<li><a href="settings.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
                         }
                     }
@@ -25,19 +25,19 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li<?php if (isset($logactive)) {echo ' class="active"'; } ?>>
+                <li<?php if ($page == "index") {echo ' class="active"'; } ?>>
                     <a href="<?php echo $cqrweblog_root . 'index.php?log_id=' . $log_id ?>">Log</a>
                 </li>
-                <li<?php if (isset($searchactive)) {echo ' class="active"'; } ?>>
+                <li<?php if ($page == "logsearch") {echo ' class="active"'; } ?>>
                     <a href="<?php echo $cqrweblog_root . 'logsearch.php?log_id=' . $log_id ?>">Search / Export</a>
                 </li>
-                <li<?php if (isset($statsactive)) {echo ' class="active"'; }?>>
+                <li<?php if ($page == "stats") {echo ' class="active"'; }?>>
                     <a href="<?php echo $cqrweblog_root . 'stats.php?log_id=' . $log_id; ?>">Statistics</a>
                 </li>
                 <li class="hidden-xs">
                     <a href="<?php echo $cqrweblog_root . 'publog.php?log_id=' . $log_id; ?>">Public</a>
                 </li>
-                <li <?php if (isset($settingsactive)) { echo 'class="active"'; } ?>>
+                <li <?php if ($page == "settings") { echo 'class="active"'; } ?>>
                         <a href="<?php echo $cqrweblog_root . 'settings.php?log_id=' . $log_id; ?>">Settings</a>
                 </li>
                 <li>

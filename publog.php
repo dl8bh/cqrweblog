@@ -2,6 +2,7 @@
 include("config_defaults.php");
 include("config.php");
 include("inc/header.php");
+$page = basename(__FILE__, '.php');
 ?>
 <html>
 
