@@ -100,6 +100,31 @@ class Userconfig
         return (bool) $result;
     }
 
+    function set_password(string $password)
+    {
+        $password_hash = password_hash($password, PASSWORD_ARGON2ID);
+        $query = "UPDATE settings SET password=? WHERE log_nr=?";
+        $stmt = $this->dbobj->prepare($query);
+        $stmt->bind_param("si", $password_hash, $this->log_nr);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    function verify_password(string $password)
+    {
+
+        $query = sprintf("SELECT password FROM settings WHERE log_nr='%u'", $this->log_nr);
+        $result = $this->dbobj->query($query);
+        $password_hash = $result->fetch_object()->password;
+        $query = "UPDATE settings SET password=? WHERE log_nr=?";
+        if (password_verify($password, $password_hash)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function get_cluster_enabled()
     {
         if ($this->get_cluster_skimmer_mode() > 0) {
