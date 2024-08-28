@@ -23,27 +23,30 @@
         $qsotable = $Logbook->get_log($qso_count, $where);
         foreach ($qsotable as $qso) {
             if ($Userconfig->get_pubqslr_enabled()) {
-                switch ($qsl_r) {
+                switch ($qso->get_qsl_r()) {
                     case 'Q':
-                        $qsl_r = $qslrdate;
+                        $qsl_r = $qso->get_qslr_date();
                         break;
                     case '':
+                    default:
+                        $qsl_r = '';
+                        break;
                 }
             }
 
             if ($Userconfig->get_pubqsls_enabled()) {
-                switch ($qsl_s) {
+                switch ($qso->get_qsl_s()) {
                     case 'B':
-                        $qsl_s = $qslsdate . ' via Bureau';
+                        $qsl_s =  $qso->get_qsls_date() . ' via Bureau';
                         break;
                     case 'MB':
-                        $qsl_s = $qslsdate . ' via Bureau';
+                        $qsl_s = $qso->get_qsls_date() . ' via Bureau';
                         break;
                     case 'D':
-                        $qsl_s = $qslsdate . ' via Direct';
+                        $qsl_s = $qso->get_qsls_date() . ' via Direct';
                         break;
                     case 'MD':
-                        $qsl_s = $qslsdate . ' via Direct';
+                        $qsl_s = $qso->get_qsls_date() . ' via Direct';
                         break;
                     case 'SB':
                         $qsl_s = '';
@@ -66,10 +69,10 @@
             echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_rst_r()));
             echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_name()));
             if ($Userconfig->get_pubqslr_enabled()) {
-                echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_qsl_r()));
+                echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qsl_r));
             }
             if ($Userconfig->get_pubqsls_enabled()) {
-                echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qso->get_qsl_s()));
+                echo (sprintf("<td class=\"hidden-xs\">%s</td>\n", $qsl_s));
             }
             echo '</tr>' . "\n";
         }
