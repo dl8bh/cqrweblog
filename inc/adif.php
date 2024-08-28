@@ -48,10 +48,10 @@ class Adif
                         $qso_array["qsodate"] = $adif_array["QSO_DATE"];
                     }
                     if (array_key_exists("TIME_ON", $adif_array)) {
-                        $qso_array["time_on"] = $adif_array["TIME_ON"];
+                        $qso_array["time_on"] = substr($adif_array["TIME_ON"], 0, 4);
                     }
                     if (array_key_exists("TIME_OFF", $adif_array)) {
-                        $qso_array["time_off"] = $adif_array["TIME_OFF"];
+                        $qso_array["time_off"] = substr($adif_array["TIME_OFF"], 0, 4);
                     }
                     if (array_key_exists("CALL", $adif_array)) {
                         $qso_array["callsign"] = $adif_array["CALL"];
