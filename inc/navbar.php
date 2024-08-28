@@ -13,6 +13,8 @@
                             echo '<li><a href="index.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
                         } else if ($page == "logsearch") {
                             echo '<li><a href="logsearch.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
+                        } else if ($page == "import") {
+                            echo '<li><a href="import.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
                         } else if ($page == "stats") {
                             echo '<li><a href="stats.php?log_id=' . $log_nr . '">' . $log_name . '</a></li>' . "\n";
                         } else if ($page == "settings") {
@@ -30,6 +32,9 @@
                 </li>
                 <li<?php if ($page == "logsearch") {echo ' class="active"'; } ?>>
                     <a href="<?php echo $cqrweblog_root . 'logsearch.php?log_id=' . $log_id ?>">Search / Export</a>
+                </li>
+                <li<?php if ($page == "import") {echo ' class="active"'; } ?>>
+                    <a href="<?php echo $cqrweblog_root . 'import.php?log_id=' . $log_id ?>">Import</a>
                 </li>
                 <li<?php if ($page == "stats") {echo ' class="active"'; }?>>
                     <a href="<?php echo $cqrweblog_root . 'stats.php?log_id=' . $log_id; ?>">Statistics</a>
