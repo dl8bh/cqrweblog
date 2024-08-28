@@ -356,4 +356,27 @@ class Logbook
             return FALSE;
         }
     }
+
+    function check_exact_dupe(Qso $qso)
+    {
+        $band = $qso->get_band();
+        $mode = $qso->get_mode();
+        $callsign = $qso->get_callsign();
+        $timeon = $qso->get_time_on();
+        $date = $qso->get_qsodate();
+
+        $querystring = "SELECT callsign FROM cqrlog_main WHERE callsign=? AND mode=? AND band=? AND time_on=? AND qsodate=? LIMIT 1";
+
+        $query = $this->dbobj->prepare($querystring);
+        $query->bind_param("sssss", $callsign, $mode, $band, $timeon, $date);
+        $query->execute();
+        $result = $query->get_result();
+        if ($result->num_rows > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+
 }
