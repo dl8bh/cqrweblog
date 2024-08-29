@@ -131,7 +131,7 @@ class Adif
                         $qso_array["adif"] = $adif_array["DXCC"];
                     } else {
                         if (!isset($dxccinfo)) {
-                            $dxccinfo = $Checkdxcc->call_to_dxcc($qso_array["callsign"]);
+                            $dxccinfo = $this->Checkdxcc->call_to_dxcc($qso_array["callsign"]);
                         }
                         $qso_array["adif"] = $dxccinfo["adif"];
                     }
