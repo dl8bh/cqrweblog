@@ -6,8 +6,11 @@ class Adif
     This class handles adif entries and files.
     */
     private $adif_header;
+    private $Checkdxcc;
     function __construct()
     {
+        include_once("./inc/checkdxcc.php");
+        $this->Checkdxcc = new Checkdxcc("https://api.dl8bh.de/lookup/json/");
         $this->adif_header =  '<ADIF_VER:5>2.2.1' . "\n";
         $this->adif_header .= 'ADIF export from cqrweblog' . "\n\n";
         $this->adif_header .= 'Internet: http://www.dl8bh.de/cqrweblog/' . "\n\n";
@@ -31,6 +34,7 @@ class Adif
         $header = true;
         $adif_array = array();
         foreach ($exploded as $item) {
+            unset($dxccinfo);
             // <EOH> concludes the ADIF-header
             if (str_contains($item, "EOH>")) {
                 $header = false;
@@ -48,7 +52,7 @@ class Adif
                         $qso_array["qsodate"] = $adif_array["QSO_DATE"];
                     }
                     if (array_key_exists("TIME_ON", $adif_array)) {
-                        $qso_array["time_on"] = substr($adif_array["TIME_ON"], 0, 2) . ":" . substr($adif_array["TIME_ON"], 3, 2) ;
+                        $qso_array["time_on"] = substr($adif_array["TIME_ON"], 0, 2) . ":" . substr($adif_array["TIME_ON"], 3, 2);
                     }
                     if (array_key_exists("TIME_OFF", $adif_array)) {
                         $qso_array["time_off"] = substr($adif_array["TIME_OFF"], 0, 2) . ":" . substr($adif_array["TIME_OFF"], 3, 2);
@@ -95,12 +99,19 @@ class Adif
                     }
                     if (array_key_exists("ITUZ", $adif_array)) {
                         $qso_array["itu"] = $adif_array["ITUZ"];
+                    } else {
+                        if (!isset($dxccinfo)) {
+                            $dxccinfo = $this->Checkdxcc->call_to_dxcc($qso_array["callsign"]);
+                        }
+                        $qso_array["itu"] = $dxccinfo["itu"];
                     }
                     if (array_key_exists("CQZ", $adif_array)) {
                         $qso_array["waz"] = $adif_array["CQZ"];
-                    }
-                    if (array_key_exists("CQZ", $adif_array)) {
-                        $qso_array["waz"] = $adif_array["CQZ"];
+                    } else {
+                        if (!isset($dxccinfo)) {
+                            $dxccinfo = $this->Checkdxcc->call_to_dxcc($qso_array["callsign"]);
+                        }
+                        $qso_array["waz"] = $dxccinfo["waz"];
                     }
                     if (array_key_exists("GRIDSQUARE", $adif_array)) {
                         $qso_array["loc"] = $adif_array["GRIDSQUARE"];
@@ -115,12 +126,15 @@ class Adif
                     if (array_key_exists("COMMENT", $adif_array)) {
                         $qso_array["remarks"] = $adif_array["COMMENT"];
                     }
-                    /* adif vs qso_dxcc....
-                        if (array_key_exists("DXCC", $adif_array))
-                        {
-                            $qso_array["adif"] = $adif_array["DXCC"];
+                    /* adif vs qso_dxcc.... */
+                    if (array_key_exists("DXCC", $adif_array)) {
+                        $qso_array["adif"] = $adif_array["DXCC"];
+                    } else {
+                        if (!isset($dxccinfo)) {
+                            $dxccinfo = $Checkdxcc->call_to_dxcc($qso_array["callsign"]);
                         }
-                    */
+                        $qso_array["adif"] = $dxccinfo["adif"];
+                    }
                     if (array_key_exists("BAND", $adif_array)) {
                         $qso_array["band"] = $adif_array["BAND"];
                     }
