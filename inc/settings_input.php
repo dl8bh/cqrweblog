@@ -82,7 +82,7 @@ echo '<form class="form" role="form" action="settings.php?log_id=' . $log_id . '
                     }
                 ?>
                     <div class="checkbox">
-                        <label><input type="checkbox" name="enabled_bands[]; ?>_enabled" value="<?php echo $band; ?>" <?php if (in_array($band, $enabled_bands)) {
+                        <label><input type="checkbox" name="enabled_bands[]" value="<?php echo $band; ?>" <?php if (in_array($band, $enabled_bands)) {
                                                                                                                             echo " checked";
                                                                                                                         } ?>><?php echo $band ?></label>
                     </div>
